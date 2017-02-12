@@ -106,4 +106,15 @@ module Interface = {
   module type Type = {
     type t;
   };
+
+  /*
+    Maybe add?
+
+    Monad
+    Mappable
+    Foldable
+    Addable
+    ...
+    Enumerable
+  */
 };
