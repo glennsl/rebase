@@ -101,3 +101,9 @@ module Result = {
     | Some v => Ok v
     | None => Error ();
 };
+
+module Interface = {
+  module type Type = {
+    type t;
+  };
+};
