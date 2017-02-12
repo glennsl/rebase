@@ -3,7 +3,7 @@
   comma. If this screws with your editor highlighting, please tell us by filing
   an issue! */
 {
-  "name" : "reason-js",
+  "name" : "rebase",
   "refmt": "reason/refmt_impl.native",
   "sources": ["src"],
 }
