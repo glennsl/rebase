@@ -54,7 +54,7 @@ module Option = {
 module Result = {
   let unwrapUnsafely = fun
     | Ok v => v
-    | Error e => raise (Invalid_argument "unwrapUnsafely called on Error");
+    | Error _ => raise (Invalid_argument ("unwrapUnsafely called on Error"));
 
   let isOk = fun
     | Some _ => true
