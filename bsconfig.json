@@ -4,6 +4,5 @@
   an issue! */
 {
   "name" : "rebase",
-  "refmt": "reason/refmt_impl.native",
   "sources": ["src"],
 }

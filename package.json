@@ -9,8 +9,7 @@
   "author": "glennsl",
   "license": "MIT",
   "devDependencies": {
-    "bs-platform": "https://github.com/bloomberg/bucklescript.git",
-    "reason": "https://github.com/facebook/reason.git"
+    "bs-platform": "https://github.com/bloomberg/bucklescript.git"
   },
   "rebel": {}
 }
