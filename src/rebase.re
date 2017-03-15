@@ -42,6 +42,10 @@ module Option = {
   let andThen f => fun
     | Some v => f v
     | None => None;
+  
+  let filter pred => fun
+    | Some v => pred v ? Some v : None
+    | None => None;
 
   let fromResult = fun
     | Ok v => Some v
