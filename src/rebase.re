@@ -47,6 +47,18 @@ module Option = {
     | Some v => pred v ? Some v : None
     | None => None;
 
+  let exists predicate => fun
+    | Some v => predicate v
+    | None => false;
+
+  let forAll predicate => fun
+    | Some v => predicate v
+    | None => true;
+
+  let filter predicate => fun
+    | Some v as self when predicate v => self
+    | _ => None;
+
   let fromResult = fun
     | Ok v => Some v
     | Error _ => None;
@@ -106,11 +118,8 @@ module Result = {
     | None => Error ();
 };
 
+/*
 module Interface = {
-  module type Type = {
-    type t;
-  };
-
   /*
     Maybe add?
 
@@ -122,6 +131,7 @@ module Interface = {
     Enumerable
   */
 };
+*/
 
 module Str = {
   let isEmpty s => String.length (String.trim s) == 0;
