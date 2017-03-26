@@ -73,12 +73,12 @@ module Result = {
     | Error _ => raise (Invalid_argument ("unwrapUnsafely called on Error"));
 
   let isOk = fun
-    | Some _ => true
-    | None => false;
+    | Ok _ => true
+    | Error _ => false;
 
   let isError = fun
-    | Some _ => false
-    | None => true;
+    | Ok _ => false
+    | Error _ => true;
 
   let catch f =>
     Ok (try f {
