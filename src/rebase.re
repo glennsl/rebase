@@ -1,4 +1,5 @@
 module Option = {
+  type t 'a = option 'a;
   include Rebase__option;
 };
 
