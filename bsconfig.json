@@ -4,5 +4,10 @@
   an issue! */
 {
   "name" : "rebase",
-  "sources": ["src"],
+  "sources": [{
+    "dir": "src",
+    "subdirs": ["signatures"]
+  },
+  "examples"
+  ],
 }
