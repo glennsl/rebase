@@ -13,5 +13,7 @@ module type S = sig
     Fantasyland: reduce
   *)
   val reduce : ('b -> 'a -> 'b) -> 'b -> 'a t -> 'b
-  val reduceReverse : ('a -> 'b -> 'b) -> 'b -> 'a t -> 'b
+
+  (* reduceReversed? *)
+  val reduceRight : ('b -> 'a -> 'b) -> 'b -> 'a t -> 'b
 end

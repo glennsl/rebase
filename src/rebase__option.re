@@ -1,5 +1,7 @@
 open Rebase__result__type;
 
+type t 'a = option 'a;
+
 let from x =>
   Some x;
 
@@ -105,7 +107,7 @@ let reduce f acc =>
   | None => acc
   | Some x => f acc x;
 
-  let reduceReverse f acc =>
+  let reduceRight f acc =>
   fun
   | None => acc
-  | Some x => f x acc;
+  | Some x => f acc x;

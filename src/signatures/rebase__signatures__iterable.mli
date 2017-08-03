@@ -8,7 +8,7 @@ module type S = sig
 
   val find : ('a -> bool) -> 'a t -> 'a option
 
-  val findOrRaise : ('a -> bool) -> 'a t -> 'a
+  (*val findOrRaise : ('a -> bool) -> 'a t -> 'a*)
 
   (*
     imm.re: let forEach: while_::(elt 'a => bool)? => (elt 'a => unit) => t 'a => unit;
