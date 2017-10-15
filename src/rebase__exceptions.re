@@ -1,0 +1,2 @@
+exception InvalidArgument string;
+exception IndexOutOfBounds;

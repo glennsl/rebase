@@ -6,43 +6,45 @@ let from x =>
 
 external make : int => t 'a = "Array" [@@bs.new];
 external length : t 'a => int = "" [@@bs.get];
-external fill : 'a => t 'a = "" [@@bs.send.pipe: t 'a];
+external fill : 'a => unit = "" [@@bs.send.pipe: t 'a];
 external _push : 'a => unit = "push" [@@bs.send.pipe: t 'a];
 external concat : t 'a => t 'a = "" [@@bs.send.pipe: t 'a];
-external concatMany : array (t 'a) => t 'a = "concat" [@@bs.send.pipe: t 'a] [@@bs.splice];
 external slice : from::int => to_::int => t 'a = "" [@@bs.send.pipe : t 'a];
 external copy : t 'a = "slice" [@@bs.send.pipe : t 'a];
 external mapWithIndex : ('a => int => 'b) => t 'b = "" [@@bs.send.pipe: t 'a];
 
-external unsafeGetUnckecked : array 'a => int => 'a = "" [@@bs.get_index];
-external unsafeSetUnckecked : array 'a => int => 'a => unit = "" [@@bs.set_index];
+external _unsafeGetUnchecked : t 'a => int => 'a = "" [@@bs.get_index];
+external _unsafeSetUnchecked : t 'a => int => 'a => unit = "" [@@bs.set_index];
+
+let unsafeGetUnchecked index self => _unsafeGetUnchecked self index;
+let unsafeSetUnchecked index value self => _unsafeSetUnchecked self index value;
 
 let get i self =>
   if (i >= 0 && i < (length self)) {
-    Some (unsafeGetUnckecked self i)
+    Some (_unsafeGetUnchecked self i)
   } else {
     None
   };
-
+/*
 let set i value self =>
   if (i >= 0 && i < (length self)) {
-    Some (unsafeSetUnckecked self i value)
+    unsafeSetUnchecked self i value
   } else {
-    None
+    raise Rebase__exceptions.IndexOutOfBounds
   };
-
+*/
 let getOrRaise i self =>
   if (i >= 0 && i < (length self)) {
-    unsafeGetUnckecked self i
+    _unsafeGetUnchecked self i
   } else {
-    invalid_arg "getOrRaise"
+    raise Rebase__exceptions.IndexOutOfBounds
   };
 
 let setOrRaise i value self =>
   if (i >= 0 && i < (length self)) {
-    unsafeSetUnckecked self i value
+    _unsafeSetUnchecked self i value
   } else {
-    invalid_arg "setOrRaise"
+    raise Rebase__exceptions.IndexOutOfBounds
   };
 
 external exists : ('a => Js.boolean) => bool = "some" [@@bs.send.pipe: t 'a];
@@ -61,9 +63,9 @@ external reduceRight : ('b => 'a => 'b) => 'b => 'b = "" [@@bs.send.pipe: t 'a];
 let flatMap f self => {
   let result = [||];
   for i in 0 to (Js.Array.length self - 1) {
-    let nested = f (unsafeGetUnckecked self i);
+    let nested = f (_unsafeGetUnchecked self i);
     for j in 0 to (Js.Array.length nested - 1) {
-      _push (unsafeGetUnckecked nested j) result
+      _push (_unsafeGetUnchecked nested j) result
     }
   };
   result

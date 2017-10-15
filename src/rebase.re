@@ -1,5 +1,7 @@
 module Array = Rebase__array;
 
+module List = Rebase__list;
+
 module Option = {
   include Rebase__option;
 };
@@ -15,3 +17,5 @@ module String = {
 module Flags = {
   include Rebase__flags;
 };
+
+include Rebase__exceptions;
