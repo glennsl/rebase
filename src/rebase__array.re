@@ -4,8 +4,46 @@ type t 'a = array 'a;
 let from x =>
   [|x|];
 
-external unsafeGet : array 'a => int => 'a = "" [@@bs.get_index];
-external unsafeSet : array 'a => int => 'a => unit = "" [@@bs.set_index];
+external make : int => t 'a = "Array" [@@bs.new];
+external length : t 'a => int = "" [@@bs.get];
+external fill : 'a => t 'a = "" [@@bs.send.pipe: t 'a];
+external _push : 'a => unit = "push" [@@bs.send.pipe: t 'a];
+external concat : t 'a => t 'a = "" [@@bs.send.pipe: t 'a];
+external concatMany : array (t 'a) => t 'a = "concat" [@@bs.send.pipe: t 'a] [@@bs.splice];
+external slice : from::int => to_::int => t 'a = "" [@@bs.send.pipe : t 'a];
+external copy : t 'a = "slice" [@@bs.send.pipe : t 'a];
+external mapWithIndex : ('a => int => 'b) => t 'b = "" [@@bs.send.pipe: t 'a];
+
+external unsafeGetUnckecked : array 'a => int => 'a = "" [@@bs.get_index];
+external unsafeSetUnckecked : array 'a => int => 'a => unit = "" [@@bs.set_index];
+
+let get i self =>
+  if (i >= 0 && i < (length self)) {
+    Some (unsafeGetUnckecked self i)
+  } else {
+    None
+  };
+
+let set i value self =>
+  if (i >= 0 && i < (length self)) {
+    Some (unsafeSetUnckecked self i value)
+  } else {
+    None
+  };
+
+let getOrRaise i self =>
+  if (i >= 0 && i < (length self)) {
+    unsafeGetUnckecked self i
+  } else {
+    invalid_arg "getOrRaise"
+  };
+
+let setOrRaise i value self =>
+  if (i >= 0 && i < (length self)) {
+    unsafeSetUnckecked self i value
+  } else {
+    invalid_arg "setOrRaise"
+  };
 
 external exists : ('a => Js.boolean) => bool = "some" [@@bs.send.pipe: t 'a];
 let exists f self => exists (fun x => Js.Boolean.to_js_boolean (f x)) self;
@@ -20,21 +58,19 @@ external map : ('a => 'b) => t 'b = "" [@@bs.send.pipe: t 'a];
 external reduce : ('b => 'a => 'b) => 'b => 'b = "" [@@bs.send.pipe: t 'a];
 external reduceRight : ('b => 'a => 'b) => 'b => 'b = "" [@@bs.send.pipe: t 'a];
 
-external _create : int => array 'a = "Array" [@@bs.new];
-external _fill : 'a => array 'a = "fill" [@@bs.send.pipe: array 'a];
-external _push : 'a => unit = "push" [@@bs.send.pipe: array 'a];
-
-let flatMap f xs => {
-  let acc = [||];
-  for i in 0 to (Js.Array.length xs - 1) {
-    let a = f (unsafeGet xs i);
-    for j in 0 to (Js.Array.length a - 1) {
-      _push (unsafeGet a j) acc
+let flatMap f self => {
+  let result = [||];
+  for i in 0 to (Js.Array.length self - 1) {
+    let nested = f (unsafeGetUnckecked self i);
+    for j in 0 to (Js.Array.length nested - 1) {
+      _push (unsafeGetUnckecked nested j) result
     }
   };
-  acc
+  result
 };
 
-let product f xs ys => flatMap (fun x => map (fun y => f x y) ys) xs;
+let product f xs ys =>
+  flatMap (fun x => map (fun y => f x y) ys) xs;
 
-let apply fs xs => product (fun f x => f x) fs xs;
+let apply fs xs =>
+  product (fun f x => f x) fs xs;
