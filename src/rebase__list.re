@@ -3,11 +3,11 @@ type t 'a = list 'a;
 
 let head =
   fun | [] => None
-      | [x, ...xs] => Some x;
+      | [x, ..._] => Some x;
 
 let tail =
   fun | [] => None
-      | [x, ...xs] => Some xs;
+      | [_, ...xs] => Some xs;
 
 let rec reverseAndAppend acc =>
   fun | [] => acc
@@ -67,13 +67,10 @@ let product f xs ys =>
 let apply (fs: list ('a => 'b)) xs =>
   product (fun f x => f x) fs xs;
 
-external reduce : ('b => 'a => 'b) => 'b => 'b = "" [@@bs.send.pipe: t 'a];
-external reduceRight : ('b => 'a => 'b) => 'b => 'b = "" [@@bs.send.pipe: t 'a];
-
 let rec reduce f acc =>
   fun | [] => acc
       | [x, ...xs] => reduce f (f acc x) xs;
 
 let rec reduceRight f acc =>
   fun | [] => acc
-      | [x, ...xs] => f (reduce f acc xs) x;
+      | [x, ...xs] => f (reduceRight f acc xs) x;
