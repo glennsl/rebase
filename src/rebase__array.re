@@ -4,7 +4,7 @@ type t 'a = array 'a;
 let from x =>
   [|x|];
 
-external make : int => t 'a = "Array" [@@bs.new];
+external _make : int => t 'a = "Array" [@@bs.new];
 external length : t 'a => int = "" [@@bs.get];
 external fill : 'a => unit = "" [@@bs.send.pipe: t 'a];
 external _push : 'a => unit = "push" [@@bs.send.pipe: t 'a];
@@ -18,6 +18,12 @@ external _unsafeSetUnchecked : t 'a => int => 'a => unit = "" [@@bs.set_index];
 
 let unsafeGetUnchecked index self => _unsafeGetUnchecked self index;
 let unsafeSetUnchecked index value self => _unsafeSetUnchecked self index value;
+
+let make length value => {
+  let array = _make length;
+  fill value array;
+  array
+};
 
 let get i self =>
   if (i >= 0 && i < (length self)) {

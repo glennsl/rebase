@@ -7,7 +7,7 @@ module Array : {
   include Rebase__signatures__monad.S with type t 'a := t 'a;
   include Rebase__signatures__iterable.S with type t 'a := t 'a;
 
-  let make : int => t 'a;
+  let make : int => 'a => t 'a;
   let length : t 'a => int;
   let get : int => t 'a => option 'a;
   /*let set : int => 'a => t 'a => bool; /* mutates */*/
