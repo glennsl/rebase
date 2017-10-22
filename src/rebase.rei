@@ -46,6 +46,7 @@ module List : {
 
   let head : t 'a => option 'a;
   let tail : t 'a => option (t 'a);
+  let length : t 'a => int;
   let reverse : t 'a => t 'a;
 };
 

@@ -74,3 +74,10 @@ let rec reduce f acc =>
 let rec reduceRight f acc =>
   fun | [] => acc
       | [x, ...xs] => f (reduceRight f acc xs) x;
+
+let length self => {
+  let rec aux acc =>
+    fun | [] => acc
+        | [_, ...xs] => aux 1 xs;
+  aux 0 self
+};
