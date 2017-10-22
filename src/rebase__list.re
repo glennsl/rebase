@@ -81,3 +81,16 @@ let length self => {
         | [_, ...xs] => aux 1 xs;
   aux 0 self
 };
+
+let toArray =
+  fun | [] => [||]
+      | [x, ...xs] as list => {
+        let array = Rebase__array.make (length list) x;
+        let rec fill i =>
+          fun | [] => array
+              | [x, ...xs] => {
+                Rebase__array.unsafeSetUnchecked i x array;
+                fill (i + 1) xs
+              };
+        fill 1 xs
+      };
