@@ -1,5 +1,5 @@
 {
-  "name": "rebase",
+  "name": "reason-rebase",
   "version": "0.0.1",
   "description": "A minimal base library for Reason",
   "scripts": {
@@ -10,6 +10,5 @@
   "license": "MIT",
   "devDependencies": {
     "bs-platform": "https://github.com/bloomberg/bucklescript.git"
-  },
-  "rebel": {}
+  }
 }
