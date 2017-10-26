@@ -59,6 +59,15 @@ module Option : {
   include Rebase__signatures__reduceable.S with type t 'a := t 'a;
   include Rebase__signatures__monad.S with type t 'a := t 'a;
   include Rebase__signatures__iterable.S with type t 'a := t 'a;
+
+  let isSome : t _ => bool;
+  let isNone : t _ => bool;
+  let or_ : t 'a => t 'a => t 'a;
+  let getOr : 'a => t 'a => 'a;
+  let getOrRaise : t 'a => 'a;
+  let mapOr : ('a => 'b) => 'b => t 'a => 'b;
+  let mapOrElse : ('a => 'b) => (unit => 'b) => t 'a => 'b;
+  /*let fromResult : result 'a => option 'a;*/
 };
 
 module Result : {

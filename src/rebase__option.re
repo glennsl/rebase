@@ -15,11 +15,6 @@ let isNone =
   | Some _ => false
   | None => true;
 
-let may f =>
-  fun
-  | Some v => f v
-  | None => ();
-
 let or_ other =>
   fun
   | Some _ as self => self
@@ -50,11 +45,6 @@ let mapOrElse f g =>
   | Some v => f v
   | None => g ();
 
-let andThen f =>
-  fun
-  | Some v => f v
-  | None => None;
-
 let exists predicate =>
   fun
   | Some v => predicate v
@@ -75,6 +65,7 @@ let fromResult =
   | Ok v => Some v
   | Error _ => None;
 
+/* alias `may`? */
 let forEach f =>
   fun
   | None => ()
@@ -90,6 +81,7 @@ let findOrRaise p =>
   | Some x when p x => x
   | _ => raise Not_found;
 
+/* alias `andThen`? */
 let flatMap f =>
   fun
   | None => None
