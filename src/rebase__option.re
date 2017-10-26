@@ -5,11 +5,6 @@ type t 'a = option 'a;
 let from x =>
   Some x;
 
-let unwrapUnsafely =
-  fun
-  | Some v => v
-  | None => raise (Invalid_argument "unwrapUnsafely called on None");
-
 let isSome =
   fun
   | Some _ => true
@@ -34,6 +29,11 @@ let getOr other =>
   fun
   | Some v => v
   | None => other;
+
+let getOrRaise =
+  fun
+  | Some v => v
+  | None => raise (Invalid_argument "unwrapUnsafely called on None");
 
 let map f =>
   fun
@@ -75,7 +75,6 @@ let fromResult =
   | Ok v => Some v
   | Error _ => None;
 
-
 let forEach f =>
   fun
   | None => ()
@@ -96,6 +95,11 @@ let flatMap f =>
   | None => None
   | Some x => f x;
 
+let flatten =
+  fun
+  | Some a => a
+  | None => None;
+
 let apply f a =>
   switch f {
   | None => None
@@ -107,7 +111,7 @@ let reduce f acc =>
   | None => acc
   | Some x => f acc x;
 
-  let reduceRight f acc =>
+let reduceRight f acc =>
   fun
   | None => acc
   | Some x => f acc x;
