@@ -4,10 +4,11 @@
   an issue! */
 {
   "name" : "rebase",
+  "bsc-flags": ["-bs-no-version-header", "-bs-super-errors"],
   "sources": [{
-    "dir": "src",
-    "subdirs": ["signatures"]
-  },
-  "examples"
+      "dir": "src",
+      "subdirs": ["signatures"]
+    },
+    "examples"
   ],
 }
