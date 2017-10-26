@@ -22,6 +22,6 @@ let make = {
   }
 };
 
-let rec many = fun
-  | [] => 0
-  | [hd, ...rest] => hd lor (many rest);
+let rec many =
+  fun | [] => 0
+      | [x, ...xs] => x lor (many xs);
