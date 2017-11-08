@@ -9,6 +9,6 @@
   "author": "glennsl",
   "license": "MIT",
   "devDependencies": {
-    "bs-platform": "https://github.com/bloomberg/bucklescript.git"
+    "bs-platform": "^2.0.0"
   }
 }
