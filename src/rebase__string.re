@@ -6,8 +6,8 @@ type t = string;
 [@bs.send.pipe: t] external includes : t => bool = "";
 [@bs.send.pipe: t] external startsWith : t => bool = "";
 [@bs.send.pipe: t] external endsWith : t => bool = "";
-[@bs.send.pipe: t] external padStart : int => char => t = "";
-[@bs.send.pipe: t] external padEnd : int => char => t = "";
+[@bs.send.pipe: t] external padStart : int => string => t = "";
+[@bs.send.pipe: t] external padEnd : int => string => t = "";
 [@bs.send.pipe: t] external trim : t = "";
 [@bs.send.pipe: t] external sub : (~from:int, ~length:int) => t = "substr";
 

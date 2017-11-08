@@ -105,8 +105,8 @@ module String: {
   let startsWith: (t, t) => bool;
   let endsWith: (t, t) => bool;
   let isEmpty: t => bool;
-  let padStart: (int, char, t) => t;
-  let padEnd: (int, char, t) => t;
+  let padStart: (int, string, t) => t;
+  let padEnd: (int, string, t) => t;
   let trim: t => t;
   let sub: (~from:int, ~length:int, t) => t;
 };
