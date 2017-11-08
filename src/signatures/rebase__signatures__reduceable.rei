@@ -17,3 +17,17 @@ module type S = {
   /* reduceReversed? */
   let reduceRight: (('b, 'a) => 'b, 'b, t('a)) => 'b;
 };
+
+module type S1_5 = {
+  type t('a, 'e);
+
+  /*
+    Alternative names: fold
+    Haskell: fold
+    Fantasyland: reduce
+  */
+  let reduce: (('b, 'a) => 'b, 'b, t('a, _)) => 'b;
+
+  /* reduceReversed? */
+  let reduceRight: (('b, 'a) => 'b, 'b, t('a, _)) => 'b;
+};

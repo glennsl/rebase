@@ -10,3 +10,11 @@ module type S = {
   */
   let flatMap: ('a => t('b), t('a)) => t('b);
 };
+
+module type S1_5 = {
+  type t('a, 'e);
+
+  include Rebase__signatures__applyable.S1_5 with type t('a, 'e) := t('a, 'e);
+
+  let flatMap: ('a => t('b, 'e), t('a, 'e)) => t('b, 'e);
+};

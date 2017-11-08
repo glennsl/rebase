@@ -8,8 +8,9 @@ module type S = {
 
   let find: ('a => bool, t('a)) => option('a);
 
-  /*val findOrRaise : ('a -> bool) -> 'a t -> 'a*/
-
+  /*
+  let findOrRaise : (('a => bool), t('a)) => 'a;
+  */
   /*
     imm.re: let forEach: while_::(elt 'a => bool)? => (elt 'a => unit) => t 'a => unit;
   */
@@ -29,4 +30,16 @@ module type S = {
     not in imm.re
   */
   let filter: ('a => bool, t('a)) => t('a);
+};
+
+module type S1_5 = {
+  type t('a, 'e);
+
+  let forAll: ('a => bool, t('a, _)) => bool;
+  let find: ('a => bool, t('a, _)) => option('a);
+  let forEach: ('a => unit, t('a, _)) => unit;
+  let exists: ('a => bool, t('a, _)) => bool;
+  /* Not generalizable due to unknown error type
+  let filter: ('a => bool, t('a, 'e)) => t('a, 'e);
+  */
 };
