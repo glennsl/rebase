@@ -1,2 +1,3 @@
-exception InvalidArgument string;
+exception InvalidArgument(string);
 exception IndexOutOfBounds;
+exception NotFound;
