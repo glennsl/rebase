@@ -1,2 +1,15 @@
 
-let isEmpty = (s) => String.length(String.trim(s)) == 0;
+type t = string;
+
+[@bs.get] external length : t => int = "";
+[@bs.send.pipe: t] external concat : t => t = "";
+[@bs.send.pipe: t] external includes : t => bool = "";
+[@bs.send.pipe: t] external startsWith : t => bool = "";
+[@bs.send.pipe: t] external endsWith : t => bool = "";
+[@bs.send.pipe: t] external padStart : int => char => t = "";
+[@bs.send.pipe: t] external padEnd : int => char => t = "";
+[@bs.send.pipe: t] external trim : t = "";
+[@bs.send.pipe: t] external sub : (~from:int, ~length:int) => t = "substr";
+
+let isEmpty = (s) =>
+  s |> trim |> length == 0;

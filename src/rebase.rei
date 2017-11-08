@@ -97,7 +97,18 @@ module Result: {
 };
 
 module String: {
-  include (module type of Rebase__string);
+  type t = string;
+
+  let length: t => int;
+  let concat: (t, t) => t;
+  let includes: (t, t) => bool;
+  let startsWith: (t, t) => bool;
+  let endsWith: (t, t) => bool;
+  let isEmpty: t => bool;
+  let padStart: (int, char, t) => t;
+  let padEnd: (int, char, t) => t;
+  let trim: t => t;
+  let sub: (~from:int, ~length:int, t) => t;
 };
 
 module Flags: {
