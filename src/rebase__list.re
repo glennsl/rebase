@@ -1,5 +1,8 @@
 type t('a) = list('a);
 
+let from = (x) =>
+  [x];
+
 let head =
   fun | [] => None
       | [x, ..._] => Some(x);
@@ -54,9 +57,6 @@ let flatMap = (f, self) => {
     };
   aux([], self)
 };
-
-let from = (x) =>
-  [x];
 
 let rec map = (f) =>
   fun | [] => []

@@ -63,14 +63,16 @@ let find = (predicate) =>
   fun | Some(x) when predicate(x) => Some(x)
       | _ => None;
 
+/*
 let findOrRaise = (predicate) =>
   fun | Some(x) when predicate(x) => x
       | _ => raise(NotFound);
+*/
 
-/* alias `andThen`? */
-let flatMap = (f) =>
+let andThen = (f) =>
   fun | None => None
       | Some(x) => f(x);
+let flatMap = andThen;
 
 let flatten =
   fun | Some(a) => a
