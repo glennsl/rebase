@@ -83,6 +83,13 @@ let length = (self) => {
   aux(0, self)
 };
 
+let rec zip = (xs, ys) =>
+  switch (xs, ys) {
+  | ([], _)
+  | (_, []) => []
+  | ([x, ...xs], [y, ...ys]) => [(x,y), ...zip(xs, ys)]
+  };
+
 let toArray =
   fun | [] => [||]
       | [x, ...xs] as list => {

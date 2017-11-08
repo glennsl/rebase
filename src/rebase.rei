@@ -44,6 +44,7 @@ module List: {
   let tail: t('a) => option(t('a));
   let length: t('a) => int;
   let reverse: t('a) => t('a);
+  let zip: t('a) => t('b) => t(('a, 'b));
   let toArray: t('a) => array('a); /* Not very efficient. How to communicate that clearly? */
 };
 
