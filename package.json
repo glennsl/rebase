@@ -6,7 +6,19 @@
     "build": "bsb -make-world",
     "start": "bsb -make-world -w"
   },
+  "homepage": "https://github.com/glennsl/rebase#readme",
+  "bugs": "https://github.com/glennsl/rebase/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glennsl/rebase.git"
+  },
   "author": "glennsl",
+  "keywords": [
+    "reason",
+    "bucklescript",
+    "foundation",
+    "base"
+  ].
   "license": "MIT",
   "devDependencies": {
     "bs-platform": "^2.0.0"
