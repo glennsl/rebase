@@ -1,12 +1,12 @@
 'use strict';
 
-var Rebase__list       = require("./rebase__list.js");
-var Rebase__array      = require("./rebase__array.js");
-var Rebase__flags      = require("./rebase__flags.js");
-var Rebase__option     = require("./rebase__option.js");
-var Rebase__result     = require("./rebase__result.js");
-var Rebase__string     = require("./rebase__string.js");
-var Rebase__exceptions = require("./rebase__exceptions.js");
+var Rebase__list       = require("./rebase__list.bs.js");
+var Rebase__array      = require("./rebase__array.bs.js");
+var Rebase__flags      = require("./rebase__flags.bs.js");
+var Rebase__option     = require("./rebase__option.bs.js");
+var Rebase__result     = require("./rebase__result.bs.js");
+var Rebase__string     = require("./rebase__string.bs.js");
+var Rebase__exceptions = require("./rebase__exceptions.bs.js");
 
 var Flags = /* module */[
   /* toInt */Rebase__flags.toInt,

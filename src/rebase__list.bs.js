@@ -1,7 +1,7 @@
 'use strict';
 
 var Curry         = require("bs-platform/lib/js/curry.js");
-var Rebase__array = require("./rebase__array.js");
+var Rebase__array = require("./rebase__array.bs.js");
 
 function from(x) {
   return /* :: */[

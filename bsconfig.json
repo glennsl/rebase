@@ -2,6 +2,10 @@
   "name" : "reason-rebase",
   "bsc-flags": ["-bs-no-version-header", "-bs-super-errors"],
   "refmt": 3,
+  "package-specs": [{
+    "module": "commonjs",
+    "in-source": true
+  }],
   "sources": [
     {
       "dir": "src",
@@ -13,5 +17,6 @@
       "type": "dev"
     }
   ],
+  "suffix": ".bs.js",
   "bs-dev-dependencies": ["bs-jest"]
 }

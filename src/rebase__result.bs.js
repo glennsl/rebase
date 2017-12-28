@@ -3,7 +3,7 @@
 var Block              = require("bs-platform/lib/js/block.js");
 var Curry              = require("bs-platform/lib/js/curry.js");
 var Js_exn             = require("bs-platform/lib/js/js_exn.js");
-var Rebase__exceptions = require("./rebase__exceptions.js");
+var Rebase__exceptions = require("./rebase__exceptions.bs.js");
 
 function from(x) {
   return /* Ok */Block.__(0, [x]);
