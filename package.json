@@ -6,7 +6,7 @@
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
     "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov",
-    "test": "npm run build && jest --coverage && npm run coverage",
+    "test": "npm run build && jest --coverage && npm run coverage | coveralls",
     "watch:jest": "jest --coverage --watchAll"
   },
   "homepage": "https://github.com/glennsl/rebase#readme",
