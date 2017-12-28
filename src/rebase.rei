@@ -120,13 +120,5 @@ module String: {
   let sub: (~from:int, ~length:int, t) => t;
 };
 
-module Flags: {
-  type t;
-  
-  let toInt: t => int;
-  let make: unit => t;
-  let many: list(t) => t;
-};
-
 exception InvalidArgument(string);
 exception IndexOutOfBounds;

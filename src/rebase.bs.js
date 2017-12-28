@@ -2,17 +2,10 @@
 
 var Rebase__list       = require("./rebase__list.bs.js");
 var Rebase__array      = require("./rebase__array.bs.js");
-var Rebase__flags      = require("./rebase__flags.bs.js");
 var Rebase__option     = require("./rebase__option.bs.js");
 var Rebase__result     = require("./rebase__result.bs.js");
 var Rebase__string     = require("./rebase__string.bs.js");
 var Rebase__exceptions = require("./rebase__exceptions.bs.js");
-
-var Flags = /* module */[
-  /* toInt */Rebase__flags.toInt,
-  /* make */Rebase__flags.make,
-  /* many */Rebase__flags.many
-];
 
 function Array_000(prim, prim$1, prim$2) {
   return prim$2.reduce(prim, prim$1);
@@ -208,7 +201,6 @@ exports.List             = List;
 exports.Option           = Option;
 exports.Result           = Result;
 exports.$$String         = $$String;
-exports.Flags            = Flags;
 exports.InvalidArgument  = InvalidArgument;
 exports.IndexOutOfBounds = IndexOutOfBounds;
 /* No side effect */

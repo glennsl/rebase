@@ -14,8 +14,4 @@ module String = {
   include Rebase__string;
 };
 
-module Flags = {
-  include Rebase__flags;
-};
-
 include Rebase__exceptions;
