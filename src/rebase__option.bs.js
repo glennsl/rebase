@@ -45,7 +45,7 @@ function getOrRaise(param) {
   } else {
     throw [
           Rebase__exceptions.InvalidArgument,
-          "unwrapUnsafely called on None"
+          "getOrRaise called on None"
         ];
   }
 }
@@ -95,14 +95,6 @@ function filter(predicate, self) {
     return self;
   } else {
     return /* None */0;
-  }
-}
-
-function fromResult(param) {
-  if (param.tag) {
-    return /* None */0;
-  } else {
-    return /* Some */[param[0]];
   }
 }
 
@@ -181,7 +173,6 @@ exports.mapOrElse   = mapOrElse;
 exports.exists      = exists;
 exports.forAll      = forAll;
 exports.filter      = filter;
-exports.fromResult  = fromResult;
 exports.forEach     = forEach;
 exports.find        = find;
 exports.andThen     = andThen;

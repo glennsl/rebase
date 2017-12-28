@@ -24,7 +24,7 @@ let getOr = other =>
 
 let getOrRaise =
   fun | Some(v) => v
-      | None => raise(InvalidArgument("unwrapUnsafely called on None"));
+      | None => raise(InvalidArgument("getOrRaise called on None"));
 
 let map = f =>
   fun | Some(v) => Some(f(v))
@@ -50,9 +50,11 @@ let filter = predicate =>
   fun | Some(v) as self when predicate(v) => self
       | _ => None;
 
+/*
 let fromResult =
   fun | Ok(v) => Some(v)
       | Error(_) => None;
+*/
 
 /* alias `may`? */
 let forEach = f =>
