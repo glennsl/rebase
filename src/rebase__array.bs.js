@@ -68,7 +68,7 @@ function find(f, self) {
 }
 
 function forAll(f, self) {
-  return +self.some((function (x) {
+  return +self.every((function (x) {
                 return Js_boolean.to_js_boolean(Curry._1(f, x));
               }));
 }

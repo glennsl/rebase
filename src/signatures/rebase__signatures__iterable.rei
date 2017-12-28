@@ -3,6 +3,7 @@ module type S = {
 
   /*
     imm.re: every
+    js: every
   */
   let forAll: ('a => bool, t('a)) => bool;
 
@@ -23,6 +24,7 @@ module type S = {
 
   /*
     imm.re: some
+    js: some
   */
   let exists: ('a => bool, t('a)) => bool;
 

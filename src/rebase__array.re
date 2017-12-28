@@ -60,7 +60,7 @@ let filter = (f, self) => filter(x => Js.Boolean.to_js_boolean(f(x)), self);
 [@bs.send.pipe : t('a)] [@bs.return undefined_to_opt]
 external find : ('a => Js.boolean) => option('a) = "";
 let find = (f, self) => find(x => Js.Boolean.to_js_boolean(f(x)), self);
-[@bs.send.pipe : t('a)] external forAll : ('a => Js.boolean) => bool = "some";
+[@bs.send.pipe : t('a)] external forAll : ('a => Js.boolean) => bool = "every";
 let forAll = (f, self) => forAll(x => Js.Boolean.to_js_boolean(f(x)), self);
 [@bs.send.pipe : t('a)] external forEach : ('a => unit) => unit = "";
 [@bs.send.pipe : t('a)] external map : ('a => 'b) => t('b) = "";
