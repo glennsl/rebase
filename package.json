@@ -4,7 +4,10 @@
   "description": "A minimal base library for Reason",
   "scripts": {
     "build": "bsb -make-world",
-    "start": "bsb -make-world -w"
+    "start": "bsb -make-world -w",
+    "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov",
+    "test": "npm run build && jest --coverage && npm run coverage",
+    "watch:jest": "jest --coverage --watchAll"
   },
   "homepage": "https://github.com/glennsl/rebase#readme",
   "bugs": "https://github.com/glennsl/rebase/issues",
@@ -21,6 +24,9 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "bs-platform": "^2.0.0"
+    "bs-jest": "^0.3.1",
+    "bs-platform": "^2.0.0",
+    "nyc": "^11.4.1",
+    "overalls": "^1.0.4"
   }
 }

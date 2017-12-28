@@ -4,3 +4,5 @@
 node_modules
 /lib/bs
 npm-debug.log
+/coverage/
+.coveralls.yml
