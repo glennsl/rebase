@@ -24,11 +24,20 @@ function make(length, value) {
   return array;
 }
 
-function get(i, self) {
+function get(self, i) {
   if (i >= 0 && i < self.length) {
     return /* Some */[self[i]];
   } else {
     return /* None */0;
+  }
+}
+
+function set(self, i, value) {
+  if (i >= 0 && i < self.length) {
+    self[i] = value;
+    return /* () */0;
+  } else {
+    return /* () */0;
   }
 }
 
@@ -103,6 +112,7 @@ exports.unsafeGetUnchecked = unsafeGetUnchecked;
 exports.unsafeSetUnchecked = unsafeSetUnchecked;
 exports.make               = make;
 exports.get                = get;
+exports.set                = set;
 exports.getOrRaise         = getOrRaise;
 exports.setOrRaise         = setOrRaise;
 exports.exists             = exists;

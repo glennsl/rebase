@@ -24,20 +24,20 @@ let make = (length, value) => {
   array
 };
 
-let get = (i, self) =>
+let get = (self, i) =>
   if (i >= 0 && i < length(self)) {
     Some(_unsafeGetUnchecked(self, i))
   } else {
     None
   };
-/*
-let set = (i, value, self) =>
+
+let set = (self, i, value) =>
   if (i >= 0 && i < length(self)) {
-    unsafeSetUnchecked(self, i, value)
+    _unsafeSetUnchecked(self, i, value)
   } else {
-    raise(Rebase__exceptions.IndexOutOfBounds)
+    ()
   };
-*/
+
 
 let getOrRaise = (i, self) =>
   if (i >= 0 && i < length(self)) {

@@ -35,25 +35,25 @@ function Array_012(prim) {
   return prim.length;
 }
 
-function Array_018(prim, prim$1) {
+function Array_019(prim, prim$1) {
   prim$1.fill(prim);
   return /* () */0;
 }
 
-function Array_019(prim, prim$1) {
+function Array_020(prim, prim$1) {
   return prim$1.concat(prim);
 }
 
-function Array_020(prim, prim$1, prim$2) {
+function Array_021(prim, prim$1, prim$2) {
   return prim$2.slice(prim, prim$1);
 }
 
-function Array_021(prim) {
+function Array_022(prim) {
   return prim.slice();
 }
 
-function Array_022(prim, prim$1) {
-  return prim$1.mapWithIndex(prim);
+function Array_023(prim, prim$1) {
+  return prim$1.map(prim);
 }
 
 var $$Array = [
@@ -71,15 +71,16 @@ var $$Array = [
   Rebase__array.make,
   Array_012,
   Rebase__array.get,
+  Rebase__array.set,
   Rebase__array.getOrRaise,
   Rebase__array.setOrRaise,
   Rebase__array.unsafeGetUnchecked,
   Rebase__array.unsafeSetUnchecked,
-  Array_018,
   Array_019,
   Array_020,
   Array_021,
-  Array_022
+  Array_022,
+  Array_023
 ];
 
 var List = [

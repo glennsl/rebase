@@ -9,12 +9,21 @@ module Array: {
 
   let make: (int, 'a) => t('a);
   let length: t('a) => int;
-  let get: (int, t('a)) => option('a);
-  /*let set : int => 'a => t 'a => bool; /* mutates */*/
+
+  /* `get` and `set` do not have the subject in pipe position since that would
+      break the index syntax, `a[i]` is sugar for `Array.get(a, i)`. and
+      `a[i] = v` is sugar for `Array.set(a, i, v)` Please look the other way and
+      just use the index syntax instead. */
+  let get: (t('a), int) => option('a);
+  let set : (t('a), int, 'a) => unit; /* mutates, no-ops if out of bounds */
+
   let getOrRaise: (int, t('a)) => 'a;
   let setOrRaise: (int, 'a, t('a)) => unit; /* mutates */
+
+  /*  turn into non-pipe form for better perf? */
   let unsafeGetUnchecked: (int, t('a)) => 'a;
   let unsafeSetUnchecked: (int, 'a, t('a)) => unit; /* mutates */
+
   let fill: ('a, t('a)) => unit; /* mutates */
   let concat: (t('a), t('a)) => t('a);
   let slice: (~from: int, ~to_: int, t('a)) => t('a);
