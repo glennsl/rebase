@@ -40,7 +40,7 @@ let getOr = other =>
 
 let getOrRaise =
   fun | Ok(v) => v
-      | Error(_) => raise(InvalidArgument("unwrapUnsafely called on Error"));
+      | Error(_) => raise(InvalidArgument("getOrRaise called on Error"));
 
 let map = f =>
   fun | Ok(v) => Ok(f(v))
@@ -65,12 +65,12 @@ let exists = predicate =>
 let forAll = predicate =>
   fun | Ok(v) => predicate(v)
       | Error(_) => true;
-
+/*
 let filter = predicate =>
   fun | Ok(v) as self when predicate(v) => self
       | Error(_) as self => self
       | _ => Error(NotFound);
-
+*/
 let forEach = f =>
   fun | Error(_) => ()
       | Ok(x) => f(x);

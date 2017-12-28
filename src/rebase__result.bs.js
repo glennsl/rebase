@@ -75,7 +75,7 @@ function getOrRaise(param) {
   if (param.tag) {
     throw [
           Rebase__exceptions.InvalidArgument,
-          "unwrapUnsafely called on Error"
+          "getOrRaise called on Error"
         ];
   } else {
     return param[0];
@@ -127,14 +127,6 @@ function forAll(predicate, param) {
     return /* true */1;
   } else {
     return Curry._1(predicate, param[0]);
-  }
-}
-
-function filter(predicate, self) {
-  if (!self.tag && !Curry._1(predicate, self[0])) {
-    return /* Error */Block.__(1, [Rebase__exceptions.NotFound]);
-  } else {
-    return self;
   }
 }
 
@@ -216,7 +208,6 @@ exports.mapOr       = mapOr;
 exports.mapOrElse   = mapOrElse;
 exports.exists      = exists;
 exports.forAll      = forAll;
-exports.filter      = filter;
 exports.forEach     = forEach;
 exports.find        = find;
 exports.andThen     = andThen;
