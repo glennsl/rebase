@@ -3,7 +3,7 @@ open Rebase__exceptions;
 
 type t('a) = option('a);
 
-let from = (x) =>
+let from = x =>
   Some(x);
 
 let isSome =
@@ -14,11 +14,11 @@ let isNone =
   fun | Some(_) => false
       | None => true;
 
-let or_ = (other) =>
+let or_ = other =>
   fun | Some(_) as self => self
       | None => other;
 
-let getOr = (other) =>
+let getOr = other =>
   fun | Some(v) => v
       | None => other;
 
@@ -26,7 +26,7 @@ let getOrRaise =
   fun | Some(v) => v
       | None => raise(InvalidArgument("unwrapUnsafely called on None"));
 
-let map = (f) =>
+let map = f =>
   fun | Some(v) => Some(f(v))
       | None => None;
 
@@ -38,15 +38,15 @@ let mapOrElse = (f, g) =>
   fun | Some(v) => f(v)
       | None => g ();
 
-let exists = (predicate) =>
+let exists = predicate =>
   fun | Some(v) => predicate(v)
       | None => false;
 
-let forAll = (predicate) =>
+let forAll = predicate =>
   fun | Some(v) => predicate(v)
       | None => true;
 
-let filter = (predicate) =>
+let filter = predicate =>
   fun | Some(v) as self when predicate(v) => self
       | _ => None;
 
@@ -55,11 +55,11 @@ let fromResult =
       | Error(_) => None;
 
 /* alias `may`? */
-let forEach = (f) =>
+let forEach = f =>
   fun | None => ()
       | Some(x) => f(x);
 
-let find = (predicate) =>
+let find = predicate =>
   fun | Some(x) when predicate(x) => Some(x)
       | _ => None;
 
@@ -69,7 +69,7 @@ let findOrRaise = (predicate) =>
       | _ => raise(NotFound);
 */
 
-let andThen = (f) =>
+let andThen = f =>
   fun | None => None
       | Some(x) => f(x);
 let flatMap = andThen;

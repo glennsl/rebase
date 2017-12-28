@@ -11,5 +11,6 @@ type t = string;
 [@bs.send.pipe: t] external trim : t = "";
 [@bs.send.pipe: t] external sub : (~from:int, ~length:int) => t = "substr";
 
-let isEmpty = (s) =>
-  s |> trim |> length == 0;
+let isEmpty = s =>
+  s |> trim
+    |> length == 0;

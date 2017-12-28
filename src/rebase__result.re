@@ -4,7 +4,7 @@ type t('a, 'e) = Rebase__result__type.result('a, 'e) =
   | Ok('a)
   | Error('e);
 
-let from = (x) =>
+let from = x =>
   Ok(x);
 
 let isOk =
@@ -15,7 +15,7 @@ let isError =
   fun | Ok(_) => false
       | Error(_) => true;
 
-let wrap = (f) =>
+let wrap = f =>
   try (Ok(f())) {
   | e => Error(e)
   };
@@ -30,11 +30,11 @@ let wrap2 = (f, a, b) =>
   | e => Error(e)
   };
 
-let or_ = (other) =>
+let or_ = other =>
   fun | Ok(_) as self => self
       | Error(_) => other;
 
-let getOr = (other) =>
+let getOr = other =>
   fun | Ok(v) => v
       | Error(_) => other;
 
@@ -42,7 +42,7 @@ let getOrRaise =
   fun | Ok(v) => v
       | Error(_) => raise(InvalidArgument("unwrapUnsafely called on Error"));
 
-let map = (f) =>
+let map = f =>
   fun | Ok(v) => Ok(f(v))
       | Error(e) => Error(e);
 
@@ -58,24 +58,24 @@ let mapOrElse = (f, g) =>
   fun | Ok(v) => f(v)
       | Error(_) => g();
 
-let exists = (predicate) =>
+let exists = predicate =>
   fun | Ok(v) => predicate(v)
       | Error(_) => false;
 
-let forAll = (predicate) =>
+let forAll = predicate =>
   fun | Ok(v) => predicate(v)
       | Error(_) => true;
 
-let filter = (predicate) =>
+let filter = predicate =>
   fun | Ok(v) as self when predicate(v) => self
       | Error(_) as self => self
       | _ => Error(NotFound);
 
-let forEach = (f) =>
+let forEach = f =>
   fun | Error(_) => ()
       | Ok(x) => f(x);
 
-let find = (predicate) =>
+let find = predicate =>
   fun | Ok(x) when predicate(x) => Some(x)
       | _ => None;
 
@@ -85,7 +85,7 @@ let findOrRaise = (predicate) =>
       | _ => raise(NotFound);
 */
 
-let andThen = (f) =>
+let andThen = f =>
   fun | Ok(v) => f(v)
       | Error(e) => Error(e);
 let flatMap = andThen;

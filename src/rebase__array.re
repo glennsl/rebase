@@ -1,6 +1,6 @@
 type t('a) = array('a);
 
-let from = (x) =>
+let from = x =>
   [|x|];
 
 [@bs.new] external _make : int => t('a) = "Array";
@@ -54,14 +54,14 @@ let setOrRaise = (i, value, self) =>
   };
 
 [@bs.send.pipe : t('a)] external exists : ('a => Js.boolean) => bool = "some";
-let exists = (f, self) => exists((x) => Js.Boolean.to_js_boolean(f(x)), self);
+let exists = (f, self) => exists(x => Js.Boolean.to_js_boolean(f(x)), self);
 [@bs.send.pipe : t('a)] external filter : ('a => Js.boolean) => t('a) = "";
-let filter = (f, self) => filter((x) => Js.Boolean.to_js_boolean(f(x)), self);
+let filter = (f, self) => filter(x => Js.Boolean.to_js_boolean(f(x)), self);
 [@bs.send.pipe : t('a)] [@bs.return undefined_to_opt]
 external find : ('a => Js.boolean) => option('a) = "";
-let find = (f, self) => find((x) => Js.Boolean.to_js_boolean(f(x)), self);
+let find = (f, self) => find(x => Js.Boolean.to_js_boolean(f(x)), self);
 [@bs.send.pipe : t('a)] external forAll : ('a => Js.boolean) => bool = "some";
-let forAll = (f, self) => forAll((x) => Js.Boolean.to_js_boolean(f(x)), self);
+let forAll = (f, self) => forAll(x => Js.Boolean.to_js_boolean(f(x)), self);
 [@bs.send.pipe : t('a)] external forEach : ('a => unit) => unit = "";
 [@bs.send.pipe : t('a)] external map : ('a => 'b) => t('b) = "";
 [@bs.send.pipe : t('a)] external reduce : (('b, 'a) => 'b, 'b) => 'b = "";
@@ -79,7 +79,7 @@ let flatMap = (f, self) => {
 };
 
 let product = (f, xs, ys) =>
-  flatMap((x) => map((y) => f(x, y), ys), xs);
+  flatMap(x => map(y => f(x, y), ys), xs);
 
 let apply = (fs, xs) =>
   product((f, x) => f(x), fs, xs);

@@ -12,7 +12,7 @@
 /* must be a functor? */
 type t = int;
 
-let toInt = (v) => v;
+let toInt = v => v;
 
 let make = {
   let n = ref(1);
