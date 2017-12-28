@@ -79,7 +79,7 @@ let rec reduceRight = (f, acc) =>
 let length = (self) => {
   let rec aux = (acc) =>
     fun | [] => acc
-        | [_, ...xs] => aux(1, xs);
+        | [_, ...xs] => aux(acc + 1, xs);
   aux(0, self)
 };
 
