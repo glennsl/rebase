@@ -108,6 +108,7 @@ var Option = [
   Rebase__option.forEach,
   Rebase__option.exists,
   Rebase__option.filter,
+  Rebase__option.some,
   Rebase__option.isSome,
   Rebase__option.isNone,
   Rebase__option.or_,

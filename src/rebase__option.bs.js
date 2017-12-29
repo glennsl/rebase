@@ -7,6 +7,10 @@ function from(x) {
   return /* Some */[x];
 }
 
+function some(x) {
+  return /* Some */[x];
+}
+
 function isSome(param) {
   if (param) {
     return /* true */1;
@@ -162,6 +166,7 @@ function reduceRight(f, acc, param) {
 var flatMap = andThen;
 
 exports.from        = from;
+exports.some        = some;
 exports.isSome      = isSome;
 exports.isNone      = isNone;
 exports.or_         = or_;

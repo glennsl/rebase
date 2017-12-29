@@ -6,6 +6,9 @@ open Rebase;
 test("from", () =>
   expect(Option.from(42)) == Some(42));
 
+test("some", () =>
+  expect(Option.some(42)) == Some(42));
+
 testAll("filter", [
     (None, None),
     (Some(1), None),

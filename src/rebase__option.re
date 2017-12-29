@@ -1,9 +1,11 @@
-open Rebase__result__type;
 open Rebase__exceptions;
 
 type t('a) = option('a);
 
 let from = x =>
+  Some(x);
+
+let some = x =>
   Some(x);
 
 let isSome =

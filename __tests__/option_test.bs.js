@@ -8,6 +8,10 @@ Jest.test("from", (function () {
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* from */4](42)), /* Some */[42]);
       }));
 
+Jest.test("some", (function () {
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* some */11](42)), /* Some */[42]);
+      }));
+
 Jest.testAll("filter", /* :: */[
       /* tuple */[
         /* None */0,
@@ -246,7 +250,7 @@ Jest.testAll("isSome", /* :: */[
         /* [] */0
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* isSome */11](param[0])), param[1]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* isSome */12](param[0])), param[1]);
       }));
 
 Jest.testAll("isNone", /* :: */[
@@ -262,7 +266,7 @@ Jest.testAll("isNone", /* :: */[
         /* [] */0
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* isNone */12](param[0])), param[1]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* isNone */13](param[0])), param[1]);
       }));
 
 Jest.testAll("or_", /* :: */[
@@ -278,7 +282,7 @@ Jest.testAll("or_", /* :: */[
         /* [] */0
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* or_ */13](/* Some */[10], param[0])), param[1]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* or_ */14](/* Some */[10], param[0])), param[1]);
       }));
 
 Jest.testAll("getOr", /* :: */[
@@ -294,7 +298,7 @@ Jest.testAll("getOr", /* :: */[
         /* [] */0
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* getOr */14](10, param[0])), param[1]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* getOr */15](10, param[0])), param[1]);
       }));
 
 Jest.test("getOrRaise - None", (function () {
@@ -302,12 +306,12 @@ Jest.test("getOrRaise - None", (function () {
                     Rebase.InvalidArgument,
                     "getOrRaise called on None"
                   ], Jest.Expect[/* expect */0]((function () {
-                          return Rebase.Option[/* getOrRaise */15](/* None */0);
+                          return Rebase.Option[/* getOrRaise */16](/* None */0);
                         })));
       }));
 
 Jest.test("getOrRaise - Some", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* getOrRaise */15](/* Some */[42])), 42);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* getOrRaise */16](/* Some */[42])), 42);
       }));
 
 Jest.testAll("mapOr", /* :: */[
@@ -323,7 +327,7 @@ Jest.testAll("mapOr", /* :: */[
         /* [] */0
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* mapOr */16]((function (x) {
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* mapOr */17]((function (x) {
                               return x + 1 | 0;
                             }), 10, param[0])), param[1]);
       }));
@@ -341,7 +345,7 @@ Jest.testAll("mapOrElse", /* :: */[
         /* [] */0
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* mapOrElse */17]((function (x) {
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* mapOrElse */18]((function (x) {
                               return x + 1 | 0;
                             }), (function () {
                               return 10;
@@ -367,7 +371,7 @@ Jest.testAll("flatten", /* :: */[
         ]
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* flatten */18](param[0])), param[1]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Option[/* flatten */19](param[0])), param[1]);
       }));
 
 /*  Not a pure module */

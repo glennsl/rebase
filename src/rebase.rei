@@ -70,6 +70,7 @@ module Option: {
   include Rebase__signatures__monad.S with type t('a) := t('a);
   include Rebase__signatures__iterable.S with type t('a) := t('a);
 
+  let some: 'a => t('a);
   let isSome: t(_) => bool;
   let isNone: t(_) => bool;
   let or_: (t('a), t('a)) => t('a);
