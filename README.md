@@ -1,5 +1,5 @@
-# rebase
-A minimal base library intended for the BuckleScript/Reason ecosystem. It uses Reasonable conventions, and is easily consumed via npm.
+# re:base
+A minimal base library intended for the BuckleScript/Reason ecosystem. Uses Reasonable conventions and is easily consumed via npm.
 
 [![npm](https://img.shields.io/npm/v/reason-rebase.svg)](https://npmjs.org/reason-rebase)
 [![Travis](https://img.shields.io/travis/glennsl/rebase/master.svg)](https://travis-ci.org/glennsl/rebase)
@@ -16,7 +16,10 @@ Mostly undocumented and untested. Prone to change without warning. Use at your o
 * Compile to readable JavaScript code
 
 ## Design rules
-* Do not expose anything platform-specific
+* JS first
+* No platform-specific APIs exposed
+* The subject of functions in type-wrapping modules should always be `t`
+* Enforece common patterns using module signatures
 
 ## Installation
 
