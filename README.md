@@ -1,7 +1,7 @@
 # re:base
 A minimal base library intended for the BuckleScript/Reason ecosystem. Uses Reasonable conventions and is easily consumed via npm.
 
-[![npm](https://img.shields.io/npm/v/reason-rebase.svg)](https://npmjs.org/reason-rebase)
+[![npm](https://img.shields.io/npm/v/@glennsl/rebase.svg)](https://npmjs.org/@glennsl/rebase)
 [![Travis](https://img.shields.io/travis/glennsl/rebase/master.svg)](https://travis-ci.org/glennsl/rebase)
 [![Coveralls](https://img.shields.io/coveralls/glennsl/rebase/master.svg)](https://coveralls.io/github/glennsl/rebase?branch=master)
 [![Issues](https://img.shields.io/github/issues/glennsl/rebase.svg)]()
@@ -24,13 +24,13 @@ Mostly undocumented and untested. Prone to change without warning. Use at your o
 ## Installation
 
 ```sh
-npm install --save reason-rebase
+npm install --save @glennsl/rebase
 ```
 
-Then add `reason-rebase` to `bs-dependencies` in your `bsconfig.json`:
+Then add `@glennsl/rebase` to `bs-dependencies` in your `bsconfig.json`:
 ```js
 {
   ...
-  "bs-dependencies": ["reason-rebase"]
+  "bs-dependencies": ["@glennsl/rebase"]
 }
 ```

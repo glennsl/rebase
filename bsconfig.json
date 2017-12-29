@@ -1,5 +1,5 @@
 {
-  "name" : "reason-rebase",
+  "name" : "@glennsl/rebase",
   "bsc-flags": ["-bs-no-version-header", "-bs-super-errors"],
   "refmt": 3,
   "package-specs": [{
