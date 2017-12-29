@@ -1,6 +1,6 @@
 {
   "name": "@glennsl/rebase",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A minimal base library for Reason",
   "scripts": {
     "build": "bsb -make-world",
