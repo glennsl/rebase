@@ -88,6 +88,7 @@ var List = [
   Rebase__list.forEach,
   Rebase__list.exists,
   Rebase__list.filter,
+  Rebase__list.concat,
   Rebase__list.head,
   Rebase__list.tail,
   Rebase__list.length,

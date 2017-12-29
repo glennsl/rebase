@@ -238,6 +238,22 @@ function zip(xs, ys) {
   }
 }
 
+function concat(ys, xs) {
+  if (xs) {
+    return /* :: */[
+            xs[0],
+            concat(ys, xs[1])
+          ];
+  } else if (ys) {
+    return /* :: */[
+            ys[0],
+            concat(ys[1], /* [] */0)
+          ];
+  } else {
+    return /* [] */0;
+  }
+}
+
 function toArray(list) {
   if (list) {
     var array = Rebase__array.make(length(list), list[0]);
@@ -279,5 +295,6 @@ exports.reduce           = reduce;
 exports.reduceRight      = reduceRight;
 exports.length           = length;
 exports.zip              = zip;
+exports.concat           = concat;
 exports.toArray          = toArray;
 /* No side effect */

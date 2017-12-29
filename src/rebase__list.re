@@ -90,6 +90,13 @@ let rec zip = (xs, ys) =>
   | ([x, ...xs], [y, ...ys]) => [(x,y), ...zip(xs, ys)]
   };
 
+let rec concat = (ys, xs) =>
+  switch (xs, ys) {
+  | ([], []) => []
+  | ([x, ...xs], _) => [x, ...concat(ys, xs)]
+  | ([], [y, ...ys]) => [y, ...concat(ys, [])]
+  };
+
 let toArray =
   fun | [] => [||]
       | [x, ...xs] as list => {

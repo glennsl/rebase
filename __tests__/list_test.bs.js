@@ -276,6 +276,37 @@ describe("Iterable.S", (function () {
                     }));
       }));
 
+describe("Concatenable.S", (function () {
+        var M = [Rebase.List[11]];
+        return Jest.test("concat", (function () {
+                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M[/* concat */0], /* :: */[
+                                          3,
+                                          /* :: */[
+                                            4,
+                                            /* [] */0
+                                          ]
+                                        ], /* :: */[
+                                          1,
+                                          /* :: */[
+                                            2,
+                                            /* [] */0
+                                          ]
+                                        ])), /* :: */[
+                                  1,
+                                  /* :: */[
+                                    2,
+                                    /* :: */[
+                                      3,
+                                      /* :: */[
+                                        4,
+                                        /* [] */0
+                                      ]
+                                    ]
+                                  ]
+                                ]);
+                    }));
+      }));
+
 Jest.testAll("head", /* :: */[
       /* tuple */[
         /* :: */[
@@ -298,7 +329,7 @@ Jest.testAll("head", /* :: */[
         /* [] */0
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* head */11](param[0])), param[1]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* head */12](param[0])), param[1]);
       }));
 
 Jest.testAll("tail", /* :: */[
@@ -329,11 +360,11 @@ Jest.testAll("tail", /* :: */[
         /* [] */0
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* tail */12](param[0])), param[1]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* tail */13](param[0])), param[1]);
       }));
 
 Jest.test("reverse", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* reverse */14](/* :: */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* reverse */15](/* :: */[
                             1,
                             /* :: */[
                               2,
@@ -349,7 +380,7 @@ Jest.test("reverse", (function () {
       }));
 
 Jest.test("length", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.List[/* length */13](/* :: */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.List[/* length */14](/* :: */[
                             41,
                             /* :: */[
                               62,
@@ -484,7 +515,7 @@ Jest.testAll("zip", /* :: */[
         ]
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* zip */15](param[0], param[1])), param[2]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* zip */16](param[0], param[1])), param[2]);
       }));
 
 Jest.testAll("toArray", /* :: */[
@@ -509,7 +540,7 @@ Jest.testAll("toArray", /* :: */[
         /* [] */0
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* toArray */16](param[0])), param[1]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* toArray */17](param[0])), param[1]);
       }));
 
 /*  Not a pure module */

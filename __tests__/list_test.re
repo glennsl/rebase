@@ -73,6 +73,14 @@ describe("Iterable.S", () => {
 });
 
 
+describe("Concatenable.S", () => {
+  module M: Signatures.Concatenable.S with type t('a) := list('a) = List;
+
+  test("concat", () =>
+    expect([1, 2] |> M.concat([3, 4])) == [1, 2, 3, 4]);
+});
+
+
 testAll("head", [
     ([1, 2, 3], Some(1)),
     ([], None)

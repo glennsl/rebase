@@ -18,6 +18,7 @@ module Mappable: {
   };
 
   module type S2 = {
+    /* aka Bifunctor */
     type t('a, 'b);
 
     let map2: ('a => 'c, 'b => 'd, t('a, 'b)) => t('c, 'd);

@@ -86,6 +86,9 @@ module List: {
   let exists: ('a => bool, t('a)) => bool;
   let filter: ('a => bool, t('a)) => t('a);
 
+  /* Concatenable.S */
+  let concat: (t('a), t('a)) => t('a);
+
   /* -- */
   let head: t('a) => option('a);
   let tail: t('a) => option(t('a));
