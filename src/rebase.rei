@@ -95,6 +95,7 @@ module List: {
   let length: t('a) => int;
   let reverse: t('a) => t('a);
   let zip: t('a) => t('b) => t(('a, 'b));
+  let zip: t('a) => t('b) => t(('b, 'a));
   let toArray: t('a) => array('a); /* Not very efficient. How to communicate that clearly? */
 };
 

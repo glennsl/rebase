@@ -103,7 +103,7 @@ testAll("zip", [
   ([1, 2], [11, 12, 13], [(1, 11), (2, 12)]),
   ([1, 2], [], []),
   ([], [11, 12], []),
-], ((xs, ys, expected)) => expect(List.zip(xs, ys)) == expected);
+], ((xs, ys, expected)) => expect(xs |> List.zip(ys)) == expected);
 
 testAll("toArray",
   [([1, 2], [|1, 2|]), ([], [||])],

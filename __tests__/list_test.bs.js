@@ -515,7 +515,7 @@ Jest.testAll("zip", /* :: */[
         ]
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* zip */16](param[0], param[1])), param[2]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* zip */16](param[1], param[0])), param[2]);
       }));
 
 Jest.testAll("toArray", /* :: */[

@@ -83,11 +83,11 @@ let length = self => {
   aux(0, self)
 };
 
-let rec zip = (xs, ys) =>
+let rec zip = (ys, xs) =>
   switch (xs, ys) {
   | ([], _)
   | (_, []) => []
-  | ([x, ...xs], [y, ...ys]) => [(x,y), ...zip(xs, ys)]
+  | ([x, ...xs], [y, ...ys]) => [(x,y), ...zip(ys, xs)]
   };
 
 let rec concat = (ys, xs) =>

@@ -224,14 +224,14 @@ function length(self) {
   };
 }
 
-function zip(xs, ys) {
+function zip(ys, xs) {
   if (xs && ys) {
     return /* :: */[
             /* tuple */[
               xs[0],
               ys[0]
             ],
-            zip(xs[1], ys[1])
+            zip(ys[1], xs[1])
           ];
   } else {
     return /* [] */0;
