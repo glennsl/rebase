@@ -3,8 +3,75 @@ open Expect;
 open! Expect.Operators;
 open Rebase;
 
-test("from", () =>
-  expect(List.from(42)) == [42]);
+
+describe("Mappable.S", () => {
+  module M: Rebase__signatures__mappable.S with type t('a) := list('a) = List;
+
+  test("map", () =>
+    expect(M.map(x => x + 1, [1, 2])) == [2, 3]);
+});
+
+
+describe("Applicative.S", () => {
+  module M: Rebase__signatures__applyable.S with type t('a) := list('a) = List;
+
+  test("apply", () =>
+    expect(M.apply([x => x + x, x => x * x], [3, 8])) == [6, 16, 9, 64]);
+
+  test("from", () =>
+    expect(M.from(42)) == [42]);
+});
+
+
+describe("Reduceable.S", () => {
+  module M: Rebase__signatures__reduceable.S with type t('a) := list('a) = List;
+
+  test("reduce", () =>
+    expect(M.reduce((acc, x) => x - acc, 10, [1, 2])) == 11);
+
+  test("reduceRight", () =>
+    expect(M.reduceRight((acc, x) => x - acc, 10, [1, 2])) == 9);
+});
+
+
+describe("Monad.S", () => {
+  module M: Rebase__signatures__monad.S with type t('a) := list('a) = List;
+
+  test("flatMap", () =>
+    expect(M.flatMap(xs => [0, ...xs], [[1],[2, 3]])) == [0, 1, 0, 2, 3]);
+});
+
+
+describe("Iterable.S", () => {
+  module M: Rebase__signatures__iterable.S with type t('a) := list('a) = List;
+
+  test("filter", () => {
+    let (===) = Pervasives.(===);
+    expect(M.filter(x => x mod 2 === 0, [1, 2])) == [2]
+  });
+  
+  testAll("exists", [([1, 3], false), ([1, 2], true)], ((input, expected)) => {
+    let (===) = Pervasives.(===);
+    expect(M.exists(x => x mod 2 === 0, input)) == expected
+  });
+  
+  test("forEach", () => {
+    let checked = ref([]);
+    M.forEach(x => checked := [x, ...checked^], [1, 2]);
+    expect(checked^) == [2, 1]
+  });
+  
+  testAll("find", [([1, 3], None), ([1, 2, 4], Some(2))], ((input, expected)) => {
+    let (===) = Pervasives.(===);
+    expect(M.find(x => x mod 2 === 0, input)) == expected
+  });
+  
+  testAll("forAll", [([2, 4], true), ([1, 2], false)], ((input, expected)) => {
+    let (===) = Pervasives.(===);
+    expect(M.forAll(x => x mod 2 === 0, input)) == expected
+  });
+});
+
 
 testAll("head", [
     ([1, 2, 3], Some(1)),
@@ -18,47 +85,6 @@ testAll("tail", [
 
 test("reverse", () =>
   expect(List.reverse([1, 2])) == [2, 1]);
-
-test("filter", () => {
-  let (===) = Pervasives.(===);
-  expect(List.filter(x => x mod 2 === 0, [1, 2])) == [2]
-});
-
-testAll("exists", [([1, 3], false), ([1, 2], true)], ((input, expected)) => {
-  let (===) = Pervasives.(===);
-  expect(List.exists(x => x mod 2 === 0, input)) == expected
-});
-
-test("forEach", () => {
-  let checked = ref([]);
-  List.forEach(x => checked := [x, ...checked^], [1, 2]);
-  expect(checked^) == [2, 1]
-});
-
-testAll("find", [([1, 3], None), ([1, 2, 4], Some(2))], ((input, expected)) => {
-  let (===) = Pervasives.(===);
-  expect(List.find(x => x mod 2 === 0, input)) == expected
-});
-
-testAll("forAll", [([2, 4], true), ([1, 2], false)], ((input, expected)) => {
-  let (===) = Pervasives.(===);
-  expect(List.forAll(x => x mod 2 === 0, input)) == expected
-});
-
-test("flatMap", () =>
-  expect(List.flatMap(xs => [0, ...xs], [[1],[2, 3]])) == [0, 1, 0, 2, 3]);
-
-test("map", () =>
-  expect(List.map(x => x + 1, [1, 2])) == [2, 3]);
-
-test("apply", () =>
-  expect(List.apply([x => x + x, x => x * x], [3, 8])) == [6, 16, 9, 64]);
-
-test("reduce", () =>
-  expect(List.reduce((acc, x) => x - acc, 10, [1, 2])) == 11);
-
-test("reduceRight", () =>
-  expect(List.reduceRight((acc, x) => x - acc, 10, [1, 2])) == 9);
 
 test("length", () =>
   expect(List.length([41, 62])) === 2);

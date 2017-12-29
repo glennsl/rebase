@@ -7,209 +7,251 @@ var Rebase                  = require("../src/rebase.bs.js");
 var Pervasives              = require("bs-platform/lib/js/pervasives.js");
 var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
 
-Jest.test("from", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Result[/* from */5](42)), /* Ok */Block.__(0, [42]));
+describe("Mappable.S1_5", (function () {
+        var M = [Rebase.Result[3]];
+        return Jest.testAll("map", /* :: */[
+                    /* tuple */[
+                      /* Error */Block.__(1, ["err"]),
+                      /* Error */Block.__(1, ["err"])
+                    ],
+                    /* :: */[
+                      /* tuple */[
+                        /* Ok */Block.__(0, [42]),
+                        /* Ok */Block.__(0, [43])
+                      ],
+                      /* [] */0
+                    ]
+                  ], (function (param) {
+                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M[/* map */0], (function (x) {
+                                            return x + 1 | 0;
+                                          }), param[0])), param[1]);
+                    }));
       }));
 
-Jest.testAll("exists", /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
-        /* false */0
-      ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [1]),
-          /* false */0
-        ],
-        /* :: */[
-          /* tuple */[
-            /* Ok */Block.__(0, [2]),
-            /* true */1
-          ],
-          /* [] */0
-        ]
-      ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Result[/* exists */10]((function (x) {
-                              return +(x % 2 === 0);
-                            }), param[0])), param[1]);
+describe("Mappable.S2", (function () {
+        var M = [Rebase.Result[0]];
+        return Jest.testAll("map2", /* :: */[
+                    /* tuple */[
+                      /* Error */Block.__(1, ["err"]),
+                      /* Error */Block.__(1, ["error"])
+                    ],
+                    /* :: */[
+                      /* tuple */[
+                        /* Ok */Block.__(0, [42]),
+                        /* Ok */Block.__(0, [43])
+                      ],
+                      /* [] */0
+                    ]
+                  ], (function (param) {
+                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._3(M[/* map2 */0], (function (x) {
+                                            return x + 1 | 0;
+                                          }), (function (e) {
+                                            return e + "or";
+                                          }), param[0])), param[1]);
+                    }));
       }));
 
-Jest.testAll("forEach", /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
-        0
-      ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [1]),
-          1
-        ],
-        /* [] */0
-      ]
-    ], (function (param) {
-        var checked = [0];
-        Rebase.Result[/* forEach */9]((function (x) {
-                checked[0] = x;
-                return /* () */0;
-              }), param[0]);
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](checked[0]), param[1]);
-      }));
-
-Jest.testAll("find", /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
-        /* None */0
-      ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [1]),
-          /* None */0
-        ],
-        /* :: */[
-          /* tuple */[
-            /* Ok */Block.__(0, [2]),
-            /* Some */[2]
-          ],
-          /* [] */0
-        ]
-      ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Result[/* find */8]((function (x) {
-                              return +(x % 2 === 0);
-                            }), param[0])), param[1]);
-      }));
-
-Jest.testAll("forAll", /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
-        /* true */1
-      ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [1]),
-          /* false */0
-        ],
-        /* :: */[
-          /* tuple */[
-            /* Ok */Block.__(0, [2]),
-            /* true */1
-          ],
-          /* [] */0
-        ]
-      ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Result[/* forAll */7]((function (x) {
-                              return +(x % 2 === 0);
-                            }), param[0])), param[1]);
-      }));
-
-Jest.testAll("flatMap", /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
-        /* Error */Block.__(1, ["err"])
-      ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [42]),
-          /* Ok */Block.__(0, [43])
-        ],
-        /* [] */0
-      ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Result[/* flatMap */6]((function (x) {
-                              return /* Ok */Block.__(0, [x + 1 | 0]);
-                            }), param[0])), param[1]);
-      }));
-
-Jest.testAll("map", /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
-        /* Error */Block.__(1, ["err"])
-      ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [42]),
-          /* Ok */Block.__(0, [43])
-        ],
-        /* [] */0
-      ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Result[/* map */3]((function (x) {
+describe("Applicative.S1_5", (function () {
+        var M_000 = Rebase.Result[3];
+        var M_001 = Rebase.Result[4];
+        var M_002 = Rebase.Result[5];
+        Jest.testAll("apply", /* :: */[
+              /* tuple */[
+                /* Error */Block.__(1, ["err"]),
+                /* Error */Block.__(1, ["err"]),
+                /* Error */Block.__(1, ["err"])
+              ],
+              /* :: */[
+                /* tuple */[
+                  /* Ok */Block.__(0, [(function (x) {
+                          return x + 1 | 0;
+                        })]),
+                  /* Error */Block.__(1, ["err"]),
+                  /* Error */Block.__(1, ["err"])
+                ],
+                /* :: */[
+                  /* tuple */[
+                    /* Error */Block.__(1, ["err"]),
+                    /* Ok */Block.__(0, [1]),
+                    /* Error */Block.__(1, ["err"])
+                  ],
+                  /* :: */[
+                    /* tuple */[
+                      /* Ok */Block.__(0, [(function (x) {
                               return x + 1 | 0;
-                            }), param[0])), param[1]);
+                            })]),
+                      /* Ok */Block.__(0, [1]),
+                      /* Ok */Block.__(0, [2])
+                    ],
+                    /* [] */0
+                  ]
+                ]
+              ]
+            ], (function (param) {
+                return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_001, param[0], param[1])), param[2]);
+              }));
+        return Jest.test("from", (function () {
+                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._1(M_002, 42)), /* Ok */Block.__(0, [42]));
+                    }));
       }));
 
-Jest.testAll("apply", /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
-        /* Error */Block.__(1, ["err"]),
-        /* Error */Block.__(1, ["err"])
-      ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [(function (x) {
-                  return x + 1 | 0;
-                })]),
-          /* Error */Block.__(1, ["err"]),
-          /* Error */Block.__(1, ["err"])
-        ],
-        /* :: */[
-          /* tuple */[
-            /* Error */Block.__(1, ["err"]),
-            /* Ok */Block.__(0, [1]),
-            /* Error */Block.__(1, ["err"])
-          ],
-          /* :: */[
-            /* tuple */[
-              /* Ok */Block.__(0, [(function (x) {
-                      return x + 1 | 0;
-                    })]),
-              /* Ok */Block.__(0, [1]),
-              /* Ok */Block.__(0, [2])
-            ],
-            /* [] */0
-          ]
-        ]
-      ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Result[/* apply */4](param[0], param[1])), param[2]);
+describe("Reduceable.S1_5", (function () {
+        var M_000 = Rebase.Result[1];
+        var M_001 = Rebase.Result[2];
+        Jest.testAll("reduce", /* :: */[
+              /* tuple */[
+                /* Error */Block.__(1, ["err"]),
+                10
+              ],
+              /* :: */[
+                /* tuple */[
+                  /* Ok */Block.__(0, [42]),
+                  32
+                ],
+                /* [] */0
+              ]
+            ], (function (param) {
+                return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._3(M_000, (function (acc, x) {
+                                      return x - acc | 0;
+                                    }), 10, param[0])), param[1]);
+              }));
+        return Jest.testAll("reduceRight", /* :: */[
+                    /* tuple */[
+                      /* Error */Block.__(1, ["err"]),
+                      10
+                    ],
+                    /* :: */[
+                      /* tuple */[
+                        /* Ok */Block.__(0, [42]),
+                        32
+                      ],
+                      /* [] */0
+                    ]
+                  ], (function (param) {
+                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._3(M_001, (function (acc, x) {
+                                            return x - acc | 0;
+                                          }), 10, param[0])), param[1]);
+                    }));
       }));
 
-Jest.testAll("reduce", /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
-        10
-      ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [42]),
-          32
-        ],
-        /* [] */0
-      ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Result[/* reduce */1]((function (acc, x) {
-                              return x - acc | 0;
-                            }), 10, param[0])), param[1]);
+describe("Monad.S1_5", (function () {
+        var M_000 = Rebase.Result[3];
+        var M_001 = Rebase.Result[4];
+        var M_002 = Rebase.Result[5];
+        var M_003 = Rebase.Result[6];
+        return Jest.testAll("flatMap", /* :: */[
+                    /* tuple */[
+                      /* Error */Block.__(1, ["err"]),
+                      /* Error */Block.__(1, ["err"])
+                    ],
+                    /* :: */[
+                      /* tuple */[
+                        /* Ok */Block.__(0, [42]),
+                        /* Ok */Block.__(0, [43])
+                      ],
+                      /* [] */0
+                    ]
+                  ], (function (param) {
+                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_003, (function (x) {
+                                            return /* Ok */Block.__(0, [x + 1 | 0]);
+                                          }), param[0])), param[1]);
+                    }));
       }));
 
-Jest.testAll("reduceRight", /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
-        10
-      ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [42]),
-          32
-        ],
-        /* [] */0
-      ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Result[/* reduceRight */2]((function (acc, x) {
-                              return x - acc | 0;
-                            }), 10, param[0])), param[1]);
+describe("Iterable.S1_5", (function () {
+        var M_000 = Rebase.Result[7];
+        var M_001 = Rebase.Result[8];
+        var M_002 = Rebase.Result[9];
+        var M_003 = Rebase.Result[10];
+        Jest.testAll("exists", /* :: */[
+              /* tuple */[
+                /* Error */Block.__(1, ["err"]),
+                /* false */0
+              ],
+              /* :: */[
+                /* tuple */[
+                  /* Ok */Block.__(0, [1]),
+                  /* false */0
+                ],
+                /* :: */[
+                  /* tuple */[
+                    /* Ok */Block.__(0, [2]),
+                    /* true */1
+                  ],
+                  /* [] */0
+                ]
+              ]
+            ], (function (param) {
+                return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_003, (function (x) {
+                                      return +(x % 2 === 0);
+                                    }), param[0])), param[1]);
+              }));
+        Jest.testAll("forEach", /* :: */[
+              /* tuple */[
+                /* Error */Block.__(1, ["err"]),
+                0
+              ],
+              /* :: */[
+                /* tuple */[
+                  /* Ok */Block.__(0, [1]),
+                  1
+                ],
+                /* [] */0
+              ]
+            ], (function (param) {
+                var checked = [0];
+                Curry._2(M_002, (function (x) {
+                        checked[0] = x;
+                        return /* () */0;
+                      }), param[0]);
+                return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](checked[0]), param[1]);
+              }));
+        Jest.testAll("find", /* :: */[
+              /* tuple */[
+                /* Error */Block.__(1, ["err"]),
+                /* None */0
+              ],
+              /* :: */[
+                /* tuple */[
+                  /* Ok */Block.__(0, [1]),
+                  /* None */0
+                ],
+                /* :: */[
+                  /* tuple */[
+                    /* Ok */Block.__(0, [2]),
+                    /* Some */[2]
+                  ],
+                  /* [] */0
+                ]
+              ]
+            ], (function (param) {
+                return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_001, (function (x) {
+                                      return +(x % 2 === 0);
+                                    }), param[0])), param[1]);
+              }));
+        return Jest.testAll("forAll", /* :: */[
+                    /* tuple */[
+                      /* Error */Block.__(1, ["err"]),
+                      /* true */1
+                    ],
+                    /* :: */[
+                      /* tuple */[
+                        /* Ok */Block.__(0, [1]),
+                        /* false */0
+                      ],
+                      /* :: */[
+                        /* tuple */[
+                          /* Ok */Block.__(0, [2]),
+                          /* true */1
+                        ],
+                        /* [] */0
+                      ]
+                    ]
+                  ], (function (param) {
+                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_000, (function (x) {
+                                            return +(x % 2 === 0);
+                                          }), param[0])), param[1]);
+                    }));
       }));
 
 Jest.testAll("isOk", /* :: */[
@@ -332,26 +374,6 @@ Jest.test("getOrRaise - Error", (function () {
 
 Jest.test("getOrRaise - Ok", (function () {
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Result[/* getOrRaise */18](/* Ok */Block.__(0, [42]))), 42);
-      }));
-
-Jest.testAll("map2", /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
-        /* Error */Block.__(1, ["error"])
-      ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [42]),
-          /* Ok */Block.__(0, [43])
-        ],
-        /* [] */0
-      ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.Result[/* map2 */0]((function (x) {
-                              return x + 1 | 0;
-                            }), (function (e) {
-                              return e + "or";
-                            }), param[0])), param[1]);
       }));
 
 Jest.testAll("mapOr", /* :: */[

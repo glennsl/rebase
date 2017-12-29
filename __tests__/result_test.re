@@ -4,80 +4,116 @@ open! Expect.Operators;
 open Rebase__result__type;
 open Rebase;
 
-test("from", () =>
-  expect(Result.from(42)) == Ok(42));
-/*
-testAll("filter", [
-    (Error("err"), Error("err")),
-    (Ok(1), Error("err")),
-    (Ok(2), Ok(2)),
-  ], ((input, expected)) => {
-  let (===) = Pervasives.(===);
-  expect(Result.filter(x => x mod 2 === 0, input)) == expected
-});
-*/
-testAll("exists", [
-    (Error("err"), false),
-    (Ok(1), false), 
-    (Ok(2), true)
-  ], ((input, expected)) => {
-  let (===) = Pervasives.(===);
-  expect(Result.exists(x => x mod 2 === 0, input)) == expected
+describe("Mappable.S1_5", () => {
+  module M: Rebase__signatures__mappable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
+
+  testAll("map", [
+      (Error("err"), Error("err")),
+      (Ok(42), Ok(43)),
+    ], ((input, expected)) => expect(M.map(x => x + 1, input)) == expected);
 });
 
-testAll("forEach", [
-    (Error("err"), 0),
-    (Ok(1), 1),
-  ], ((input, expected)) => {
-  let checked = ref(0);
-  Result.forEach(x => checked := x, input);
-  expect(checked^) == expected
+
+describe("Mappable.S2", () => {
+  module M: Rebase__signatures__mappable.S2 with type t('a, 'e) := result('a, 'e) = Result;
+
+  testAll("map2", [
+      (Error("err"), Error("error")),
+      (Ok(42), Ok(43)),
+    ], ((input, expected)) => expect(M.map2(x => x + 1, e => e ++ "or", input)) == expected);
 });
 
-testAll("find", [
-    (Error("err"), None),
-    (Ok(1), None),
-    (Ok(2), Some(2))
-  ], ((input, expected)) => {
-  let (===) = Pervasives.(===);
-  expect(Result.find(x => x mod 2 === 0, input)) == expected
+
+describe("Applicative.S1_5", () => {
+  module M: Rebase__signatures__applyable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
+
+  testAll("apply", [
+      (Error("err"), Error("err"), Error("err")),
+      (Ok(x => x + 1), Error("err"), Error("err")),
+      (Error("err"), Ok(1), Error("err")),
+      (Ok(x => x + 1), Ok(1), Ok(2)),
+    ], ((fs, xs, expected)) => expect(M.apply(fs, xs)) == expected);
+
+  test("from", () =>
+    expect(M.from(42)) == Ok(42));
 });
 
-testAll("forAll", [
-    (Error("err"), true),
-    (Ok(1), false),
-    (Ok(2), true),
-  ], ((input, expected)) => {
+
+describe("Reduceable.S1_5", () => {
+  module M: Rebase__signatures__reduceable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
+
+  testAll("reduce", [
+      (Error("err"), 10),
+      (Ok(42), 32),
+    ], ((input, expected)) => expect(M.reduce((acc, x) => x - acc, 10, input)) == expected);
+
+  testAll("reduceRight", [
+      (Error("err"), 10),
+      (Ok(42), 32),
+    ], ((input, expected)) => expect(M.reduceRight((acc, x) => x - acc, 10, input)) == expected);
+});
+
+
+describe("Monad.S1_5", () => {
+  module M: Rebase__signatures__monad.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
+
+  testAll("flatMap", [
+      (Error("err"), Error("err")),
+      (Ok(42), Ok(43)),
+    ], ((input, expected)) => expect(M.flatMap(x => Ok(x + 1), input)) == expected);
+});
+
+
+describe("Iterable.S1_5", () => {
+  module M: Rebase__signatures__iterable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
+
+  /*
+  testAll("filter", [
+      (Error("err"), Error("err")),
+      (Ok(1), Error("err")),
+      (Ok(2), Ok(2)),
+    ], ((input, expected)) => {
     let (===) = Pervasives.(===);
-    expect(Result.forAll(x => x mod 2 === 0, input)) == expected
+    expect(Result.filter(x => x mod 2 === 0, input)) == expected
+  });
+  */
+  testAll("exists", [
+      (Error("err"), false),
+      (Ok(1), false), 
+      (Ok(2), true)
+    ], ((input, expected)) => {
+    let (===) = Pervasives.(===);
+    expect(M.exists(x => x mod 2 === 0, input)) == expected
   });
 
-testAll("flatMap", [
-    (Error("err"), Error("err")),
-    (Ok(42), Ok(43)),
-  ], ((input, expected)) => expect(Result.flatMap(x => Ok(x + 1), input)) == expected);
+  testAll("forEach", [
+      (Error("err"), 0),
+      (Ok(1), 1),
+    ], ((input, expected)) => {
+    let checked = ref(0);
+    M.forEach(x => checked := x, input);
+    expect(checked^) == expected
+  });
 
-testAll("map", [
-    (Error("err"), Error("err")),
-    (Ok(42), Ok(43)),
-  ], ((input, expected)) => expect(Result.map(x => x + 1, input)) == expected);
+  testAll("find", [
+      (Error("err"), None),
+      (Ok(1), None),
+      (Ok(2), Some(2))
+    ], ((input, expected)) => {
+    let (===) = Pervasives.(===);
+    expect(M.find(x => x mod 2 === 0, input)) == expected
+  });
 
-testAll("apply", [
-    (Error("err"), Error("err"), Error("err")),
-    (Ok(x => x + 1), Error("err"), Error("err")),
-    (Error("err"), Ok(1), Error("err")),
-    (Ok(x => x + 1), Ok(1), Ok(2)),
-  ], ((fs, xs, expected)) => expect(Result.apply(fs, xs)) == expected);
+  testAll("forAll", [
+      (Error("err"), true),
+      (Ok(1), false),
+      (Ok(2), true),
+    ], ((input, expected)) => {
+      let (===) = Pervasives.(===);
+      expect(M.forAll(x => x mod 2 === 0, input)) == expected
+    });
+});
 
-testAll("reduce", [
-    (Error("err"), 10),
-    (Ok(42), 32),
-  ], ((input, expected)) => expect(Result.reduce((acc, x) => x - acc, 10, input)) == expected);
-
-testAll("reduceRight", [
-    (Error("err"), 10),
-    (Ok(42), 32),
-  ], ((input, expected)) => expect(Result.reduceRight((acc, x) => x - acc, 10, input)) == expected);
 
 testAll("isOk", [
     (Error("err"), false),
@@ -122,11 +158,6 @@ test("getOrRaise - Error", () =>
 
 test("getOrRaise - Ok", () =>
   expect(Result.getOrRaise(Ok(42))) == 42);
-
-testAll("map2", [
-    (Error("err"), Error("error")),
-    (Ok(42), Ok(43)),
-  ], ((input, expected)) => expect(Result.map2(x => x + 1, e => e ++ "or", input)) == expected);
 
 testAll("mapOr", [
     (Error("err"), 10),

@@ -3,58 +3,84 @@ open Expect;
 open! Expect.Operators;
 open Rebase;
 
-test("from", () =>
-  expect(Array.from(42)) == [|42|]);
 
-test("filter", () => {
-  let (===) = Pervasives.(===);
-  expect(Array.filter(x => x mod 2 === 0, [|1, 2|])) == [|2|]
+describe("Mappable", () => {
+  module M: Rebase__signatures__mappable.S with type t('a) := array('a) = Array;
+
+  test("map", () =>
+    expect(M.map(x => x + 1, [|1, 2|])) == [|2, 3|]);
 });
 
-testAll("exists", [
-    ([|1, 3|], false), 
-    ([|1, 2|], true)
-  ], ((input, expected)) => {
-  let (===) = Pervasives.(===);
-  expect(Array.exists(x => x mod 2 === 0, input)) == expected
+
+describe("Applicative", () => {
+  module M: Rebase__signatures__applyable.S with type t('a) := array('a) = Array;
+
+  test("apply", () =>
+    expect(M.apply([|x => x + x, x => x * x|], [|3, 8|])) == [|6, 16, 9, 64|]);
+
+  test("from", () =>
+    expect(M.from(42)) == [|42|]);
 });
 
-test("forEach", () => {
-  let checked = ref([]);
-  Array.forEach(x => checked := [x, ...checked^], [|1, 2|]);
-  expect(checked^) == [2, 1]
+
+describe("Reduceable", () => {
+  module M: Rebase__signatures__reduceable.S with type t('a) := array('a) = Array;
+
+  test("reduce", () =>
+    expect(M.reduce((acc, x) => x - acc, 10, [|1, 2|])) == 11);
+
+  test("reduceRight", () =>
+    expect(M.reduceRight((acc, x) => x - acc, 10, [|1, 2|])) == 9);
 });
 
-testAll("find", [
-    ([|1, 3|], None),
-    ([|1, 2, 4|], Some(2))
-  ], ((input, expected)) => {
-  let (===) = Pervasives.(===);
-  expect(Array.find(x => x mod 2 === 0, input)) == expected
+
+describe("Monad", () => {
+  module M: Rebase__signatures__monad.S with type t('a) := array('a) = Array;
+
+  test("flatMap", () =>
+    expect(M.flatMap(xs => xs |> Array.map(x => x + 1), [|[|1|], [|2, 3|]|])) == [|2, 3, 4|]);
 });
 
-testAll("forAll", [
-    ([|2, 4|], true),
-    ([|1, 2|], false)
-  ], ((input, expected)) => {
+
+describe("Iterable", () => {
+  module M: Rebase__signatures__iterable.S with type t('a) := array('a) = Array;
+
+  test("filter", () => {
     let (===) = Pervasives.(===);
-    expect(Array.forAll(x => x mod 2 === 0, input)) == expected
+    expect(M.filter(x => x mod 2 === 0, [|1, 2|])) == [|2|]
   });
 
-test("flatMap", () =>
-  expect(Array.flatMap(xs => xs |> Array.map(x => x + 1), [|[|1|], [|2, 3|]|])) == [|2, 3, 4|]);
+  testAll("exists", [
+      ([|1, 3|], false), 
+      ([|1, 2|], true)
+    ], ((input, expected)) => {
+    let (===) = Pervasives.(===);
+    expect(M.exists(x => x mod 2 === 0, input)) == expected
+  });
 
-test("map", () =>
-  expect(Array.map(x => x + 1, [|1, 2|])) == [|2, 3|]);
+  test("forEach", () => {
+    let checked = ref([]);
+    M.forEach(x => checked := [x, ...checked^], [|1, 2|]);
+    expect(checked^) == [2, 1]
+  });
 
-test("apply", () =>
-  expect(Array.apply([|x => x + x, x => x * x|], [|3, 8|])) == [|6, 16, 9, 64|]);
+  testAll("find", [
+      ([|1, 3|], None),
+      ([|1, 2, 4|], Some(2))
+    ], ((input, expected)) => {
+    let (===) = Pervasives.(===);
+    expect(M.find(x => x mod 2 === 0, input)) == expected
+  });
 
-test("reduce", () =>
-  expect(Array.reduce((acc, x) => x - acc, 10, [|1, 2|])) == 11);
+  testAll("forAll", [
+      ([|2, 4|], true),
+      ([|1, 2|], false)
+    ], ((input, expected)) => {
+      let (===) = Pervasives.(===);
+      expect(M.forAll(x => x mod 2 === 0, input)) == expected
+    });
+});
 
-test("reduceRight", () =>
-  expect(Array.reduceRight((acc, x) => x - acc, 10, [|1, 2|])) == 9);
 
 test("length", () =>
   expect(Array.length([|1, 2|])) === 2);
