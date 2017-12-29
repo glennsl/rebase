@@ -1,12 +1,28 @@
 module Array: {
   type t('a) = array('a);
 
-  include Rebase__signatures__mappable.S with type t('a) := t('a);
-  include Rebase__signatures__applyable.S with type t('a) := t('a);
-  include Rebase__signatures__reduceable.S with type t('a) := t('a);
-  include Rebase__signatures__monad.S with type t('a) := t('a);
-  include Rebase__signatures__iterable.S with type t('a) := t('a);
+  /* Mappable.S */
+  let map: ('a => 'b, t('a)) => t('b);
 
+  /* Applicative.S */
+  let apply: (t(('a => 'b)), t('a)) => t('b);
+  let from: 'a => t('a);
+
+  /* Reduceable.S */
+  let reduce: (('b, 'a) => 'b, 'b, t('a)) => 'b;
+  let reduceRight: (('b, 'a) => 'b, 'b, t('a)) => 'b;
+
+  /* Monad.S */
+  let flatMap: ('a => t('b), t('a)) => t('b);
+
+  /* Iterable.S */
+  let forAll: ('a => bool, t('a)) => bool;
+  let find: ('a => bool, t('a)) => option('a);
+  let forEach: ('a => unit, t('a)) => unit;
+  let exists: ('a => bool, t('a)) => bool;
+  let filter: ('a => bool, t('a)) => t('a);
+
+  /* -- */
   let make: (int, 'a) => t('a);
   let length: t('a) => int;
 
@@ -47,12 +63,28 @@ module Array: {
 module List: {
   type t('a) = list('a);
 
-  include Rebase__signatures__mappable.S with type t('a) := t('a);
-  include Rebase__signatures__applyable.S with type t('a) := t('a);
-  include Rebase__signatures__reduceable.S with type t('a) := t('a);
-  include Rebase__signatures__monad.S with type t('a) := t('a);
-  include Rebase__signatures__iterable.S with type t('a) := t('a);
+  /* Mappable.S */
+  let map: ('a => 'b, t('a)) => t('b);
 
+  /* Applicative.S */
+  let apply: (t(('a => 'b)), t('a)) => t('b);
+  let from: 'a => t('a);
+
+  /* Reduceable.S */
+  let reduce: (('b, 'a) => 'b, 'b, t('a)) => 'b;
+  let reduceRight: (('b, 'a) => 'b, 'b, t('a)) => 'b;
+
+  /* Monad.S */
+  let flatMap: ('a => t('b), t('a)) => t('b);
+
+  /* Iterable.S */
+  let forAll: ('a => bool, t('a)) => bool;
+  let find: ('a => bool, t('a)) => option('a);
+  let forEach: ('a => unit, t('a)) => unit;
+  let exists: ('a => bool, t('a)) => bool;
+  let filter: ('a => bool, t('a)) => t('a);
+
+  /* -- */
   let head: t('a) => option('a);
   let tail: t('a) => option(t('a));
   let length: t('a) => int;
@@ -64,12 +96,28 @@ module List: {
 module Option: {
   type t('a) = option('a);
 
-  include Rebase__signatures__mappable.S with type t('a) := t('a);
-  include Rebase__signatures__applyable.S with type t('a) := t('a);
-  include Rebase__signatures__reduceable.S with type t('a) := t('a);
-  include Rebase__signatures__monad.S with type t('a) := t('a);
-  include Rebase__signatures__iterable.S with type t('a) := t('a);
+  /* Mappable.S */
+  let map: ('a => 'b, t('a)) => t('b);
 
+  /* Applicative.S */
+  let apply: (t(('a => 'b)), t('a)) => t('b);
+  let from: 'a => t('a);
+
+  /* Reduceable.S */
+  let reduce: (('b, 'a) => 'b, 'b, t('a)) => 'b;
+  let reduceRight: (('b, 'a) => 'b, 'b, t('a)) => 'b;
+
+  /* Monad.S */
+  let flatMap: ('a => t('b), t('a)) => t('b);
+
+  /* Iterable.S */
+  let forAll: ('a => bool, t('a)) => bool;
+  let find: ('a => bool, t('a)) => option('a);
+  let forEach: ('a => unit, t('a)) => unit;
+  let exists: ('a => bool, t('a)) => bool;
+  let filter: ('a => bool, t('a)) => t('a);
+
+  /* -- */
   let some: 'a => t('a);
   let isSome: t(_) => bool;
   let isNone: t(_) => bool;
@@ -86,13 +134,29 @@ module Result: {
     | Ok('a)
     | Error('e);
 
-  include Rebase__signatures__mappable.S1_5 with type t('a, 'e) := t('a, 'e);
-  include Rebase__signatures__mappable.S2 with type t('a, 'e) := t('a, 'e);
-  include Rebase__signatures__applyable.S1_5 with type t('a, 'e) := t('a, 'e);
-  include Rebase__signatures__reduceable.S1_5 with type t('a, 'e) := t('a, 'e);
-  include Rebase__signatures__monad.S1_5 with type t('a, 'e) := t('a, 'e);
-  include Rebase__signatures__iterable.S1_5 with type t('a, 'e) := t('a, 'e);
+  /* Mappable.S1_5 */
+  let map: ('a => 'b, t('a, 'e)) => t('b, 'e);
+  /* Mappable.S2 */
+  let map2: ('a => 'c, 'b => 'd, t('a, 'b)) => t('c, 'd);
 
+  /* Applicative.S1_5 */
+  let apply: (t(('a => 'b), 'e), t('a, 'e)) => t('b, 'e);
+  let from: 'a => t('a, _);
+
+  /* Reduceable.S1_5 */
+  let reduce: (('b, 'a) => 'b, 'b, t('a, _)) => 'b;
+  let reduceRight: (('b, 'a) => 'b, 'b, t('a, _)) => 'b;
+
+  /* Monad.S1_5 */
+  let flatMap: ('a => t('b, 'e), t('a, 'e)) => t('b, 'e);
+
+  /* Iterable.S1_5 */
+  let forAll: ('a => bool, t('a, _)) => bool;
+  let find: ('a => bool, t('a, _)) => option('a);
+  let forEach: ('a => unit, t('a, _)) => unit;
+  let exists: ('a => bool, t('a, _)) => bool;
+
+  /* -- */
   let isOk: t(_) => bool;
   let isError: t(_) => bool;
   let wrap: (unit => 'r) => t('r, exn);

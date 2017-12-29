@@ -5,7 +5,7 @@ open Rebase;
 
 
 describe("Mappable.S", () => {
-  module M: Rebase__signatures__mappable.S with type t('a) := option('a) = Option;
+  module M: Signatures.Mappable.S with type t('a) := option('a) = Option;
 
   testAll("map", [
       (None, None),
@@ -15,7 +15,7 @@ describe("Mappable.S", () => {
 
 
 describe("Applicative.S", () => {
-  module M: Rebase__signatures__applyable.S with type t('a) := option('a) = Option;
+  module M: Signatures.Applicative.S with type t('a) := option('a) = Option;
 
   testAll("apply", [
       (None, None, None),
@@ -30,7 +30,7 @@ describe("Applicative.S", () => {
 
 
 describe("Reduceable.S", () => {
-  module M: Rebase__signatures__reduceable.S with type t('a) := option('a) = Option;
+  module M: Signatures.Reduceable.S with type t('a) := option('a) = Option;
 
   testAll("reduce", [
       (None, 10),
@@ -45,7 +45,7 @@ describe("Reduceable.S", () => {
 
 
 describe("Monad.S", () => {
-  module M: Rebase__signatures__monad.S with type t('a) := option('a) = Option;
+  module M: Signatures.Monad.S with type t('a) := option('a) = Option;
 
   testAll("flatMap", [
       (None, None),
@@ -55,7 +55,7 @@ describe("Monad.S", () => {
 
 
 describe("Iterable.S", () => {
-  module M: Rebase__signatures__iterable.S with type t('a) := option('a) = Option;
+  module M: Signatures.Iterable.S with type t('a) := option('a) = Option;
 
   testAll("exists", [
       (None, false),

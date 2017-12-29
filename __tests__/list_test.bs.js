@@ -6,7 +6,7 @@ var Rebase     = require("../src/rebase.bs.js");
 var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 
 describe("Mappable.S", (function () {
-        var M = [Rebase.List[2]];
+        var M = [Rebase.List[0]];
         return Jest.test("map", (function () {
                       return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M[/* map */0], (function (x) {
                                             return x + 1 | 0;
@@ -27,9 +27,9 @@ describe("Mappable.S", (function () {
       }));
 
 describe("Applicative.S", (function () {
-        var M_000 = Rebase.List[2];
-        var M_001 = Rebase.List[3];
-        var M_002 = Rebase.List[4];
+        var M_000 = Rebase.List[0];
+        var M_001 = Rebase.List[1];
+        var M_002 = Rebase.List[2];
         Jest.test("apply", (function () {
                 return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_001, /* :: */[
                                     (function (x) {
@@ -70,8 +70,8 @@ describe("Applicative.S", (function () {
       }));
 
 describe("Reduceable.S", (function () {
-        var M_000 = Rebase.List[0];
-        var M_001 = Rebase.List[1];
+        var M_000 = Rebase.List[3];
+        var M_001 = Rebase.List[4];
         Jest.test("reduce", (function () {
                 return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._3(M_000, (function (acc, x) {
                                       return x - acc | 0;
@@ -97,9 +97,9 @@ describe("Reduceable.S", (function () {
       }));
 
 describe("Monad.S", (function () {
-        var M_000 = Rebase.List[2];
-        var M_001 = Rebase.List[3];
-        var M_002 = Rebase.List[4];
+        var M_000 = Rebase.List[0];
+        var M_001 = Rebase.List[1];
+        var M_002 = Rebase.List[2];
         var M_003 = Rebase.List[5];
         return Jest.test("flatMap", (function () {
                       return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_003, (function (xs) {

@@ -2,11 +2,11 @@
 
 var Rebase = require("../src/rebase.bs.js");
 
-var x = Rebase.Option[/* map */2]((function (n) {
+var x = Rebase.Option[/* map */0]((function (n) {
         return (n << 1);
       }), /* Some */[42]);
 
-var y = Rebase.$$Array[/* map */2]((function (n) {
+var y = Rebase.$$Array[/* map */0]((function (n) {
         return (n << 1);
       }), /* int array */[
       1,

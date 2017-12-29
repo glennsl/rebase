@@ -5,7 +5,7 @@ open Rebase;
 
 
 describe("Mappable", () => {
-  module M: Rebase__signatures__mappable.S with type t('a) := array('a) = Array;
+  module M: Signatures.Mappable.S with type t('a) := array('a) = Array;
 
   test("map", () =>
     expect(M.map(x => x + 1, [|1, 2|])) == [|2, 3|]);
@@ -13,7 +13,7 @@ describe("Mappable", () => {
 
 
 describe("Applicative", () => {
-  module M: Rebase__signatures__applyable.S with type t('a) := array('a) = Array;
+  module M: Signatures.Applicative.S with type t('a) := array('a) = Array;
 
   test("apply", () =>
     expect(M.apply([|x => x + x, x => x * x|], [|3, 8|])) == [|6, 16, 9, 64|]);
@@ -24,7 +24,7 @@ describe("Applicative", () => {
 
 
 describe("Reduceable", () => {
-  module M: Rebase__signatures__reduceable.S with type t('a) := array('a) = Array;
+  module M: Signatures.Reduceable.S with type t('a) := array('a) = Array;
 
   test("reduce", () =>
     expect(M.reduce((acc, x) => x - acc, 10, [|1, 2|])) == 11);
@@ -35,7 +35,7 @@ describe("Reduceable", () => {
 
 
 describe("Monad", () => {
-  module M: Rebase__signatures__monad.S with type t('a) := array('a) = Array;
+  module M: Signatures.Monad.S with type t('a) := array('a) = Array;
 
   test("flatMap", () =>
     expect(M.flatMap(xs => xs |> Array.map(x => x + 1), [|[|1|], [|2, 3|]|])) == [|2, 3, 4|]);
@@ -43,7 +43,7 @@ describe("Monad", () => {
 
 
 describe("Iterable", () => {
-  module M: Rebase__signatures__iterable.S with type t('a) := array('a) = Array;
+  module M: Signatures.Iterable.S with type t('a) := array('a) = Array;
 
   test("filter", () => {
     let (===) = Pervasives.(===);

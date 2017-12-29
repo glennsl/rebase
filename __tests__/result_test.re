@@ -5,7 +5,7 @@ open Rebase__result__type;
 open Rebase;
 
 describe("Mappable.S1_5", () => {
-  module M: Rebase__signatures__mappable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
+  module M: Signatures.Mappable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
 
   testAll("map", [
       (Error("err"), Error("err")),
@@ -15,7 +15,7 @@ describe("Mappable.S1_5", () => {
 
 
 describe("Mappable.S2", () => {
-  module M: Rebase__signatures__mappable.S2 with type t('a, 'e) := result('a, 'e) = Result;
+  module M: Signatures.Mappable.S2 with type t('a, 'e) := result('a, 'e) = Result;
 
   testAll("map2", [
       (Error("err"), Error("error")),
@@ -25,7 +25,7 @@ describe("Mappable.S2", () => {
 
 
 describe("Applicative.S1_5", () => {
-  module M: Rebase__signatures__applyable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
+  module M: Signatures.Applicative.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
 
   testAll("apply", [
       (Error("err"), Error("err"), Error("err")),
@@ -40,7 +40,7 @@ describe("Applicative.S1_5", () => {
 
 
 describe("Reduceable.S1_5", () => {
-  module M: Rebase__signatures__reduceable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
+  module M: Signatures.Reduceable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
 
   testAll("reduce", [
       (Error("err"), 10),
@@ -55,7 +55,7 @@ describe("Reduceable.S1_5", () => {
 
 
 describe("Monad.S1_5", () => {
-  module M: Rebase__signatures__monad.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
+  module M: Signatures.Monad.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
 
   testAll("flatMap", [
       (Error("err"), Error("err")),
@@ -65,7 +65,7 @@ describe("Monad.S1_5", () => {
 
 
 describe("Iterable.S1_5", () => {
-  module M: Rebase__signatures__iterable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
+  module M: Signatures.Iterable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
 
   /*
   testAll("filter", [

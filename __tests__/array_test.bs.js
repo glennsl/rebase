@@ -6,7 +6,7 @@ var Rebase     = require("../src/rebase.bs.js");
 var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 
 describe("Mappable", (function () {
-        var M = [Rebase.$$Array[2]];
+        var M = [Rebase.$$Array[0]];
         return Jest.test("map", (function () {
                       return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M[/* map */0], (function (x) {
                                             return x + 1 | 0;
@@ -21,9 +21,9 @@ describe("Mappable", (function () {
       }));
 
 describe("Applicative", (function () {
-        var M_000 = Rebase.$$Array[2];
-        var M_001 = Rebase.$$Array[3];
-        var M_002 = Rebase.$$Array[4];
+        var M_000 = Rebase.$$Array[0];
+        var M_001 = Rebase.$$Array[1];
+        var M_002 = Rebase.$$Array[2];
         Jest.test("apply", (function () {
                 return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_001, /* array */[
                                     (function (x) {
@@ -48,8 +48,8 @@ describe("Applicative", (function () {
       }));
 
 describe("Reduceable", (function () {
-        var M_000 = Rebase.$$Array[0];
-        var M_001 = Rebase.$$Array[1];
+        var M_000 = Rebase.$$Array[3];
+        var M_001 = Rebase.$$Array[4];
         Jest.test("reduce", (function () {
                 return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._3(M_000, (function (acc, x) {
                                       return x - acc | 0;
@@ -69,13 +69,13 @@ describe("Reduceable", (function () {
       }));
 
 describe("Monad", (function () {
-        var M_000 = Rebase.$$Array[2];
-        var M_001 = Rebase.$$Array[3];
-        var M_002 = Rebase.$$Array[4];
+        var M_000 = Rebase.$$Array[0];
+        var M_001 = Rebase.$$Array[1];
+        var M_002 = Rebase.$$Array[2];
         var M_003 = Rebase.$$Array[5];
         return Jest.test("flatMap", (function () {
                       return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_003, (function (xs) {
-                                            return Rebase.$$Array[/* map */2]((function (x) {
+                                            return Rebase.$$Array[/* map */0]((function (x) {
                                                           return x + 1 | 0;
                                                         }), xs);
                                           }), /* array */[

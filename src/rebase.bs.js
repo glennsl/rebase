@@ -7,16 +7,16 @@ var Rebase__result     = require("./rebase__result.bs.js");
 var Rebase__string     = require("./rebase__string.bs.js");
 var Rebase__exceptions = require("./rebase__exceptions.bs.js");
 
-function Array_000(prim, prim$1, prim$2) {
+function Array_000(prim, prim$1) {
+  return prim$1.map(prim);
+}
+
+function Array_003(prim, prim$1, prim$2) {
   return prim$2.reduce(prim, prim$1);
 }
 
-function Array_001(prim, prim$1, prim$2) {
+function Array_004(prim, prim$1, prim$2) {
   return prim$2.reduceRight(prim, prim$1);
-}
-
-function Array_002(prim, prim$1) {
-  return prim$1.map(prim);
 }
 
 function Array_008(prim, prim$1) {
@@ -51,10 +51,10 @@ function Array_023(prim, prim$1) {
 
 var $$Array = [
   Array_000,
-  Array_001,
-  Array_002,
   Rebase__array.apply,
   Rebase__array.from,
+  Array_003,
+  Array_004,
   Rebase__array.flatMap,
   Rebase__array.forAll,
   Rebase__array.find,
@@ -77,11 +77,11 @@ var $$Array = [
 ];
 
 var List = [
-  Rebase__list.reduce,
-  Rebase__list.reduceRight,
   Rebase__list.map,
   Rebase__list.apply,
   Rebase__list.from,
+  Rebase__list.reduce,
+  Rebase__list.reduceRight,
   Rebase__list.flatMap,
   Rebase__list.forAll,
   Rebase__list.find,
@@ -97,11 +97,11 @@ var List = [
 ];
 
 var Option = [
-  Rebase__option.reduce,
-  Rebase__option.reduceRight,
   Rebase__option.map,
   Rebase__option.apply,
   Rebase__option.from,
+  Rebase__option.reduce,
+  Rebase__option.reduceRight,
   Rebase__option.flatMap,
   Rebase__option.forAll,
   Rebase__option.find,
@@ -120,12 +120,12 @@ var Option = [
 ];
 
 var Result = [
-  Rebase__result.map2,
-  Rebase__result.reduce,
-  Rebase__result.reduceRight,
   Rebase__result.map,
+  Rebase__result.map2,
   Rebase__result.apply,
   Rebase__result.from,
+  Rebase__result.reduce,
+  Rebase__result.reduceRight,
   Rebase__result.flatMap,
   Rebase__result.forAll,
   Rebase__result.find,

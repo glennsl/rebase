@@ -5,7 +5,7 @@ var Curry  = require("bs-platform/lib/js/curry.js");
 var Rebase = require("../src/rebase.bs.js");
 
 describe("Mappable.S", (function () {
-        var M = [Rebase.Option[2]];
+        var M = [Rebase.Option[0]];
         return Jest.testAll("map", /* :: */[
                     /* tuple */[
                       /* None */0,
@@ -26,9 +26,9 @@ describe("Mappable.S", (function () {
       }));
 
 describe("Applicative.S", (function () {
-        var M_000 = Rebase.Option[2];
-        var M_001 = Rebase.Option[3];
-        var M_002 = Rebase.Option[4];
+        var M_000 = Rebase.Option[0];
+        var M_001 = Rebase.Option[1];
+        var M_002 = Rebase.Option[2];
         Jest.testAll("apply", /* :: */[
               /* tuple */[
                 /* None */0,
@@ -70,8 +70,8 @@ describe("Applicative.S", (function () {
       }));
 
 describe("Reduceable.S", (function () {
-        var M_000 = Rebase.Option[0];
-        var M_001 = Rebase.Option[1];
+        var M_000 = Rebase.Option[3];
+        var M_001 = Rebase.Option[4];
         Jest.testAll("reduce", /* :: */[
               /* tuple */[
                 /* None */0,
@@ -109,9 +109,9 @@ describe("Reduceable.S", (function () {
       }));
 
 describe("Monad.S", (function () {
-        var M_000 = Rebase.Option[2];
-        var M_001 = Rebase.Option[3];
-        var M_002 = Rebase.Option[4];
+        var M_000 = Rebase.Option[0];
+        var M_001 = Rebase.Option[1];
+        var M_002 = Rebase.Option[2];
         var M_003 = Rebase.Option[5];
         return Jest.testAll("flatMap", /* :: */[
                     /* tuple */[

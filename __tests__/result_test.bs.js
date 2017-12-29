@@ -8,7 +8,7 @@ var Pervasives              = require("bs-platform/lib/js/pervasives.js");
 var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
 
 describe("Mappable.S1_5", (function () {
-        var M = [Rebase.Result[3]];
+        var M = [Rebase.Result[0]];
         return Jest.testAll("map", /* :: */[
                     /* tuple */[
                       /* Error */Block.__(1, ["err"]),
@@ -29,7 +29,7 @@ describe("Mappable.S1_5", (function () {
       }));
 
 describe("Mappable.S2", (function () {
-        var M = [Rebase.Result[0]];
+        var M = [Rebase.Result[1]];
         return Jest.testAll("map2", /* :: */[
                     /* tuple */[
                       /* Error */Block.__(1, ["err"]),
@@ -52,9 +52,9 @@ describe("Mappable.S2", (function () {
       }));
 
 describe("Applicative.S1_5", (function () {
-        var M_000 = Rebase.Result[3];
-        var M_001 = Rebase.Result[4];
-        var M_002 = Rebase.Result[5];
+        var M_000 = Rebase.Result[0];
+        var M_001 = Rebase.Result[2];
+        var M_002 = Rebase.Result[3];
         Jest.testAll("apply", /* :: */[
               /* tuple */[
                 /* Error */Block.__(1, ["err"]),
@@ -96,8 +96,8 @@ describe("Applicative.S1_5", (function () {
       }));
 
 describe("Reduceable.S1_5", (function () {
-        var M_000 = Rebase.Result[1];
-        var M_001 = Rebase.Result[2];
+        var M_000 = Rebase.Result[4];
+        var M_001 = Rebase.Result[5];
         Jest.testAll("reduce", /* :: */[
               /* tuple */[
                 /* Error */Block.__(1, ["err"]),
@@ -135,9 +135,9 @@ describe("Reduceable.S1_5", (function () {
       }));
 
 describe("Monad.S1_5", (function () {
-        var M_000 = Rebase.Result[3];
-        var M_001 = Rebase.Result[4];
-        var M_002 = Rebase.Result[5];
+        var M_000 = Rebase.Result[0];
+        var M_001 = Rebase.Result[2];
+        var M_002 = Rebase.Result[3];
         var M_003 = Rebase.Result[6];
         return Jest.testAll("flatMap", /* :: */[
                     /* tuple */[

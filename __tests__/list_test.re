@@ -5,7 +5,7 @@ open Rebase;
 
 
 describe("Mappable.S", () => {
-  module M: Rebase__signatures__mappable.S with type t('a) := list('a) = List;
+  module M: Signatures.Mappable.S with type t('a) := list('a) = List;
 
   test("map", () =>
     expect(M.map(x => x + 1, [1, 2])) == [2, 3]);
@@ -13,7 +13,7 @@ describe("Mappable.S", () => {
 
 
 describe("Applicative.S", () => {
-  module M: Rebase__signatures__applyable.S with type t('a) := list('a) = List;
+  module M: Signatures.Applicative.S with type t('a) := list('a) = List;
 
   test("apply", () =>
     expect(M.apply([x => x + x, x => x * x], [3, 8])) == [6, 16, 9, 64]);
@@ -24,7 +24,7 @@ describe("Applicative.S", () => {
 
 
 describe("Reduceable.S", () => {
-  module M: Rebase__signatures__reduceable.S with type t('a) := list('a) = List;
+  module M: Signatures.Reduceable.S with type t('a) := list('a) = List;
 
   test("reduce", () =>
     expect(M.reduce((acc, x) => x - acc, 10, [1, 2])) == 11);
@@ -35,7 +35,7 @@ describe("Reduceable.S", () => {
 
 
 describe("Monad.S", () => {
-  module M: Rebase__signatures__monad.S with type t('a) := list('a) = List;
+  module M: Signatures.Monad.S with type t('a) := list('a) = List;
 
   test("flatMap", () =>
     expect(M.flatMap(xs => [0, ...xs], [[1],[2, 3]])) == [0, 1, 0, 2, 3]);
@@ -43,7 +43,7 @@ describe("Monad.S", () => {
 
 
 describe("Iterable.S", () => {
-  module M: Rebase__signatures__iterable.S with type t('a) := list('a) = List;
+  module M: Signatures.Iterable.S with type t('a) := list('a) = List;
 
   test("filter", () => {
     let (===) = Pervasives.(===);
