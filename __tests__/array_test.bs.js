@@ -5,7 +5,7 @@ var Curry      = require("bs-platform/lib/js/curry.js");
 var Rebase     = require("../src/rebase.bs.js");
 var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 
-describe("Mappable", (function () {
+describe("Mappable.S", (function () {
         var M = [Rebase.$$Array[0]];
         return Jest.test("map", (function () {
                       return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M[/* map */0], (function (x) {
@@ -20,7 +20,7 @@ describe("Mappable", (function () {
                     }));
       }));
 
-describe("Applicative", (function () {
+describe("Applicative.S", (function () {
         var M_000 = Rebase.$$Array[0];
         var M_001 = Rebase.$$Array[1];
         var M_002 = Rebase.$$Array[2];
@@ -47,7 +47,7 @@ describe("Applicative", (function () {
                     }));
       }));
 
-describe("Reduceable", (function () {
+describe("Reduceable.S", (function () {
         var M_000 = Rebase.$$Array[3];
         var M_001 = Rebase.$$Array[4];
         Jest.test("reduce", (function () {
@@ -68,7 +68,7 @@ describe("Reduceable", (function () {
                     }));
       }));
 
-describe("Monad", (function () {
+describe("Monad.S", (function () {
         var M_000 = Rebase.$$Array[0];
         var M_001 = Rebase.$$Array[1];
         var M_002 = Rebase.$$Array[2];
@@ -92,7 +92,7 @@ describe("Monad", (function () {
                     }));
       }));
 
-describe("Iterable", (function () {
+describe("Iterable.S", (function () {
         var M_000 = Rebase.$$Array[6];
         var M_001 = Rebase.$$Array[7];
         var M_002 = Rebase.$$Array[8];
@@ -198,8 +198,26 @@ describe("Iterable", (function () {
                     }));
       }));
 
+describe("Concatenable.S", (function () {
+        var M = [Rebase.$$Array[11]];
+        return Jest.test("concat", (function () {
+                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M[/* concat */0], /* int array */[
+                                          3,
+                                          4
+                                        ], /* int array */[
+                                          1,
+                                          2
+                                        ])), /* int array */[
+                                  1,
+                                  2,
+                                  3,
+                                  4
+                                ]);
+                    }));
+      }));
+
 Jest.test("length", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* length */12](/* int array */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* length */13](/* int array */[
                             1,
                             2
                           ])), 2);
@@ -221,7 +239,7 @@ Jest.testAll("make", /* :: */[
         /* [] */0
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* make */11](param[0], "a")), param[1]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* make */12](param[0], "a")), param[1]);
       }));
 
 Jest.testAll("get", /* :: */[
@@ -243,7 +261,7 @@ Jest.testAll("get", /* :: */[
         ]
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */13](/* int array */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */14](/* int array */[
                             1,
                             2
                           ], param[0])), param[1]);
@@ -254,8 +272,8 @@ Jest.test("set - in bounds", (function () {
           1,
           2
         ];
-        Rebase.$$Array[/* set */14](a, 1, 3);
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */13](a, 1)), /* Some */[3]);
+        Rebase.$$Array[/* set */15](a, 1, 3);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */14](a, 1)), /* Some */[3]);
       }));
 
 Jest.test("set - out of bounds", (function () {
@@ -263,8 +281,8 @@ Jest.test("set - out of bounds", (function () {
           1,
           2
         ];
-        Rebase.$$Array[/* set */14](a, 2, 3);
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */13](a, 2)), /* None */0);
+        Rebase.$$Array[/* set */15](a, 2, 3);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */14](a, 2)), /* None */0);
       }));
 
 Jest.test("[] get", (function () {
@@ -272,7 +290,7 @@ Jest.test("[] get", (function () {
           1,
           2
         ];
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */13](a, 1)), /* Some */[2]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */14](a, 1)), /* Some */[2]);
       }));
 
 Jest.test("[] set - in bounds", (function () {
@@ -280,8 +298,8 @@ Jest.test("[] set - in bounds", (function () {
           1,
           2
         ];
-        Rebase.$$Array[/* set */14](a, 1, 3);
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */13](a, 1)), /* Some */[3]);
+        Rebase.$$Array[/* set */15](a, 1, 3);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */14](a, 1)), /* Some */[3]);
       }));
 
 Jest.test("[] set - out of bounds", (function () {
@@ -289,12 +307,12 @@ Jest.test("[] set - out of bounds", (function () {
           1,
           2
         ];
-        Rebase.$$Array[/* set */14](a, 2, 3);
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */13](a, 2)), /* None */0);
+        Rebase.$$Array[/* set */15](a, 2, 3);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */14](a, 2)), /* None */0);
       }));
 
 Jest.test("getOrRaise - in bounds", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* getOrRaise */15](1, /* int array */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* getOrRaise */16](1, /* int array */[
                             1,
                             2
                           ])), 2);
@@ -302,7 +320,7 @@ Jest.test("getOrRaise - in bounds", (function () {
 
 Jest.test("getOrRaise - out of bounds", (function () {
         return Jest.Expect[/* toThrowException */20](Rebase.IndexOutOfBounds, Jest.Expect[/* expect */0]((function () {
-                          return Rebase.$$Array[/* getOrRaise */15](2, /* int array */[
+                          return Rebase.$$Array[/* getOrRaise */16](2, /* int array */[
                                       1,
                                       2
                                     ]);
@@ -314,13 +332,13 @@ Jest.test("setOrRaise - in bounds", (function () {
           1,
           2
         ];
-        Rebase.$$Array[/* setOrRaise */16](1, 3, a);
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* getOrRaise */15](1, a)), 3);
+        Rebase.$$Array[/* setOrRaise */17](1, 3, a);
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* getOrRaise */16](1, a)), 3);
       }));
 
 Jest.test("setOrRaise - out of bounds", (function () {
         return Jest.Expect[/* toThrowException */20](Rebase.IndexOutOfBounds, Jest.Expect[/* expect */0]((function () {
-                          return Rebase.$$Array[/* setOrRaise */16](2, 3, /* int array */[
+                          return Rebase.$$Array[/* setOrRaise */17](2, 3, /* int array */[
                                       1,
                                       2
                                     ]);
@@ -328,14 +346,14 @@ Jest.test("setOrRaise - out of bounds", (function () {
       }));
 
 Jest.test("unsafeGetUnchecked - in bounds", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* unsafeGetUnchecked */17](1, /* int array */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* unsafeGetUnchecked */18](1, /* int array */[
                             1,
                             2
                           ])), 2);
       }));
 
 Jest.test("unsafeGetUnchecked - out of bounds", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* unsafeGetUnchecked */17](2, /* int array */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* unsafeGetUnchecked */18](2, /* int array */[
                             1,
                             2
                           ])), undefined);
@@ -346,8 +364,8 @@ Jest.test("unsafeSetUnchecked - in bounds", (function () {
           1,
           2
         ];
-        Rebase.$$Array[/* unsafeSetUnchecked */18](1, 3, a);
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* getOrRaise */15](1, a)), 3);
+        Rebase.$$Array[/* unsafeSetUnchecked */19](1, 3, a);
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* getOrRaise */16](1, a)), 3);
       }));
 
 Jest.test("unsafeSetUnchecked - out of bounds", (function () {
@@ -355,8 +373,8 @@ Jest.test("unsafeSetUnchecked - out of bounds", (function () {
           1,
           2
         ];
-        Rebase.$$Array[/* unsafeSetUnchecked */18](2, 3, a);
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* getOrRaise */15](2, a)), 3);
+        Rebase.$$Array[/* unsafeSetUnchecked */19](2, 3, a);
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* getOrRaise */16](2, a)), 3);
       }));
 
 Jest.test("fill", (function () {
@@ -364,25 +382,10 @@ Jest.test("fill", (function () {
           1,
           2
         ];
-        Rebase.$$Array[/* fill */19](0, a);
+        Rebase.$$Array[/* fill */20](0, a);
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](a), /* int array */[
                     0,
                     0
-                  ]);
-      }));
-
-Jest.test("concat", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* concat */20](/* int array */[
-                            3,
-                            4
-                          ], /* int array */[
-                            1,
-                            2
-                          ])), /* int array */[
-                    1,
-                    2,
-                    3,
-                    4
                   ]);
       }));
 
@@ -485,7 +488,7 @@ Jest.test("copy", (function () {
           2
         ];
         var b = Rebase.$$Array[/* copy */22](a);
-        Rebase.$$Array[/* set */14](a, 1, 0);
+        Rebase.$$Array[/* set */15](a, 1, 0);
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](/* tuple */[
                         a,
                         b

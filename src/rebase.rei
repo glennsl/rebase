@@ -22,6 +22,9 @@ module Array: {
   let exists: ('a => bool, t('a)) => bool;
   let filter: ('a => bool, t('a)) => t('a);
 
+  /* Concatenable.S */
+  let concat: (t('a), t('a)) => t('a);
+
   /* -- */
   let make: (int, 'a) => t('a);
   let length: t('a) => int;
@@ -41,7 +44,6 @@ module Array: {
   let unsafeSetUnchecked: (int, 'a, t('a)) => unit; /* mutates */
 
   let fill: ('a, t('a)) => unit; /* mutates */
-  let concat: (t('a), t('a)) => t('a);
   let slice: (~from: int, ~to_: int, t('a)) => t('a);
   let copy: t('a) => t('a);
   let mapWithIndex: (('a, int) => 'b, t('a)) => t('b)
@@ -173,8 +175,11 @@ module Result: {
 module String: {
   type t = string;
 
-  let length: t => int;
+  /* Concatenable.S0 */
   let concat: (t, t) => t;
+
+  /* -- */
+  let length: t => int;
   let includes: (t, t) => bool;
   let startsWith: (t, t) => bool;
   let endsWith: (t, t) => bool;

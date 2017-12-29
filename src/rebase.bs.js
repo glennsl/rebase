@@ -24,17 +24,17 @@ function Array_008(prim, prim$1) {
   return /* () */0;
 }
 
-function Array_012(prim) {
+function Array_011(prim, prim$1) {
+  return prim$1.concat(prim);
+}
+
+function Array_013(prim) {
   return prim.length;
 }
 
-function Array_019(prim, prim$1) {
+function Array_020(prim, prim$1) {
   prim$1.fill(prim);
   return /* () */0;
-}
-
-function Array_020(prim, prim$1) {
-  return prim$1.concat(prim);
 }
 
 function Array_021(prim, prim$1, prim$2) {
@@ -61,15 +61,15 @@ var $$Array = [
   Array_008,
   Rebase__array.exists,
   Rebase__array.filter,
+  Array_011,
   Rebase__array.make,
-  Array_012,
+  Array_013,
   Rebase__array.get,
   Rebase__array.set,
   Rebase__array.getOrRaise,
   Rebase__array.setOrRaise,
   Rebase__array.unsafeGetUnchecked,
   Rebase__array.unsafeSetUnchecked,
-  Array_019,
   Array_020,
   Array_021,
   Array_022,
@@ -144,12 +144,12 @@ var Result = [
   Rebase__result.flatten
 ];
 
-function String_000(prim) {
-  return prim.length;
+function String_000(prim, prim$1) {
+  return prim$1.concat(prim);
 }
 
-function String_001(prim, prim$1) {
-  return prim$1.concat(prim);
+function String_001(prim) {
+  return prim.length;
 }
 
 function String_002(prim, prim$1) {

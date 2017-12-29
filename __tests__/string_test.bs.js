@@ -4,6 +4,12 @@ var Jest   = require("bs-jest/src/jest.js");
 var Curry  = require("bs-platform/lib/js/curry.js");
 var Rebase = require("../src/rebase.bs.js");
 
+describe("Concatenable.S0", (function () {
+        return Jest.test("concat", (function () {
+                      return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* concat */0]("b", "a")), "ab");
+                    }));
+      }));
+
 Jest.testAll("length", /* :: */[
       /* tuple */[
         "foo",
@@ -23,11 +29,11 @@ Jest.testAll("length", /* :: */[
         ]
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$String[/* length */0](param[0])), param[1]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$String[/* length */1](param[0])), param[1]);
       }));
 
 Jest.test("concat", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* concat */1]("b", "a")), "ab");
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* concat */0]("b", "a")), "ab");
       }));
 
 Jest.testAll("includes", /* :: */[

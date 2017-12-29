@@ -164,3 +164,19 @@ module Iterable: {
     */
   };
 };
+
+module Concatenable: {
+  /* aka Semigroup */
+
+  module type S = {
+    type t('a);
+
+    let concat: (t('a), t('a)) => t('a);
+  };
+
+  module type S0 = {
+    type t;
+
+    let concat: (t, t) => t;
+  };
+};

@@ -4,7 +4,7 @@ open! Expect.Operators;
 open Rebase;
 
 
-describe("Mappable", () => {
+describe("Mappable.S", () => {
   module M: Signatures.Mappable.S with type t('a) := array('a) = Array;
 
   test("map", () =>
@@ -12,7 +12,7 @@ describe("Mappable", () => {
 });
 
 
-describe("Applicative", () => {
+describe("Applicative.S", () => {
   module M: Signatures.Applicative.S with type t('a) := array('a) = Array;
 
   test("apply", () =>
@@ -23,7 +23,7 @@ describe("Applicative", () => {
 });
 
 
-describe("Reduceable", () => {
+describe("Reduceable.S", () => {
   module M: Signatures.Reduceable.S with type t('a) := array('a) = Array;
 
   test("reduce", () =>
@@ -34,7 +34,7 @@ describe("Reduceable", () => {
 });
 
 
-describe("Monad", () => {
+describe("Monad.S", () => {
   module M: Signatures.Monad.S with type t('a) := array('a) = Array;
 
   test("flatMap", () =>
@@ -42,7 +42,7 @@ describe("Monad", () => {
 });
 
 
-describe("Iterable", () => {
+describe("Iterable.S", () => {
   module M: Signatures.Iterable.S with type t('a) := array('a) = Array;
 
   test("filter", () => {
@@ -79,6 +79,14 @@ describe("Iterable", () => {
       let (===) = Pervasives.(===);
       expect(M.forAll(x => x mod 2 === 0, input)) == expected
     });
+});
+
+
+describe("Concatenable.S", () => {
+  module M: Signatures.Concatenable.S with type t('a) := array('a) = Array;
+
+  test("concat", () =>
+    expect([|1, 2|] |> M.concat([|3, 4|])) == [|1, 2, 3, 4|]);
 });
 
 
@@ -172,9 +180,6 @@ test("fill", () => {
 
   expect(a) == [|0, 0|]
 });
-
-test("concat", () =>
-  expect([|1, 2|] |> Array.concat([|3, 4|])) == [|1, 2, 3, 4|]);
 
 testAll("slice", [
     (0, 0, [||]),

@@ -3,6 +3,14 @@ open Expect;
 open! Expect.Operators;
 open Rebase;
 
+describe("Concatenable.S0", () => {
+  module M: Signatures.Concatenable.S0 with type t := string = String;
+
+  test("concat", () =>
+    expect("a" |> String.concat("b")) === "ab");
+});
+
+
 testAll("length", [
     ("foo", 3),
     ("møø", 5),
