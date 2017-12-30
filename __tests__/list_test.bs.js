@@ -1,9 +1,10 @@
 'use strict';
 
-var Jest       = require("bs-jest/src/jest.js");
-var Curry      = require("bs-platform/lib/js/curry.js");
-var Rebase     = require("../src/rebase.bs.js");
-var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
+var Jest        = require("bs-jest/src/jest.js");
+var Curry       = require("bs-platform/lib/js/curry.js");
+var Rebase      = require("../src/rebase.bs.js");
+var Caml_int32  = require("bs-platform/lib/js/caml_int32.js");
+var TestHelpers = require("./helpers/TestHelpers.bs.js");
 
 describe("Mappable.S", (function () {
         var M = [Rebase.List[0]];
@@ -307,7 +308,7 @@ describe("Concatenable.S", (function () {
                     }));
       }));
 
-Jest.testAll("fromArray", /* :: */[
+TestHelpers.testFn("fromArray", Rebase.List[/* fromArray */13], /* :: */[
       /* tuple */[
         /* int array */[],
         /* [] */0
@@ -332,11 +333,9 @@ Jest.testAll("fromArray", /* :: */[
         ],
         /* [] */0
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* fromArray */13](param[0])), param[1]);
-      }));
+    ]);
 
-Jest.testAll("isEmpty", /* :: */[
+TestHelpers.testFn("isEmpty", Rebase.List[/* isEmpty */14], /* :: */[
       /* tuple */[
         /* [] */0,
         /* true */1
@@ -357,11 +356,9 @@ Jest.testAll("isEmpty", /* :: */[
         ],
         /* [] */0
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* isEmpty */14](param[0])), param[1]);
-      }));
+    ]);
 
-Jest.testAll("head", /* :: */[
+TestHelpers.testFn("head", Rebase.List[/* head */15], /* :: */[
       /* tuple */[
         /* :: */[
           1,
@@ -382,11 +379,9 @@ Jest.testAll("head", /* :: */[
         ],
         /* [] */0
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* head */15](param[0])), param[1]);
-      }));
+    ]);
 
-Jest.testAll("tail", /* :: */[
+TestHelpers.testFn("tail", Rebase.List[/* tail */16], /* :: */[
       /* tuple */[
         /* :: */[
           1,
@@ -413,9 +408,7 @@ Jest.testAll("tail", /* :: */[
         ],
         /* [] */0
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* tail */16](param[0])), param[1]);
-      }));
+    ]);
 
 Jest.test("reverse", (function () {
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* reverse */18](/* :: */[
@@ -463,20 +456,22 @@ Jest.test("filterMap", (function () {
                   ]);
       }));
 
-Jest.testAll("zip", /* :: */[
+TestHelpers.testFn("zip", Curry._1(Rebase.Fn[/* uncurry */4], Curry._1(Rebase.Fn[/* flip */2], Rebase.List[/* zip */19])), /* :: */[
       /* tuple */[
-        /* :: */[
-          1,
+        /* tuple */[
           /* :: */[
-            2,
-            /* [] */0
-          ]
-        ],
-        /* :: */[
-          11,
+            1,
+            /* :: */[
+              2,
+              /* [] */0
+            ]
+          ],
           /* :: */[
-            12,
-            /* [] */0
+            11,
+            /* :: */[
+              12,
+              /* [] */0
+            ]
           ]
         ],
         /* :: */[
@@ -495,21 +490,23 @@ Jest.testAll("zip", /* :: */[
       ],
       /* :: */[
         /* tuple */[
-          /* :: */[
-            1,
+          /* tuple */[
             /* :: */[
-              2,
+              1,
               /* :: */[
-                3,
+                2,
+                /* :: */[
+                  3,
+                  /* [] */0
+                ]
+              ]
+            ],
+            /* :: */[
+              11,
+              /* :: */[
+                12,
                 /* [] */0
               ]
-            ]
-          ],
-          /* :: */[
-            11,
-            /* :: */[
-              12,
-              /* [] */0
             ]
           ],
           /* :: */[
@@ -528,20 +525,22 @@ Jest.testAll("zip", /* :: */[
         ],
         /* :: */[
           /* tuple */[
-            /* :: */[
-              1,
+            /* tuple */[
               /* :: */[
-                2,
-                /* [] */0
-              ]
-            ],
-            /* :: */[
-              11,
-              /* :: */[
-                12,
+                1,
                 /* :: */[
-                  13,
+                  2,
                   /* [] */0
+                ]
+              ],
+              /* :: */[
+                11,
+                /* :: */[
+                  12,
+                  /* :: */[
+                    13,
+                    /* [] */0
+                  ]
                 ]
               ]
             ],
@@ -561,24 +560,28 @@ Jest.testAll("zip", /* :: */[
           ],
           /* :: */[
             /* tuple */[
-              /* :: */[
-                1,
+              /* tuple */[
                 /* :: */[
-                  2,
-                  /* [] */0
-                ]
+                  1,
+                  /* :: */[
+                    2,
+                    /* [] */0
+                  ]
+                ],
+                /* [] */0
               ],
-              /* [] */0,
               /* [] */0
             ],
             /* :: */[
               /* tuple */[
-                /* [] */0,
-                /* :: */[
-                  11,
+                /* tuple */[
+                  /* [] */0,
                   /* :: */[
-                    12,
-                    /* [] */0
+                    11,
+                    /* :: */[
+                      12,
+                      /* [] */0
+                    ]
                   ]
                 ],
                 /* [] */0
@@ -588,8 +591,6 @@ Jest.testAll("zip", /* :: */[
           ]
         ]
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* zip */19](param[1], param[0])), param[2]);
-      }));
+    ]);
 
 /*  Not a pure module */

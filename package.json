@@ -29,5 +29,10 @@
     "bs-platform": "^2.0.0",
     "coveralls": "^3.0.0",
     "nyc": "^11.4.1"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/*_test.bs.js"
+    ]
   }
 }

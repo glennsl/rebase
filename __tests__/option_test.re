@@ -1,70 +1,82 @@
 open Jest;
 open Expect;
-open! Expect.Operators;
 open Rebase;
+open TestHelpers;
 
 
 describe("Mappable.S", () => {
   module M: Signatures.Mappable.S with type t('a) := option('a) = Option;
 
-  testAll("map", [
+  testFn("map", 
+    M.map(x => x + 1), [
       (None, None),
       (Some(42), Some(43)),
-    ], ((input, expected)) => expect(M.map(x => x + 1, input)) == expected);
+    ]
+  );
 });
 
 
 describe("Applicative.S", () => {
   module M: Signatures.Applicative.S with type t('a) := option('a) = Option;
 
-  testAll("apply", [
-      (None, None, None),
-      (Some(x => x + 1), None, None),
-      (None, Some(1), None),
-      (Some(x => x + 1), Some(1), Some(2)),
-    ], ((fs, xs, expected)) => expect(M.apply(fs, xs)) == expected);
+  testFn("apply", 
+    M.apply |> Fn.uncurry, [
+      ((None, None), None),
+      ((Some(x => x + 1), None), None),
+      ((None, Some(1)), None),
+      ((Some(x => x + 1), Some(1)), Some(2)),
+    ]
+  );
 
   test("from", () =>
-    expect(M.from(42)) == Some(42));
+    expect(
+      M.from(42))
+      |> toEqual(Some(42))
+  );
 });
 
 
 describe("Reduceable.S", () => {
   module M: Signatures.Reduceable.S with type t('a) := option('a) = Option;
 
-  testAll("reduce", [
+  testFn("reduce", 
+    M.reduce((acc, x) => x - acc, 10), [
       (None, 10),
       (Some(42), 32),
-    ], ((input, expected)) => expect(M.reduce((acc, x) => x - acc, 10, input)) == expected);
+    ]
+  );
 
-  testAll("reduceRight", [
+  testFn("reduceRight", 
+    M.reduceRight((acc, x) => x - acc, 10), [
       (None, 10),
       (Some(42), 32),
-    ], ((input, expected)) => expect(M.reduceRight((acc, x) => x - acc, 10, input)) == expected);
+    ]
+  );
 });
 
 
 describe("Monad.S", () => {
   module M: Signatures.Monad.S with type t('a) := option('a) = Option;
 
-  testAll("flatMap", [
+  testFn("flatMap", 
+    M.flatMap(x => Some(x + 1)), [
       (None, None),
       (Some(42), Some(43)),
-    ], ((input, expected)) => expect(M.flatMap(x => Some(x + 1), input)) == expected);
+    ]
+  );
 });
 
 
 describe("Iterable.S", () => {
   module M: Signatures.Iterable.S with type t('a) := option('a) = Option;
 
-  testAll("exists", [
+  testFn("exists", 
+    M.exists(x => x mod 2 === 0), [
       (None, false),
       (Some(1), false), 
       (Some(2), true)
-    ], ((input, expected)) => {
-    let (===) = Pervasives.(===);
-    expect(M.exists(x => x mod 2 === 0, input)) == expected
-  });
+    ]
+  );
 
   testAll("forEach", [
       (None, 0),
@@ -72,84 +84,106 @@ describe("Iterable.S", () => {
     ], ((input, expected)) => {
     let checked = ref(0);
     M.forEach(x => checked := x, input);
-    expect(checked^) == expected
+
+    expect(checked^) |> toEqual(expected)
   });
 
-  testAll("find", [
+  testFn("find", 
+    M.find(x => x mod 2 === 0), [
       (None, None),
       (Some(1), None),
       (Some(2), Some(2))
-    ], ((input, expected)) => {
-    let (===) = Pervasives.(===);
-    expect(M.find(x => x mod 2 === 0, input)) == expected
-  });
+    ]
+  );
 
-  testAll("forAll", [
+  testFn("forAll", 
+    M.forAll(x => x mod 2 === 0), [
       (None, true),
       (Some(1), false),
       (Some(2), true),
-    ], ((input, expected)) => {
-      let (===) = Pervasives.(===);
-      expect(M.forAll(x => x mod 2 === 0, input)) == expected
-    });
+    ]
+  );
 
-  testAll("filter", [
+  testFn("filter", 
+    M.filter(x => x mod 2 === 0), [
       (None, None),
       (Some(1), None),
       (Some(2), Some(2)),
-    ], ((input, expected)) => {
-    let (===) = Pervasives.(===);
-    expect(M.filter(x => x mod 2 === 0, input)) == expected
-  });
+    ]
+  );
 });
 
 
 test("some", () =>
-  expect(Option.some(42)) == Some(42));
+  expect(
+    Option.some(42))
+    |> toEqual(Some(42))
+);
 
-testAll("fromResult", [
+testFn("fromResult", 
+  Option.fromResult, [
     (Error(""), None),
     (Ok(42), Some(42)),
-  ], ((input, expected)) => expect(Option.fromResult(input)) == expected);
+  ]
+);
 
-testAll("isSome", [
+testFn("isSome", 
+  Option.isSome, [
     (None, false),
     (Some(42), true),
-  ], ((input, expected)) => expect(Option.isSome(input)) == expected);
+  ]
+);
 
-testAll("isNone", [
+testFn("isNone",
+  Option.isNone, [
     (None, true),
     (Some(42), false),
-  ], ((input, expected)) => expect(Option.isNone(input)) == expected);
+  ]
+);
 
-testAll("or_", [
+testFn("or_", 
+  Option.or_(Some(10)), [
     (None, Some(10)),
     (Some(42), Some(42)),
-  ], ((input, expected)) => expect(Option.or_(Some(10), input)) == expected);
+  ]
+);
 
-testAll("getOr", [
+testFn("getOr", 
+  Option.getOr(10), [
     (None, 10),
     (Some(42), 42),
-  ], ((input, expected)) => expect(Option.getOr(10, input)) == expected);
+  ]
+);
 
 test("getOrRaise - None", () =>
-  expect(() => Option.getOrRaise(None)) |> toThrowException(InvalidArgument("getOrRaise called on None")));
+  expect(
+    () => Option.getOrRaise(None))
+    |> toThrowException(InvalidArgument("getOrRaise called on None")));
 
 test("getOrRaise - Some", () =>
-  expect(Option.getOrRaise(Some(42))) == 42);
+  expect(
+    Option.getOrRaise(Some(42)))
+    |> toEqual(42)
+);
 
-testAll("mapOr", [
+testFn("mapOr", 
+  Option.mapOr(x => x + 1, 10), [
     (None, 10),
     (Some(42), 43),
-  ], ((input, expected)) => expect(Option.mapOr(x => x + 1, 10, input)) == expected);
+  ]
+);
 
-testAll("mapOrElse", [
+testFn("mapOrElse", 
+  Option.mapOrElse(x => x + 1, () => 10), [
     (None, 10),
     (Some(42), 43),
-  ], ((input, expected)) => expect(Option.mapOrElse(x => x + 1, () => 10, input)) == expected);
+  ]
+);
 
-testAll("flatten", [
+testFn("flatten", 
+  Option.flatten, [
     (None, None),
     (Some(None), None),
     (Some(Some(42)), Some(42)),
-  ], ((input, expected)) => expect(Option.flatten(input)) == expected);
+  ]
+);

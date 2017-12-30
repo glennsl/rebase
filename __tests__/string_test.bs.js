@@ -1,8 +1,9 @@
 'use strict';
 
-var Jest   = require("bs-jest/src/jest.js");
-var Curry  = require("bs-platform/lib/js/curry.js");
-var Rebase = require("../src/rebase.bs.js");
+var Jest        = require("bs-jest/src/jest.js");
+var Curry       = require("bs-platform/lib/js/curry.js");
+var Rebase      = require("../src/rebase.bs.js");
+var TestHelpers = require("./helpers/TestHelpers.bs.js");
 
 describe("Concatenable.S0", (function () {
         return Jest.test("concat", (function () {
@@ -10,7 +11,7 @@ describe("Concatenable.S0", (function () {
                     }));
       }));
 
-Jest.testAll("length", /* :: */[
+TestHelpers.testFn("length", Rebase.$$String[/* length */1], /* :: */[
       /* tuple */[
         "foo",
         3
@@ -28,15 +29,11 @@ Jest.testAll("length", /* :: */[
           /* [] */0
         ]
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$String[/* length */1](param[0])), param[1]);
-      }));
+    ]);
 
-Jest.test("concat", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* concat */0]("b", "a")), "ab");
-      }));
-
-Jest.testAll("includes", /* :: */[
+TestHelpers.testFn("includes", (function (s) {
+        return Rebase.$$String[/* includes */2](s, "banana");
+      }), /* :: */[
       /* tuple */[
         "nana",
         /* true */1
@@ -48,11 +45,11 @@ Jest.testAll("includes", /* :: */[
         ],
         /* [] */0
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* includes */2](param[0], "banana")), param[1]);
-      }));
+    ]);
 
-Jest.testAll("startsWith", /* :: */[
+TestHelpers.testFn("startsWith", (function (s) {
+        return Rebase.$$String[/* startsWith */3](s, "banana");
+      }), /* :: */[
       /* tuple */[
         "ba",
         /* true */1
@@ -64,11 +61,11 @@ Jest.testAll("startsWith", /* :: */[
         ],
         /* [] */0
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* startsWith */3](param[0], "banana")), param[1]);
-      }));
+    ]);
 
-Jest.testAll("endsWith", /* :: */[
+TestHelpers.testFn("endsWith", (function (s) {
+        return Rebase.$$String[/* endsWith */4](s, "banana");
+      }), /* :: */[
       /* tuple */[
         "ba",
         /* false */0
@@ -80,11 +77,9 @@ Jest.testAll("endsWith", /* :: */[
         ],
         /* [] */0
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* endsWith */4](param[0], "banana")), param[1]);
-      }));
+    ]);
 
-Jest.testAll("isEmpty", /* :: */[
+TestHelpers.testFn("isEmpty", Rebase.$$String[/* isEmpty */5], /* :: */[
       /* tuple */[
         "",
         /* true */1
@@ -126,75 +121,89 @@ Jest.testAll("isEmpty", /* :: */[
           ]
         ]
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* isEmpty */5](param[0])), param[1]);
-      }));
+    ]);
 
-Jest.testAll("padStart", /* :: */[
+TestHelpers.testFn("padStart", (function (param) {
+        return Rebase.$$String[/* padStart */6](param[0], param[1], "banana");
+      }), /* :: */[
       /* tuple */[
-        6,
-        "na",
+        /* tuple */[
+          6,
+          "na"
+        ],
         "banana"
       ],
       /* :: */[
         /* tuple */[
-          9,
-          "na",
+          /* tuple */[
+            9,
+            "na"
+          ],
           "nanbanana"
         ],
         /* :: */[
           /* tuple */[
-            10,
-            "na",
+            /* tuple */[
+              10,
+              "na"
+            ],
             "nanabanana"
           ],
           /* :: */[
             /* tuple */[
-              -10,
-              "na",
+              /* tuple */[
+                -10,
+                "na"
+              ],
               "banana"
             ],
             /* [] */0
           ]
         ]
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* padStart */6](param[0], param[1], "banana")), param[2]);
-      }));
+    ]);
 
-Jest.testAll("padEnd", /* :: */[
+TestHelpers.testFn("padEnd", (function (param) {
+        return Rebase.$$String[/* padEnd */7](param[0], param[1], "banana");
+      }), /* :: */[
       /* tuple */[
-        6,
-        "na",
+        /* tuple */[
+          6,
+          "na"
+        ],
         "banana"
       ],
       /* :: */[
         /* tuple */[
-          9,
-          "na",
+          /* tuple */[
+            9,
+            "na"
+          ],
           "banananan"
         ],
         /* :: */[
           /* tuple */[
-            10,
-            "na",
+            /* tuple */[
+              10,
+              "na"
+            ],
             "banananana"
           ],
           /* :: */[
             /* tuple */[
-              -10,
-              "na",
+              /* tuple */[
+                -10,
+                "na"
+              ],
               "banana"
             ],
             /* [] */0
           ]
         ]
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* padEnd */7](param[0], param[1], "banana")), param[2]);
-      }));
+    ]);
 
-Jest.testAll("trim", /* :: */[
+TestHelpers.testFn("trim", Rebase.$$String[/* trim */8], /* :: */[
       /* tuple */[
         "  a",
         "a"
@@ -224,68 +233,88 @@ Jest.testAll("trim", /* :: */[
           ]
         ]
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* trim */8](param[0])), param[1]);
-      }));
+    ]);
 
-Jest.testAll("sum", /* :: */[
+TestHelpers.testFn("sum", (function (param) {
+        return Rebase.$$String[/* sub */9](param[0], param[1], "banana");
+      }), /* :: */[
       /* tuple */[
-        0,
-        0,
+        /* tuple */[
+          0,
+          0
+        ],
         ""
       ],
       /* :: */[
         /* tuple */[
-          1,
-          0,
+          /* tuple */[
+            1,
+            0
+          ],
           ""
         ],
         /* :: */[
           /* tuple */[
-            0,
-            1,
+            /* tuple */[
+              0,
+              1
+            ],
             "b"
           ],
           /* :: */[
             /* tuple */[
-              2,
-              2,
+              /* tuple */[
+                2,
+                2
+              ],
               "na"
             ],
             /* :: */[
               /* tuple */[
-                3,
-                4,
+                /* tuple */[
+                  3,
+                  4
+                ],
                 "ana"
               ],
               /* :: */[
                 /* tuple */[
-                  3,
-                  8,
+                  /* tuple */[
+                    3,
+                    8
+                  ],
                   "ana"
                 ],
                 /* :: */[
                   /* tuple */[
-                    7,
-                    1,
+                    /* tuple */[
+                      7,
+                      1
+                    ],
                     ""
                   ],
                   /* :: */[
                     /* tuple */[
-                      0,
-                      -1,
+                      /* tuple */[
+                        0,
+                        -1
+                      ],
                       ""
                     ],
                     /* :: */[
                       /* tuple */[
-                        -1,
-                        -1,
+                        /* tuple */[
+                          -1,
+                          -1
+                        ],
                         ""
                       ],
                       /* :: */[
                         /* tuple */[
-                          -1,
-                          1,
+                          /* tuple */[
+                            -1,
+                            1
+                          ],
                           "a"
                         ],
                         /* [] */0
@@ -298,11 +327,9 @@ Jest.testAll("sum", /* :: */[
           ]
         ]
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* sub */9](param[0], param[1], "banana")), param[2]);
-      }));
+    ]);
 
-Jest.testAll("join", /* :: */[
+TestHelpers.testFn("join", Rebase.$$String[/* join */10], /* :: */[
       /* tuple */[
         /* [] */0,
         ""
@@ -323,11 +350,13 @@ Jest.testAll("join", /* :: */[
         ],
         /* [] */0
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* join */10](param[0])), param[1]);
-      }));
+    ]);
 
-Jest.testAll("join", /* :: */[
+var partial_arg = Rebase.$$String[/* joinWith */11];
+
+TestHelpers.testFn("joinWith", (function (param) {
+        return partial_arg(", ", param);
+      }), /* :: */[
       /* tuple */[
         /* [] */0,
         ""
@@ -348,8 +377,6 @@ Jest.testAll("join", /* :: */[
         ],
         /* [] */0
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* joinWith */11](", ", param[0])), param[1]);
-      }));
+    ]);
 
 /*  Not a pure module */

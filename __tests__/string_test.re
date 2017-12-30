@@ -2,6 +2,7 @@ open Jest;
 open Expect;
 open! Expect.Operators;
 open Rebase;
+open TestHelpers;
 
 describe("Concatenable.S0", () => {
   module M: Signatures.Concatenable.S0 with type t := string = String;
@@ -11,81 +12,100 @@ describe("Concatenable.S0", () => {
 });
 
 
-testAll("length", [
+testFn("length",
+  String.length, [
     ("foo", 3),
     ("møø", 5),
     ({js|møø|js}, 3),
-  ], ((input, expected)) => expect(String.length(input)) == expected);
+  ]
+);
 
-test("concat", () =>
-  expect("a" |> String.concat("b")) === "ab");
+testFn("includes",
+  s => "banana" |> String.includes(s), [
+    ("nana", true),
+    ("nanas", false),
+  ]
+);
 
-testAll("includes", [
-  ("nana", true),
-  ("nanas", false),
-], ((input, expected)) => expect("banana" |> String.includes(input)) === expected);
+testFn("startsWith",
+  s => "banana" |> String.startsWith(s), [
+    ("ba", true),
+    ("na", false),
+  ]
+);
 
-testAll("startsWith", [
-  ("ba", true),
-  ("na", false),
-], ((input, expected)) => expect("banana" |> String.startsWith(input)) === expected);
+testFn("endsWith",
+  s => "banana" |> String.endsWith(s), [
+    ("ba", false),
+    ("na", true),
+  ]
+);
 
-testAll("endsWith", [
-  ("ba", false),
-  ("na", true),
-], ((input, expected)) => expect("banana" |> String.endsWith(input)) === expected);
+testFn("isEmpty",
+  String.isEmpty, [
+    ("", true),
+    ("foo", false),
+    ("\t", true),
+    ("\n", true),
+    ("\r", true),
+    (" ", true),
+    ("\t\r\n ", true),
+  ]
+);
 
-testAll("isEmpty", [
-  ("", true),
-  ("foo", false),
-  ("\t", true),
-  ("\n", true),
-  ("\r", true),
-  (" ", true),
-  ("\t\r\n ", true),
-], ((input, expected)) => expect(String.isEmpty(input)) === expected);
+testFn("padStart",
+  ((count, pad)) => "banana" |> String.padStart(count, pad), [
+    ((6, "na"), "banana"),
+    ((9, "na"), "nanbanana"),
+    ((10, "na"), "nanabanana"),
+    ((-10, "na"), "banana"),
+  ]
+);
 
-testAll("padStart", [
-  (6, "na", "banana"),
-  (9, "na", "nanbanana"),
-  (10, "na", "nanabanana"),
-  (-10, "na", "banana"),
-], ((count, pad, expected)) => expect("banana" |> String.padStart(count, pad)) === expected);
+testFn("padEnd", 
+  ((count, pad)) => "banana" |> String.padEnd(count, pad), [
+    ((6, "na"), "banana"),
+    ((9, "na"), "banananan"),
+    ((10, "na"), "banananana"),
+    ((-10, "na"), "banana"),
+  ]
+);
 
-testAll("padEnd", [
-  (6, "na", "banana"),
-  (9, "na", "banananan"),
-  (10, "na", "banananana"),
-  (-10, "na", "banana"),
-], ((count, pad, expected)) => expect("banana" |> String.padEnd(count, pad)) === expected);
+testFn("trim", 
+  String.trim, [
+    ("  a", "a"),
+    ("a  ", "a"),
+    ("  a  ", "a"),
+    ("\t a \t ", "a"),
+    ("\n a \r ", "a"),
+  ]
+);
 
-testAll("trim", [
-  ("  a", "a"),
-  ("a  ", "a"),
-  ("  a  ", "a"),
-  ("\t a \t ", "a"),
-  ("\n a \r ", "a"),
-], ((input, expected)) => expect(String.trim(input)) === expected);
+testFn("sum", 
+  ((from, length)) => "banana" |> String.sub(~from, ~length), [
+    ((0, 0), ""),
+    ((1, 0), ""),
+    ((0, 1), "b"),
+    ((2, 2), "na"),
+    ((3, 4), "ana"),
+    ((3, 8), "ana"),
+    ((7, 1), ""),
+    ((0, -1), ""),
+    ((-1, -1), ""),
+    ((-1, 1), "a"),
+  ]
+);
 
-testAll("sum", [
-  (0, 0, ""),
-  (1, 0, ""),
-  (0, 1, "b"),
-  (2, 2, "na"),
-  (3, 4, "ana"),
-  (3, 8, "ana"),
-  (7, 1, ""),
-  (0, -1, ""),
-  (-1, -1, ""),
-  (-1, 1, "a"),
-], ((from, length, expected)) => expect("banana" |> String.sub(~from, ~length)) === expected);
-
-testAll("join", [
+testFn("join",
+  String.join, [
     ([], ""),
     (["a", "b", "c"], "abc")
-  ], ((input, expected)) => expect(input |> String.join) === expected);
+  ]
+);
 
-testAll("join", [
+testFn("joinWith", 
+  String.joinWith(", "), [
     ([], ""),
     (["a", "b", "c"], "a, b, c")
-  ], ((input, expected)) => expect(input |> String.joinWith(", ")) === expected);
+  ]
+);

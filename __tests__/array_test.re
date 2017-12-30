@@ -2,6 +2,7 @@ open Jest;
 open Expect;
 open! Expect.Operators;
 open Rebase;
+open TestHelpers;
 
 
 describe("Mappable.S", () => {
@@ -99,16 +100,20 @@ testAll("make", [
   ], ((length, expected)) => expect(Array.make(length, "a")) == expected);
 
 
-testAll("fromList", [
+testFn("fromList",
+  Array.fromList, [
     ([1, 2], [|1, 2|]),
     ([], [||])
-  ], ((input, expected)) => expect(Array.fromList(input)) == expected);
+  ]
+);
 
-testAll("get", [
+testFn("get",
+  Array.get([|1, 2|]), [
     (0, Some(1)),
     (2, None),
-    (-1, None), /* should raise exception? */
-  ], ((index, expected)) => expect(Array.get([|1, 2|], index)) == expected);
+    (-1, None), /* should throw? */
+  ]
+);
 
 test("set - in bounds", () => {
   let a = [|1, 2|];

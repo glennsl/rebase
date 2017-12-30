@@ -1,9 +1,10 @@
 'use strict';
 
-var Jest       = require("bs-jest/src/jest.js");
-var Curry      = require("bs-platform/lib/js/curry.js");
-var Rebase     = require("../src/rebase.bs.js");
-var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
+var Jest        = require("bs-jest/src/jest.js");
+var Curry       = require("bs-platform/lib/js/curry.js");
+var Rebase      = require("../src/rebase.bs.js");
+var Caml_int32  = require("bs-platform/lib/js/caml_int32.js");
+var TestHelpers = require("./helpers/TestHelpers.bs.js");
 
 describe("Mappable.S", (function () {
         var M = [Rebase.$$Array[0]];
@@ -242,7 +243,7 @@ Jest.testAll("make", /* :: */[
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* make */12](param[0], "a")), param[1]);
       }));
 
-Jest.testAll("fromList", /* :: */[
+TestHelpers.testFn("fromList", Rebase.$$Array[/* fromList */13], /* :: */[
       /* tuple */[
         /* :: */[
           1,
@@ -263,11 +264,18 @@ Jest.testAll("fromList", /* :: */[
         ],
         /* [] */0
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* fromList */13](param[0])), param[1]);
-      }));
+    ]);
 
-Jest.testAll("get", /* :: */[
+var partial_arg = /* int array */[
+  1,
+  2
+];
+
+var partial_arg$1 = Rebase.$$Array[/* get */15];
+
+TestHelpers.testFn("get", (function (param) {
+        return partial_arg$1(partial_arg, param);
+      }), /* :: */[
       /* tuple */[
         0,
         /* Some */[1]
@@ -285,12 +293,7 @@ Jest.testAll("get", /* :: */[
           /* [] */0
         ]
       ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */15](/* int array */[
-                            1,
-                            2
-                          ], param[0])), param[1]);
-      }));
+    ]);
 
 Jest.test("set - in bounds", (function () {
         var a = /* int array */[

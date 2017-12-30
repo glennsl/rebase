@@ -11,10 +11,14 @@
       "dir": "src",
       "subdirs": true
     },
-    "examples",
+    {
+      "dir": "examples",
+      "type": "dev"
+    },
     {
       "dir": "__tests__",
-      "type": "dev"
+      "type": "dev",
+      "subdirs": true
     }
   ],
   "suffix": ".bs.js",

@@ -2,7 +2,7 @@ open Jest;
 open Expect;
 open! Expect.Operators;
 open Rebase;
-
+open TestHelpers;
 
 describe("Mappable.S", () => {
   module M: Signatures.Mappable.S with type t('a) := list('a) = List;
@@ -81,25 +81,33 @@ describe("Concatenable.S", () => {
 });
 
 
-testAll("fromArray", [
+testFn("fromArray", 
+  List.fromArray, [
     ([||], []),
     ([|1, 2, 3|], [1, 2, 3])
-  ], ((input, expected)) => expect(List.fromArray(input)) == expected);
+  ]
+);
 
-testAll("isEmpty", [
+testFn("isEmpty",
+  List.isEmpty, [
     ([], true),
     ([1, 2, 3], false)
-  ], ((input, expected)) => expect(List.isEmpty(input)) == expected);
+  ]
+);
 
-testAll("head", [
+testFn("head", 
+  List.head, [
     ([1, 2, 3], Some(1)),
     ([], None)
-  ], ((input, expected)) => expect(List.head(input)) == expected);
+  ]
+);
 
-testAll("tail", [
+testFn("tail", 
+  List.tail, [
     ([1, 2, 3], Some([2, 3])),
     ([], None)
-  ], ((input, expected)) => expect(List.tail(input)) == expected);
+  ]
+);
 
 test("reverse", () =>
   expect(List.reverse([1, 2])) == [2, 1]);
@@ -112,10 +120,12 @@ test("filterMap", () => {
   expect(List.filterMap(x => x mod 2 === 0 ? Some(x + 1) : None, [1, 2])) == [3]
 });
 
-testAll("zip", [
-  ([1, 2], [11, 12], [(1, 11), (2, 12)]),
-  ([1, 2, 3], [11, 12], [(1, 11), (2, 12)]),
-  ([1, 2], [11, 12, 13], [(1, 11), (2, 12)]),
-  ([1, 2], [], []),
-  ([], [11, 12], []),
-], ((xs, ys, expected)) => expect(xs |> List.zip(ys)) == expected);
+testFn("zip", 
+  List.zip |> Fn.flip |> Fn.uncurry, [
+    (([1, 2], [11, 12]), [(1, 11), (2, 12)]),
+    (([1, 2, 3], [11, 12]), [(1, 11), (2, 12)]),
+    (([1, 2], [11, 12, 13]), [(1, 11), (2, 12)]),
+    (([1, 2], []), []),
+    (([], [11, 12]), []),
+  ]
+);
