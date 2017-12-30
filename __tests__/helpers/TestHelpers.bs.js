@@ -9,5 +9,12 @@ function testFn(name, f, cases) {
               }));
 }
 
-exports.testFn = testFn;
+function testProperty(name, property) {
+  return Jest.test(name, (function () {
+                return Jest.Expect[/* toBe */2](/* true */1, Jest.Expect[/* expect */0](property));
+              }));
+}
+
+exports.testFn       = testFn;
+exports.testProperty = testProperty;
 /* Jest Not a pure module */
