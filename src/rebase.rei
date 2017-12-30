@@ -194,5 +194,15 @@ module String: {
   let sub: (~from:int, ~length:int, t) => t;
 };
 
+module Fn: {
+  let id: 'a => 'a;
+  let const: 'a => (unit => 'a);
+  let flip: (('a, 'b) => 'c) => (('b, 'a) => 'c);
+  let curry: ((('a, 'b)) => 'c) => (('a, 'b) => 'c);
+  let uncurry: (('a, 'b) => 'c) => ((('a, 'b)) => 'c);
+  let (<<): (('b => 'c), ('a => 'b)) => ('a => 'c);
+  let (>>): (('a => 'b), ('b => 'c)) => ('a => 'c);
+};
+
 exception InvalidArgument(string);
 exception IndexOutOfBounds;

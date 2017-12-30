@@ -1,5 +1,6 @@
 'use strict';
 
+var Rebase__fn         = require("./rebase__fn.bs.js");
 var Rebase__list       = require("./rebase__list.bs.js");
 var Rebase__array      = require("./rebase__array.bs.js");
 var Rebase__option     = require("./rebase__option.bs.js");
@@ -203,6 +204,16 @@ var $$String = [
   String_009
 ];
 
+var Fn = /* Rebase__fn */[
+  Rebase__fn.id,
+  Rebase__fn.$$const,
+  Rebase__fn.flip,
+  Rebase__fn.curry,
+  Rebase__fn.uncurry,
+  Rebase__fn.$less$less,
+  Rebase__fn.$great$great
+];
+
 var InvalidArgument = Rebase__exceptions.InvalidArgument;
 
 var IndexOutOfBounds = Rebase__exceptions.IndexOutOfBounds;
@@ -212,6 +223,7 @@ exports.List             = List;
 exports.Option           = Option;
 exports.Result           = Result;
 exports.$$String         = $$String;
+exports.Fn               = Fn;
 exports.InvalidArgument  = InvalidArgument;
 exports.IndexOutOfBounds = IndexOutOfBounds;
 /* No side effect */
