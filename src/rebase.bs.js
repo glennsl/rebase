@@ -101,6 +101,7 @@ var List = [
   Rebase__list.filterMap,
   Rebase__list.concat,
   Rebase__list.fromArray,
+  Rebase__list.isEmpty,
   Rebase__list.head,
   Rebase__list.tail,
   Rebase__list.length,

@@ -97,6 +97,7 @@ module List: {
 
   /* -- */
   let fromArray: array('a) => t('a);
+  let isEmpty: t('a) => bool;
   let head: t('a) => option('a);
   let tail: t('a) => option(t('a));
   let length: t('a) => int;

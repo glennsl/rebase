@@ -29,6 +29,14 @@ function fromArray(arr) {
   };
 }
 
+function isEmpty(param) {
+  if (param) {
+    return /* false */0;
+  } else {
+    return /* true */1;
+  }
+}
+
 function head(param) {
   if (param) {
     return /* Some */[param[0]];
@@ -297,6 +305,7 @@ function concat(ys, xs) {
 
 exports.from             = from;
 exports.fromArray        = fromArray;
+exports.isEmpty          = isEmpty;
 exports.head             = head;
 exports.tail             = tail;
 exports.reverseAndAppend = reverseAndAppend;

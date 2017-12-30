@@ -336,6 +336,31 @@ Jest.testAll("fromArray", /* :: */[
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* fromArray */13](param[0])), param[1]);
       }));
 
+Jest.testAll("isEmpty", /* :: */[
+      /* tuple */[
+        /* [] */0,
+        /* true */1
+      ],
+      /* :: */[
+        /* tuple */[
+          /* :: */[
+            1,
+            /* :: */[
+              2,
+              /* :: */[
+                3,
+                /* [] */0
+              ]
+            ]
+          ],
+          /* false */0
+        ],
+        /* [] */0
+      ]
+    ], (function (param) {
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* isEmpty */14](param[0])), param[1]);
+      }));
+
 Jest.testAll("head", /* :: */[
       /* tuple */[
         /* :: */[
@@ -358,7 +383,7 @@ Jest.testAll("head", /* :: */[
         /* [] */0
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* head */14](param[0])), param[1]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* head */15](param[0])), param[1]);
       }));
 
 Jest.testAll("tail", /* :: */[
@@ -389,11 +414,11 @@ Jest.testAll("tail", /* :: */[
         /* [] */0
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* tail */15](param[0])), param[1]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* tail */16](param[0])), param[1]);
       }));
 
 Jest.test("reverse", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* reverse */17](/* :: */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* reverse */18](/* :: */[
                             1,
                             /* :: */[
                               2,
@@ -409,7 +434,7 @@ Jest.test("reverse", (function () {
       }));
 
 Jest.test("length", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.List[/* length */16](/* :: */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.List[/* length */17](/* :: */[
                             41,
                             /* :: */[
                               62,
@@ -564,7 +589,7 @@ Jest.testAll("zip", /* :: */[
         ]
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* zip */18](param[1], param[0])), param[2]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* zip */19](param[1], param[0])), param[2]);
       }));
 
 /*  Not a pure module */

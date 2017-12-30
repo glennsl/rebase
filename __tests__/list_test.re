@@ -86,6 +86,11 @@ testAll("fromArray", [
     ([|1, 2, 3|], [1, 2, 3])
   ], ((input, expected)) => expect(List.fromArray(input)) == expected);
 
+testAll("isEmpty", [
+    ([], true),
+    ([1, 2, 3], false)
+  ], ((input, expected)) => expect(List.isEmpty(input)) == expected);
+
 testAll("head", [
     ([1, 2, 3], Some(1)),
     ([], None)

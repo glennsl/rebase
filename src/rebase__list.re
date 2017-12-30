@@ -13,6 +13,10 @@ let fromArray = arr => {
   loop([], _arrayLength(arr) - 1)
 };
 
+let isEmpty =
+  fun | [] => true
+      | _  => false;
+
 let head =
   fun | [] => None
       | [x, ..._] => Some(x);
