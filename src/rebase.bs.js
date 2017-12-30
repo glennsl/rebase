@@ -49,6 +49,11 @@ function Array_024(prim, prim$1) {
   return prim$1.map(prim);
 }
 
+function Array_025(prim, prim$1) {
+  prim$1.forEach(prim);
+  return /* () */0;
+}
+
 var $$Array = [
   Array_000,
   Rebase__array.apply,
@@ -74,7 +79,9 @@ var $$Array = [
   Array_021,
   Array_022,
   Array_023,
-  Array_024
+  Array_024,
+  Array_025,
+  Rebase__array.findIndex
 ];
 
 var List = [

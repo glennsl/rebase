@@ -55,14 +55,26 @@ let setOrRaise = (i, value, self) =>
 
 [@bs.send.pipe : t('a)] external exists : ('a => Js.boolean) => bool = "some";
 let exists = (f, self) => exists(x => Js.Boolean.to_js_boolean(f(x)), self);
+
 [@bs.send.pipe : t('a)] external filter : ('a => Js.boolean) => t('a) = "";
 let filter = (f, self) => filter(x => Js.Boolean.to_js_boolean(f(x)), self);
+
 [@bs.send.pipe : t('a)] [@bs.return undefined_to_opt]
 external find : ('a => Js.boolean) => option('a) = "";
 let find = (f, self) => find(x => Js.Boolean.to_js_boolean(f(x)), self);
+
+[@bs.send.pipe : t('a)] external findIndex : ('a => Js.boolean) => int = "";
+let findIndex = (f, self) =>
+  switch (findIndex(x => Js.Boolean.to_js_boolean(f(x)), self)) {
+  | -1 => None
+  |  i => Some((i, _unsafeGetUnchecked(self, i)))
+  };
+
 [@bs.send.pipe : t('a)] external forAll : ('a => Js.boolean) => bool = "every";
 let forAll = (f, self) => forAll(x => Js.Boolean.to_js_boolean(f(x)), self);
+
 [@bs.send.pipe : t('a)] external forEach : ('a => unit) => unit = "";
+[@bs.send.pipe : t('a)] external forEachi : (('a, int) => unit) => unit = "forEach";
 [@bs.send.pipe : t('a)] external map : ('a => 'b) => t('b) = "";
 [@bs.send.pipe : t('a)] external reduce : (('b, 'a) => 'b, 'b) => 'b = "";
 [@bs.send.pipe : t('a)] external reduceRight : (('b, 'a) => 'b, 'b) => 'b = "";

@@ -208,5 +208,19 @@ test("copy", () => {
   expect((a, b)) == ([|1, 0|], [|1, 2|])
 });
 
-test("mapWithIndex", () =>
-  expect(Array.mapi((x, i) => x + i, [|1, 2|])) == [|1, 3|]);
+test("mapi", () =>
+  expect(Array.mapi((x, i) => (x, i), [|"a", "b"|])) == [|("a", 0), ("b", 1)|]);
+
+test("forEachi", () => {
+  let checked = ref([]);
+  Array.forEachi((x, i) => checked := [(x, i), ...checked^], [|"a", "b"|]);
+  expect(checked^) == [("b", 1), ("a", 0)]
+});
+
+testAll("findIndex", [
+    ([|"a", "b"|], None),
+    ([|"a", "bb", "c"|], Some((1, "bb"))),
+  ], ((input, expected)) => {
+  let (===) = Pervasives.(===);
+  expect(Array.findIndex(x => String.length(x) === 2, input)) == expected
+});

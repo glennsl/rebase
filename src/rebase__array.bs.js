@@ -76,6 +76,20 @@ function find(f, self) {
                   })));
 }
 
+function findIndex(f, self) {
+  var i = self.findIndex((function (x) {
+          return Js_boolean.to_js_boolean(Curry._1(f, x));
+        }));
+  if (i !== -1) {
+    return /* Some */[/* tuple */[
+              i,
+              self[i]
+            ]];
+  } else {
+    return /* None */0;
+  }
+}
+
 function forAll(f, self) {
   return +self.every((function (x) {
                 return Js_boolean.to_js_boolean(Curry._1(f, x));
@@ -130,6 +144,7 @@ exports.setOrRaise         = setOrRaise;
 exports.exists             = exists;
 exports.filter             = filter;
 exports.find               = find;
+exports.findIndex          = findIndex;
 exports.forAll             = forAll;
 exports.flatMap            = flatMap;
 exports.filterMap          = filterMap;

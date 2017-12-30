@@ -47,16 +47,16 @@ module Array: {
   let fill: ('a, t('a)) => unit; /* mutates */
   let slice: (~from: int, ~to_: int, t('a)) => t('a);
   let copy: t('a) => t('a);
-  let mapi: (('a, int) => 'b, t('a)) => t('b)
+  let mapi: (('a, int) => 'b, t('a)) => t('b);
+  let forEachi : ('a => int => unit) => t('a) => unit;
+  let findIndex : ('a => bool) => t('a) => option((int, 'a));
   /*let unsafeBlitUnchecked : source::t 'a => sourceFrom::int => target::t 'a => targetFrom::int => count::int => unit; /* mutates */*/
   /*let contains : 'a => t 'a => unit;*/
   /*let reversed : t 'a => t 'a;*/
   /*let reverseInPlace : t 'a => unit; /* mutates */*/
   /*let sortInPlace : compare::('a => 'a => int) => t 'a => unit; /* mutates */*/
   /*let sorted : compare::('a => 'a => int) => t 'a => t 'a;*/
-  /*let findIndex : ('a => bool) => t 'a => option (int, 'a);*/
   /*let count : ('a => bool) => t 'a => int;*/
-  /*let forEachWithIndex : ('a => int => unit) => t 'a => unit;*/
   /*let range : from::int => to_::int => t int*/
 
   /*let push : 'a => t 'a => unit;*/ /* Put in separate ArrayList module? */

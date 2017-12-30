@@ -518,16 +518,83 @@ Jest.test("copy", (function () {
                   ]);
       }));
 
-Jest.test("mapWithIndex", (function () {
+Jest.test("mapi", (function () {
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* mapi */24]((function (x, i) {
-                              return x + i | 0;
-                            }), /* int array */[
-                            1,
-                            2
-                          ])), /* int array */[
-                    1,
-                    3
+                              return /* tuple */[
+                                      x,
+                                      i
+                                    ];
+                            }), /* array */[
+                            "a",
+                            "b"
+                          ])), /* array */[
+                    /* tuple */[
+                      "a",
+                      0
+                    ],
+                    /* tuple */[
+                      "b",
+                      1
+                    ]
                   ]);
+      }));
+
+Jest.test("forEachi", (function () {
+        var checked = [/* [] */0];
+        Rebase.$$Array[/* forEachi */25]((function (x, i) {
+                checked[0] = /* :: */[
+                  /* tuple */[
+                    x,
+                    i
+                  ],
+                  checked[0]
+                ];
+                return /* () */0;
+              }), /* array */[
+              "a",
+              "b"
+            ]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](checked[0]), /* :: */[
+                    /* tuple */[
+                      "b",
+                      1
+                    ],
+                    /* :: */[
+                      /* tuple */[
+                        "a",
+                        0
+                      ],
+                      /* [] */0
+                    ]
+                  ]);
+      }));
+
+Jest.testAll("findIndex", /* :: */[
+      /* tuple */[
+        /* array */[
+          "a",
+          "b"
+        ],
+        /* None */0
+      ],
+      /* :: */[
+        /* tuple */[
+          /* array */[
+            "a",
+            "bb",
+            "c"
+          ],
+          /* Some */[/* tuple */[
+              1,
+              "bb"
+            ]]
+        ],
+        /* [] */0
+      ]
+    ], (function (param) {
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* findIndex */26]((function (x) {
+                              return +(Rebase.$$String[/* length */1](x) === 2);
+                            }), param[0])), param[1]);
       }));
 
 /*  Not a pure module */
