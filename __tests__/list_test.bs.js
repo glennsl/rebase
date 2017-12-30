@@ -103,25 +103,22 @@ describe("Monad.S", (function () {
         var M_002 = Rebase.List[2];
         var M_003 = Rebase.List[5];
         return Jest.test("flatMap", (function () {
-                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_003, (function (xs) {
+                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_003, (function (x) {
                                             return /* :: */[
                                                     0,
-                                                    xs
+                                                    /* :: */[
+                                                      x,
+                                                      /* [] */0
+                                                    ]
                                                   ];
                                           }), /* :: */[
+                                          1,
                                           /* :: */[
-                                            1,
-                                            /* [] */0
-                                          ],
-                                          /* :: */[
+                                            2,
                                             /* :: */[
-                                              2,
-                                              /* :: */[
-                                                3,
-                                                /* [] */0
-                                              ]
-                                            ],
-                                            /* [] */0
+                                              3,
+                                              /* [] */0
+                                            ]
                                           ]
                                         ])), /* :: */[
                                   0,
@@ -132,8 +129,11 @@ describe("Monad.S", (function () {
                                       /* :: */[
                                         2,
                                         /* :: */[
-                                          3,
-                                          /* [] */0
+                                          0,
+                                          /* :: */[
+                                            3,
+                                            /* [] */0
+                                          ]
                                         ]
                                       ]
                                     ]

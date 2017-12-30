@@ -75,20 +75,22 @@ describe("Monad.S", (function () {
         var M_002 = Rebase.$$Array[2];
         var M_003 = Rebase.$$Array[5];
         return Jest.test("flatMap", (function () {
-                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_003, (function (xs) {
-                                            return Rebase.$$Array[/* map */0]((function (x) {
-                                                          return x + 1 | 0;
-                                                        }), xs);
-                                          }), /* array */[
-                                          /* int array */[1],
-                                          /* int array */[
-                                            2,
-                                            3
-                                          ]
-                                        ])), /* int array */[
+                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_003, (function (x) {
+                                            return /* int array */[
+                                                    0,
+                                                    x
+                                                  ];
+                                          }), /* int array */[
+                                          1,
+                                          2,
+                                          3
+                                        ])), /* array */[
+                                  0,
+                                  1,
+                                  0,
                                   2,
-                                  3,
-                                  4
+                                  0,
+                                  3
                                 ]);
                     }));
       }));

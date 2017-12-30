@@ -39,7 +39,7 @@ describe("Monad.S", () => {
   module M: Signatures.Monad.S with type t('a) := array('a) = Array;
 
   test("flatMap", () =>
-    expect(M.flatMap(xs => xs |> Array.map(x => x + 1), [|[|1|], [|2, 3|]|])) == [|2, 3, 4|]);
+    expect(M.flatMap(x => [|0, x|], [|1, 2, 3|])) == [|0, 1, 0, 2, 0, 3|]);
 });
 
 
