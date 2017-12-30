@@ -8,6 +8,11 @@ let from = x =>
 let some = x =>
   Some(x);
 
+let fromResult = Rebase__result__type.(
+  fun | Ok(v) => Some(v)
+      | Error(_) => None
+);
+
 let isSome =
   fun | Some(_) => true
       | None => false;
@@ -51,12 +56,6 @@ let forAll = predicate =>
 let filter = predicate =>
   fun | Some(v) as self when predicate(v) => self
       | _ => None;
-
-/*
-let fromResult =
-  fun | Ok(v) => Some(v)
-      | Error(_) => None;
-*/
 
 /* alias `may`? */
 let forEach = f =>

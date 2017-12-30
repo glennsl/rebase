@@ -1,3 +1,7 @@
+type result('a, 'e) = Rebase__result__type.result('a, 'e) =
+  | Ok('a)
+  | Error('e);
+
 module Array: {
   type t('a) = array('a);
 
@@ -126,6 +130,7 @@ module Option: {
 
   /* -- */
   let some: 'a => t('a);
+  let fromResult: result('a, _) => option('a);
   let isSome: t(_) => bool;
   let isNone: t(_) => bool;
   let or_: (t('a), t('a)) => t('a);
@@ -137,9 +142,7 @@ module Option: {
 };
 
 module Result: {
-  type t('a, 'e) = Rebase__result__type.result('a, 'e) =
-    | Ok('a)
-    | Error('e);
+  type t('a, 'e) = result('a, 'e);
 
   /* Mappable.S1_5 */
   let map: ('a => 'b, t('a, 'e)) => t('b, 'e);

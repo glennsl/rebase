@@ -107,6 +107,11 @@ describe("Iterable.S", () => {
 test("some", () =>
   expect(Option.some(42)) == Some(42));
 
+testAll("fromResult", [
+    (Error(""), None),
+    (Ok(42), Some(42)),
+  ], ((input, expected)) => expect(Option.fromResult(input)) == expected);
+
 testAll("isSome", [
     (None, false),
     (Some(42), true),
@@ -142,13 +147,6 @@ testAll("mapOrElse", [
     (None, 10),
     (Some(42), 43),
   ], ((input, expected)) => expect(Option.mapOrElse(x => x + 1, () => 10, input)) == expected);
-
-/*
-testAll("fromResult", [
-    (Result.Error(""), None),
-    (Result.Ok(42), Some(42)),
-  ], ((input, expected)) => expect(Option.fromResult(input)) == expected);
-*/
 
 testAll("flatten", [
     (None, None),

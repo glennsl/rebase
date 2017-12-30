@@ -11,6 +11,14 @@ function some(x) {
   return /* Some */[x];
 }
 
+function fromResult(param) {
+  if (param.tag) {
+    return /* None */0;
+  } else {
+    return /* Some */[param[0]];
+  }
+}
+
 function isSome(param) {
   if (param) {
     return /* true */1;
@@ -167,6 +175,7 @@ var flatMap = andThen;
 
 exports.from        = from;
 exports.some        = some;
+exports.fromResult  = fromResult;
 exports.isSome      = isSome;
 exports.isNone      = isNone;
 exports.or_         = or_;

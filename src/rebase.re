@@ -1,3 +1,5 @@
+include Rebase__result__type;
+
 module Array = Rebase__array;
 module List = Rebase__list;
 module Option = Rebase__option;
