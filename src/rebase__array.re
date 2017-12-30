@@ -10,7 +10,7 @@ let from = x =>
 [@bs.send.pipe : t('a)] external concat : t('a) => t('a) = "";
 [@bs.send.pipe : t('a)] external slice : (~from: int, ~to_: int) => t('a) = "";
 [@bs.send.pipe : t('a)] external copy : t('a) = "slice";
-[@bs.send.pipe : t('a)] external mapWithIndex : (('a, int) => 'b) => t('b) = "map";
+[@bs.send.pipe : t('a)] external mapi : (('a, int) => 'b) => t('b) = "map";
 
 [@bs.get_index] external _unsafeGetUnchecked : (t('a), int) => 'a = "";
 [@bs.set_index] external _unsafeSetUnchecked : (t('a), int, 'a) => unit = "";

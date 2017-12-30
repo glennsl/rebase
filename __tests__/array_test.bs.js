@@ -519,7 +519,7 @@ Jest.test("copy", (function () {
       }));
 
 Jest.test("mapWithIndex", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* mapWithIndex */24]((function (x, i) {
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* mapi */24]((function (x, i) {
                               return x + i | 0;
                             }), /* int array */[
                             1,

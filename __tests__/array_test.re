@@ -209,4 +209,4 @@ test("copy", () => {
 });
 
 test("mapWithIndex", () =>
-  expect(Array.mapWithIndex((x, i) => x + i, [|1, 2|])) == [|1, 3|]);
+  expect(Array.mapi((x, i) => x + i, [|1, 2|])) == [|1, 3|]);

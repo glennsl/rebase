@@ -47,7 +47,7 @@ module Array: {
   let fill: ('a, t('a)) => unit; /* mutates */
   let slice: (~from: int, ~to_: int, t('a)) => t('a);
   let copy: t('a) => t('a);
-  let mapWithIndex: (('a, int) => 'b, t('a)) => t('b)
+  let mapi: (('a, int) => 'b, t('a)) => t('b)
   /*let unsafeBlitUnchecked : source::t 'a => sourceFrom::int => target::t 'a => targetFrom::int => count::int => unit; /* mutates */*/
   /*let contains : 'a => t 'a => unit;*/
   /*let reversed : t 'a => t 'a;*/
