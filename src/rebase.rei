@@ -202,6 +202,7 @@ module Fn: {
   let uncurry: (('a, 'b) => 'c) => ((('a, 'b)) => 'c);
   let (<<): (('b => 'c), ('a => 'b)) => ('a => 'c);
   let (>>): (('a => 'b), ('b => 'c)) => ('a => 'c);
+  let tap: ('a => unit) => ('a => 'a);
 };
 
 exception InvalidArgument(string);

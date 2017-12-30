@@ -31,3 +31,10 @@ test(">>", () => {
   let f = Fn.(string_of_int >> int_of_string);
   expect(f(42)) == 42
 });
+
+test(">>", () => {
+  let tapped = ref(None);
+  let tapper = Fn.tap(n => tapped := Some(n));
+
+  expect((42 |> tapper, tapped^)) == (42, Some(42))
+});

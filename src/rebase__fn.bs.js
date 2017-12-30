@@ -33,6 +33,11 @@ function $great$great(f, g, x) {
   return Curry._1(g, Curry._1(f, x));
 }
 
+function tap(f, x) {
+  Curry._1(f, x);
+  return x;
+}
+
 exports.id           = id;
 exports.$$const      = $$const;
 exports.flip         = flip;
@@ -40,4 +45,5 @@ exports.curry        = curry;
 exports.uncurry      = uncurry;
 exports.$less$less   = $less$less;
 exports.$great$great = $great$great;
+exports.tap          = tap;
 /* No side effect */

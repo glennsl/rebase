@@ -47,4 +47,19 @@ Jest.test(">>", (function () {
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._1(f, 42)), 42);
       }));
 
+Jest.test(">>", (function () {
+        var tapped = [/* None */0];
+        var tapper = Curry._1(Rebase.Fn[/* tap */7], (function (n) {
+                tapped[0] = /* Some */[n];
+                return /* () */0;
+              }));
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](/* tuple */[
+                        Curry._1(tapper, 42),
+                        tapped[0]
+                      ]), /* tuple */[
+                    42,
+                    /* Some */[42]
+                  ]);
+      }));
+
 /*  Not a pure module */

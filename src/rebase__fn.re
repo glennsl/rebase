@@ -20,3 +20,6 @@ let (<<) = (f, g) =>
 
 let (>>) = (f, g) =>
   x => x |> f |> g;
+
+let tap = f =>
+  x => { f(x); x };

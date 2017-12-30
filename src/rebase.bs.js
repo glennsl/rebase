@@ -211,7 +211,8 @@ var Fn = /* Rebase__fn */[
   Rebase__fn.curry,
   Rebase__fn.uncurry,
   Rebase__fn.$less$less,
-  Rebase__fn.$great$great
+  Rebase__fn.$great$great,
+  Rebase__fn.tap
 ];
 
 var InvalidArgument = Rebase__exceptions.InvalidArgument;
