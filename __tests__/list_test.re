@@ -50,10 +50,15 @@ describe("Iterable.S", () => {
     expect(M.filter(x => x mod 2 === 0, [1, 2])) == [2]
   });
   
-  testAll("exists", [([1, 3], false), ([1, 2], true)], ((input, expected)) => {
-    let (===) = Pervasives.(===);
-    expect(M.exists(x => x mod 2 === 0, input)) == expected
-  });
+  testAll("exists", [
+      ([], false),
+      ([1, 3], false),
+      ([1, 2], true)
+    ], ((input, expected)) => {
+      let (===) = Pervasives.(===);
+      expect(M.exists(x => x mod 2 === 0, input)) == expected
+    }
+  );
   
   test("forEach", () => {
     let checked = ref([]);
@@ -61,15 +66,25 @@ describe("Iterable.S", () => {
     expect(checked^) == [2, 1]
   });
   
-  testAll("find", [([1, 3], None), ([1, 2, 4], Some(2))], ((input, expected)) => {
-    let (===) = Pervasives.(===);
-    expect(M.find(x => x mod 2 === 0, input)) == expected
-  });
+  testAll("find", [
+      ([], None),
+      ([1, 3], None),
+      ([1, 2, 4], Some(2))
+    ], ((input, expected)) => {
+      let (===) = Pervasives.(===);
+      expect(M.find(x => x mod 2 === 0, input)) == expected
+    }
+  );
   
-  testAll("forAll", [([2, 4], true), ([1, 2], false)], ((input, expected)) => {
-    let (===) = Pervasives.(===);
-    expect(M.forAll(x => x mod 2 === 0, input)) == expected
-  });
+  testAll("forAll", [
+      ([], true),
+      ([2, 4], true),
+      ([1, 2], false)
+    ], ((input, expected)) => {
+      let (===) = Pervasives.(===);
+      expect(M.forAll(x => x mod 2 === 0, input)) == expected
+    }
+  );
 });
 
 
