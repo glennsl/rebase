@@ -13,6 +13,24 @@ let fromArray = arr => {
   loop([], _arrayLength(arr) - 1)
 };
 
+let range = (~step=1, start, finish) => {
+  if (step === 0) {
+    raise(Rebase__exceptions.InvalidArgument("List.range: ~step=0 would cause infinite loop"));
+  } else if (step < 0 && start < finish) {
+    []
+  } else if (step > 0 && start > finish) {
+    []
+  } else {
+    let rec loop = acc =>
+      fun | n when n === start => [n, ...acc]
+          | n                  => loop([n, ...acc], n - step);
+
+    let last = (finish - start) / step * step + start;
+
+    loop([], last)
+  }
+};
+
 let isEmpty =
   fun | [] => true
       | _  => false;

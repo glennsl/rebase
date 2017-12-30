@@ -1,6 +1,8 @@
 'use strict';
 
-var Curry = require("bs-platform/lib/js/curry.js");
+var Curry              = require("bs-platform/lib/js/curry.js");
+var Caml_int32         = require("bs-platform/lib/js/caml_int32.js");
+var Rebase__exceptions = require("./rebase__exceptions.bs.js");
 
 function from(x) {
   return /* :: */[
@@ -27,6 +29,44 @@ function fromArray(arr) {
       return acc;
     }
   };
+}
+
+function range($staropt$star, start, finish) {
+  var step = $staropt$star ? $staropt$star[0] : 1;
+  if (step) {
+    if (step < 0 && start < finish) {
+      return /* [] */0;
+    } else if (step > 0 && start > finish) {
+      return /* [] */0;
+    } else {
+      var last = Caml_int32.imul(Caml_int32.div(finish - start | 0, step), step) + start | 0;
+      var _acc = /* [] */0;
+      var _n = last;
+      while(true) {
+        var n = _n;
+        var acc = _acc;
+        if (n === start) {
+          return /* :: */[
+                  n,
+                  acc
+                ];
+        } else {
+          _n = n - step | 0;
+          _acc = /* :: */[
+            n,
+            acc
+          ];
+          continue ;
+          
+        }
+      };
+    }
+  } else {
+    throw [
+          Rebase__exceptions.InvalidArgument,
+          "List.range: ~step=0 would cause infinite loop"
+        ];
+  }
 }
 
 function isEmpty(param) {
@@ -305,6 +345,7 @@ function concat(ys, xs) {
 
 exports.from             = from;
 exports.fromArray        = fromArray;
+exports.range            = range;
 exports.isEmpty          = isEmpty;
 exports.head             = head;
 exports.tail             = tail;

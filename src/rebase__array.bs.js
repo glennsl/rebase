@@ -2,6 +2,7 @@
 
 var List               = require("bs-platform/lib/js/list.js");
 var Curry              = require("bs-platform/lib/js/curry.js");
+var Caml_int32         = require("bs-platform/lib/js/caml_int32.js");
 var Js_boolean         = require("bs-platform/lib/js/js_boolean.js");
 var Js_primitive       = require("bs-platform/lib/js/js_primitive.js");
 var Rebase__exceptions = require("./rebase__exceptions.bs.js");
@@ -45,6 +46,40 @@ function fromList(list) {
     };
   } else {
     return /* array */[];
+  }
+}
+
+function range($staropt$star, start, finish) {
+  var step = $staropt$star ? $staropt$star[0] : 1;
+  if (step) {
+    if (step < 0 && start < finish) {
+      return /* array */[];
+    } else if (step > 0 && start > finish) {
+      return /* array */[];
+    } else {
+      var arr = /* array */[];
+      var last = Caml_int32.imul(Caml_int32.div(finish - start | 0, step), step) + start | 0;
+      var loop = function (_n) {
+        while(true) {
+          var n = _n;
+          arr.push(n);
+          if (n !== last) {
+            _n = n + step | 0;
+            continue ;
+            
+          } else {
+            return 0;
+          }
+        };
+      };
+      loop(start);
+      return arr;
+    }
+  } else {
+    throw [
+          Rebase__exceptions.InvalidArgument,
+          "Array.range: ~step=0 would cause infinite loop"
+        ];
   }
 }
 
@@ -162,6 +197,7 @@ exports.unsafeGetUnchecked = unsafeGetUnchecked;
 exports.unsafeSetUnchecked = unsafeSetUnchecked;
 exports.make               = make;
 exports.fromList           = fromList;
+exports.range              = range;
 exports.get                = get;
 exports.set                = set;
 exports.getOrRaise         = getOrRaise;

@@ -335,7 +335,207 @@ TestHelpers.testFn("fromArray", Rebase.List[/* fromArray */13], /* :: */[
       ]
     ]);
 
-TestHelpers.testFn("isEmpty", Rebase.List[/* isEmpty */14], /* :: */[
+TestHelpers.testFn("range", (function (param) {
+        return Rebase.List[/* range */14](/* None */0, param[0], param[1]);
+      }), /* :: */[
+      /* tuple */[
+        /* tuple */[
+          0,
+          0
+        ],
+        /* :: */[
+          0,
+          /* [] */0
+        ]
+      ],
+      /* :: */[
+        /* tuple */[
+          /* tuple */[
+            0,
+            4
+          ],
+          /* :: */[
+            0,
+            /* :: */[
+              1,
+              /* :: */[
+                2,
+                /* :: */[
+                  3,
+                  /* :: */[
+                    4,
+                    /* [] */0
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        /* :: */[
+          /* tuple */[
+            /* tuple */[
+              2,
+              4
+            ],
+            /* :: */[
+              2,
+              /* :: */[
+                3,
+                /* :: */[
+                  4,
+                  /* [] */0
+                ]
+              ]
+            ]
+          ],
+          /* :: */[
+            /* tuple */[
+              /* tuple */[
+                -2,
+                0
+              ],
+              /* :: */[
+                -2,
+                /* :: */[
+                  -1,
+                  /* :: */[
+                    0,
+                    /* [] */0
+                  ]
+                ]
+              ]
+            ],
+            /* :: */[
+              /* tuple */[
+                /* tuple */[
+                  4,
+                  2
+                ],
+                /* [] */0
+              ],
+              /* :: */[
+                /* tuple */[
+                  /* tuple */[
+                    -2,
+                    -4
+                  ],
+                  /* [] */0
+                ],
+                /* :: */[
+                  /* tuple */[
+                    /* tuple */[
+                      2,
+                      -2
+                    ],
+                    /* [] */0
+                  ],
+                  /* [] */0
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]);
+
+TestHelpers.testFn("range - step", (function (param) {
+        return Rebase.List[/* range */14](/* Some */[param[2]], param[0], param[1]);
+      }), /* :: */[
+      /* tuple */[
+        /* tuple */[
+          0,
+          0,
+          2
+        ],
+        /* :: */[
+          0,
+          /* [] */0
+        ]
+      ],
+      /* :: */[
+        /* tuple */[
+          /* tuple */[
+            0,
+            3,
+            2
+          ],
+          /* :: */[
+            0,
+            /* :: */[
+              2,
+              /* [] */0
+            ]
+          ]
+        ],
+        /* :: */[
+          /* tuple */[
+            /* tuple */[
+              2,
+              5,
+              2
+            ],
+            /* :: */[
+              2,
+              /* :: */[
+                4,
+                /* [] */0
+              ]
+            ]
+          ],
+          /* :: */[
+            /* tuple */[
+              /* tuple */[
+                0,
+                0,
+                -2
+              ],
+              /* :: */[
+                0,
+                /* [] */0
+              ]
+            ],
+            /* :: */[
+              /* tuple */[
+                /* tuple */[
+                  0,
+                  3,
+                  -2
+                ],
+                /* [] */0
+              ],
+              /* :: */[
+                /* tuple */[
+                  /* tuple */[
+                    3,
+                    0,
+                    -2
+                  ],
+                  /* :: */[
+                    3,
+                    /* :: */[
+                      1,
+                      /* [] */0
+                    ]
+                  ]
+                ],
+                /* [] */0
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]);
+
+Jest.test("range - step 0", (function () {
+        return Jest.Expect[/* toThrowException */20]([
+                    Rebase.InvalidArgument,
+                    ""
+                  ], Jest.Expect[/* expect */0]((function () {
+                          return Rebase.List[/* range */14](/* Some */[0], 0, 0);
+                        })));
+      }));
+
+TestHelpers.testFn("isEmpty", Rebase.List[/* isEmpty */15], /* :: */[
       /* tuple */[
         /* [] */0,
         /* true */1
@@ -358,7 +558,7 @@ TestHelpers.testFn("isEmpty", Rebase.List[/* isEmpty */14], /* :: */[
       ]
     ]);
 
-TestHelpers.testFn("head", Rebase.List[/* head */15], /* :: */[
+TestHelpers.testFn("head", Rebase.List[/* head */16], /* :: */[
       /* tuple */[
         /* :: */[
           1,
@@ -381,7 +581,7 @@ TestHelpers.testFn("head", Rebase.List[/* head */15], /* :: */[
       ]
     ]);
 
-TestHelpers.testFn("tail", Rebase.List[/* tail */16], /* :: */[
+TestHelpers.testFn("tail", Rebase.List[/* tail */17], /* :: */[
       /* tuple */[
         /* :: */[
           1,
@@ -411,7 +611,7 @@ TestHelpers.testFn("tail", Rebase.List[/* tail */16], /* :: */[
     ]);
 
 Jest.test("reverse", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* reverse */18](/* :: */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* reverse */19](/* :: */[
                             1,
                             /* :: */[
                               2,
@@ -427,7 +627,7 @@ Jest.test("reverse", (function () {
       }));
 
 Jest.test("length", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.List[/* length */17](/* :: */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.List[/* length */18](/* :: */[
                             41,
                             /* :: */[
                               62,
@@ -456,7 +656,7 @@ Jest.test("filterMap", (function () {
                   ]);
       }));
 
-TestHelpers.testFn("zip", Curry._1(Rebase.Fn[/* uncurry */4], Curry._1(Rebase.Fn[/* flip */2], Rebase.List[/* zip */19])), /* :: */[
+TestHelpers.testFn("zip", Curry._1(Rebase.Fn[/* uncurry */4], Curry._1(Rebase.Fn[/* flip */2], Rebase.List[/* zip */20])), /* :: */[
       /* tuple */[
         /* tuple */[
           /* :: */[

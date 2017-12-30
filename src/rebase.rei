@@ -32,6 +32,7 @@ module Array: {
   /* -- */
   let make: (int, 'a) => t('a);
   let fromList: list('a) => t('a);
+  let range: (~step:int=?, int, int) => t(int);
   let length: t('a) => int;
 
   /* `get` and `set` do not have the subject in pipe position since that would
@@ -97,6 +98,7 @@ module List: {
 
   /* -- */
   let fromArray: array('a) => t('a);
+  let range: (~step:int=?, int, int) => t(int);
   let isEmpty: t('a) => bool;
   let head: t('a) => option('a);
   let tail: t('a) => option(t('a));

@@ -37,6 +37,34 @@ let fromList =
         fill(1, xs)
       };
 
+let range = (~step=1, start, finish) => {
+  if (step === 0) {
+    raise(Rebase__exceptions.InvalidArgument("Array.range: ~step=0 would cause infinite loop"));
+  } else if (step < 0 && start < finish) {
+    [||]
+  } else if (step > 0 && start > finish) {
+    [||]
+  } else {
+    /* TODO: preallocate
+    let length = ??;
+    let arr = _make(length);
+    */
+    let arr = [||];
+    let last = (finish - start) / step * step + start;
+
+    let rec loop = n => {
+      _push(n, arr);
+
+      if (n !== last) {
+        loop(n + step);
+      }
+    };
+
+    loop(start);
+    arr
+  }
+};
+
 let get = (self, i) =>
   if (i >= 0 && i < length(self)) {
     Some(_unsafeGetUnchecked(self, i))

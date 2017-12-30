@@ -88,6 +88,34 @@ testFn("fromArray",
   ]
 );
 
+testFn("range", 
+  ((start, finish)) => List.range(start, finish), [
+    ((0, 0), [0]),
+    ((0, 4), [0, 1, 2, 3, 4]),
+    ((2, 4), [2, 3, 4]),
+    ((-2, 0), [-2, -1, 0]),
+    ((4, 2), []),
+    ((-2, -4), []),
+    ((2, -2), []),
+  ]
+);
+
+testFn("range - step", 
+  ((start, finish, step)) => List.range(start, finish, ~step), [
+    ((0, 0, 2), [0]),
+    ((0, 3, 2), [0, 2]),
+    ((2, 5, 2), [2, 4]),
+    ((0, 0, -2), [0]),
+    ((0, 3, -2), []),
+    ((3, 0, -2), [3, 1]),
+  ]
+);
+
+test("range - step 0", () =>
+  expect(
+    () => List.range(0, 0, ~step=0))
+    |> toThrowException(InvalidArgument("")));
+
 testFn("isEmpty",
   List.isEmpty, [
     ([], true),
