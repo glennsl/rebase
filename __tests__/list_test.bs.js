@@ -277,7 +277,7 @@ describe("Iterable.S", (function () {
       }));
 
 describe("Concatenable.S", (function () {
-        var M = [Rebase.List[11]];
+        var M = [Rebase.List[12]];
         return Jest.test("concat", (function () {
                       return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M[/* concat */0], /* :: */[
                                           3,
@@ -329,7 +329,7 @@ Jest.testAll("head", /* :: */[
         /* [] */0
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* head */12](param[0])), param[1]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* head */13](param[0])), param[1]);
       }));
 
 Jest.testAll("tail", /* :: */[
@@ -360,11 +360,11 @@ Jest.testAll("tail", /* :: */[
         /* [] */0
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* tail */13](param[0])), param[1]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* tail */14](param[0])), param[1]);
       }));
 
 Jest.test("reverse", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* reverse */15](/* :: */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* reverse */16](/* :: */[
                             1,
                             /* :: */[
                               2,
@@ -380,13 +380,33 @@ Jest.test("reverse", (function () {
       }));
 
 Jest.test("length", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.List[/* length */14](/* :: */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.List[/* length */15](/* :: */[
                             41,
                             /* :: */[
                               62,
                               /* [] */0
                             ]
                           ])), 2);
+      }));
+
+Jest.test("filterMap", (function () {
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* filterMap */11]((function (x) {
+                              var match = +(x % 2 === 0);
+                              if (match !== 0) {
+                                return /* Some */[x + 1 | 0];
+                              } else {
+                                return /* None */0;
+                              }
+                            }), /* :: */[
+                            1,
+                            /* :: */[
+                              2,
+                              /* [] */0
+                            ]
+                          ])), /* :: */[
+                    3,
+                    /* [] */0
+                  ]);
       }));
 
 Jest.testAll("zip", /* :: */[
@@ -515,7 +535,7 @@ Jest.testAll("zip", /* :: */[
         ]
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* zip */16](param[1], param[0])), param[2]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* zip */17](param[1], param[0])), param[2]);
       }));
 
 Jest.testAll("toArray", /* :: */[
@@ -540,7 +560,7 @@ Jest.testAll("toArray", /* :: */[
         /* [] */0
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* toArray */17](param[0])), param[1]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* toArray */18](param[0])), param[1]);
       }));
 
 /*  Not a pure module */

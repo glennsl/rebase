@@ -93,6 +93,18 @@ function flatMap(f, self) {
   return result;
 }
 
+function filterMap(f, self) {
+  var result = /* array */[];
+  for(var i = 0 ,i_finish = self.length - 1 | 0; i <= i_finish; ++i){
+    var match = Curry._1(f, self[i]);
+    if (match) {
+      result.push(match[0]);
+    }
+    
+  }
+  return result;
+}
+
 function product(f, xs, ys) {
   return flatMap((function (x) {
                 return ys.map((function (y) {
@@ -120,6 +132,7 @@ exports.filter             = filter;
 exports.find               = find;
 exports.forAll             = forAll;
 exports.flatMap            = flatMap;
+exports.filterMap          = filterMap;
 exports.product            = product;
 exports.apply              = apply;
 /* No side effect */

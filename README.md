@@ -18,6 +18,7 @@ Mostly undocumented and untested. Prone to change without warning. Use at your o
 ## Design rules
 * JS first
 * No platform-specific APIs exposed
+* Prefer piped form, e.g. `"a" |> String.concat("b") == "ab"`
 * The subject of functions in type-wrapping modules should always be `t`
 * Enforece common patterns using module signatures
 

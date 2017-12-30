@@ -70,6 +70,28 @@ function filter(predicate, _param) {
   };
 }
 
+function filterMap(f, _param) {
+  while(true) {
+    var param = _param;
+    if (param) {
+      var xs = param[1];
+      var match = Curry._1(f, param[0]);
+      if (match) {
+        return /* :: */[
+                match[0],
+                filterMap(f, xs)
+              ];
+      } else {
+        _param = xs;
+        continue ;
+        
+      }
+    } else {
+      return /* [] */0;
+    }
+  };
+}
+
 function exists(predicate, _param) {
   while(true) {
     var param = _param;
@@ -283,6 +305,7 @@ exports.tail             = tail;
 exports.reverseAndAppend = reverseAndAppend;
 exports.reverse          = reverse;
 exports.filter           = filter;
+exports.filterMap        = filterMap;
 exports.exists           = exists;
 exports.forEach          = forEach;
 exports.find             = find;

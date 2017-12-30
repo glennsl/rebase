@@ -23,6 +23,14 @@ let rec filter = predicate =>
       | [x, ...xs] when predicate(x) => [x, ...filter(predicate, xs)] /* NOTE: not tail-recursive */
       | [_, ...xs] => filter(predicate, xs);
 
+let rec filterMap = f =>
+  fun | [] => []
+      | [x, ...xs]  =>
+        switch (f(x)) {
+        | Some(x) => [x, ...filterMap(f, xs)] /* NOTE: not tail-recursive */
+        | None    => filterMap(f, xs);
+        };
+
 let rec exists = predicate =>
   fun | [] => false
       | [x, ..._] when predicate(x) => true
@@ -93,8 +101,8 @@ let rec zip = (ys, xs) =>
 let rec concat = (ys, xs) =>
   switch (xs, ys) {
   | ([], []) => []
-  | ([x, ...xs], _) => [x, ...concat(ys, xs)]
-  | ([], [y, ...ys]) => [y, ...concat(ys, [])]
+  | ([x, ...xs], _) => [x, ...concat(ys, xs)] /* NOTE: not tail-recursive */
+  | ([], [y, ...ys]) => [y, ...concat(ys, [])] /* NOTE: not tail-recursive */
   };
 
 let toArray =

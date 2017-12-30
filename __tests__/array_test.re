@@ -174,6 +174,11 @@ test("unsafeSetUnchecked - out of bounds", () => {
   expect(Array.getOrRaise(2, a)) === 3
 });
 
+test("filterMap", () => {
+  let (===) = Pervasives.(===);
+  expect(Array.filterMap(x => x mod 2 === 0 ? Some(x + 1) : None, [|1, 2|])) == [|3|]
+});
+
 test("fill", () => {
   let a = [|1, 2|];
   Array.fill(0, a);

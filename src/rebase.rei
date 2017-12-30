@@ -43,6 +43,7 @@ module Array: {
   let unsafeGetUnchecked: (int, t('a)) => 'a;
   let unsafeSetUnchecked: (int, 'a, t('a)) => unit; /* mutates */
 
+  let filterMap: ('a => option('b), t('a)) => t('b);
   let fill: ('a, t('a)) => unit; /* mutates */
   let slice: (~from: int, ~to_: int, t('a)) => t('a);
   let copy: t('a) => t('a);
@@ -56,7 +57,6 @@ module Array: {
   /*let findIndex : ('a => bool) => t 'a => option (int, 'a);*/
   /*let count : ('a => bool) => t 'a => int;*/
   /*let forEachWithIndex : ('a => int => unit) => t 'a => unit;*/
-  /*let filterMap : ('a => option 'b) => t 'a => t 'b;*/ /* just for perf */
   /*let range : from::int => to_::int => t int*/
 
   /*let push : 'a => t 'a => unit;*/ /* Put in separate ArrayList module? */
@@ -85,6 +85,7 @@ module List: {
   let forEach: ('a => unit, t('a)) => unit;
   let exists: ('a => bool, t('a)) => bool;
   let filter: ('a => bool, t('a)) => t('a);
+  let filterMap: ('a => option('b), t('a)) => t('b);
 
   /* Concatenable.S */
   let concat: (t('a), t('a)) => t('a);
@@ -94,7 +95,6 @@ module List: {
   let tail: t('a) => option(t('a));
   let length: t('a) => int;
   let reverse: t('a) => t('a);
-  let zip: t('a) => t('b) => t(('a, 'b));
   let zip: t('a) => t('b) => t(('b, 'a));
   let toArray: t('a) => array('a); /* Not very efficient. How to communicate that clearly? */
 };

@@ -78,6 +78,17 @@ let flatMap = (f, self) => {
   result
 };
 
+let filterMap = (f, self) => {
+  let result = [||];
+  for (i in 0 to length(self) - 1) {
+    switch (f(_unsafeGetUnchecked(self, i))) {
+    | Some(x) => _push(x, result)
+    | None    => ()
+    }
+  };
+  result
+};
+
 let product = (f, xs, ys) =>
   flatMap(x => map(y => f(x, y), ys), xs);
 

@@ -32,20 +32,20 @@ function Array_013(prim) {
   return prim.length;
 }
 
-function Array_020(prim, prim$1) {
+function Array_021(prim, prim$1) {
   prim$1.fill(prim);
   return /* () */0;
 }
 
-function Array_021(prim, prim$1, prim$2) {
+function Array_022(prim, prim$1, prim$2) {
   return prim$2.slice(prim, prim$1);
 }
 
-function Array_022(prim) {
+function Array_023(prim) {
   return prim.slice();
 }
 
-function Array_023(prim, prim$1) {
+function Array_024(prim, prim$1) {
   return prim$1.map(prim);
 }
 
@@ -70,10 +70,11 @@ var $$Array = [
   Rebase__array.setOrRaise,
   Rebase__array.unsafeGetUnchecked,
   Rebase__array.unsafeSetUnchecked,
-  Array_020,
+  Rebase__array.filterMap,
   Array_021,
   Array_022,
-  Array_023
+  Array_023,
+  Array_024
 ];
 
 var List = [
@@ -88,6 +89,7 @@ var List = [
   Rebase__list.forEach,
   Rebase__list.exists,
   Rebase__list.filter,
+  Rebase__list.filterMap,
   Rebase__list.concat,
   Rebase__list.head,
   Rebase__list.tail,

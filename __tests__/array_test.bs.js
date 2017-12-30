@@ -377,12 +377,26 @@ Jest.test("unsafeSetUnchecked - out of bounds", (function () {
         return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* getOrRaise */16](2, a)), 3);
       }));
 
+Jest.test("filterMap", (function () {
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* filterMap */20]((function (x) {
+                              var match = +(x % 2 === 0);
+                              if (match !== 0) {
+                                return /* Some */[x + 1 | 0];
+                              } else {
+                                return /* None */0;
+                              }
+                            }), /* int array */[
+                            1,
+                            2
+                          ])), /* int array */[3]);
+      }));
+
 Jest.test("fill", (function () {
         var a = /* int array */[
           1,
           2
         ];
-        Rebase.$$Array[/* fill */20](0, a);
+        Rebase.$$Array[/* fill */21](0, a);
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](a), /* int array */[
                     0,
                     0
@@ -474,7 +488,7 @@ Jest.testAll("slice", /* :: */[
         ]
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* slice */21](param[0], param[1], /* int array */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* slice */22](param[0], param[1], /* int array */[
                             1,
                             2,
                             3,
@@ -487,7 +501,7 @@ Jest.test("copy", (function () {
           1,
           2
         ];
-        var b = Rebase.$$Array[/* copy */22](a);
+        var b = Rebase.$$Array[/* copy */23](a);
         Rebase.$$Array[/* set */15](a, 1, 0);
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](/* tuple */[
                         a,
@@ -505,7 +519,7 @@ Jest.test("copy", (function () {
       }));
 
 Jest.test("mapWithIndex", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* mapWithIndex */23]((function (x, i) {
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* mapWithIndex */24]((function (x, i) {
                               return x + i | 0;
                             }), /* int array */[
                             1,

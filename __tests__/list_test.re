@@ -97,6 +97,11 @@ test("reverse", () =>
 test("length", () =>
   expect(List.length([41, 62])) === 2);
 
+test("filterMap", () => {
+  let (===) = Pervasives.(===);
+  expect(List.filterMap(x => x mod 2 === 0 ? Some(x + 1) : None, [1, 2])) == [3]
+});
+
 testAll("zip", [
   ([1, 2], [11, 12], [(1, 11), (2, 12)]),
   ([1, 2, 3], [11, 12], [(1, 11), (2, 12)]),
