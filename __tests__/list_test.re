@@ -109,7 +109,3 @@ testAll("zip", [
   ([1, 2], [], []),
   ([], [11, 12], []),
 ], ((xs, ys, expected)) => expect(xs |> List.zip(ys)) == expected);
-
-testAll("toArray",
-  [([1, 2], [|1, 2|]), ([], [||])],
-  ((input, expected)) => expect(List.toArray(input)) == expected);

@@ -98,6 +98,11 @@ testAll("make", [
     (2, [|"a", "a"|]),
   ], ((length, expected)) => expect(Array.make(length, "a")) == expected);
 
+
+testAll("fromList",
+  [([1, 2], [|1, 2|]), ([], [||])],
+  ((input, expected)) => expect(Array.fromList(input)) == expected);
+
 testAll("get", [
     (0, Some(1)),
     (2, None),

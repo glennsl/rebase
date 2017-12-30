@@ -1,7 +1,6 @@
 'use strict';
 
-var Curry         = require("bs-platform/lib/js/curry.js");
-var Rebase__array = require("./rebase__array.bs.js");
+var Curry = require("bs-platform/lib/js/curry.js");
 
 function from(x) {
   return /* :: */[
@@ -276,29 +275,6 @@ function concat(ys, xs) {
   }
 }
 
-function toArray(list) {
-  if (list) {
-    var array = Rebase__array.make(length(list), list[0]);
-    var _i = 1;
-    var _param = list[1];
-    while(true) {
-      var param = _param;
-      var i = _i;
-      if (param) {
-        Rebase__array.unsafeSetUnchecked(i, param[0], array);
-        _param = param[1];
-        _i = i + 1 | 0;
-        continue ;
-        
-      } else {
-        return array;
-      }
-    };
-  } else {
-    return /* array */[];
-  }
-}
-
 exports.from             = from;
 exports.head             = head;
 exports.tail             = tail;
@@ -319,5 +295,4 @@ exports.reduceRight      = reduceRight;
 exports.length           = length;
 exports.zip              = zip;
 exports.concat           = concat;
-exports.toArray          = toArray;
 /* No side effect */

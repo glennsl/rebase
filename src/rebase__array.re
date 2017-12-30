@@ -24,6 +24,19 @@ let make = (length, value) => {
   array
 };
 
+let fromList =
+  fun | [] => [||]
+      | [x, ...xs] as list => {
+        let array = make(List.length(list), x);
+        let rec fill = i =>
+          fun | [] => array
+              | [x, ...xs] => {
+                _unsafeSetUnchecked(array, i, x);
+                fill(i + 1, xs)
+              };
+        fill(1, xs)
+      };
+
 let get = (self, i) =>
   if (i >= 0 && i < length(self)) {
     Some(_unsafeGetUnchecked(self, i))

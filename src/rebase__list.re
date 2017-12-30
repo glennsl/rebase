@@ -104,16 +104,3 @@ let rec concat = (ys, xs) =>
   | ([x, ...xs], _) => [x, ...concat(ys, xs)] /* NOTE: not tail-recursive */
   | ([], [y, ...ys]) => [y, ...concat(ys, [])] /* NOTE: not tail-recursive */
   };
-
-let toArray =
-  fun | [] => [||]
-      | [x, ...xs] as list => {
-        let array = Rebase__array.make(length(list), x);
-        let rec fill = i =>
-          fun | [] => array
-              | [x, ...xs] => {
-                Rebase__array.unsafeSetUnchecked(i, x, array);
-                fill(i + 1, xs)
-              };
-        fill(1, xs)
-      };

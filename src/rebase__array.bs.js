@@ -1,5 +1,6 @@
 'use strict';
 
+var List               = require("bs-platform/lib/js/list.js");
 var Curry              = require("bs-platform/lib/js/curry.js");
 var Js_boolean         = require("bs-platform/lib/js/js_boolean.js");
 var Js_primitive       = require("bs-platform/lib/js/js_primitive.js");
@@ -22,6 +23,29 @@ function make(length, value) {
   var array = new Array(length);
   array.fill(value);
   return array;
+}
+
+function fromList(list) {
+  if (list) {
+    var array = make(List.length(list), list[0]);
+    var _i = 1;
+    var _param = list[1];
+    while(true) {
+      var param = _param;
+      var i = _i;
+      if (param) {
+        array[i] = param[0];
+        _param = param[1];
+        _i = i + 1 | 0;
+        continue ;
+        
+      } else {
+        return array;
+      }
+    };
+  } else {
+    return /* array */[];
+  }
 }
 
 function get(self, i) {
@@ -137,6 +161,7 @@ exports.from               = from;
 exports.unsafeGetUnchecked = unsafeGetUnchecked;
 exports.unsafeSetUnchecked = unsafeSetUnchecked;
 exports.make               = make;
+exports.fromList           = fromList;
 exports.get                = get;
 exports.set                = set;
 exports.getOrRaise         = getOrRaise;

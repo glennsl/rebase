@@ -27,6 +27,7 @@ module Array: {
 
   /* -- */
   let make: (int, 'a) => t('a);
+  let fromList: list('a) => t('a);
   let length: t('a) => int;
 
   /* `get` and `set` do not have the subject in pipe position since that would
@@ -96,7 +97,6 @@ module List: {
   let length: t('a) => int;
   let reverse: t('a) => t('a);
   let zip: t('a) => t('b) => t(('b, 'a));
-  let toArray: t('a) => array('a); /* Not very efficient. How to communicate that clearly? */
 };
 
 module Option: {

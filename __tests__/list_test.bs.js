@@ -538,29 +538,4 @@ Jest.testAll("zip", /* :: */[
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* zip */17](param[1], param[0])), param[2]);
       }));
 
-Jest.testAll("toArray", /* :: */[
-      /* tuple */[
-        /* :: */[
-          1,
-          /* :: */[
-            2,
-            /* [] */0
-          ]
-        ],
-        /* int array */[
-          1,
-          2
-        ]
-      ],
-      /* :: */[
-        /* tuple */[
-          /* [] */0,
-          /* int array */[]
-        ],
-        /* [] */0
-      ]
-    ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* toArray */18](param[0])), param[1]);
-      }));
-
 /*  Not a pure module */

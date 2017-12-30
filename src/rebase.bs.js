@@ -29,28 +29,28 @@ function Array_011(prim, prim$1) {
   return prim$1.concat(prim);
 }
 
-function Array_013(prim) {
+function Array_014(prim) {
   return prim.length;
 }
 
-function Array_021(prim, prim$1) {
+function Array_022(prim, prim$1) {
   prim$1.fill(prim);
   return /* () */0;
 }
 
-function Array_022(prim, prim$1, prim$2) {
+function Array_023(prim, prim$1, prim$2) {
   return prim$2.slice(prim, prim$1);
 }
 
-function Array_023(prim) {
+function Array_024(prim) {
   return prim.slice();
 }
 
-function Array_024(prim, prim$1) {
+function Array_025(prim, prim$1) {
   return prim$1.map(prim);
 }
 
-function Array_025(prim, prim$1) {
+function Array_026(prim, prim$1) {
   prim$1.forEach(prim);
   return /* () */0;
 }
@@ -69,7 +69,8 @@ var $$Array = [
   Rebase__array.filter,
   Array_011,
   Rebase__array.make,
-  Array_013,
+  Rebase__array.fromList,
+  Array_014,
   Rebase__array.get,
   Rebase__array.set,
   Rebase__array.getOrRaise,
@@ -77,11 +78,11 @@ var $$Array = [
   Rebase__array.unsafeGetUnchecked,
   Rebase__array.unsafeSetUnchecked,
   Rebase__array.filterMap,
-  Array_021,
   Array_022,
   Array_023,
   Array_024,
   Array_025,
+  Array_026,
   Rebase__array.findIndex
 ];
 
@@ -103,8 +104,7 @@ var List = [
   Rebase__list.tail,
   Rebase__list.length,
   Rebase__list.reverse,
-  Rebase__list.zip,
-  Rebase__list.toArray
+  Rebase__list.zip
 ];
 
 var Option = [
