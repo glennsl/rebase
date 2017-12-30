@@ -92,6 +92,7 @@ module List: {
   let concat: (t('a), t('a)) => t('a);
 
   /* -- */
+  let fromArray: array('a) => t('a);
   let head: t('a) => option('a);
   let tail: t('a) => option(t('a));
   let length: t('a) => int;

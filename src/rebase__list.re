@@ -1,7 +1,17 @@
 type t('a) = list('a);
 
+[@bs.get] external _arrayLength: array('a) => int = "length";
+[@bs.get_index] external _unsafeArrayGet: array('a) => int => 'a = "";
+
 let from = x =>
   [x];
+
+let fromArray = arr => {
+  let rec loop = acc =>
+    fun | -1 => acc
+        |  i => loop([_unsafeArrayGet(arr, i), ...acc], i - 1);
+  loop([], _arrayLength(arr) - 1)
+};
 
 let head =
   fun | [] => None

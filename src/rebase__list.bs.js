@@ -9,6 +9,26 @@ function from(x) {
         ];
 }
 
+function fromArray(arr) {
+  var _acc = /* [] */0;
+  var _i = arr.length - 1 | 0;
+  while(true) {
+    var i = _i;
+    var acc = _acc;
+    if (i !== -1) {
+      _i = i - 1 | 0;
+      _acc = /* :: */[
+        arr[i],
+        acc
+      ];
+      continue ;
+      
+    } else {
+      return acc;
+    }
+  };
+}
+
 function head(param) {
   if (param) {
     return /* Some */[param[0]];
@@ -276,6 +296,7 @@ function concat(ys, xs) {
 }
 
 exports.from             = from;
+exports.fromArray        = fromArray;
 exports.head             = head;
 exports.tail             = tail;
 exports.reverseAndAppend = reverseAndAppend;
