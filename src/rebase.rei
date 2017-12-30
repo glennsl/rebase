@@ -192,6 +192,8 @@ module String: {
   let padEnd: (int, string, t) => t;
   let trim: t => t;
   let sub: (~from:int, ~length:int, t) => t;
+  let join: list(string) => string;
+  let joinWith: (string, list(string)) => string;
 };
 
 module Fn: {

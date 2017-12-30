@@ -14,3 +14,12 @@ type t = string;
 let isEmpty = s =>
   s |> trim
     |> length == 0;
+
+let rec join =
+  fun | []          => ""
+      | [s, ...ss]  => s ++ join(ss);
+
+let rec joinWith = sep =>
+  fun | []          => ""
+      | [s]         => s
+      | [s, ...ss]  => s ++ sep ++ joinWith(sep, ss);

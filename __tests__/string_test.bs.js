@@ -302,4 +302,54 @@ Jest.testAll("sum", /* :: */[
         return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* sub */9](param[0], param[1], "banana")), param[2]);
       }));
 
+Jest.testAll("join", /* :: */[
+      /* tuple */[
+        /* [] */0,
+        ""
+      ],
+      /* :: */[
+        /* tuple */[
+          /* :: */[
+            "a",
+            /* :: */[
+              "b",
+              /* :: */[
+                "c",
+                /* [] */0
+              ]
+            ]
+          ],
+          "abc"
+        ],
+        /* [] */0
+      ]
+    ], (function (param) {
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* join */10](param[0])), param[1]);
+      }));
+
+Jest.testAll("join", /* :: */[
+      /* tuple */[
+        /* [] */0,
+        ""
+      ],
+      /* :: */[
+        /* tuple */[
+          /* :: */[
+            "a",
+            /* :: */[
+              "b",
+              /* :: */[
+                "c",
+                /* [] */0
+              ]
+            ]
+          ],
+          "a, b, c"
+        ],
+        /* [] */0
+      ]
+    ], (function (param) {
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* joinWith */11](", ", param[0])), param[1]);
+      }));
+
 /*  Not a pure module */

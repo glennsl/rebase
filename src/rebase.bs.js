@@ -201,7 +201,9 @@ var $$String = [
   String_006,
   String_007,
   String_008,
-  String_009
+  String_009,
+  Rebase__string.join,
+  Rebase__string.joinWith
 ];
 
 var Fn = /* Rebase__fn */[

@@ -79,3 +79,13 @@ testAll("sum", [
   (-1, -1, ""),
   (-1, 1, "a"),
 ], ((from, length, expected)) => expect("banana" |> String.sub(~from, ~length)) === expected);
+
+testAll("join", [
+    ([], ""),
+    (["a", "b", "c"], "abc")
+  ], ((input, expected)) => expect(input |> String.join) === expected);
+
+testAll("join", [
+    ([], ""),
+    (["a", "b", "c"], "a, b, c")
+  ], ((input, expected)) => expect(input |> String.joinWith(", ")) === expected);
