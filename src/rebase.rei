@@ -68,6 +68,17 @@ module Array: {
   /*let push : 'a => t 'a => unit;*/ /* Put in separate ArrayList module? */
 };
 
+module Fn: {
+  let id: 'a => 'a;
+  let const: 'a => (unit => 'a);
+  let flip: (('a, 'b) => 'c) => (('b, 'a) => 'c);
+  let curry: ((('a, 'b)) => 'c) => (('a, 'b) => 'c);
+  let uncurry: (('a, 'b) => 'c) => ((('a, 'b)) => 'c);
+  let (<<): (('b => 'c), ('a => 'b)) => ('a => 'c);
+  let (>>): (('a => 'b), ('b => 'c)) => ('a => 'c);
+  let tap: ('a => unit) => ('a => 'a);
+};
+
 module List: {
   type t('a) = list('a);
 
@@ -91,7 +102,6 @@ module List: {
   let forEach: ('a => unit, t('a)) => unit;
   let exists: ('a => bool, t('a)) => bool;
   let filter: ('a => bool, t('a)) => t('a);
-  let filterMap: ('a => option('b), t('a)) => t('b);
 
   /* Concatenable.S */
   let concat: (t('a), t('a)) => t('a);
@@ -102,6 +112,7 @@ module List: {
   let isEmpty: t('a) => bool;
   let head: t('a) => option('a);
   let tail: t('a) => option(t('a));
+  let filterMap: ('a => option('b), t('a)) => t('b);
   let length: t('a) => int;
   let reverse: t('a) => t('a);
   let zip: t('a) => t('b) => t(('b, 'a));
@@ -203,15 +214,44 @@ module String: {
   let joinWith: (string, list(string)) => string;
 };
 
-module Fn: {
-  let id: 'a => 'a;
-  let const: 'a => (unit => 'a);
-  let flip: (('a, 'b) => 'c) => (('b, 'a) => 'c);
-  let curry: ((('a, 'b)) => 'c) => (('a, 'b) => 'c);
-  let uncurry: (('a, 'b) => 'c) => ((('a, 'b)) => 'c);
-  let (<<): (('b => 'c), ('a => 'b)) => ('a => 'c);
-  let (>>): (('a => 'b), ('b => 'c)) => ('a => 'c);
-  let tap: ('a => unit) => ('a => 'a);
+module Seq: {
+  type t('a) = unit => node('a)
+  and node('a) =
+    | Nil
+    | Cons('a, t('a));
+
+  /* Mappable.S */
+  let map: ('a => 'b, t('a)) => t('b);
+
+  /* Applicative.S */
+  let apply: (t(('a => 'b)), t('a)) => t('b);
+  let from: 'a => t('a);
+
+  /* Reduceable.S */
+  let reduce: (('b, 'a) => 'b, 'b, t('a)) => 'b;
+  let reduceRight: (('b, 'a) => 'b, 'b, t('a)) => 'b;
+
+  /* Monad.S */
+  let flatMap: ('a => t('b), t('a)) => t('b);
+
+  /* Iterable.S */
+  let forAll: ('a => bool, t('a)) => bool;
+  let find: ('a => bool, t('a)) => option('a);
+  let forEach: ('a => unit, t('a)) => unit;
+  let exists: ('a => bool, t('a)) => bool;
+  let filter: ('a => bool, t('a)) => t('a);
+
+  /* -- */
+  let empty: t('a);
+  let cons: ('a, t('a)) => t('a);
+  let fromArray: array('a) => t('a);
+  let fromList: list('a) => t('a);
+  let range: (~step:int=?, int, int) => t(int);
+  let count: t('a) => int;
+  let isEmpty: t('a) => bool;
+  let head: t('a) => option('a);
+  let filterMap: ('a => option('b), t('a)) => t('b);
+  let zip: t('a) => t('b) => t(('b, 'a));
 };
 
 exception InvalidArgument(string);

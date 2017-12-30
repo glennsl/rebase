@@ -21,11 +21,11 @@ let range = (~step=1, start, finish) => {
   } else if (step > 0 && start > finish) {
     []
   } else {
+    let last = (finish - start) / step * step + start;
+    
     let rec loop = acc =>
       fun | n when n === start => [n, ...acc]
           | n                  => loop([n, ...acc], n - step);
-
-    let last = (finish - start) / step * step + start;
 
     loop([], last)
   }
@@ -36,27 +36,27 @@ let isEmpty =
       | _  => false;
 
 let head =
-  fun | [] => None
+  fun | []        => None
       | [x, ..._] => Some(x);
 
 let tail =
-  fun | [] => None
+  fun | []         => None
       | [_, ...xs] => Some(xs);
 
 let rec reverseAndAppend = acc =>
-  fun | [] => acc
+  fun | []         => acc
       | [x, ...xs] => reverseAndAppend([x, ...acc], xs);
 
 let reverse = self =>
   reverseAndAppend([], self);
 
 let rec filter = predicate =>
-  fun | [] => []
+  fun | []         => []
       | [x, ...xs] when predicate(x) => [x, ...filter(predicate, xs)] /* NOTE: not tail-recursive */
       | [_, ...xs] => filter(predicate, xs);
 
 let rec filterMap = f =>
-  fun | [] => []
+  fun | []          => []
       | [x, ...xs]  =>
         switch (f(x)) {
         | Some(x) => [x, ...filterMap(f, xs)] /* NOTE: not tail-recursive */
@@ -64,75 +64,75 @@ let rec filterMap = f =>
         };
 
 let rec exists = predicate =>
-  fun | [] => false
+  fun | []         => false
       | [x, ..._] when predicate(x) => true
       | [_, ...xs] => exists(predicate, xs);
 
 let rec forEach = f =>
-  fun | [] => ()
+  fun | []         => ()
       | [x, ...xs] => {
         f(x);
         forEach(f, xs)
       };
 
 let rec find = predicate =>
-  fun | [] => None
+  fun | []         => None
       | [x, ..._] when predicate(x) => Some(x)
       | [_, ...xs] => find(predicate, xs);
 
 let rec forAll = predicate =>
-  fun | [] => true
+  fun | []  => true
       | [x, ...xs] when predicate(x) => forAll(predicate, xs)
-      | _ => false;
+      | _   => false;
 
 let flatMap = (f, self) => {
   let rec aux = (inner, outer) =>
     switch inner {
     | [] =>
       switch outer {
-      | [] => []
+      | []         => []
       | [x, ...xs] => aux(f(x), xs)
       }
-    | [x, ...xs] => [x, ...aux(xs, outer)]
+    | [x, ...xs] =>
+      [x, ...aux(xs, outer)]
     };
   aux([], self)
 };
 
 let rec map = f =>
-  fun | [] => []
+  fun | []         => []
       | [x, ...xs] => [f(x), ...map(f, xs)];
 
 let product = (f, xs, ys) =>
-  flatMap((x) => map((y) => f(x, y), ys), xs);
+  flatMap((x) => map(y => f(x, y), ys), xs);
 
 let apply = (fs, xs) =>
   product((f, x) => f(x), fs, xs);
 
 let rec reduce = (f, acc) =>
-  fun | [] => acc
+  fun | []         => acc
       | [x, ...xs] => reduce(f, f(acc, x), xs);
 
 let rec reduceRight = (f, acc) =>
-  fun | [] => acc
+  fun | []         => acc
       | [x, ...xs] => f(reduceRight(f, acc, xs), x);
 
 let length = self => {
   let rec aux = acc =>
-    fun | [] => acc
+    fun | []         => acc
         | [_, ...xs] => aux(acc + 1, xs);
   aux(0, self)
 };
 
 let rec zip = (ys, xs) =>
   switch (xs, ys) {
-  | ([], _)
-  | (_, []) => []
+  | ([], _) | (_, [])        => []
   | ([x, ...xs], [y, ...ys]) => [(x,y), ...zip(ys, xs)]
   };
 
 let rec concat = (ys, xs) =>
   switch (xs, ys) {
-  | ([], []) => []
-  | ([x, ...xs], _) => [x, ...concat(ys, xs)] /* NOTE: not tail-recursive */
+  | ([], [])         => []
+  | ([x, ...xs], _)  => [x, ...concat(ys, xs)] /* NOTE: not tail-recursive */
   | ([], [y, ...ys]) => [y, ...concat(ys, [])] /* NOTE: not tail-recursive */
   };

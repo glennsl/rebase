@@ -1,6 +1,7 @@
 'use strict';
 
 var Rebase__fn         = require("./rebase__fn.bs.js");
+var Rebase__seq        = require("./rebase__seq.bs.js");
 var Rebase__list       = require("./rebase__list.bs.js");
 var Rebase__array      = require("./rebase__array.bs.js");
 var Rebase__option     = require("./rebase__option.bs.js");
@@ -87,6 +88,17 @@ var $$Array = [
   Rebase__array.findIndex
 ];
 
+var Fn = /* Rebase__fn */[
+  Rebase__fn.id,
+  Rebase__fn.$$const,
+  Rebase__fn.flip,
+  Rebase__fn.curry,
+  Rebase__fn.uncurry,
+  Rebase__fn.$less$less,
+  Rebase__fn.$great$great,
+  Rebase__fn.tap
+];
+
 var List = [
   Rebase__list.map,
   Rebase__list.apply,
@@ -99,13 +111,13 @@ var List = [
   Rebase__list.forEach,
   Rebase__list.exists,
   Rebase__list.filter,
-  Rebase__list.filterMap,
   Rebase__list.concat,
   Rebase__list.fromArray,
   Rebase__list.range,
   Rebase__list.isEmpty,
   Rebase__list.head,
   Rebase__list.tail,
+  Rebase__list.filterMap,
   Rebase__list.length,
   Rebase__list.reverse,
   Rebase__list.zip
@@ -211,15 +223,28 @@ var $$String = [
   Rebase__string.joinWith
 ];
 
-var Fn = /* Rebase__fn */[
-  Rebase__fn.id,
-  Rebase__fn.$$const,
-  Rebase__fn.flip,
-  Rebase__fn.curry,
-  Rebase__fn.uncurry,
-  Rebase__fn.$less$less,
-  Rebase__fn.$great$great,
-  Rebase__fn.tap
+var Seq = [
+  Rebase__seq.map,
+  Rebase__seq.apply,
+  Rebase__seq.from,
+  Rebase__seq.reduce,
+  Rebase__seq.reduceRight,
+  Rebase__seq.flatMap,
+  Rebase__seq.forAll,
+  Rebase__seq.find,
+  Rebase__seq.forEach,
+  Rebase__seq.exists,
+  Rebase__seq.filter,
+  Rebase__seq.empty,
+  Rebase__seq.cons,
+  Rebase__seq.fromArray,
+  Rebase__seq.fromList,
+  Rebase__seq.range,
+  Rebase__seq.count,
+  Rebase__seq.isEmpty,
+  Rebase__seq.head,
+  Rebase__seq.filterMap,
+  Rebase__seq.zip
 ];
 
 var InvalidArgument = Rebase__exceptions.InvalidArgument;
@@ -227,11 +252,12 @@ var InvalidArgument = Rebase__exceptions.InvalidArgument;
 var IndexOutOfBounds = Rebase__exceptions.IndexOutOfBounds;
 
 exports.$$Array          = $$Array;
+exports.Fn               = Fn;
 exports.List             = List;
 exports.Option           = Option;
 exports.Result           = Result;
 exports.$$String         = $$String;
-exports.Fn               = Fn;
+exports.Seq              = Seq;
 exports.InvalidArgument  = InvalidArgument;
 exports.IndexOutOfBounds = IndexOutOfBounds;
 /* No side effect */
