@@ -107,6 +107,13 @@ testFn("fromList",
   ]
 );
 
+testFn("fromSeq", 
+  Array.fromSeq, [
+    (Seq.empty, [||]),
+    (Seq.(cons(1, cons(2, cons(3, empty)))), [|1, 2, 3|])
+  ]
+);
+
 testFn("range", 
   ((start, finish)) => Array.range(start, finish), [
     ((0, 0), [|0|]),

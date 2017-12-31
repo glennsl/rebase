@@ -1,9 +1,9 @@
 'use strict';
 
-var Block              = require("bs-platform/lib/js/block.js");
-var Curry              = require("bs-platform/lib/js/curry.js");
-var Js_exn             = require("bs-platform/lib/js/js_exn.js");
-var Rebase__exceptions = require("./rebase__exceptions.bs.js");
+var Block         = require("bs-platform/lib/js/block.js");
+var Curry         = require("bs-platform/lib/js/curry.js");
+var Js_exn        = require("bs-platform/lib/js/js_exn.js");
+var Rebase__Types = require("./Rebase__Types.bs.js");
 
 function from(x) {
   return /* Ok */Block.__(0, [x]);
@@ -74,7 +74,7 @@ function getOr(other, param) {
 function getOrRaise(param) {
   if (param.tag) {
     throw [
-          Rebase__exceptions.InvalidArgument,
+          Rebase__Types.InvalidArgument,
           "getOrRaise called on Error"
         ];
   } else {

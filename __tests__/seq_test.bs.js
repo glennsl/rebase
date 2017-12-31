@@ -7,17 +7,7 @@ var Caml_int32  = require("bs-platform/lib/js/caml_int32.js");
 var Pervasives  = require("bs-platform/lib/js/pervasives.js");
 var TestHelpers = require("./helpers/TestHelpers.bs.js");
 
-function _toList(seq) {
-  var match = Curry._1(seq, /* () */0);
-  if (match) {
-    return /* :: */[
-            match[0],
-            _toList(match[1])
-          ];
-  } else {
-    return /* [] */0;
-  }
-}
+var _toList = Rebase.List[/* fromSeq */13];
 
 function _explode() {
   return Pervasives.failwith("Oops, not lazy! The function evaluated too much");

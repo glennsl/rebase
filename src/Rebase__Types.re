@@ -2,3 +2,13 @@
 type result('a, 'e) = Js.Result.t('a, 'e) =
   | Ok('a)
   | Error('e);
+
+type seq('a) = unit => seqNode('a)
+and seqNode('a) =
+  | Nil
+  | Cons('a, seq('a));
+
+
+exception InvalidArgument(string);
+exception IndexOutOfBounds;
+exception NotFound;

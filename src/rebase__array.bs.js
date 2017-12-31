@@ -1,11 +1,11 @@
 'use strict';
 
-var List               = require("bs-platform/lib/js/list.js");
-var Curry              = require("bs-platform/lib/js/curry.js");
-var Caml_int32         = require("bs-platform/lib/js/caml_int32.js");
-var Js_boolean         = require("bs-platform/lib/js/js_boolean.js");
-var Js_primitive       = require("bs-platform/lib/js/js_primitive.js");
-var Rebase__exceptions = require("./rebase__exceptions.bs.js");
+var List          = require("bs-platform/lib/js/list.js");
+var Curry         = require("bs-platform/lib/js/curry.js");
+var Caml_int32    = require("bs-platform/lib/js/caml_int32.js");
+var Js_boolean    = require("bs-platform/lib/js/js_boolean.js");
+var Js_primitive  = require("bs-platform/lib/js/js_primitive.js");
+var Rebase__Types = require("./Rebase__Types.bs.js");
 
 function from(x) {
   return /* array */[x];
@@ -49,6 +49,23 @@ function fromList(list) {
   }
 }
 
+function fromSeq(seq) {
+  var array = /* array */[];
+  var _seq = seq;
+  while(true) {
+    var seq$1 = _seq;
+    var match = Curry._1(seq$1, /* () */0);
+    if (match) {
+      array.push(match[0]);
+      _seq = match[1];
+      continue ;
+      
+    } else {
+      return array;
+    }
+  };
+}
+
 function range($staropt$star, start, finish) {
   var step = $staropt$star ? $staropt$star[0] : 1;
   if (step) {
@@ -57,12 +74,12 @@ function range($staropt$star, start, finish) {
     } else if (step > 0 && start > finish) {
       return /* array */[];
     } else {
-      var arr = /* array */[];
+      var array = /* array */[];
       var last = Caml_int32.imul(Caml_int32.div(finish - start | 0, step), step) + start | 0;
       var loop = function (_n) {
         while(true) {
           var n = _n;
-          arr.push(n);
+          array.push(n);
           if (n !== last) {
             _n = n + step | 0;
             continue ;
@@ -73,11 +90,11 @@ function range($staropt$star, start, finish) {
         };
       };
       loop(start);
-      return arr;
+      return array;
     }
   } else {
     throw [
-          Rebase__exceptions.InvalidArgument,
+          Rebase__Types.InvalidArgument,
           "Array.range: ~step=0 would cause infinite loop"
         ];
   }
@@ -104,7 +121,7 @@ function getOrRaise(i, self) {
   if (i >= 0 && i < self.length) {
     return self[i];
   } else {
-    throw Rebase__exceptions.IndexOutOfBounds;
+    throw Rebase__Types.IndexOutOfBounds;
   }
 }
 
@@ -113,7 +130,7 @@ function setOrRaise(i, value, self) {
     self[i] = value;
     return /* () */0;
   } else {
-    throw Rebase__exceptions.IndexOutOfBounds;
+    throw Rebase__Types.IndexOutOfBounds;
   }
 }
 
@@ -197,6 +214,7 @@ exports.unsafeGetUnchecked = unsafeGetUnchecked;
 exports.unsafeSetUnchecked = unsafeSetUnchecked;
 exports.make               = make;
 exports.fromList           = fromList;
+exports.fromSeq            = fromSeq;
 exports.range              = range;
 exports.get                = get;
 exports.set                = set;

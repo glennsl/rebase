@@ -1,8 +1,8 @@
 'use strict';
 
-var Curry              = require("bs-platform/lib/js/curry.js");
-var Caml_int32         = require("bs-platform/lib/js/caml_int32.js");
-var Rebase__exceptions = require("./rebase__exceptions.bs.js");
+var Curry         = require("bs-platform/lib/js/curry.js");
+var Caml_int32    = require("bs-platform/lib/js/caml_int32.js");
+var Rebase__Types = require("./Rebase__Types.bs.js");
 
 function empty() {
   return /* Nil */0;
@@ -88,7 +88,7 @@ function range($staropt$star, start, finish) {
     }
   } else {
     throw [
-          Rebase__exceptions.InvalidArgument,
+          Rebase__Types.InvalidArgument,
           "Seq.range: ~step=0 would cause infinite loop"
         ];
   }

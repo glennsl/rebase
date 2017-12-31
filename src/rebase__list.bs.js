@@ -1,8 +1,8 @@
 'use strict';
 
-var Curry              = require("bs-platform/lib/js/curry.js");
-var Caml_int32         = require("bs-platform/lib/js/caml_int32.js");
-var Rebase__exceptions = require("./rebase__exceptions.bs.js");
+var Curry         = require("bs-platform/lib/js/curry.js");
+var Caml_int32    = require("bs-platform/lib/js/caml_int32.js");
+var Rebase__Types = require("./Rebase__Types.bs.js");
 
 function from(x) {
   return /* :: */[
@@ -29,6 +29,18 @@ function fromArray(arr) {
       return acc;
     }
   };
+}
+
+function fromSeq(seq) {
+  var match = Curry._1(seq, /* () */0);
+  if (match) {
+    return /* :: */[
+            match[0],
+            fromSeq(match[1])
+          ];
+  } else {
+    return /* [] */0;
+  }
 }
 
 function range($staropt$star, start, finish) {
@@ -63,7 +75,7 @@ function range($staropt$star, start, finish) {
     }
   } else {
     throw [
-          Rebase__exceptions.InvalidArgument,
+          Rebase__Types.InvalidArgument,
           "List.range: ~step=0 would cause infinite loop"
         ];
   }
@@ -345,6 +357,7 @@ function concat(ys, xs) {
 
 exports.from             = from;
 exports.fromArray        = fromArray;
+exports.fromSeq          = fromSeq;
 exports.range            = range;
 exports.isEmpty          = isEmpty;
 exports.head             = head;

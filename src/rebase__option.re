@@ -1,4 +1,4 @@
-open Rebase__exceptions;
+open! Rebase__Types;
 
 type t('a) = option('a);
 
@@ -8,10 +8,9 @@ let from = x =>
 let some = x =>
   Some(x);
 
-let fromResult = Rebase__result__type.(
+let fromResult =
   fun | Ok(v) => Some(v)
-      | Error(_) => None
-);
+      | Error(_) => None;
 
 let isSome =
   fun | Some(_) => true

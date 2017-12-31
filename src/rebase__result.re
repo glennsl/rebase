@@ -1,6 +1,6 @@
-open Rebase__exceptions;
+open! Rebase__Types;
 
-type t('a, 'e) = Rebase__result__type.result('a, 'e) =
+type t('a, 'e) = result('a, 'e) =
   | Ok('a)
   | Error('e);
 

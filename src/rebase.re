@@ -1,4 +1,4 @@
-include Rebase__result__type;
+include Rebase__Types;
 
 module Array = Rebase__array;
 module Fn = Rebase__fn;
@@ -7,5 +7,3 @@ module Option = Rebase__option;
 module Result = Rebase__result;
 module Seq = Rebase__seq;
 module String = Rebase__string;
-
-include Rebase__exceptions;

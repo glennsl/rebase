@@ -1,3 +1,5 @@
+open! Rebase__Types;
+
 type t('a) = array('a);
 
 let from = x =>
@@ -36,24 +38,36 @@ let fromList =
               };
         fill(1, xs)
       };
+      
+let fromSeq = seq => {
+  let array = [||]; /* TODO: preallocate? */
+  let rec fill = seq =>
+    switch (seq()) {
+    | Nil => array
+    | Cons(x, next) => {
+      _push(x, array);
+      fill(next)
+    }};
+  fill(seq)
+};
 
 let range = (~step=1, start, finish) => {
   if (step === 0) {
-    raise(Rebase__exceptions.InvalidArgument("Array.range: ~step=0 would cause infinite loop"));
+    raise(InvalidArgument("Array.range: ~step=0 would cause infinite loop"));
   } else if (step < 0 && start < finish) {
     [||]
   } else if (step > 0 && start > finish) {
     [||]
   } else {
-    /* TODO: preallocate
+    /* TODO: preallocate?
     let length = ??;
-    let arr = _make(length);
+    let array = _make(length);
     */
-    let arr = [||];
+    let array = [||];
     let last = (finish - start) / step * step + start;
 
     let rec loop = n => {
-      _push(n, arr);
+      _push(n, array);
 
       if (n !== last) {
         loop(n + step);
@@ -61,7 +75,7 @@ let range = (~step=1, start, finish) => {
     };
 
     loop(start);
-    arr
+    array
   }
 };
 
@@ -84,14 +98,14 @@ let getOrRaise = (i, self) =>
   if (i >= 0 && i < length(self)) {
     _unsafeGetUnchecked(self, i)
   } else {
-    raise(Rebase__exceptions.IndexOutOfBounds)
+    raise(IndexOutOfBounds)
   };
 
 let setOrRaise = (i, value, self) =>
   if (i >= 0 && i < length(self)) {
     _unsafeSetUnchecked(self, i, value)
   } else {
-    raise(Rebase__exceptions.IndexOutOfBounds)
+    raise(IndexOutOfBounds)
   };
 
 [@bs.send.pipe : t('a)] external exists : ('a => Js.boolean) => bool = "some";

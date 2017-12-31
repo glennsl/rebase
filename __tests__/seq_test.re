@@ -3,18 +3,13 @@ open Expect;
 open Rebase;
 open TestHelpers;
 
-let rec _toList = seq => Seq.(
-  switch (seq()) {
-  | Nil           => []
-  | Cons(x, next) => [x, ..._toList(next)]
-  }
-);
+let _toList = List.fromSeq;
 
 let _explode = () => failwith("Oops, not lazy! The function evaluated too much");
 
 
 describe("Mappable.S", () => {
-  module M: Signatures.Mappable.S with type t('a) := Seq.t('a) = Seq;
+  module M: Signatures.Mappable.S with type t('a) := seq('a) = Seq;
 
   testFn("map",
     Fn.(M.map(x => x + 1) >> _toList), [
@@ -153,7 +148,7 @@ describe("Iterable.S", () => {
   );
 });
 
-testProperty("empty", Seq.empty() == Seq.Nil);
+testProperty("empty", Seq.empty() == Nil);
 
 testFn("cons",
   Fn.(Seq.cons |> uncurry >> _toList), [

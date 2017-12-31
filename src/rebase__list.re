@@ -1,3 +1,5 @@
+open! Rebase__Types;
+
 type t('a) = list('a);
 
 [@bs.get] external _arrayLength: array('a) => int = "length";
@@ -13,9 +15,16 @@ let fromArray = arr => {
   loop([], _arrayLength(arr) - 1)
 };
 
+let rec fromSeq = seq =>
+  switch (seq()) {
+  | Nil           => []
+  | Cons(x, next) => [x, ...fromSeq(next)]
+  };
+
+
 let range = (~step=1, start, finish) => {
   if (step === 0) {
-    raise(Rebase__exceptions.InvalidArgument("List.range: ~step=0 would cause infinite loop"));
+    raise(InvalidArgument("List.range: ~step=0 would cause infinite loop"));
   } else if (step < 0 && start < finish) {
     []
   } else if (step > 0 && start > finish) {

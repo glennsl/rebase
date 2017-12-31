@@ -1,7 +1,7 @@
 'use strict';
 
-var Curry              = require("bs-platform/lib/js/curry.js");
-var Rebase__exceptions = require("./rebase__exceptions.bs.js");
+var Curry         = require("bs-platform/lib/js/curry.js");
+var Rebase__Types = require("./Rebase__Types.bs.js");
 
 function from(x) {
   return /* Some */[x];
@@ -56,7 +56,7 @@ function getOrRaise(param) {
     return param[0];
   } else {
     throw [
-          Rebase__exceptions.InvalidArgument,
+          Rebase__Types.InvalidArgument,
           "getOrRaise called on None"
         ];
   }

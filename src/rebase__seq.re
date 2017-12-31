@@ -1,7 +1,6 @@
-type t('a) = unit => node('a)
-and node('a) =
-  | Nil
-  | Cons('a, t('a));
+open! Rebase__Types;
+
+type t('a) = seq('a);
 
 [@bs.get_index] external _unsafeArrayGet: array('a) => int => 'a = "";
 
@@ -29,7 +28,7 @@ let rec fromList =
 
 let range = (~step=1, start, finish) => {
   if (step === 0) {
-    raise(Rebase__exceptions.InvalidArgument("Seq.range: ~step=0 would cause infinite loop"));
+    raise(InvalidArgument("Seq.range: ~step=0 would cause infinite loop"));
   } else if (step < 0 && start < finish) {
     empty
   } else if (step > 0 && start > finish) {

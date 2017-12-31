@@ -1,6 +1,16 @@
-type result('a, 'e) = Rebase__result__type.result('a, 'e) =
+type result('a, 'e) = Rebase__Types.result('a, 'e) =
   | Ok('a)
   | Error('e);
+
+type seq('a) = unit => seqNode('a)
+and seqNode('a) =
+  | Nil
+  | Cons('a, seq('a));
+
+
+exception InvalidArgument(string);
+exception IndexOutOfBounds;
+
 
 module Array: {
   type t('a) = array('a);
@@ -32,6 +42,7 @@ module Array: {
   /* -- */
   let make: (int, 'a) => t('a);
   let fromList: list('a) => t('a);
+  let fromSeq: seq('a) => t('a);
   let range: (~step:int=?, int, int) => t(int);
   let length: t('a) => int;
 
@@ -108,6 +119,7 @@ module List: {
 
   /* -- */
   let fromArray: array('a) => t('a);
+  let fromSeq: seq('a) => t('a);
   let range: (~step:int=?, int, int) => t(int);
   let isEmpty: t('a) => bool;
   let head: t('a) => option('a);
@@ -194,31 +206,8 @@ module Result: {
   let flatten: (t(t('a, 'e), 'e)) => t('a, 'e);
 };
 
-module String: {
-  type t = string;
-
-  /* Concatenable.S0 */
-  let concat: (t, t) => t;
-
-  /* -- */
-  let length: t => int;
-  let includes: (t, t) => bool;
-  let startsWith: (t, t) => bool;
-  let endsWith: (t, t) => bool;
-  let isEmpty: t => bool;
-  let padStart: (int, string, t) => t;
-  let padEnd: (int, string, t) => t;
-  let trim: t => t;
-  let sub: (~from:int, ~length:int, t) => t;
-  let join: list(string) => string;
-  let joinWith: (string, list(string)) => string;
-};
-
 module Seq: {
-  type t('a) = unit => node('a)
-  and node('a) =
-    | Nil
-    | Cons('a, t('a));
+  type t('a) = seq('a);
 
   /* Mappable.S */
   let map: ('a => 'b, t('a)) => t('b);
@@ -254,5 +243,22 @@ module Seq: {
   let zip: t('a) => t('b) => t(('b, 'a));
 };
 
-exception InvalidArgument(string);
-exception IndexOutOfBounds;
+module String: {
+  type t = string;
+
+  /* Concatenable.S0 */
+  let concat: (t, t) => t;
+
+  /* -- */
+  let length: t => int;
+  let includes: (t, t) => bool;
+  let startsWith: (t, t) => bool;
+  let endsWith: (t, t) => bool;
+  let isEmpty: t => bool;
+  let padStart: (int, string, t) => t;
+  let padEnd: (int, string, t) => t;
+  let trim: t => t;
+  let sub: (~from:int, ~length:int, t) => t;
+  let join: list(string) => string;
+  let joinWith: (string, list(string)) => string;
+};

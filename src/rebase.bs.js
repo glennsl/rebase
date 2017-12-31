@@ -1,13 +1,17 @@
 'use strict';
 
-var Rebase__fn         = require("./rebase__fn.bs.js");
-var Rebase__seq        = require("./rebase__seq.bs.js");
-var Rebase__list       = require("./rebase__list.bs.js");
-var Rebase__array      = require("./rebase__array.bs.js");
-var Rebase__option     = require("./rebase__option.bs.js");
-var Rebase__result     = require("./rebase__result.bs.js");
-var Rebase__string     = require("./rebase__string.bs.js");
-var Rebase__exceptions = require("./rebase__exceptions.bs.js");
+var Rebase__fn     = require("./rebase__fn.bs.js");
+var Rebase__seq    = require("./rebase__seq.bs.js");
+var Rebase__list   = require("./rebase__list.bs.js");
+var Rebase__Types  = require("./Rebase__Types.bs.js");
+var Rebase__array  = require("./rebase__array.bs.js");
+var Rebase__option = require("./rebase__option.bs.js");
+var Rebase__result = require("./rebase__result.bs.js");
+var Rebase__string = require("./rebase__string.bs.js");
+
+var InvalidArgument = Rebase__Types.InvalidArgument;
+
+var IndexOutOfBounds = Rebase__Types.IndexOutOfBounds;
 
 function Array_000(prim, prim$1) {
   return prim$1.map(prim);
@@ -30,28 +34,28 @@ function Array_011(prim, prim$1) {
   return prim$1.concat(prim);
 }
 
-function Array_015(prim) {
+function Array_016(prim) {
   return prim.length;
 }
 
-function Array_023(prim, prim$1) {
+function Array_024(prim, prim$1) {
   prim$1.fill(prim);
   return /* () */0;
 }
 
-function Array_024(prim, prim$1, prim$2) {
+function Array_025(prim, prim$1, prim$2) {
   return prim$2.slice(prim, prim$1);
 }
 
-function Array_025(prim) {
+function Array_026(prim) {
   return prim.slice();
 }
 
-function Array_026(prim, prim$1) {
+function Array_027(prim, prim$1) {
   return prim$1.map(prim);
 }
 
-function Array_027(prim, prim$1) {
+function Array_028(prim, prim$1) {
   prim$1.forEach(prim);
   return /* () */0;
 }
@@ -71,8 +75,9 @@ var $$Array = [
   Array_011,
   Rebase__array.make,
   Rebase__array.fromList,
+  Rebase__array.fromSeq,
   Rebase__array.range,
-  Array_015,
+  Array_016,
   Rebase__array.get,
   Rebase__array.set,
   Rebase__array.getOrRaise,
@@ -80,11 +85,11 @@ var $$Array = [
   Rebase__array.unsafeGetUnchecked,
   Rebase__array.unsafeSetUnchecked,
   Rebase__array.filterMap,
-  Array_023,
   Array_024,
   Array_025,
   Array_026,
   Array_027,
+  Array_028,
   Rebase__array.findIndex
 ];
 
@@ -113,6 +118,7 @@ var List = [
   Rebase__list.filter,
   Rebase__list.concat,
   Rebase__list.fromArray,
+  Rebase__list.fromSeq,
   Rebase__list.range,
   Rebase__list.isEmpty,
   Rebase__list.head,
@@ -172,6 +178,30 @@ var Result = [
   Rebase__result.flatten
 ];
 
+var Seq = [
+  Rebase__seq.map,
+  Rebase__seq.apply,
+  Rebase__seq.from,
+  Rebase__seq.reduce,
+  Rebase__seq.reduceRight,
+  Rebase__seq.flatMap,
+  Rebase__seq.forAll,
+  Rebase__seq.find,
+  Rebase__seq.forEach,
+  Rebase__seq.exists,
+  Rebase__seq.filter,
+  Rebase__seq.empty,
+  Rebase__seq.cons,
+  Rebase__seq.fromArray,
+  Rebase__seq.fromList,
+  Rebase__seq.range,
+  Rebase__seq.count,
+  Rebase__seq.isEmpty,
+  Rebase__seq.head,
+  Rebase__seq.filterMap,
+  Rebase__seq.zip
+];
+
 function String_000(prim, prim$1) {
   return prim$1.concat(prim);
 }
@@ -223,41 +253,13 @@ var $$String = [
   Rebase__string.joinWith
 ];
 
-var Seq = [
-  Rebase__seq.map,
-  Rebase__seq.apply,
-  Rebase__seq.from,
-  Rebase__seq.reduce,
-  Rebase__seq.reduceRight,
-  Rebase__seq.flatMap,
-  Rebase__seq.forAll,
-  Rebase__seq.find,
-  Rebase__seq.forEach,
-  Rebase__seq.exists,
-  Rebase__seq.filter,
-  Rebase__seq.empty,
-  Rebase__seq.cons,
-  Rebase__seq.fromArray,
-  Rebase__seq.fromList,
-  Rebase__seq.range,
-  Rebase__seq.count,
-  Rebase__seq.isEmpty,
-  Rebase__seq.head,
-  Rebase__seq.filterMap,
-  Rebase__seq.zip
-];
-
-var InvalidArgument = Rebase__exceptions.InvalidArgument;
-
-var IndexOutOfBounds = Rebase__exceptions.IndexOutOfBounds;
-
+exports.InvalidArgument  = InvalidArgument;
+exports.IndexOutOfBounds = IndexOutOfBounds;
 exports.$$Array          = $$Array;
 exports.Fn               = Fn;
 exports.List             = List;
 exports.Option           = Option;
 exports.Result           = Result;
-exports.$$String         = $$String;
 exports.Seq              = Seq;
-exports.InvalidArgument  = InvalidArgument;
-exports.IndexOutOfBounds = IndexOutOfBounds;
+exports.$$String         = $$String;
 /* No side effect */
