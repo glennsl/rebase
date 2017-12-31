@@ -2,7 +2,7 @@
 
 var Jest        = require("bs-jest/src/jest.js");
 var Curry       = require("bs-platform/lib/js/curry.js");
-var Rebase      = require("../src/rebase.bs.js");
+var Rebase      = require("../src/Rebase.bs.js");
 var Pervasives  = require("bs-platform/lib/js/pervasives.js");
 var Caml_format = require("bs-platform/lib/js/caml_format.js");
 

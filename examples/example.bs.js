@@ -1,6 +1,6 @@
 'use strict';
 
-var Rebase = require("../src/rebase.bs.js");
+var Rebase = require("../src/Rebase.bs.js");
 
 var x = Rebase.Option[/* map */0]((function (n) {
         return (n << 1);

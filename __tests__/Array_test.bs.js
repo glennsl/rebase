@@ -2,7 +2,7 @@
 
 var Jest        = require("bs-jest/src/jest.js");
 var Curry       = require("bs-platform/lib/js/curry.js");
-var Rebase      = require("../src/rebase.bs.js");
+var Rebase      = require("../src/Rebase.bs.js");
 var Caml_int32  = require("bs-platform/lib/js/caml_int32.js");
 var TestHelpers = require("./helpers/TestHelpers.bs.js");
 
