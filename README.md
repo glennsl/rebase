@@ -15,7 +15,7 @@ Mostly undocumented and untested. Prone to change without warning. Use at your o
 * Compile to efficient JavaScript code
 * Compile to readable JavaScript code
 
-## Design rules
+## Design principles
 * JS first
 * No platform-specific APIs exposed
 * Prefer piped form, e.g. `"a" |> String.concat("b") == "ab"`
@@ -35,3 +35,8 @@ Then add `@glennsl/rebase` to `bs-dependencies` in your `bsconfig.json`:
   "bs-dependencies": ["@glennsl/rebase"]
 }
 ```
+
+## Documentation
+
+For the moment, please see [Rebase.rei](https://github.com/glennsl/rebase/blob/master/src/Rebase.rei). There's not many
+doc comments yet, but most functions should be pretty self-explanatory.
