@@ -1,8 +1,8 @@
 'use strict';
 
-var Jest        = require("bs-jest/src/jest.js");
-var Curry       = require("bs-platform/lib/js/curry.js");
-var Rebase      = require("../src/Rebase.bs.js");
+var Jest = require("bs-jest/src/jest.js");
+var Curry = require("bs-platform/lib/js/curry.js");
+var Rebase = require("../src/Rebase.bs.js");
 var TestHelpers = require("./helpers/TestHelpers.bs.js");
 
 describe("Concatenable.S0", (function () {
@@ -36,12 +36,12 @@ TestHelpers.testFn("includes", (function (s) {
       }), /* :: */[
       /* tuple */[
         "nana",
-        /* true */1
+        true
       ],
       /* :: */[
         /* tuple */[
           "nanas",
-          /* false */0
+          false
         ],
         /* [] */0
       ]
@@ -52,12 +52,12 @@ TestHelpers.testFn("startsWith", (function (s) {
       }), /* :: */[
       /* tuple */[
         "ba",
-        /* true */1
+        true
       ],
       /* :: */[
         /* tuple */[
           "na",
-          /* false */0
+          false
         ],
         /* [] */0
       ]
@@ -68,12 +68,12 @@ TestHelpers.testFn("endsWith", (function (s) {
       }), /* :: */[
       /* tuple */[
         "ba",
-        /* false */0
+        false
       ],
       /* :: */[
         /* tuple */[
           "na",
-          /* true */1
+          true
         ],
         /* [] */0
       ]
@@ -82,37 +82,37 @@ TestHelpers.testFn("endsWith", (function (s) {
 TestHelpers.testFn("isEmpty", Rebase.$$String[/* isEmpty */5], /* :: */[
       /* tuple */[
         "",
-        /* true */1
+        true
       ],
       /* :: */[
         /* tuple */[
           "foo",
-          /* false */0
+          false
         ],
         /* :: */[
           /* tuple */[
             "\t",
-            /* true */1
+            true
           ],
           /* :: */[
             /* tuple */[
               "\n",
-              /* true */1
+              true
             ],
             /* :: */[
               /* tuple */[
                 "\r",
-                /* true */1
+                true
               ],
               /* :: */[
                 /* tuple */[
                   " ",
-                  /* true */1
+                  true
                 ],
                 /* :: */[
                   /* tuple */[
                     "\t\r\n ",
-                    /* true */1
+                    true
                   ],
                   /* [] */0
                 ]

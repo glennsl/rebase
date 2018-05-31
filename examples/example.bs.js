@@ -8,7 +8,7 @@ var x = Rebase.Option[/* map */0]((function (n) {
 
 var y = Rebase.$$Array[/* map */0]((function (n) {
         return (n << 1);
-      }), /* int array */[
+      }), /* array */[
       1,
       2,
       3

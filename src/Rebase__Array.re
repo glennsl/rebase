@@ -108,26 +108,19 @@ let setOrRaise = (i, value, self) =>
     raise(IndexOutOfBounds)
   };
 
-[@bs.send.pipe : t('a)] external exists : ('a => Js.boolean) => bool = "some";
-let exists = (f, self) => exists(x => Js.Boolean.to_js_boolean(f(x)), self);
-
-[@bs.send.pipe : t('a)] external filter : ('a => Js.boolean) => t('a) = "";
-let filter = (f, self) => filter(x => Js.Boolean.to_js_boolean(f(x)), self);
-
+[@bs.send.pipe : t('a)] external exists : ('a => bool) => bool = "some";
+[@bs.send.pipe : t('a)] external filter : ('a => bool) => t('a) = "";
 [@bs.send.pipe : t('a)] [@bs.return undefined_to_opt]
-external find : ('a => Js.boolean) => option('a) = "";
-let find = (f, self) => find(x => Js.Boolean.to_js_boolean(f(x)), self);
+external find : ('a => bool) => option('a) = "";
 
-[@bs.send.pipe : t('a)] external findIndex : ('a => Js.boolean) => int = "";
+[@bs.send.pipe : t('a)] external findIndex : ('a => bool) => int = "";
 let findIndex = (f, self) =>
-  switch (findIndex(x => Js.Boolean.to_js_boolean(f(x)), self)) {
+  switch (findIndex(x => f(x), self)) {
   | -1 => None
   |  i => Some((i, _unsafeGetUnchecked(self, i)))
   };
 
-[@bs.send.pipe : t('a)] external forAll : ('a => Js.boolean) => bool = "every";
-let forAll = (f, self) => forAll(x => Js.Boolean.to_js_boolean(f(x)), self);
-
+[@bs.send.pipe : t('a)] external forAll : ('a => bool) => bool = "every";
 [@bs.send.pipe : t('a)] external forEach : ('a => unit) => unit = "";
 [@bs.send.pipe : t('a)] external forEachi : (('a, int) => unit) => unit = "forEach";
 [@bs.send.pipe : t('a)] external map : ('a => 'b) => t('b) = "";

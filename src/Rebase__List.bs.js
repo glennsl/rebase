@@ -1,7 +1,7 @@
 'use strict';
 
-var Curry         = require("bs-platform/lib/js/curry.js");
-var Caml_int32    = require("bs-platform/lib/js/caml_int32.js");
+var Curry = require("bs-platform/lib/js/curry.js");
+var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 var Rebase__Types = require("./Rebase__Types.bs.js");
 
 function from(x) {
@@ -24,7 +24,6 @@ function fromArray(arr) {
         acc
       ];
       continue ;
-      
     } else {
       return acc;
     }
@@ -45,47 +44,42 @@ function fromSeq(seq) {
 
 function range($staropt$star, start, finish) {
   var step = $staropt$star ? $staropt$star[0] : 1;
-  if (step) {
-    if (step < 0 && start < finish) {
-      return /* [] */0;
-    } else if (step > 0 && start > finish) {
-      return /* [] */0;
-    } else {
-      var last = Caml_int32.imul(Caml_int32.div(finish - start | 0, step), step) + start | 0;
-      var _acc = /* [] */0;
-      var _n = last;
-      while(true) {
-        var n = _n;
-        var acc = _acc;
-        if (n === start) {
-          return /* :: */[
-                  n,
-                  acc
-                ];
-        } else {
-          _n = n - step | 0;
-          _acc = /* :: */[
-            n,
-            acc
-          ];
-          continue ;
-          
-        }
-      };
-    }
-  } else {
+  if (step === 0) {
     throw [
           Rebase__Types.InvalidArgument,
           "List.range: ~step=0 would cause infinite loop"
         ];
+  } else if (step < 0 && start < finish || step > 0 && start > finish) {
+    return /* [] */0;
+  } else {
+    var last = Caml_int32.imul(Caml_int32.div(finish - start | 0, step), step) + start | 0;
+    var _acc = /* [] */0;
+    var _n = last;
+    while(true) {
+      var n = _n;
+      var acc = _acc;
+      if (n === start) {
+        return /* :: */[
+                n,
+                acc
+              ];
+      } else {
+        _n = n - step | 0;
+        _acc = /* :: */[
+          n,
+          acc
+        ];
+        continue ;
+      }
+    };
   }
 }
 
 function isEmpty(param) {
   if (param) {
-    return /* false */0;
+    return false;
   } else {
-    return /* true */1;
+    return true;
   }
 }
 
@@ -116,7 +110,6 @@ function reverseAndAppend(_acc, _param) {
         acc
       ];
       continue ;
-      
     } else {
       return acc;
     }
@@ -141,7 +134,6 @@ function filter(predicate, _param) {
       } else {
         _param = xs;
         continue ;
-        
       }
     } else {
       return /* [] */0;
@@ -163,7 +155,6 @@ function filterMap(f, _param) {
       } else {
         _param = xs;
         continue ;
-        
       }
     } else {
       return /* [] */0;
@@ -176,14 +167,13 @@ function exists(predicate, _param) {
     var param = _param;
     if (param) {
       if (Curry._1(predicate, param[0])) {
-        return /* true */1;
+        return true;
       } else {
         _param = param[1];
         continue ;
-        
       }
     } else {
-      return /* false */0;
+      return false;
     }
   };
 }
@@ -195,7 +185,6 @@ function forEach(f, _param) {
       Curry._1(f, param[0]);
       _param = param[1];
       continue ;
-      
     } else {
       return /* () */0;
     }
@@ -212,7 +201,6 @@ function find(predicate, _param) {
       } else {
         _param = param[1];
         continue ;
-        
       }
     } else {
       return /* None */0;
@@ -227,12 +215,11 @@ function forAll(predicate, _param) {
       if (Curry._1(predicate, param[0])) {
         _param = param[1];
         continue ;
-        
       } else {
-        return /* false */0;
+        return false;
       }
     } else {
-      return /* true */1;
+      return true;
     }
   };
 }
@@ -251,7 +238,6 @@ function flatMap(f, self) {
         _outer = outer[1];
         _inner = Curry._1(f, outer[0]);
         continue ;
-        
       } else {
         return /* [] */0;
       }
@@ -293,7 +279,6 @@ function reduce(f, _acc, _param) {
       _param = param[1];
       _acc = Curry._2(f, acc, param[0]);
       continue ;
-      
     } else {
       return acc;
     }
@@ -318,7 +303,6 @@ function length(self) {
       _param = param[1];
       _acc = acc + 1 | 0;
       continue ;
-      
     } else {
       return acc;
     }
@@ -355,28 +339,28 @@ function concat(ys, xs) {
   }
 }
 
-exports.from             = from;
-exports.fromArray        = fromArray;
-exports.fromSeq          = fromSeq;
-exports.range            = range;
-exports.isEmpty          = isEmpty;
-exports.head             = head;
-exports.tail             = tail;
+exports.from = from;
+exports.fromArray = fromArray;
+exports.fromSeq = fromSeq;
+exports.range = range;
+exports.isEmpty = isEmpty;
+exports.head = head;
+exports.tail = tail;
 exports.reverseAndAppend = reverseAndAppend;
-exports.reverse          = reverse;
-exports.filter           = filter;
-exports.filterMap        = filterMap;
-exports.exists           = exists;
-exports.forEach          = forEach;
-exports.find             = find;
-exports.forAll           = forAll;
-exports.flatMap          = flatMap;
-exports.map              = map;
-exports.product          = product;
-exports.apply            = apply;
-exports.reduce           = reduce;
-exports.reduceRight      = reduceRight;
-exports.length           = length;
-exports.zip              = zip;
-exports.concat           = concat;
+exports.reverse = reverse;
+exports.filter = filter;
+exports.filterMap = filterMap;
+exports.exists = exists;
+exports.forEach = forEach;
+exports.find = find;
+exports.forAll = forAll;
+exports.flatMap = flatMap;
+exports.map = map;
+exports.product = product;
+exports.apply = apply;
+exports.reduce = reduce;
+exports.reduceRight = reduceRight;
+exports.length = length;
+exports.zip = zip;
+exports.concat = concat;
 /* No side effect */

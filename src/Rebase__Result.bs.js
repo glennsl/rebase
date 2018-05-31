@@ -1,8 +1,8 @@
 'use strict';
 
-var Block         = require("bs-platform/lib/js/block.js");
-var Curry         = require("bs-platform/lib/js/curry.js");
-var Js_exn        = require("bs-platform/lib/js/js_exn.js");
+var Block = require("bs-platform/lib/js/block.js");
+var Curry = require("bs-platform/lib/js/curry.js");
+var Js_exn = require("bs-platform/lib/js/js_exn.js");
 var Rebase__Types = require("./Rebase__Types.bs.js");
 
 function from(x) {
@@ -11,17 +11,17 @@ function from(x) {
 
 function isOk(param) {
   if (param.tag) {
-    return /* false */0;
+    return false;
   } else {
-    return /* true */1;
+    return true;
   }
 }
 
 function isError(param) {
   if (param.tag) {
-    return /* true */1;
+    return true;
   } else {
-    return /* false */0;
+    return false;
   }
 }
 
@@ -116,7 +116,7 @@ function mapOrElse(f, g, param) {
 
 function exists(predicate, param) {
   if (param.tag) {
-    return /* false */0;
+    return false;
   } else {
     return Curry._1(predicate, param[0]);
   }
@@ -124,7 +124,7 @@ function exists(predicate, param) {
 
 function forAll(predicate, param) {
   if (param.tag) {
-    return /* true */1;
+    return true;
   } else {
     return Curry._1(predicate, param[0]);
   }
@@ -193,27 +193,27 @@ function reduceRight(f, acc, param) {
 
 var flatMap = andThen;
 
-exports.from        = from;
-exports.isOk        = isOk;
-exports.isError     = isError;
-exports.wrap        = wrap;
-exports.wrap1       = wrap1;
-exports.wrap2       = wrap2;
-exports.or_         = or_;
-exports.getOr       = getOr;
-exports.getOrRaise  = getOrRaise;
-exports.map         = map;
-exports.map2        = map2;
-exports.mapOr       = mapOr;
-exports.mapOrElse   = mapOrElse;
-exports.exists      = exists;
-exports.forAll      = forAll;
-exports.forEach     = forEach;
-exports.find        = find;
-exports.andThen     = andThen;
-exports.flatMap     = flatMap;
-exports.flatten     = flatten;
-exports.apply       = apply;
-exports.reduce      = reduce;
+exports.from = from;
+exports.isOk = isOk;
+exports.isError = isError;
+exports.wrap = wrap;
+exports.wrap1 = wrap1;
+exports.wrap2 = wrap2;
+exports.or_ = or_;
+exports.getOr = getOr;
+exports.getOrRaise = getOrRaise;
+exports.map = map;
+exports.map2 = map2;
+exports.mapOr = mapOr;
+exports.mapOrElse = mapOrElse;
+exports.exists = exists;
+exports.forAll = forAll;
+exports.forEach = forEach;
+exports.find = find;
+exports.andThen = andThen;
+exports.flatMap = flatMap;
+exports.flatten = flatten;
+exports.apply = apply;
+exports.reduce = reduce;
 exports.reduceRight = reduceRight;
 /* No side effect */

@@ -1,7 +1,8 @@
 'use strict';
 
-var Curry         = require("bs-platform/lib/js/curry.js");
-var Caml_int32    = require("bs-platform/lib/js/caml_int32.js");
+var Curry = require("bs-platform/lib/js/curry.js");
+var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
+var Js_undefined = require("bs-platform/lib/js/js_undefined.js");
 var Rebase__Types = require("./Rebase__Types.bs.js");
 
 function empty() {
@@ -18,7 +19,7 @@ function cons(x, seq, _) {
 function fromArray(arr) {
   var get = function (i) {
     var x = arr[i];
-    if (x === undefined) {
+    if (Js_undefined.testAny(x)) {
       return /* Nil */0;
     } else {
       return /* Cons */[
@@ -60,46 +61,42 @@ function fromList(param) {
 
 function range($staropt$star, start, finish) {
   var step = $staropt$star ? $staropt$star[0] : 1;
-  if (step) {
-    if (step < 0 && start < finish) {
-      return empty;
-    } else if (step > 0 && start > finish) {
-      return empty;
-    } else {
-      var last = Caml_int32.imul(Caml_int32.div(finish - start | 0, step), step) + start | 0;
-      var next = function (n) {
-        if (n === last) {
-          return (function () {
-              return /* Cons */[
-                      n,
-                      empty
-                    ];
-            });
-        } else {
-          return (function () {
-              return /* Cons */[
-                      n,
-                      next(n + step | 0)
-                    ];
-            });
-        }
-      };
-      return next(start);
-    }
-  } else {
+  if (step === 0) {
     throw [
           Rebase__Types.InvalidArgument,
           "Seq.range: ~step=0 would cause infinite loop"
         ];
+  } else if (step < 0 && start < finish || step > 0 && start > finish) {
+    return empty;
+  } else {
+    var last = Caml_int32.imul(Caml_int32.div(finish - start | 0, step), step) + start | 0;
+    var next = function (n) {
+      if (n === last) {
+        return (function () {
+            return /* Cons */[
+                    n,
+                    empty
+                  ];
+          });
+      } else {
+        return (function () {
+            return /* Cons */[
+                    n,
+                    next(n + step | 0)
+                  ];
+          });
+      }
+    };
+    return next(start);
   }
 }
 
 function isEmpty(seq) {
   var match = Curry._1(seq, /* () */0);
   if (match) {
-    return /* false */0;
+    return false;
   } else {
-    return /* true */1;
+    return true;
   }
 }
 
@@ -132,7 +129,6 @@ function filter(predicate, seq, _) {
       } else {
         _seq = next;
         continue ;
-        
       }
     } else {
       return /* Nil */0;
@@ -160,7 +156,6 @@ function filterMap(f, seq, _) {
       } else {
         _seq = next;
         continue ;
-        
       }
     } else {
       return /* Nil */0;
@@ -174,14 +169,13 @@ function exists(predicate, _seq) {
     var match = Curry._1(seq, /* () */0);
     if (match) {
       if (Curry._1(predicate, match[0])) {
-        return /* true */1;
+        return true;
       } else {
         _seq = match[1];
         continue ;
-        
       }
     } else {
-      return /* false */0;
+      return false;
     }
   };
 }
@@ -194,7 +188,6 @@ function forEach(f, _seq) {
       Curry._1(f, match[0]);
       _seq = match[1];
       continue ;
-      
     } else {
       return /* () */0;
     }
@@ -212,7 +205,6 @@ function find(predicate, _seq) {
       } else {
         _seq = match[1];
         continue ;
-        
       }
     } else {
       return /* None */0;
@@ -228,12 +220,11 @@ function forAll(predicate, _seq) {
       if (Curry._1(predicate, match[0])) {
         _seq = match[1];
         continue ;
-        
       } else {
-        return /* false */0;
+        return false;
       }
     } else {
-      return /* true */1;
+      return true;
     }
   };
 }
@@ -275,7 +266,6 @@ function flatMap(f, seq) {
           _outer = match$1[1];
           _inner = Curry._1(f, match$1[0]);
           continue ;
-          
         } else {
           return /* Nil */0;
         }
@@ -296,7 +286,6 @@ function reduce(f, _acc, _seq) {
       _seq = match[1];
       _acc = Curry._2(f, acc, match[0]);
       continue ;
-      
     } else {
       return acc;
     }
@@ -340,47 +329,43 @@ function count(seq) {
 function zip(ys, xs, _) {
   var match = Curry._1(xs, /* () */0);
   var match$1 = Curry._1(ys, /* () */0);
-  if (match) {
-    if (match$1) {
-      var nextY = match$1[1];
-      var nextX = match[1];
-      return /* Cons */[
-              /* tuple */[
-                match[0],
-                match$1[0]
-              ],
-              (function (param) {
-                  return zip(nextY, nextX, param);
-                })
-            ];
-    } else {
-      return /* Nil */0;
-    }
+  if (match && match$1) {
+    var nextY = match$1[1];
+    var nextX = match[1];
+    return /* Cons */[
+            /* tuple */[
+              match[0],
+              match$1[0]
+            ],
+            (function (param) {
+                return zip(nextY, nextX, param);
+              })
+          ];
   } else {
     return /* Nil */0;
   }
 }
 
-exports.empty       = empty;
-exports.cons        = cons;
-exports.fromArray   = fromArray;
-exports.from        = from;
-exports.fromList    = fromList;
-exports.range       = range;
-exports.isEmpty     = isEmpty;
-exports.head        = head;
-exports.filter      = filter;
-exports.filterMap   = filterMap;
-exports.exists      = exists;
-exports.forEach     = forEach;
-exports.find        = find;
-exports.forAll      = forAll;
-exports.map         = map;
-exports.flatMap     = flatMap;
-exports.reduce      = reduce;
+exports.empty = empty;
+exports.cons = cons;
+exports.fromArray = fromArray;
+exports.from = from;
+exports.fromList = fromList;
+exports.range = range;
+exports.isEmpty = isEmpty;
+exports.head = head;
+exports.filter = filter;
+exports.filterMap = filterMap;
+exports.exists = exists;
+exports.forEach = forEach;
+exports.find = find;
+exports.forAll = forAll;
+exports.map = map;
+exports.flatMap = flatMap;
+exports.reduce = reduce;
 exports.reduceRight = reduceRight;
-exports.product     = product;
-exports.apply       = apply;
-exports.count       = count;
-exports.zip         = zip;
+exports.product = product;
+exports.apply = apply;
+exports.count = count;
+exports.zip = zip;
 /* No side effect */

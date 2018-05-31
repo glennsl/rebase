@@ -1,11 +1,11 @@
 'use strict';
 
-var Jest                    = require("bs-jest/src/jest.js");
-var Block                   = require("bs-platform/lib/js/block.js");
-var Curry                   = require("bs-platform/lib/js/curry.js");
-var Rebase                  = require("../src/Rebase.bs.js");
-var Pervasives              = require("bs-platform/lib/js/pervasives.js");
-var TestHelpers             = require("./helpers/TestHelpers.bs.js");
+var Jest = require("bs-jest/src/jest.js");
+var Block = require("bs-platform/lib/js/block.js");
+var Curry = require("bs-platform/lib/js/curry.js");
+var Rebase = require("../src/Rebase.bs.js");
+var Pervasives = require("bs-platform/lib/js/pervasives.js");
+var TestHelpers = require("./helpers/TestHelpers.bs.js");
 var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
 
 describe("Mappable.S1_5", (function () {
@@ -161,21 +161,21 @@ describe("Iterable.S1_5", (function () {
         var M_002 = Rebase.Result[9];
         var M_003 = Rebase.Result[10];
         TestHelpers.testFn("exists", Curry._1(M_003, (function (x) {
-                    return +(x % 2 === 0);
+                    return x % 2 === 0;
                   })), /* :: */[
               /* tuple */[
                 /* Error */Block.__(1, ["err"]),
-                /* false */0
+                false
               ],
               /* :: */[
                 /* tuple */[
                   /* Ok */Block.__(0, [1]),
-                  /* false */0
+                  false
                 ],
                 /* :: */[
                   /* tuple */[
                     /* Ok */Block.__(0, [2]),
-                    /* true */1
+                    true
                   ],
                   /* [] */0
                 ]
@@ -202,7 +202,7 @@ describe("Iterable.S1_5", (function () {
                 return Jest.Expect[/* toEqual */12](param[1], Jest.Expect[/* expect */0](checked[0]));
               }));
         TestHelpers.testFn("find", Curry._1(M_001, (function (x) {
-                    return +(x % 2 === 0);
+                    return x % 2 === 0;
                   })), /* :: */[
               /* tuple */[
                 /* Error */Block.__(1, ["err"]),
@@ -223,21 +223,21 @@ describe("Iterable.S1_5", (function () {
               ]
             ]);
         return TestHelpers.testFn("forAll", Curry._1(M_000, (function (x) {
-                          return +(x % 2 === 0);
+                          return x % 2 === 0;
                         })), /* :: */[
                     /* tuple */[
                       /* Error */Block.__(1, ["err"]),
-                      /* true */1
+                      true
                     ],
                     /* :: */[
                       /* tuple */[
                         /* Ok */Block.__(0, [1]),
-                        /* false */0
+                        false
                       ],
                       /* :: */[
                         /* tuple */[
                           /* Ok */Block.__(0, [2]),
-                          /* true */1
+                          true
                         ],
                         /* [] */0
                       ]
@@ -248,12 +248,12 @@ describe("Iterable.S1_5", (function () {
 TestHelpers.testFn("isOk", Rebase.Result[/* isOk */11], /* :: */[
       /* tuple */[
         /* Error */Block.__(1, ["err"]),
-        /* false */0
+        false
       ],
       /* :: */[
         /* tuple */[
           /* Ok */Block.__(0, [42]),
-          /* true */1
+          true
         ],
         /* [] */0
       ]
@@ -262,12 +262,12 @@ TestHelpers.testFn("isOk", Rebase.Result[/* isOk */11], /* :: */[
 TestHelpers.testFn("isError", Rebase.Result[/* isError */12], /* :: */[
       /* tuple */[
         /* Error */Block.__(1, ["err"]),
-        /* true */1
+        true
       ],
       /* :: */[
         /* tuple */[
           /* Ok */Block.__(0, [42]),
-          /* false */0
+          false
         ],
         /* [] */0
       ]

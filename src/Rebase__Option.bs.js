@@ -1,6 +1,6 @@
 'use strict';
 
-var Curry         = require("bs-platform/lib/js/curry.js");
+var Curry = require("bs-platform/lib/js/curry.js");
 var Rebase__Types = require("./Rebase__Types.bs.js");
 
 function from(x) {
@@ -21,17 +21,17 @@ function fromResult(param) {
 
 function isSome(param) {
   if (param) {
-    return /* true */1;
+    return true;
   } else {
-    return /* false */0;
+    return false;
   }
 }
 
 function isNone(param) {
   if (param) {
-    return /* false */0;
+    return false;
   } else {
-    return /* true */1;
+    return true;
   }
 }
 
@@ -90,7 +90,7 @@ function exists(predicate, param) {
   if (param) {
     return Curry._1(predicate, param[0]);
   } else {
-    return /* false */0;
+    return false;
   }
 }
 
@@ -98,7 +98,7 @@ function forAll(predicate, param) {
   if (param) {
     return Curry._1(predicate, param[0]);
   } else {
-    return /* true */1;
+    return true;
   }
 }
 
@@ -173,26 +173,26 @@ function reduceRight(f, acc, param) {
 
 var flatMap = andThen;
 
-exports.from        = from;
-exports.some        = some;
-exports.fromResult  = fromResult;
-exports.isSome      = isSome;
-exports.isNone      = isNone;
-exports.or_         = or_;
-exports.getOr       = getOr;
-exports.getOrRaise  = getOrRaise;
-exports.map         = map;
-exports.mapOr       = mapOr;
-exports.mapOrElse   = mapOrElse;
-exports.exists      = exists;
-exports.forAll      = forAll;
-exports.filter      = filter;
-exports.forEach     = forEach;
-exports.find        = find;
-exports.andThen     = andThen;
-exports.flatMap     = flatMap;
-exports.flatten     = flatten;
-exports.apply       = apply;
-exports.reduce      = reduce;
+exports.from = from;
+exports.some = some;
+exports.fromResult = fromResult;
+exports.isSome = isSome;
+exports.isNone = isNone;
+exports.or_ = or_;
+exports.getOr = getOr;
+exports.getOrRaise = getOrRaise;
+exports.map = map;
+exports.mapOr = mapOr;
+exports.mapOrElse = mapOrElse;
+exports.exists = exists;
+exports.forAll = forAll;
+exports.filter = filter;
+exports.forEach = forEach;
+exports.find = find;
+exports.andThen = andThen;
+exports.flatMap = flatMap;
+exports.flatten = flatten;
+exports.apply = apply;
+exports.reduce = reduce;
 exports.reduceRight = reduceRight;
 /* No side effect */

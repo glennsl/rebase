@@ -1,9 +1,9 @@
 'use strict';
 
-var Jest        = require("bs-jest/src/jest.js");
-var Curry       = require("bs-platform/lib/js/curry.js");
-var Rebase      = require("../src/Rebase.bs.js");
-var Caml_int32  = require("bs-platform/lib/js/caml_int32.js");
+var Jest = require("bs-jest/src/jest.js");
+var Curry = require("bs-platform/lib/js/curry.js");
+var Rebase = require("../src/Rebase.bs.js");
+var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 var TestHelpers = require("./helpers/TestHelpers.bs.js");
 
 describe("Mappable.S", (function () {
@@ -11,10 +11,10 @@ describe("Mappable.S", (function () {
         return Jest.test("map", (function () {
                       return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M[/* map */0], (function (x) {
                                             return x + 1 | 0;
-                                          }), /* int array */[
+                                          }), /* array */[
                                           1,
                                           2
-                                        ])), /* int array */[
+                                        ])), /* array */[
                                   2,
                                   3
                                 ]);
@@ -33,10 +33,10 @@ describe("Applicative.S", (function () {
                                     (function (x) {
                                         return Caml_int32.imul(x, x);
                                       })
-                                  ], /* int array */[
+                                  ], /* array */[
                                     3,
                                     8
-                                  ])), /* int array */[
+                                  ])), /* array */[
                             6,
                             16,
                             9,
@@ -44,7 +44,7 @@ describe("Applicative.S", (function () {
                           ]);
               }));
         return Jest.test("from", (function () {
-                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._1(M_002, 42)), /* int array */[42]);
+                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._1(M_002, 42)), /* array */[42]);
                     }));
       }));
 
@@ -54,7 +54,7 @@ describe("Reduceable.S", (function () {
         Jest.test("reduce", (function () {
                 return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._3(M_000, (function (acc, x) {
                                       return x - acc | 0;
-                                    }), 10, /* int array */[
+                                    }), 10, /* array */[
                                     1,
                                     2
                                   ])), 11);
@@ -62,7 +62,7 @@ describe("Reduceable.S", (function () {
         return Jest.test("reduceRight", (function () {
                       return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._3(M_001, (function (acc, x) {
                                             return x - acc | 0;
-                                          }), 10, /* int array */[
+                                          }), 10, /* array */[
                                           1,
                                           2
                                         ])), 9);
@@ -76,11 +76,11 @@ describe("Monad.S", (function () {
         var M_003 = Rebase.$$Array[5];
         return Jest.test("flatMap", (function () {
                       return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_003, (function (x) {
-                                            return /* int array */[
+                                            return /* array */[
                                                     0,
                                                     x
                                                   ];
-                                          }), /* int array */[
+                                          }), /* array */[
                                           1,
                                           2,
                                           3
@@ -103,33 +103,33 @@ describe("Iterable.S", (function () {
         var M_004 = Rebase.$$Array[10];
         Jest.test("filter", (function () {
                 return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_004, (function (x) {
-                                      return +(x % 2 === 0);
-                                    }), /* int array */[
+                                      return x % 2 === 0;
+                                    }), /* array */[
                                     1,
                                     2
-                                  ])), /* int array */[2]);
+                                  ])), /* array */[2]);
               }));
         Jest.testAll("exists", /* :: */[
               /* tuple */[
-                /* int array */[
+                /* array */[
                   1,
                   3
                 ],
-                /* false */0
+                false
               ],
               /* :: */[
                 /* tuple */[
-                  /* int array */[
+                  /* array */[
                     1,
                     2
                   ],
-                  /* true */1
+                  true
                 ],
                 /* [] */0
               ]
             ], (function (param) {
                 return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_003, (function (x) {
-                                      return +(x % 2 === 0);
+                                      return x % 2 === 0;
                                     }), param[0])), param[1]);
               }));
         Jest.test("forEach", (function () {
@@ -140,7 +140,7 @@ describe("Iterable.S", (function () {
                           checked[0]
                         ];
                         return /* () */0;
-                      }), /* int array */[
+                      }), /* array */[
                       1,
                       2
                     ]);
@@ -154,7 +154,7 @@ describe("Iterable.S", (function () {
               }));
         Jest.testAll("find", /* :: */[
               /* tuple */[
-                /* int array */[
+                /* array */[
                   1,
                   3
                 ],
@@ -162,7 +162,7 @@ describe("Iterable.S", (function () {
               ],
               /* :: */[
                 /* tuple */[
-                  /* int array */[
+                  /* array */[
                     1,
                     2,
                     4
@@ -173,30 +173,30 @@ describe("Iterable.S", (function () {
               ]
             ], (function (param) {
                 return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_001, (function (x) {
-                                      return +(x % 2 === 0);
+                                      return x % 2 === 0;
                                     }), param[0])), param[1]);
               }));
         return Jest.testAll("forAll", /* :: */[
                     /* tuple */[
-                      /* int array */[
+                      /* array */[
                         2,
                         4
                       ],
-                      /* true */1
+                      true
                     ],
                     /* :: */[
                       /* tuple */[
-                        /* int array */[
+                        /* array */[
                           1,
                           2
                         ],
-                        /* false */0
+                        false
                       ],
                       /* [] */0
                     ]
                   ], (function (param) {
                       return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_000, (function (x) {
-                                            return +(x % 2 === 0);
+                                            return x % 2 === 0;
                                           }), param[0])), param[1]);
                     }));
       }));
@@ -204,13 +204,13 @@ describe("Iterable.S", (function () {
 describe("Concatenable.S", (function () {
         var M = [Rebase.$$Array[11]];
         return Jest.test("concat", (function () {
-                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M[/* concat */0], /* int array */[
+                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M[/* concat */0], /* array */[
                                           3,
                                           4
-                                        ], /* int array */[
+                                        ], /* array */[
                                           1,
                                           2
-                                        ])), /* int array */[
+                                        ])), /* array */[
                                   1,
                                   2,
                                   3,
@@ -220,7 +220,7 @@ describe("Concatenable.S", (function () {
       }));
 
 Jest.test("length", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* length */16](/* int array */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* length */16](/* array */[
                             1,
                             2
                           ])), 2);
@@ -254,7 +254,7 @@ TestHelpers.testFn("fromList", Rebase.$$Array[/* fromList */13], /* :: */[
             /* [] */0
           ]
         ],
-        /* int array */[
+        /* array */[
           1,
           2
         ]
@@ -262,7 +262,7 @@ TestHelpers.testFn("fromList", Rebase.$$Array[/* fromList */13], /* :: */[
       /* :: */[
         /* tuple */[
           /* [] */0,
-          /* int array */[]
+          /* array */[]
         ],
         /* [] */0
       ]
@@ -287,14 +287,14 @@ var partial_arg$5 = Rebase.Seq[/* cons */12];
 TestHelpers.testFn("fromSeq", Rebase.$$Array[/* fromSeq */14], /* :: */[
       /* tuple */[
         Rebase.Seq[/* empty */11],
-        /* int array */[]
+        /* array */[]
       ],
       /* :: */[
         /* tuple */[
           (function (param) {
               return partial_arg$5(1, partial_arg$4, param);
             }),
-          /* int array */[
+          /* array */[
             1,
             2,
             3
@@ -312,7 +312,7 @@ TestHelpers.testFn("range", (function (param) {
           0,
           0
         ],
-        /* int array */[0]
+        /* array */[0]
       ],
       /* :: */[
         /* tuple */[
@@ -334,7 +334,7 @@ TestHelpers.testFn("range", (function (param) {
               2,
               4
             ],
-            /* int array */[
+            /* array */[
               2,
               3,
               4
@@ -346,7 +346,7 @@ TestHelpers.testFn("range", (function (param) {
                 -2,
                 0
               ],
-              /* int array */[
+              /* array */[
                 -2,
                 -1,
                 0
@@ -358,7 +358,7 @@ TestHelpers.testFn("range", (function (param) {
                   4,
                   2
                 ],
-                /* int array */[]
+                /* array */[]
               ],
               /* :: */[
                 /* tuple */[
@@ -366,7 +366,7 @@ TestHelpers.testFn("range", (function (param) {
                     -2,
                     -4
                   ],
-                  /* int array */[]
+                  /* array */[]
                 ],
                 /* :: */[
                   /* tuple */[
@@ -374,7 +374,7 @@ TestHelpers.testFn("range", (function (param) {
                       2,
                       -2
                     ],
-                    /* int array */[]
+                    /* array */[]
                   ],
                   /* [] */0
                 ]
@@ -394,7 +394,7 @@ TestHelpers.testFn("range - step", (function (param) {
           0,
           2
         ],
-        /* int array */[0]
+        /* array */[0]
       ],
       /* :: */[
         /* tuple */[
@@ -403,7 +403,7 @@ TestHelpers.testFn("range - step", (function (param) {
             3,
             2
           ],
-          /* int array */[
+          /* array */[
             0,
             2
           ]
@@ -415,7 +415,7 @@ TestHelpers.testFn("range - step", (function (param) {
               5,
               2
             ],
-            /* int array */[
+            /* array */[
               2,
               4
             ]
@@ -427,7 +427,7 @@ TestHelpers.testFn("range - step", (function (param) {
                 0,
                 -2
               ],
-              /* int array */[0]
+              /* array */[0]
             ],
             /* :: */[
               /* tuple */[
@@ -436,7 +436,7 @@ TestHelpers.testFn("range - step", (function (param) {
                   3,
                   -2
                 ],
-                /* int array */[]
+                /* array */[]
               ],
               /* :: */[
                 /* tuple */[
@@ -445,7 +445,7 @@ TestHelpers.testFn("range - step", (function (param) {
                     0,
                     -2
                   ],
-                  /* int array */[
+                  /* array */[
                     3,
                     1
                   ]
@@ -467,7 +467,7 @@ Jest.test("range - step 0", (function () {
                         })));
       }));
 
-var partial_arg$6 = /* int array */[
+var partial_arg$6 = /* array */[
   1,
   2
 ];
@@ -497,7 +497,7 @@ TestHelpers.testFn("get", (function (param) {
     ]);
 
 Jest.test("set - in bounds", (function () {
-        var a = /* int array */[
+        var a = /* array */[
           1,
           2
         ];
@@ -506,7 +506,7 @@ Jest.test("set - in bounds", (function () {
       }));
 
 Jest.test("set - out of bounds", (function () {
-        var a = /* int array */[
+        var a = /* array */[
           1,
           2
         ];
@@ -515,7 +515,7 @@ Jest.test("set - out of bounds", (function () {
       }));
 
 Jest.test("[] get", (function () {
-        var a = /* int array */[
+        var a = /* array */[
           1,
           2
         ];
@@ -523,7 +523,7 @@ Jest.test("[] get", (function () {
       }));
 
 Jest.test("[] set - in bounds", (function () {
-        var a = /* int array */[
+        var a = /* array */[
           1,
           2
         ];
@@ -532,7 +532,7 @@ Jest.test("[] set - in bounds", (function () {
       }));
 
 Jest.test("[] set - out of bounds", (function () {
-        var a = /* int array */[
+        var a = /* array */[
           1,
           2
         ];
@@ -541,7 +541,7 @@ Jest.test("[] set - out of bounds", (function () {
       }));
 
 Jest.test("getOrRaise - in bounds", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* getOrRaise */19](1, /* int array */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* getOrRaise */19](1, /* array */[
                             1,
                             2
                           ])), 2);
@@ -549,7 +549,7 @@ Jest.test("getOrRaise - in bounds", (function () {
 
 Jest.test("getOrRaise - out of bounds", (function () {
         return Jest.Expect[/* toThrowException */20](Rebase.IndexOutOfBounds, Jest.Expect[/* expect */0]((function () {
-                          return Rebase.$$Array[/* getOrRaise */19](2, /* int array */[
+                          return Rebase.$$Array[/* getOrRaise */19](2, /* array */[
                                       1,
                                       2
                                     ]);
@@ -557,7 +557,7 @@ Jest.test("getOrRaise - out of bounds", (function () {
       }));
 
 Jest.test("setOrRaise - in bounds", (function () {
-        var a = /* int array */[
+        var a = /* array */[
           1,
           2
         ];
@@ -567,7 +567,7 @@ Jest.test("setOrRaise - in bounds", (function () {
 
 Jest.test("setOrRaise - out of bounds", (function () {
         return Jest.Expect[/* toThrowException */20](Rebase.IndexOutOfBounds, Jest.Expect[/* expect */0]((function () {
-                          return Rebase.$$Array[/* setOrRaise */20](2, 3, /* int array */[
+                          return Rebase.$$Array[/* setOrRaise */20](2, 3, /* array */[
                                       1,
                                       2
                                     ]);
@@ -575,21 +575,21 @@ Jest.test("setOrRaise - out of bounds", (function () {
       }));
 
 Jest.test("unsafeGetUnchecked - in bounds", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* unsafeGetUnchecked */21](1, /* int array */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* unsafeGetUnchecked */21](1, /* array */[
                             1,
                             2
                           ])), 2);
       }));
 
 Jest.test("unsafeGetUnchecked - out of bounds", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* unsafeGetUnchecked */21](2, /* int array */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$Array[/* unsafeGetUnchecked */21](2, /* array */[
                             1,
                             2
                           ])), undefined);
       }));
 
 Jest.test("unsafeSetUnchecked - in bounds", (function () {
-        var a = /* int array */[
+        var a = /* array */[
           1,
           2
         ];
@@ -598,7 +598,7 @@ Jest.test("unsafeSetUnchecked - in bounds", (function () {
       }));
 
 Jest.test("unsafeSetUnchecked - out of bounds", (function () {
-        var a = /* int array */[
+        var a = /* array */[
           1,
           2
         ];
@@ -608,25 +608,25 @@ Jest.test("unsafeSetUnchecked - out of bounds", (function () {
 
 Jest.test("filterMap", (function () {
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* filterMap */23]((function (x) {
-                              var match = +(x % 2 === 0);
-                              if (match !== 0) {
+                              var match = x % 2 === 0;
+                              if (match) {
                                 return /* Some */[x + 1 | 0];
                               } else {
                                 return /* None */0;
                               }
-                            }), /* int array */[
+                            }), /* array */[
                             1,
                             2
-                          ])), /* int array */[3]);
+                          ])), /* array */[3]);
       }));
 
 Jest.test("fill", (function () {
-        var a = /* int array */[
+        var a = /* array */[
           1,
           2
         ];
         Rebase.$$Array[/* fill */24](0, a);
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](a), /* int array */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](a), /* array */[
                     0,
                     0
                   ]);
@@ -636,31 +636,31 @@ Jest.testAll("slice", /* :: */[
       /* tuple */[
         0,
         0,
-        /* int array */[]
+        /* array */[]
       ],
       /* :: */[
         /* tuple */[
           2,
           0,
-          /* int array */[]
+          /* array */[]
         ],
         /* :: */[
           /* tuple */[
             2,
             2,
-            /* int array */[]
+            /* array */[]
           ],
           /* :: */[
             /* tuple */[
               2,
               3,
-              /* int array */[3]
+              /* array */[3]
             ],
             /* :: */[
               /* tuple */[
                 2,
                 7,
-                /* int array */[
+                /* array */[
                   3,
                   4
                 ]
@@ -669,13 +669,13 @@ Jest.testAll("slice", /* :: */[
                 /* tuple */[
                   7,
                   9,
-                  /* int array */[]
+                  /* array */[]
                 ],
                 /* :: */[
                   /* tuple */[
                     0,
                     -1,
-                    /* int array */[
+                    /* array */[
                       1,
                       2,
                       3
@@ -685,25 +685,25 @@ Jest.testAll("slice", /* :: */[
                     /* tuple */[
                       2,
                       -1,
-                      /* int array */[3]
+                      /* array */[3]
                     ],
                     /* :: */[
                       /* tuple */[
                         -1,
                         0,
-                        /* int array */[]
+                        /* array */[]
                       ],
                       /* :: */[
                         /* tuple */[
                           -1,
                           2,
-                          /* int array */[]
+                          /* array */[]
                         ],
                         /* :: */[
                           /* tuple */[
                             -1,
                             -2,
-                            /* int array */[]
+                            /* array */[]
                           ],
                           /* [] */0
                         ]
@@ -717,7 +717,7 @@ Jest.testAll("slice", /* :: */[
         ]
       ]
     ], (function (param) {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* slice */25](param[0], param[1], /* int array */[
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* slice */25](param[0], param[1], /* array */[
                             1,
                             2,
                             3,
@@ -726,7 +726,7 @@ Jest.testAll("slice", /* :: */[
       }));
 
 Jest.test("copy", (function () {
-        var a = /* int array */[
+        var a = /* array */[
           1,
           2
         ];
@@ -736,11 +736,11 @@ Jest.test("copy", (function () {
                         a,
                         b
                       ]), /* tuple */[
-                    /* int array */[
+                    /* array */[
                       1,
                       0
                     ],
-                    /* int array */[
+                    /* array */[
                       1,
                       2
                     ]
@@ -822,7 +822,7 @@ Jest.testAll("findIndex", /* :: */[
       ]
     ], (function (param) {
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* findIndex */29]((function (x) {
-                              return +(Rebase.$$String[/* length */1](x) === 2);
+                              return Rebase.$$String[/* length */1](x) === 2;
                             }), param[0])), param[1]);
       }));
 

@@ -1,10 +1,11 @@
 'use strict';
 
-var Rebase__Fn     = require("./Rebase__Fn.bs.js");
-var Rebase__Seq    = require("./Rebase__Seq.bs.js");
-var Rebase__List   = require("./Rebase__List.bs.js");
-var Rebase__Array  = require("./Rebase__Array.bs.js");
-var Rebase__Types  = require("./Rebase__Types.bs.js");
+var Rebase__Fn = require("./Rebase__Fn.bs.js");
+var Rebase__Seq = require("./Rebase__Seq.bs.js");
+var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
+var Rebase__List = require("./Rebase__List.bs.js");
+var Rebase__Array = require("./Rebase__Array.bs.js");
+var Rebase__Types = require("./Rebase__Types.bs.js");
 var Rebase__Option = require("./Rebase__Option.bs.js");
 var Rebase__Result = require("./Rebase__Result.bs.js");
 var Rebase__String = require("./Rebase__String.bs.js");
@@ -25,9 +26,25 @@ function Array_004(prim, prim$1, prim$2) {
   return prim$2.reduceRight(prim, prim$1);
 }
 
+function Array_006(prim, prim$1) {
+  return prim$1.every(prim);
+}
+
+function Array_007(prim, prim$1) {
+  return Js_primitive.undefined_to_opt(prim$1.find(prim));
+}
+
 function Array_008(prim, prim$1) {
   prim$1.forEach(prim);
   return /* () */0;
+}
+
+function Array_009(prim, prim$1) {
+  return prim$1.some(prim);
+}
+
+function Array_010(prim, prim$1) {
+  return prim$1.filter(prim);
 }
 
 function Array_011(prim, prim$1) {
@@ -67,11 +84,11 @@ var $$Array = [
   Array_003,
   Array_004,
   Rebase__Array.flatMap,
-  Rebase__Array.forAll,
-  Rebase__Array.find,
+  Array_006,
+  Array_007,
   Array_008,
-  Rebase__Array.exists,
-  Rebase__Array.filter,
+  Array_009,
+  Array_010,
   Array_011,
   Rebase__Array.make,
   Rebase__Array.fromList,
@@ -211,15 +228,15 @@ function String_001(prim) {
 }
 
 function String_002(prim, prim$1) {
-  return +prim$1.includes(prim);
+  return prim$1.includes(prim);
 }
 
 function String_003(prim, prim$1) {
-  return +prim$1.startsWith(prim);
+  return prim$1.startsWith(prim);
 }
 
 function String_004(prim, prim$1) {
-  return +prim$1.endsWith(prim);
+  return prim$1.endsWith(prim);
 }
 
 function String_006(prim, prim$1, prim$2) {
@@ -253,13 +270,13 @@ var $$String = [
   Rebase__String.joinWith
 ];
 
-exports.InvalidArgument  = InvalidArgument;
+exports.InvalidArgument = InvalidArgument;
 exports.IndexOutOfBounds = IndexOutOfBounds;
-exports.$$Array          = $$Array;
-exports.Fn               = Fn;
-exports.List             = List;
-exports.Option           = Option;
-exports.Result           = Result;
-exports.Seq              = Seq;
-exports.$$String         = $$String;
+exports.$$Array = $$Array;
+exports.Fn = Fn;
+exports.List = List;
+exports.Option = Option;
+exports.Result = Result;
+exports.Seq = Seq;
+exports.$$String = $$String;
 /* No side effect */

@@ -2,7 +2,7 @@
 
 
 function isEmpty(s) {
-  return +(s.trim().length === 0);
+  return s.trim().length === 0;
 }
 
 function join(param) {
@@ -27,7 +27,7 @@ function joinWith(sep, param) {
   }
 }
 
-exports.isEmpty  = isEmpty;
-exports.join     = join;
+exports.isEmpty = isEmpty;
+exports.join = join;
 exports.joinWith = joinWith;
 /* No side effect */

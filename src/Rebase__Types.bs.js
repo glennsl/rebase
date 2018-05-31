@@ -8,7 +8,7 @@ var IndexOutOfBounds = Caml_exceptions.create("Rebase__Types.IndexOutOfBounds");
 
 var NotFound = Caml_exceptions.create("Rebase__Types.NotFound");
 
-exports.InvalidArgument  = InvalidArgument;
+exports.InvalidArgument = InvalidArgument;
 exports.IndexOutOfBounds = IndexOutOfBounds;
-exports.NotFound         = NotFound;
+exports.NotFound = NotFound;
 /* No side effect */

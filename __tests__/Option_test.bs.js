@@ -1,9 +1,9 @@
 'use strict';
 
-var Jest        = require("bs-jest/src/jest.js");
-var Block       = require("bs-platform/lib/js/block.js");
-var Curry       = require("bs-platform/lib/js/curry.js");
-var Rebase      = require("../src/Rebase.bs.js");
+var Jest = require("bs-jest/src/jest.js");
+var Block = require("bs-platform/lib/js/block.js");
+var Curry = require("bs-platform/lib/js/curry.js");
+var Rebase = require("../src/Rebase.bs.js");
 var TestHelpers = require("./helpers/TestHelpers.bs.js");
 
 describe("Mappable.S", (function () {
@@ -139,21 +139,21 @@ describe("Iterable.S", (function () {
         var M_003 = Rebase.Option[9];
         var M_004 = Rebase.Option[10];
         TestHelpers.testFn("exists", Curry._1(M_003, (function (x) {
-                    return +(x % 2 === 0);
+                    return x % 2 === 0;
                   })), /* :: */[
               /* tuple */[
                 /* None */0,
-                /* false */0
+                false
               ],
               /* :: */[
                 /* tuple */[
                   /* Some */[1],
-                  /* false */0
+                  false
                 ],
                 /* :: */[
                   /* tuple */[
                     /* Some */[2],
-                    /* true */1
+                    true
                   ],
                   /* [] */0
                 ]
@@ -180,7 +180,7 @@ describe("Iterable.S", (function () {
                 return Jest.Expect[/* toEqual */12](param[1], Jest.Expect[/* expect */0](checked[0]));
               }));
         TestHelpers.testFn("find", Curry._1(M_001, (function (x) {
-                    return +(x % 2 === 0);
+                    return x % 2 === 0;
                   })), /* :: */[
               /* tuple */[
                 /* None */0,
@@ -201,28 +201,28 @@ describe("Iterable.S", (function () {
               ]
             ]);
         TestHelpers.testFn("forAll", Curry._1(M_000, (function (x) {
-                    return +(x % 2 === 0);
+                    return x % 2 === 0;
                   })), /* :: */[
               /* tuple */[
                 /* None */0,
-                /* true */1
+                true
               ],
               /* :: */[
                 /* tuple */[
                   /* Some */[1],
-                  /* false */0
+                  false
                 ],
                 /* :: */[
                   /* tuple */[
                     /* Some */[2],
-                    /* true */1
+                    true
                   ],
                   /* [] */0
                 ]
               ]
             ]);
         return TestHelpers.testFn("filter", Curry._1(M_004, (function (x) {
-                          return +(x % 2 === 0);
+                          return x % 2 === 0;
                         })), /* :: */[
                     /* tuple */[
                       /* None */0,
@@ -265,12 +265,12 @@ TestHelpers.testFn("fromResult", Rebase.Option[/* fromResult */12], /* :: */[
 TestHelpers.testFn("isSome", Rebase.Option[/* isSome */13], /* :: */[
       /* tuple */[
         /* None */0,
-        /* false */0
+        false
       ],
       /* :: */[
         /* tuple */[
           /* Some */[42],
-          /* true */1
+          true
         ],
         /* [] */0
       ]
@@ -279,12 +279,12 @@ TestHelpers.testFn("isSome", Rebase.Option[/* isSome */13], /* :: */[
 TestHelpers.testFn("isNone", Rebase.Option[/* isNone */14], /* :: */[
       /* tuple */[
         /* None */0,
-        /* true */1
+        true
       ],
       /* :: */[
         /* tuple */[
           /* Some */[42],
-          /* false */0
+          false
         ],
         /* [] */0
       ]

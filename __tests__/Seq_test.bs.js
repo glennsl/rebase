@@ -1,10 +1,10 @@
 'use strict';
 
-var Jest        = require("bs-jest/src/jest.js");
-var Curry       = require("bs-platform/lib/js/curry.js");
-var Rebase      = require("../src/Rebase.bs.js");
-var Caml_int32  = require("bs-platform/lib/js/caml_int32.js");
-var Pervasives  = require("bs-platform/lib/js/pervasives.js");
+var Jest = require("bs-jest/src/jest.js");
+var Curry = require("bs-platform/lib/js/curry.js");
+var Rebase = require("../src/Rebase.bs.js");
+var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
+var Pervasives = require("bs-platform/lib/js/pervasives.js");
 var TestHelpers = require("./helpers/TestHelpers.bs.js");
 
 var _toList = Rebase.List[/* fromSeq */13];
@@ -240,7 +240,7 @@ describe("Iterable.S", (function () {
                             2,
                             /* [] */0
                           ], Jest.Expect[/* expect */0](_toList(Curry._2(M_004, (function (x) {
-                                          return +(x % 2 === 0);
+                                          return x % 2 === 0;
                                         }), Rebase.Seq[/* fromList */14](/* :: */[
                                             1,
                                             /* :: */[
@@ -256,17 +256,17 @@ describe("Iterable.S", (function () {
                 };
                 var partial_arg$2 = Rebase.Seq[/* cons */12];
                 return Jest.Expect[/* toEqual */12](/* Some */[2], Jest.Expect[/* expect */0](Rebase.Seq[/* head */18](Curry._2(M_004, (function (x) {
-                                          return +(x % 2 === 0);
+                                          return x % 2 === 0;
                                         }), (function (param) {
                                           return partial_arg$2(1, partial_arg$1, param);
                                         })))));
               }));
         TestHelpers.testFn("exists", Curry._1(M_003, (function (x) {
-                    return +(x % 2 === 0);
+                    return x % 2 === 0;
                   })), /* :: */[
               /* tuple */[
                 Rebase.Seq[/* fromList */14](/* [] */0),
-                /* false */0
+                false
               ],
               /* :: */[
                 /* tuple */[
@@ -277,7 +277,7 @@ describe("Iterable.S", (function () {
                           /* [] */0
                         ]
                       ]),
-                  /* false */0
+                  false
                 ],
                 /* :: */[
                   /* tuple */[
@@ -288,7 +288,7 @@ describe("Iterable.S", (function () {
                             /* [] */0
                           ]
                         ]),
-                    /* true */1
+                    true
                   ],
                   /* [] */0
                 ]
@@ -300,14 +300,14 @@ describe("Iterable.S", (function () {
                   return partial_arg(2, _explode, param);
                 };
                 var partial_arg$2 = Rebase.Seq[/* cons */12];
-                return Jest.Expect[/* toEqual */12](/* true */1, Jest.Expect[/* expect */0](Curry._2(M_003, (function (x) {
-                                      return +(x % 2 === 0);
+                return Jest.Expect[/* toEqual */12](true, Jest.Expect[/* expect */0](Curry._2(M_003, (function (x) {
+                                      return x % 2 === 0;
                                     }), (function (param) {
                                       return partial_arg$2(1, partial_arg$1, param);
                                     }))));
               }));
         TestHelpers.testFn("find", Curry._1(M_001, (function (x) {
-                    return +(x % 2 === 0);
+                    return x % 2 === 0;
                   })), /* :: */[
               /* tuple */[
                 Rebase.Seq[/* fromList */14](/* [] */0),
@@ -346,17 +346,17 @@ describe("Iterable.S", (function () {
                 };
                 var partial_arg$2 = Rebase.Seq[/* cons */12];
                 return Jest.Expect[/* toEqual */12](/* Some */[2], Jest.Expect[/* expect */0](Curry._2(M_001, (function (x) {
-                                      return +(x % 2 === 0);
+                                      return x % 2 === 0;
                                     }), (function (param) {
                                       return partial_arg$2(1, partial_arg$1, param);
                                     }))));
               }));
         return TestHelpers.testFn("forAll", Curry._1(M_000, (function (x) {
-                          return +(x % 2 === 0);
+                          return x % 2 === 0;
                         })), /* :: */[
                     /* tuple */[
                       Rebase.Seq[/* fromList */14](/* [] */0),
-                      /* true */1
+                      true
                     ],
                     /* :: */[
                       /* tuple */[
@@ -367,7 +367,7 @@ describe("Iterable.S", (function () {
                                 /* [] */0
                               ]
                             ]),
-                        /* true */1
+                        true
                       ],
                       /* :: */[
                         /* tuple */[
@@ -378,7 +378,7 @@ describe("Iterable.S", (function () {
                                   /* [] */0
                                 ]
                               ]),
-                          /* false */0
+                          false
                         ],
                         /* [] */0
                       ]
@@ -386,7 +386,7 @@ describe("Iterable.S", (function () {
                   ]);
       }));
 
-TestHelpers.testProperty("empty", +(Rebase.Seq[/* empty */11](/* () */0) === /* Nil */0));
+TestHelpers.testProperty("empty", Rebase.Seq[/* empty */11](/* () */0) === /* Nil */0);
 
 TestHelpers.testFn("cons", Curry._2(Rebase.Fn[/* >> */6], Curry._1(Rebase.Fn[/* uncurry */4], Rebase.Seq[/* cons */12]), _toList), /* :: */[
       /* tuple */[
@@ -428,12 +428,12 @@ TestHelpers.testFn("cons", Curry._2(Rebase.Fn[/* >> */6], Curry._1(Rebase.Fn[/* 
 
 TestHelpers.testFn("fromArray", Curry._2(Rebase.Fn[/* >> */6], Rebase.Seq[/* fromArray */13], _toList), /* :: */[
       /* tuple */[
-        /* int array */[],
+        /* array */[],
         /* [] */0
       ],
       /* :: */[
         /* tuple */[
-          /* int array */[
+          /* array */[
             1,
             2,
             3
@@ -688,7 +688,7 @@ Jest.test("range - step 0", (function () {
 TestHelpers.testFn("isEmpty", Rebase.Seq[/* isEmpty */17], /* :: */[
       /* tuple */[
         Rebase.Seq[/* empty */11],
-        /* true */1
+        true
       ],
       /* :: */[
         /* tuple */[
@@ -702,7 +702,7 @@ TestHelpers.testFn("isEmpty", Rebase.Seq[/* isEmpty */17], /* :: */[
                   ]
                 ]
               ]),
-          /* false */0
+          false
         ],
         /* [] */0
       ]
@@ -768,8 +768,8 @@ Jest.test("filterMap", (function () {
                     /* [] */0
                   ], Jest.Expect[/* expect */0](_toList((function (param) {
                               return partial_arg$1((function (x) {
-                                            var match = +(x % 2 === 0);
-                                            if (match !== 0) {
+                                            var match = x % 2 === 0;
+                                            if (match) {
                                               return /* Some */[x + 1 | 0];
                                             } else {
                                               return /* None */0;
@@ -790,8 +790,8 @@ Jest.test("filterMap - lazy", (function () {
         var partial_arg$4 = Rebase.Seq[/* filterMap */19];
         return Jest.Expect[/* toEqual */12](/* Some */[3], Jest.Expect[/* expect */0](Rebase.Seq[/* head */18]((function (param) {
                               return partial_arg$4((function (x) {
-                                            var match = +(x % 2 === 0);
-                                            if (match !== 0) {
+                                            var match = x % 2 === 0;
+                                            if (match) {
                                               return /* Some */[x + 1 | 0];
                                             } else {
                                               return /* None */0;
@@ -955,6 +955,6 @@ Jest.test("zip - lazy", (function () {
                             }))));
       }));
 
-exports._toList  = _toList;
+exports._toList = _toList;
 exports._explode = _explode;
 /*  Not a pure module */

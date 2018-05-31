@@ -1,6 +1,6 @@
 'use strict';
 
-var Jest  = require("bs-jest/src/jest.js");
+var Jest = require("bs-jest/src/jest.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 
 function testFn(name, f, cases) {
@@ -11,10 +11,10 @@ function testFn(name, f, cases) {
 
 function testProperty(name, property) {
   return Jest.test(name, (function () {
-                return Jest.Expect[/* toBe */2](/* true */1, Jest.Expect[/* expect */0](property));
+                return Jest.Expect[/* toBe */2](true, Jest.Expect[/* expect */0](property));
               }));
 }
 
-exports.testFn       = testFn;
+exports.testFn = testFn;
 exports.testProperty = testProperty;
 /* Jest Not a pure module */

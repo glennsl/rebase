@@ -38,12 +38,12 @@ function tap(f, x) {
   return x;
 }
 
-exports.id           = id;
-exports.$$const      = $$const;
-exports.flip         = flip;
-exports.curry        = curry;
-exports.uncurry      = uncurry;
-exports.$less$less   = $less$less;
+exports.id = id;
+exports.$$const = $$const;
+exports.flip = flip;
+exports.curry = curry;
+exports.uncurry = uncurry;
+exports.$less$less = $less$less;
 exports.$great$great = $great$great;
-exports.tap          = tap;
+exports.tap = tap;
 /* No side effect */

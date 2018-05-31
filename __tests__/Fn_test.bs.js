@@ -1,9 +1,8 @@
 'use strict';
 
-var Jest        = require("bs-jest/src/jest.js");
-var Curry       = require("bs-platform/lib/js/curry.js");
-var Rebase      = require("../src/Rebase.bs.js");
-var Pervasives  = require("bs-platform/lib/js/pervasives.js");
+var Jest = require("bs-jest/src/jest.js");
+var Curry = require("bs-platform/lib/js/curry.js");
+var Rebase = require("../src/Rebase.bs.js");
 var Caml_format = require("bs-platform/lib/js/caml_format.js");
 
 Jest.test("id", (function () {
@@ -38,12 +37,16 @@ Jest.test("uncurry", (function () {
       }));
 
 Jest.test("<<", (function () {
-        var f = Curry._2(Rebase.Fn[/* << */5], Pervasives.string_of_int, Caml_format.caml_int_of_string);
+        var f = Curry._2(Rebase.Fn[/* << */5], (function (prim) {
+                return String(prim);
+              }), Caml_format.caml_int_of_string);
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._1(f, "42")), "42");
       }));
 
 Jest.test(">>", (function () {
-        var f = Curry._2(Rebase.Fn[/* >> */6], Pervasives.string_of_int, Caml_format.caml_int_of_string);
+        var f = Curry._2(Rebase.Fn[/* >> */6], (function (prim) {
+                return String(prim);
+              }), Caml_format.caml_int_of_string);
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._1(f, 42)), 42);
       }));
 
