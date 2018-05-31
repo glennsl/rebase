@@ -10,17 +10,17 @@ A minimal base library intended for the BuckleScript/Reason ecosystem. Uses Reas
 ## Status
 Mostly undocumented and untested. Prone to change without warning. Use at your own risk.
 
-## Project goals
+## Project Goals
 * Cross-platform
 * Compile to efficient JavaScript code
 * Compile to readable JavaScript code
 
-## Design principles
+## Design Principles
 * JS first
 * No platform-specific APIs exposed
 * Prefer piped form, e.g. `"a" |> String.concat("b") == "ab"`
 * The subject of functions in type-wrapping modules should always be `t`
-* Enforece common patterns using module signatures
+* Enforce common patterns using module signatures
 
 ## Installation
 
