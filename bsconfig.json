@@ -22,5 +22,5 @@
     }
   ],
   "suffix": ".bs.js",
-  "bs-dev-dependencies": ["bs-jest"]
+  "bs-dev-dependencies": ["@glennsl/bs-jest"]
 }

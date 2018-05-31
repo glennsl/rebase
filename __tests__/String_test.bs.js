@@ -1,6 +1,6 @@
 'use strict';
 
-var Jest = require("bs-jest/src/jest.js");
+var Jest = require("@glennsl/bs-jest/src/jest.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var Rebase = require("../src/Rebase.bs.js");
 var TestHelpers = require("./helpers/TestHelpers.bs.js");
