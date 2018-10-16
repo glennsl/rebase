@@ -51,9 +51,9 @@ Jest.test(">>", (function () {
       }));
 
 Jest.test(">>", (function () {
-        var tapped = [/* None */0];
+        var tapped = /* record */[/* contents */undefined];
         var tapper = Curry._1(Rebase.Fn[/* tap */7], (function (n) {
-                tapped[0] = /* Some */[n];
+                tapped[0] = n;
                 return /* () */0;
               }));
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](/* tuple */[
@@ -61,7 +61,7 @@ Jest.test(">>", (function () {
                         tapped[0]
                       ]), /* tuple */[
                     42,
-                    /* Some */[42]
+                    42
                   ]);
       }));
 

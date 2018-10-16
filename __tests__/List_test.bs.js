@@ -198,7 +198,7 @@ describe("Iterable.S", (function () {
                                     }), param[0])), param[1]);
               }));
         Jest.test("forEach", (function () {
-                var checked = [/* [] */0];
+                var checked = /* record */[/* contents : [] */0];
                 Curry._2(M_002, (function (x) {
                         checked[0] = /* :: */[
                           x,
@@ -223,7 +223,7 @@ describe("Iterable.S", (function () {
         Jest.testAll("find", /* :: */[
               /* tuple */[
                 /* [] */0,
-                /* None */0
+                undefined
               ],
               /* :: */[
                 /* tuple */[
@@ -234,7 +234,7 @@ describe("Iterable.S", (function () {
                       /* [] */0
                     ]
                   ],
-                  /* None */0
+                  undefined
                 ],
                 /* :: */[
                   /* tuple */[
@@ -248,7 +248,7 @@ describe("Iterable.S", (function () {
                         ]
                       ]
                     ],
-                    /* Some */[2]
+                    2
                   ],
                   /* [] */0
                 ]
@@ -395,7 +395,7 @@ TestHelpers.testFn("fromSeq", Rebase.List[/* fromSeq */13], /* :: */[
     ]);
 
 TestHelpers.testFn("range", (function (param) {
-        return Rebase.List[/* range */14](/* None */0, param[0], param[1]);
+        return Rebase.List[/* range */14](undefined, param[0], param[1]);
       }), /* :: */[
       /* tuple */[
         /* tuple */[
@@ -498,7 +498,7 @@ TestHelpers.testFn("range", (function (param) {
     ]);
 
 TestHelpers.testFn("range - step", (function (param) {
-        return Rebase.List[/* range */14](/* Some */[param[2]], param[0], param[1]);
+        return Rebase.List[/* range */14](param[2], param[0], param[1]);
       }), /* :: */[
       /* tuple */[
         /* tuple */[
@@ -590,7 +590,7 @@ Jest.test("range - step 0", (function () {
                     Rebase.InvalidArgument,
                     ""
                   ], Jest.Expect[/* expect */0]((function () {
-                          return Rebase.List[/* range */14](/* Some */[0], 0, 0);
+                          return Rebase.List[/* range */14](0, 0, 0);
                         })));
       }));
 
@@ -629,12 +629,12 @@ TestHelpers.testFn("head", Rebase.List[/* head */16], /* :: */[
             ]
           ]
         ],
-        /* Some */[1]
+        1
       ],
       /* :: */[
         /* tuple */[
           /* [] */0,
-          /* None */0
+          undefined
         ],
         /* [] */0
       ]
@@ -652,18 +652,18 @@ TestHelpers.testFn("tail", Rebase.List[/* tail */17], /* :: */[
             ]
           ]
         ],
-        /* Some */[/* :: */[
-            2,
-            /* :: */[
-              3,
-              /* [] */0
-            ]
-          ]]
+        /* :: */[
+          2,
+          /* :: */[
+            3,
+            /* [] */0
+          ]
+        ]
       ],
       /* :: */[
         /* tuple */[
           /* [] */0,
-          /* None */0
+          undefined
         ],
         /* [] */0
       ]
@@ -699,10 +699,9 @@ Jest.test("filterMap", (function () {
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* filterMap */18]((function (x) {
                               var match = x % 2 === 0;
                               if (match) {
-                                return /* Some */[x + 1 | 0];
-                              } else {
-                                return /* None */0;
+                                return x + 1 | 0;
                               }
+                              
                             }), /* :: */[
                             1,
                             /* :: */[

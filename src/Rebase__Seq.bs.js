@@ -2,6 +2,7 @@
 
 var Curry = require("bs-platform/lib/js/curry.js");
 var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
+var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 var Js_undefined = require("bs-platform/lib/js/js_undefined.js");
 var Rebase__Types = require("./Rebase__Types.bs.js");
 
@@ -60,7 +61,7 @@ function fromList(param) {
 }
 
 function range($staropt$star, start, finish) {
-  var step = $staropt$star ? $staropt$star[0] : 1;
+  var step = $staropt$star !== undefined ? $staropt$star : 1;
   if (step === 0) {
     throw [
           Rebase__Types.InvalidArgument,
@@ -103,10 +104,9 @@ function isEmpty(seq) {
 function head(seq) {
   var match = Curry._1(seq, /* () */0);
   if (match) {
-    return /* Some */[match[0]];
-  } else {
-    return /* None */0;
+    return Js_primitive.some(match[0]);
   }
+  
 }
 
 function filter(predicate, seq, _) {
@@ -144,9 +144,9 @@ function filterMap(f, seq, _) {
     if (match) {
       var next = match[1];
       var match$1 = Curry._1(f, match[0]);
-      if (match$1) {
+      if (match$1 !== undefined) {
         return /* Cons */[
-                match$1[0],
+                Js_primitive.valFromOption(match$1),
                 (function(next){
                 return function (param) {
                   return filterMap(f, next, param);
@@ -201,13 +201,13 @@ function find(predicate, _seq) {
     if (match) {
       var x = match[0];
       if (Curry._1(predicate, x)) {
-        return /* Some */[x];
+        return Js_primitive.some(x);
       } else {
         _seq = match[1];
         continue ;
       }
     } else {
-      return /* None */0;
+      return undefined;
     }
   };
 }
@@ -318,7 +318,7 @@ function apply(fs, xs) {
 }
 
 function count(seq) {
-  var n = [0];
+  var n = /* record */[/* contents */0];
   forEach((function () {
           n[0] = n[0] + 1 | 0;
           return /* () */0;

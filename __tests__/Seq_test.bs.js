@@ -44,7 +44,7 @@ describe("Mappable.S", (function () {
             ]);
         return Jest.test("map - lazy", (function () {
                       var partial_arg = Rebase.Seq[/* cons */12];
-                      return Jest.Expect[/* toEqual */12](/* Some */[2], Jest.Expect[/* expect */0](Rebase.Seq[/* head */18](Curry._2(M[/* map */0], (function (x) {
+                      return Jest.Expect[/* toEqual */12](2, Jest.Expect[/* expect */0](Rebase.Seq[/* head */18](Curry._2(M[/* map */0], (function (x) {
                                                 return x + 1 | 0;
                                               }), (function (param) {
                                                 return partial_arg(1, _explode, param);
@@ -89,7 +89,7 @@ describe("Applicative.S", (function () {
               }));
         Jest.test("apply - lazy", (function () {
                 var partial_arg = Rebase.Seq[/* cons */12];
-                return Jest.Expect[/* toEqual */12](/* Some */[6], Jest.Expect[/* expect */0](Rebase.Seq[/* head */18](Curry._2(M_001, Rebase.Seq[/* fromList */14](/* :: */[
+                return Jest.Expect[/* toEqual */12](6, Jest.Expect[/* expect */0](Rebase.Seq[/* head */18](Curry._2(M_001, Rebase.Seq[/* fromList */14](/* :: */[
                                             (function (x) {
                                                 return x + x | 0;
                                               }),
@@ -176,7 +176,7 @@ describe("Monad.S", (function () {
               }));
         Jest.test("flatMap - lazy outer", (function () {
                 var partial_arg = Rebase.Seq[/* cons */12];
-                return Jest.Expect[/* toEqual */12](/* Some */[1], Jest.Expect[/* expect */0](Rebase.Seq[/* head */18](Curry._2(M_003, (function (x) {
+                return Jest.Expect[/* toEqual */12](1, Jest.Expect[/* expect */0](Rebase.Seq[/* head */18](Curry._2(M_003, (function (x) {
                                           var partial_arg = Rebase.Seq[/* empty */11];
                                           var partial_arg$1 = Rebase.Seq[/* cons */12];
                                           return (function (param) {
@@ -187,7 +187,7 @@ describe("Monad.S", (function () {
                                         })))));
               }));
         return Jest.test("flatMap - lazy inner", (function () {
-                      return Jest.Expect[/* toEqual */12](/* Some */[1], Jest.Expect[/* expect */0](Rebase.Seq[/* head */18](Curry._2(M_003, (function (x) {
+                      return Jest.Expect[/* toEqual */12](1, Jest.Expect[/* expect */0](Rebase.Seq[/* head */18](Curry._2(M_003, (function (x) {
                                                 var partial_arg = Rebase.Seq[/* cons */12];
                                                 var partial_arg$1 = function (param) {
                                                   return partial_arg(0, _explode, param);
@@ -213,7 +213,7 @@ describe("Iterable.S", (function () {
         var M_003 = Rebase.Seq[9];
         var M_004 = Rebase.Seq[10];
         Jest.test("forEach", (function () {
-                var checked = [/* [] */0];
+                var checked = /* record */[/* contents : [] */0];
                 Rebase.Seq[/* forEach */8]((function (x) {
                         checked[0] = /* :: */[
                           x,
@@ -255,7 +255,7 @@ describe("Iterable.S", (function () {
                   return partial_arg(2, _explode, param);
                 };
                 var partial_arg$2 = Rebase.Seq[/* cons */12];
-                return Jest.Expect[/* toEqual */12](/* Some */[2], Jest.Expect[/* expect */0](Rebase.Seq[/* head */18](Curry._2(M_004, (function (x) {
+                return Jest.Expect[/* toEqual */12](2, Jest.Expect[/* expect */0](Rebase.Seq[/* head */18](Curry._2(M_004, (function (x) {
                                           return x % 2 === 0;
                                         }), (function (param) {
                                           return partial_arg$2(1, partial_arg$1, param);
@@ -311,7 +311,7 @@ describe("Iterable.S", (function () {
                   })), /* :: */[
               /* tuple */[
                 Rebase.Seq[/* fromList */14](/* [] */0),
-                /* None */0
+                undefined
               ],
               /* :: */[
                 /* tuple */[
@@ -322,7 +322,7 @@ describe("Iterable.S", (function () {
                           /* [] */0
                         ]
                       ]),
-                  /* None */0
+                  undefined
                 ],
                 /* :: */[
                   /* tuple */[
@@ -333,7 +333,7 @@ describe("Iterable.S", (function () {
                             /* [] */0
                           ]
                         ]),
-                    /* Some */[2]
+                    2
                   ],
                   /* [] */0
                 ]
@@ -345,7 +345,7 @@ describe("Iterable.S", (function () {
                   return partial_arg(2, _explode, param);
                 };
                 var partial_arg$2 = Rebase.Seq[/* cons */12];
-                return Jest.Expect[/* toEqual */12](/* Some */[2], Jest.Expect[/* expect */0](Curry._2(M_001, (function (x) {
+                return Jest.Expect[/* toEqual */12](2, Jest.Expect[/* expect */0](Curry._2(M_001, (function (x) {
                                       return x % 2 === 0;
                                     }), (function (param) {
                                       return partial_arg$2(1, partial_arg$1, param);
@@ -486,7 +486,7 @@ TestHelpers.testFn("fromList", Curry._2(Rebase.Fn[/* >> */6], Rebase.Seq[/* from
     ]);
 
 TestHelpers.testFn("range", (function (param) {
-        return _toList(Rebase.Seq[/* range */15](/* None */0, param[0], param[1]));
+        return _toList(Rebase.Seq[/* range */15](undefined, param[0], param[1]));
       }), /* :: */[
       /* tuple */[
         /* tuple */[
@@ -589,7 +589,7 @@ TestHelpers.testFn("range", (function (param) {
     ]);
 
 TestHelpers.testFn("range - step", (function (param) {
-        return _toList(Rebase.Seq[/* range */15](/* Some */[param[2]], param[0], param[1]));
+        return _toList(Rebase.Seq[/* range */15](param[2], param[0], param[1]));
       }), /* :: */[
       /* tuple */[
         /* tuple */[
@@ -681,7 +681,7 @@ Jest.test("range - step 0", (function () {
                     Rebase.InvalidArgument,
                     ""
                   ], Jest.Expect[/* expect */0]((function () {
-                          return Rebase.Seq[/* range */15](/* Some */[0], 0, 0);
+                          return Rebase.Seq[/* range */15](0, 0, 0);
                         })));
       }));
 
@@ -711,7 +711,7 @@ TestHelpers.testFn("isEmpty", Rebase.Seq[/* isEmpty */17], /* :: */[
 TestHelpers.testFn("head", Rebase.Seq[/* head */18], /* :: */[
       /* tuple */[
         Rebase.Seq[/* empty */11],
-        /* None */0
+        undefined
       ],
       /* :: */[
         /* tuple */[
@@ -725,7 +725,7 @@ TestHelpers.testFn("head", Rebase.Seq[/* head */18], /* :: */[
                   ]
                 ]
               ]),
-          /* Some */[1]
+          1
         ],
         /* [] */0
       ]
@@ -770,10 +770,9 @@ Jest.test("filterMap", (function () {
                               return partial_arg$1((function (x) {
                                             var match = x % 2 === 0;
                                             if (match) {
-                                              return /* Some */[x + 1 | 0];
-                                            } else {
-                                              return /* None */0;
+                                              return x + 1 | 0;
                                             }
+                                            
                                           }), partial_arg, param);
                             }))));
       }));
@@ -788,14 +787,13 @@ Jest.test("filterMap - lazy", (function () {
           return partial_arg$2(1, partial_arg$1, param);
         };
         var partial_arg$4 = Rebase.Seq[/* filterMap */19];
-        return Jest.Expect[/* toEqual */12](/* Some */[3], Jest.Expect[/* expect */0](Rebase.Seq[/* head */18]((function (param) {
+        return Jest.Expect[/* toEqual */12](3, Jest.Expect[/* expect */0](Rebase.Seq[/* head */18]((function (param) {
                               return partial_arg$4((function (x) {
                                             var match = x % 2 === 0;
                                             if (match) {
-                                              return /* Some */[x + 1 | 0];
-                                            } else {
-                                              return /* None */0;
+                                              return x + 1 | 0;
                                             }
+                                            
                                           }), partial_arg$3, param);
                             }))));
       }));
@@ -947,10 +945,10 @@ Jest.test("zip - lazy", (function () {
           return partial_arg$2(1, _explode, param);
         };
         var partial_arg$4 = Rebase.Seq[/* zip */20];
-        return Jest.Expect[/* toEqual */12](/* Some */[/* tuple */[
-                      "a",
-                      1
-                    ]], Jest.Expect[/* expect */0](Rebase.Seq[/* head */18]((function (param) {
+        return Jest.Expect[/* toEqual */12](/* tuple */[
+                    "a",
+                    1
+                  ], Jest.Expect[/* expect */0](Rebase.Seq[/* head */18]((function (param) {
                               return partial_arg$4(partial_arg$3, partial_arg$1, param);
                             }))));
       }));

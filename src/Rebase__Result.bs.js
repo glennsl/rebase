@@ -3,6 +3,7 @@
 var Block = require("bs-platform/lib/js/block.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var Js_exn = require("bs-platform/lib/js/js_exn.js");
+var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 var Rebase__Types = require("./Rebase__Types.bs.js");
 
 function from(x) {
@@ -140,13 +141,13 @@ function forEach(f, param) {
 
 function find(predicate, param) {
   if (param.tag) {
-    return /* None */0;
+    return undefined;
   } else {
     var x = param[0];
     if (Curry._1(predicate, x)) {
-      return /* Some */[x];
+      return Js_primitive.some(x);
     } else {
-      return /* None */0;
+      return undefined;
     }
   }
 }

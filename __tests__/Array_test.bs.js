@@ -133,7 +133,7 @@ describe("Iterable.S", (function () {
                                     }), param[0])), param[1]);
               }));
         Jest.test("forEach", (function () {
-                var checked = [/* [] */0];
+                var checked = /* record */[/* contents : [] */0];
                 Curry._2(M_002, (function (x) {
                         checked[0] = /* :: */[
                           x,
@@ -158,7 +158,7 @@ describe("Iterable.S", (function () {
                   1,
                   3
                 ],
-                /* None */0
+                undefined
               ],
               /* :: */[
                 /* tuple */[
@@ -167,7 +167,7 @@ describe("Iterable.S", (function () {
                     2,
                     4
                   ],
-                  /* Some */[2]
+                  2
                 ],
                 /* [] */0
               ]
@@ -305,7 +305,7 @@ TestHelpers.testFn("fromSeq", Rebase.$$Array[/* fromSeq */14], /* :: */[
     ]);
 
 TestHelpers.testFn("range", (function (param) {
-        return Rebase.$$Array[/* range */15](/* None */0, param[0], param[1]);
+        return Rebase.$$Array[/* range */15](undefined, param[0], param[1]);
       }), /* :: */[
       /* tuple */[
         /* tuple */[
@@ -386,7 +386,7 @@ TestHelpers.testFn("range", (function (param) {
     ]);
 
 TestHelpers.testFn("range - step", (function (param) {
-        return Rebase.$$Array[/* range */15](/* Some */[param[2]], param[0], param[1]);
+        return Rebase.$$Array[/* range */15](param[2], param[0], param[1]);
       }), /* :: */[
       /* tuple */[
         /* tuple */[
@@ -463,7 +463,7 @@ Jest.test("range - step 0", (function () {
                     Rebase.InvalidArgument,
                     ""
                   ], Jest.Expect[/* expect */0]((function () {
-                          return Rebase.$$Array[/* range */15](/* Some */[0], 0, 0);
+                          return Rebase.$$Array[/* range */15](0, 0, 0);
                         })));
       }));
 
@@ -479,17 +479,17 @@ TestHelpers.testFn("get", (function (param) {
       }), /* :: */[
       /* tuple */[
         0,
-        /* Some */[1]
+        1
       ],
       /* :: */[
         /* tuple */[
           2,
-          /* None */0
+          undefined
         ],
         /* :: */[
           /* tuple */[
             -1,
-            /* None */0
+            undefined
           ],
           /* [] */0
         ]
@@ -502,7 +502,7 @@ Jest.test("set - in bounds", (function () {
           2
         ];
         Rebase.$$Array[/* set */18](a, 1, 3);
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */17](a, 1)), /* Some */[3]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */17](a, 1)), 3);
       }));
 
 Jest.test("set - out of bounds", (function () {
@@ -511,7 +511,7 @@ Jest.test("set - out of bounds", (function () {
           2
         ];
         Rebase.$$Array[/* set */18](a, 2, 3);
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */17](a, 2)), /* None */0);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */17](a, 2)), undefined);
       }));
 
 Jest.test("[] get", (function () {
@@ -519,7 +519,7 @@ Jest.test("[] get", (function () {
           1,
           2
         ];
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */17](a, 1)), /* Some */[2]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */17](a, 1)), 2);
       }));
 
 Jest.test("[] set - in bounds", (function () {
@@ -528,7 +528,7 @@ Jest.test("[] set - in bounds", (function () {
           2
         ];
         Rebase.$$Array[/* set */18](a, 1, 3);
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */17](a, 1)), /* Some */[3]);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */17](a, 1)), 3);
       }));
 
 Jest.test("[] set - out of bounds", (function () {
@@ -537,7 +537,7 @@ Jest.test("[] set - out of bounds", (function () {
           2
         ];
         Rebase.$$Array[/* set */18](a, 2, 3);
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */17](a, 2)), /* None */0);
+        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* get */17](a, 2)), undefined);
       }));
 
 Jest.test("getOrRaise - in bounds", (function () {
@@ -610,10 +610,9 @@ Jest.test("filterMap", (function () {
         return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.$$Array[/* filterMap */23]((function (x) {
                               var match = x % 2 === 0;
                               if (match) {
-                                return /* Some */[x + 1 | 0];
-                              } else {
-                                return /* None */0;
+                                return x + 1 | 0;
                               }
+                              
                             }), /* array */[
                             1,
                             2
@@ -769,7 +768,7 @@ Jest.test("mapi", (function () {
       }));
 
 Jest.test("forEachi", (function () {
-        var checked = [/* [] */0];
+        var checked = /* record */[/* contents : [] */0];
         Rebase.$$Array[/* forEachi */28]((function (x, i) {
                 checked[0] = /* :: */[
                   /* tuple */[
@@ -804,7 +803,7 @@ Jest.testAll("findIndex", /* :: */[
           "a",
           "b"
         ],
-        /* None */0
+        undefined
       ],
       /* :: */[
         /* tuple */[
@@ -813,10 +812,10 @@ Jest.testAll("findIndex", /* :: */[
             "bb",
             "c"
           ],
-          /* Some */[/* tuple */[
-              1,
-              "bb"
-            ]]
+          /* tuple */[
+            1,
+            "bb"
+          ]
         ],
         /* [] */0
       ]

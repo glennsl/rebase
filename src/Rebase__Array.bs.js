@@ -3,6 +3,7 @@
 var List = require("bs-platform/lib/js/list.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
+var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 var Rebase__Types = require("./Rebase__Types.bs.js");
 
 function from(x) {
@@ -63,7 +64,7 @@ function fromSeq(seq) {
 }
 
 function range($staropt$star, start, finish) {
-  var step = $staropt$star ? $staropt$star[0] : 1;
+  var step = $staropt$star !== undefined ? $staropt$star : 1;
   if (step === 0) {
     throw [
           Rebase__Types.InvalidArgument,
@@ -95,10 +96,9 @@ function range($staropt$star, start, finish) {
 
 function get(self, i) {
   if (i >= 0 && i < self.length) {
-    return /* Some */[self[i]];
-  } else {
-    return /* None */0;
+    return Js_primitive.some(self[i]);
   }
+  
 }
 
 function set(self, i, value) {
@@ -130,13 +130,12 @@ function setOrRaise(i, value, self) {
 function findIndex(f, self) {
   var i = self.findIndex(Curry.__1(f));
   if (i !== -1) {
-    return /* Some */[/* tuple */[
-              i,
-              self[i]
-            ]];
-  } else {
-    return /* None */0;
+    return /* tuple */[
+            i,
+            self[i]
+          ];
   }
+  
 }
 
 function flatMap(f, self) {
@@ -154,8 +153,8 @@ function filterMap(f, self) {
   var result = /* array */[];
   for(var i = 0 ,i_finish = self.length - 1 | 0; i <= i_finish; ++i){
     var match = Curry._1(f, self[i]);
-    if (match) {
-      result.push(match[0]);
+    if (match !== undefined) {
+      result.push(Js_primitive.valFromOption(match));
     }
     
   }
