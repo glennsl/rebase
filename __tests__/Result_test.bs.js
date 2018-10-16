@@ -194,7 +194,7 @@ describe("Iterable.S1_5", (function () {
                 /* [] */0
               ]
             ], (function (param) {
-                var checked = [0];
+                var checked = /* record */[/* contents */0];
                 Curry._2(M_002, (function (x) {
                         checked[0] = x;
                         return /* () */0;
@@ -206,17 +206,17 @@ describe("Iterable.S1_5", (function () {
                   })), /* :: */[
               /* tuple */[
                 /* Error */Block.__(1, ["err"]),
-                /* None */0
+                undefined
               ],
               /* :: */[
                 /* tuple */[
                   /* Ok */Block.__(0, [1]),
-                  /* None */0
+                  undefined
                 ],
                 /* :: */[
                   /* tuple */[
                     /* Ok */Block.__(0, [2]),
-                    /* Some */[2]
+                    2
                   ],
                   /* [] */0
                 ]

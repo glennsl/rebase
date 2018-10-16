@@ -5,6 +5,7 @@ var Block = require("bs-platform/lib/js/block.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var Rebase = require("../src/Rebase.bs.js");
 var TestHelpers = require("./helpers/TestHelpers.bs.js");
+var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 
 describe("Mappable.S", (function () {
         var M = [Rebase.Option[0]];
@@ -12,13 +13,13 @@ describe("Mappable.S", (function () {
                           return x + 1 | 0;
                         })), /* :: */[
                     /* tuple */[
-                      /* None */0,
-                      /* None */0
+                      undefined,
+                      undefined
                     ],
                     /* :: */[
                       /* tuple */[
-                        /* Some */[42],
-                        /* Some */[43]
+                        42,
+                        43
                       ],
                       /* [] */0
                     ]
@@ -32,38 +33,38 @@ describe("Applicative.S", (function () {
         TestHelpers.testFn("apply", Curry._1(Rebase.Fn[/* uncurry */4], M_001), /* :: */[
               /* tuple */[
                 /* tuple */[
-                  /* None */0,
-                  /* None */0
+                  undefined,
+                  undefined
                 ],
-                /* None */0
+                undefined
               ],
               /* :: */[
                 /* tuple */[
                   /* tuple */[
-                    /* Some */[(function (x) {
-                          return x + 1 | 0;
-                        })],
-                    /* None */0
+                    (function (x) {
+                        return x + 1 | 0;
+                      }),
+                    undefined
                   ],
-                  /* None */0
+                  undefined
                 ],
                 /* :: */[
                   /* tuple */[
                     /* tuple */[
-                      /* None */0,
-                      /* Some */[1]
+                      undefined,
+                      1
                     ],
-                    /* None */0
+                    undefined
                   ],
                   /* :: */[
                     /* tuple */[
                       /* tuple */[
-                        /* Some */[(function (x) {
-                              return x + 1 | 0;
-                            })],
-                        /* Some */[1]
+                        (function (x) {
+                            return x + 1 | 0;
+                          }),
+                        1
                       ],
-                      /* Some */[2]
+                      2
                     ],
                     /* [] */0
                   ]
@@ -71,7 +72,7 @@ describe("Applicative.S", (function () {
               ]
             ]);
         return Jest.test("from", (function () {
-                      return Jest.Expect[/* toEqual */12](/* Some */[42], Jest.Expect[/* expect */0](Curry._1(M_002, 42)));
+                      return Jest.Expect[/* toEqual */12](42, Jest.Expect[/* expect */0](Curry._1(M_002, 42)));
                     }));
       }));
 
@@ -82,12 +83,12 @@ describe("Reduceable.S", (function () {
                     return x - acc | 0;
                   }), 10), /* :: */[
               /* tuple */[
-                /* None */0,
+                undefined,
                 10
               ],
               /* :: */[
                 /* tuple */[
-                  /* Some */[42],
+                  42,
                   32
                 ],
                 /* [] */0
@@ -97,12 +98,12 @@ describe("Reduceable.S", (function () {
                           return x - acc | 0;
                         }), 10), /* :: */[
                     /* tuple */[
-                      /* None */0,
+                      undefined,
                       10
                     ],
                     /* :: */[
                       /* tuple */[
-                        /* Some */[42],
+                        42,
                         32
                       ],
                       /* [] */0
@@ -116,16 +117,16 @@ describe("Monad.S", (function () {
         var M_002 = Rebase.Option[2];
         var M_003 = Rebase.Option[5];
         return TestHelpers.testFn("flatMap", Curry._1(M_003, (function (x) {
-                          return /* Some */[x + 1 | 0];
+                          return x + 1 | 0;
                         })), /* :: */[
                     /* tuple */[
-                      /* None */0,
-                      /* None */0
+                      undefined,
+                      undefined
                     ],
                     /* :: */[
                       /* tuple */[
-                        /* Some */[42],
-                        /* Some */[43]
+                        42,
+                        43
                       ],
                       /* [] */0
                     ]
@@ -142,17 +143,17 @@ describe("Iterable.S", (function () {
                     return x % 2 === 0;
                   })), /* :: */[
               /* tuple */[
-                /* None */0,
+                undefined,
                 false
               ],
               /* :: */[
                 /* tuple */[
-                  /* Some */[1],
+                  1,
                   false
                 ],
                 /* :: */[
                   /* tuple */[
-                    /* Some */[2],
+                    2,
                     true
                   ],
                   /* [] */0
@@ -161,18 +162,18 @@ describe("Iterable.S", (function () {
             ]);
         Jest.testAll("forEach", /* :: */[
               /* tuple */[
-                /* None */0,
+                undefined,
                 0
               ],
               /* :: */[
                 /* tuple */[
-                  /* Some */[1],
+                  1,
                   1
                 ],
                 /* [] */0
               ]
             ], (function (param) {
-                var checked = [0];
+                var checked = /* record */[/* contents */0];
                 Curry._2(M_002, (function (x) {
                         checked[0] = x;
                         return /* () */0;
@@ -183,18 +184,18 @@ describe("Iterable.S", (function () {
                     return x % 2 === 0;
                   })), /* :: */[
               /* tuple */[
-                /* None */0,
-                /* None */0
+                undefined,
+                undefined
               ],
               /* :: */[
                 /* tuple */[
-                  /* Some */[1],
-                  /* None */0
+                  1,
+                  undefined
                 ],
                 /* :: */[
                   /* tuple */[
-                    /* Some */[2],
-                    /* Some */[2]
+                    2,
+                    2
                   ],
                   /* [] */0
                 ]
@@ -204,17 +205,17 @@ describe("Iterable.S", (function () {
                     return x % 2 === 0;
                   })), /* :: */[
               /* tuple */[
-                /* None */0,
+                undefined,
                 true
               ],
               /* :: */[
                 /* tuple */[
-                  /* Some */[1],
+                  1,
                   false
                 ],
                 /* :: */[
                   /* tuple */[
-                    /* Some */[2],
+                    2,
                     true
                   ],
                   /* [] */0
@@ -225,18 +226,18 @@ describe("Iterable.S", (function () {
                           return x % 2 === 0;
                         })), /* :: */[
                     /* tuple */[
-                      /* None */0,
-                      /* None */0
+                      undefined,
+                      undefined
                     ],
                     /* :: */[
                       /* tuple */[
-                        /* Some */[1],
-                        /* None */0
+                        1,
+                        undefined
                       ],
                       /* :: */[
                         /* tuple */[
-                          /* Some */[2],
-                          /* Some */[2]
+                          2,
+                          2
                         ],
                         /* [] */0
                       ]
@@ -245,18 +246,18 @@ describe("Iterable.S", (function () {
       }));
 
 Jest.test("some", (function () {
-        return Jest.Expect[/* toEqual */12](/* Some */[42], Jest.Expect[/* expect */0](Rebase.Option[/* some */11](42)));
+        return Jest.Expect[/* toEqual */12](42, Jest.Expect[/* expect */0](Rebase.Option[/* some */11](42)));
       }));
 
 TestHelpers.testFn("fromResult", Rebase.Option[/* fromResult */12], /* :: */[
       /* tuple */[
         /* Error */Block.__(1, [""]),
-        /* None */0
+        undefined
       ],
       /* :: */[
         /* tuple */[
           /* Ok */Block.__(0, [42]),
-          /* Some */[42]
+          42
         ],
         /* [] */0
       ]
@@ -264,12 +265,12 @@ TestHelpers.testFn("fromResult", Rebase.Option[/* fromResult */12], /* :: */[
 
 TestHelpers.testFn("isSome", Rebase.Option[/* isSome */13], /* :: */[
       /* tuple */[
-        /* None */0,
+        undefined,
         false
       ],
       /* :: */[
         /* tuple */[
-          /* Some */[42],
+          42,
           true
         ],
         /* [] */0
@@ -278,19 +279,19 @@ TestHelpers.testFn("isSome", Rebase.Option[/* isSome */13], /* :: */[
 
 TestHelpers.testFn("isNone", Rebase.Option[/* isNone */14], /* :: */[
       /* tuple */[
-        /* None */0,
+        undefined,
         true
       ],
       /* :: */[
         /* tuple */[
-          /* Some */[42],
+          42,
           false
         ],
         /* [] */0
       ]
     ]);
 
-var partial_arg = /* Some */[10];
+var partial_arg = 10;
 
 var partial_arg$1 = Rebase.Option[/* or_ */15];
 
@@ -298,13 +299,13 @@ TestHelpers.testFn("or_", (function (param) {
         return partial_arg$1(partial_arg, param);
       }), /* :: */[
       /* tuple */[
-        /* None */0,
-        /* Some */[10]
+        undefined,
+        10
       ],
       /* :: */[
         /* tuple */[
-          /* Some */[42],
-          /* Some */[42]
+          42,
+          42
         ],
         /* [] */0
       ]
@@ -316,12 +317,12 @@ TestHelpers.testFn("getOr", (function (param) {
         return partial_arg$2(10, param);
       }), /* :: */[
       /* tuple */[
-        /* None */0,
+        undefined,
         10
       ],
       /* :: */[
         /* tuple */[
-          /* Some */[42],
+          42,
           42
         ],
         /* [] */0
@@ -333,12 +334,12 @@ Jest.test("getOrRaise - None", (function () {
                     Rebase.InvalidArgument,
                     "getOrRaise called on None"
                   ], Jest.Expect[/* expect */0]((function () {
-                          return Rebase.Option[/* getOrRaise */17](/* None */0);
+                          return Rebase.Option[/* getOrRaise */17](undefined);
                         })));
       }));
 
 Jest.test("getOrRaise - Some", (function () {
-        return Jest.Expect[/* toEqual */12](42, Jest.Expect[/* expect */0](Rebase.Option[/* getOrRaise */17](/* Some */[42])));
+        return Jest.Expect[/* toEqual */12](42, Jest.Expect[/* expect */0](Rebase.Option[/* getOrRaise */17](42)));
       }));
 
 var partial_arg$3 = Rebase.Option[/* mapOr */18];
@@ -349,12 +350,12 @@ TestHelpers.testFn("mapOr", (function (param) {
                     }), 10, param);
       }), /* :: */[
       /* tuple */[
-        /* None */0,
+        undefined,
         10
       ],
       /* :: */[
         /* tuple */[
-          /* Some */[42],
+          42,
           43
         ],
         /* [] */0
@@ -371,12 +372,12 @@ TestHelpers.testFn("mapOrElse", (function (param) {
                     }), param);
       }), /* :: */[
       /* tuple */[
-        /* None */0,
+        undefined,
         10
       ],
       /* :: */[
         /* tuple */[
-          /* Some */[42],
+          42,
           43
         ],
         /* [] */0
@@ -385,18 +386,18 @@ TestHelpers.testFn("mapOrElse", (function (param) {
 
 TestHelpers.testFn("flatten", Rebase.Option[/* flatten */20], /* :: */[
       /* tuple */[
-        /* None */0,
-        /* None */0
+        undefined,
+        undefined
       ],
       /* :: */[
         /* tuple */[
-          /* Some */[/* None */0],
-          /* None */0
+          Js_primitive.some(undefined),
+          undefined
         ],
         /* :: */[
           /* tuple */[
-            /* Some */[/* Some */[42]],
-            /* Some */[42]
+            42,
+            42
           ],
           /* [] */0
         ]

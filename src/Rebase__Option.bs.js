@@ -1,42 +1,35 @@
 'use strict';
 
 var Curry = require("bs-platform/lib/js/curry.js");
+var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 var Rebase__Types = require("./Rebase__Types.bs.js");
 
 function from(x) {
-  return /* Some */[x];
+  return Js_primitive.some(x);
 }
 
 function some(x) {
-  return /* Some */[x];
+  return Js_primitive.some(x);
 }
 
 function fromResult(param) {
   if (param.tag) {
-    return /* None */0;
+    return undefined;
   } else {
-    return /* Some */[param[0]];
+    return Js_primitive.some(param[0]);
   }
 }
 
 function isSome(param) {
-  if (param) {
-    return true;
-  } else {
-    return false;
-  }
+  return param !== undefined;
 }
 
 function isNone(param) {
-  if (param) {
-    return false;
-  } else {
-    return true;
-  }
+  return param === undefined;
 }
 
 function or_(other, self) {
-  if (self) {
+  if (self !== undefined) {
     return self;
   } else {
     return other;
@@ -44,16 +37,16 @@ function or_(other, self) {
 }
 
 function getOr(other, param) {
-  if (param) {
-    return param[0];
+  if (param !== undefined) {
+    return Js_primitive.valFromOption(param);
   } else {
     return other;
   }
 }
 
 function getOrRaise(param) {
-  if (param) {
-    return param[0];
+  if (param !== undefined) {
+    return Js_primitive.valFromOption(param);
   } else {
     throw [
           Rebase__Types.InvalidArgument,
@@ -63,109 +56,103 @@ function getOrRaise(param) {
 }
 
 function map(f, param) {
-  if (param) {
-    return /* Some */[Curry._1(f, param[0])];
-  } else {
-    return /* None */0;
+  if (param !== undefined) {
+    return Js_primitive.some(Curry._1(f, Js_primitive.valFromOption(param)));
   }
+  
 }
 
 function mapOr(f, other, param) {
-  if (param) {
-    return Curry._1(f, param[0]);
+  if (param !== undefined) {
+    return Curry._1(f, Js_primitive.valFromOption(param));
   } else {
     return other;
   }
 }
 
 function mapOrElse(f, g, param) {
-  if (param) {
-    return Curry._1(f, param[0]);
+  if (param !== undefined) {
+    return Curry._1(f, Js_primitive.valFromOption(param));
   } else {
     return Curry._1(g, /* () */0);
   }
 }
 
 function exists(predicate, param) {
-  if (param) {
-    return Curry._1(predicate, param[0]);
+  if (param !== undefined) {
+    return Curry._1(predicate, Js_primitive.valFromOption(param));
   } else {
     return false;
   }
 }
 
 function forAll(predicate, param) {
-  if (param) {
-    return Curry._1(predicate, param[0]);
+  if (param !== undefined) {
+    return Curry._1(predicate, Js_primitive.valFromOption(param));
   } else {
     return true;
   }
 }
 
 function filter(predicate, self) {
-  if (self && Curry._1(predicate, self[0])) {
+  if (self !== undefined && Curry._1(predicate, Js_primitive.valFromOption(self))) {
     return self;
-  } else {
-    return /* None */0;
   }
+  
 }
 
 function forEach(f, param) {
-  if (param) {
-    return Curry._1(f, param[0]);
+  if (param !== undefined) {
+    return Curry._1(f, Js_primitive.valFromOption(param));
   } else {
     return /* () */0;
   }
 }
 
 function find(predicate, param) {
-  if (param) {
-    var x = param[0];
+  if (param !== undefined) {
+    var x = Js_primitive.valFromOption(param);
     if (Curry._1(predicate, x)) {
-      return /* Some */[x];
+      return Js_primitive.some(x);
     } else {
-      return /* None */0;
+      return undefined;
     }
-  } else {
-    return /* None */0;
   }
+  
 }
 
 function andThen(f, param) {
-  if (param) {
-    return Curry._1(f, param[0]);
-  } else {
-    return /* None */0;
+  if (param !== undefined) {
+    return Curry._1(f, Js_primitive.valFromOption(param));
   }
+  
 }
 
 function flatten(param) {
-  if (param) {
-    return param[0];
-  } else {
-    return /* None */0;
+  if (param !== undefined) {
+    return Js_primitive.valFromOption(param);
   }
+  
 }
 
 function apply(f, a) {
-  if (f) {
-    return map(f[0], a);
-  } else {
-    return /* None */0;
+  if (f !== undefined) {
+    return map(f, a);
   }
+  
 }
 
 function reduce(f, acc, param) {
-  if (param) {
-    return Curry._2(f, acc, param[0]);
+  if (param !== undefined) {
+    return Curry._2(f, acc, Js_primitive.valFromOption(param));
   } else {
     return acc;
   }
 }
 
 function reduceRight(f, acc, param) {
-  if (param) {
-    return Curry._2(f, acc, param[0]);
+  if (param !== undefined) {
+    return Curry._2(f, acc, Js_primitive.valFromOption(param));
   } else {
     return acc;
   }
