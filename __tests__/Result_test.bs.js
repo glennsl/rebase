@@ -6,6 +6,18 @@ var Rebase = require("../src/Rebase.bs.js");
 var Pervasives = require("bs-platform/lib/js/pervasives.js");
 var TestHelpers = require("./helpers/TestHelpers.bs.js");
 
+Jest.describe("Expect", (function (param) {
+        return Jest.test("toBe", (function (param) {
+                      return Jest.Expect.toBe(3, Jest.Expect.expect(3));
+                    }));
+      }));
+
+Jest.describe("Expect.Operators", (function (param) {
+        return Jest.test("==", (function (param) {
+                      return Curry._2(Jest.Expect.Operators.$eq$eq, Jest.Expect.expect(3), 3);
+                    }));
+      }));
+
 Jest.describe("Mappable.S1_5", (function (param) {
         return TestHelpers.testFn("map", Curry._1(Rebase.Result.map, (function (x) {
                           return x + 1 | 0;
@@ -624,4 +636,7 @@ TestHelpers.testFn("flatten", Rebase.Result.flatten, {
       }
     });
 
+var Result;
+
+exports.Result = Result;
 /*  Not a pure module */
