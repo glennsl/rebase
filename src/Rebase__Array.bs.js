@@ -25,21 +25,21 @@ function make(length, value) {
   return array;
 }
 
-function fromList(list) {
-  if (!list) {
+function fromList(x) {
+  if (!x) {
     return [];
   }
-  var array = make(List.length(list), list.hd);
+  var array = make(List.length(x), x.hd);
   var _i = 1;
-  var _param = list.tl;
+  var _x = x.tl;
   while(true) {
-    var param = _param;
+    var x$1 = _x;
     var i = _i;
-    if (!param) {
+    if (!x$1) {
       return array;
     }
-    array[i] = param.hd;
-    _param = param.tl;
+    array[i] = x$1.hd;
+    _x = x$1.tl;
     _i = i + 1 | 0;
     continue ;
   };
