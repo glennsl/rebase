@@ -1,434 +1,627 @@
 'use strict';
 
-var Jest = require("@glennsl/bs-jest/src/jest.js");
-var Block = require("bs-platform/lib/js/block.js");
+var Jest = require("@glennsl/bs-jest/src/jest.bs.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var Rebase = require("../src/Rebase.bs.js");
 var Pervasives = require("bs-platform/lib/js/pervasives.js");
 var TestHelpers = require("./helpers/TestHelpers.bs.js");
-var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
 
-describe("Mappable.S1_5", (function () {
-        var M = [Rebase.Result[0]];
-        return TestHelpers.testFn("map", Curry._1(M[/* map */0], (function (x) {
+Jest.describe("Mappable.S1_5", (function (param) {
+        return TestHelpers.testFn("map", Curry._1(Rebase.Result.map, (function (x) {
                           return x + 1 | 0;
-                        })), /* :: */[
-                    /* tuple */[
-                      /* Error */Block.__(1, ["err"]),
-                      /* Error */Block.__(1, ["err"])
+                        })), {
+                    hd: [
+                      {
+                        TAG: /* Error */1,
+                        _0: "err"
+                      },
+                      {
+                        TAG: /* Error */1,
+                        _0: "err"
+                      }
                     ],
-                    /* :: */[
-                      /* tuple */[
-                        /* Ok */Block.__(0, [42]),
-                        /* Ok */Block.__(0, [43])
+                    tl: {
+                      hd: [
+                        {
+                          TAG: /* Ok */0,
+                          _0: 42
+                        },
+                        {
+                          TAG: /* Ok */0,
+                          _0: 43
+                        }
                       ],
-                      /* [] */0
-                    ]
-                  ]);
+                      tl: /* [] */0
+                    }
+                  });
       }));
 
-describe("Mappable.S2", (function () {
-        var M = [Rebase.Result[1]];
-        return TestHelpers.testFn("map2", Curry._2(M[/* map2 */0], (function (x) {
+Jest.describe("Mappable.S2", (function (param) {
+        return TestHelpers.testFn("map2", Curry._2(Rebase.Result.map2, (function (x) {
                           return x + 1 | 0;
                         }), (function (e) {
                           return e + "or";
-                        })), /* :: */[
-                    /* tuple */[
-                      /* Error */Block.__(1, ["err"]),
-                      /* Error */Block.__(1, ["error"])
+                        })), {
+                    hd: [
+                      {
+                        TAG: /* Error */1,
+                        _0: "err"
+                      },
+                      {
+                        TAG: /* Error */1,
+                        _0: "error"
+                      }
                     ],
-                    /* :: */[
-                      /* tuple */[
-                        /* Ok */Block.__(0, [42]),
-                        /* Ok */Block.__(0, [43])
+                    tl: {
+                      hd: [
+                        {
+                          TAG: /* Ok */0,
+                          _0: 42
+                        },
+                        {
+                          TAG: /* Ok */0,
+                          _0: 43
+                        }
                       ],
-                      /* [] */0
-                    ]
-                  ]);
+                      tl: /* [] */0
+                    }
+                  });
       }));
 
-describe("Applicative.S1_5", (function () {
-        var M_000 = Rebase.Result[0];
-        var M_001 = Rebase.Result[2];
-        var M_002 = Rebase.Result[3];
-        TestHelpers.testFn("apply", Curry._1(Rebase.Fn[/* uncurry */4], M_001), /* :: */[
-              /* tuple */[
-                /* tuple */[
-                  /* Error */Block.__(1, ["err"]),
-                  /* Error */Block.__(1, ["err"])
+Jest.describe("Applicative.S1_5", (function (param) {
+        TestHelpers.testFn("apply", Curry._1(Rebase.Fn.uncurry, Rebase.Result.apply), {
+              hd: [
+                [
+                  {
+                    TAG: /* Error */1,
+                    _0: "err"
+                  },
+                  {
+                    TAG: /* Error */1,
+                    _0: "err"
+                  }
                 ],
-                /* Error */Block.__(1, ["err"])
+                {
+                  TAG: /* Error */1,
+                  _0: "err"
+                }
               ],
-              /* :: */[
-                /* tuple */[
-                  /* tuple */[
-                    /* Ok */Block.__(0, [(function (x) {
-                            return x + 1 | 0;
-                          })]),
-                    /* Error */Block.__(1, ["err"])
+              tl: {
+                hd: [
+                  [
+                    {
+                      TAG: /* Ok */0,
+                      _0: (function (x) {
+                          return x + 1 | 0;
+                        })
+                    },
+                    {
+                      TAG: /* Error */1,
+                      _0: "err"
+                    }
                   ],
-                  /* Error */Block.__(1, ["err"])
+                  {
+                    TAG: /* Error */1,
+                    _0: "err"
+                  }
                 ],
-                /* :: */[
-                  /* tuple */[
-                    /* tuple */[
-                      /* Error */Block.__(1, ["err"]),
-                      /* Ok */Block.__(0, [1])
+                tl: {
+                  hd: [
+                    [
+                      {
+                        TAG: /* Error */1,
+                        _0: "err"
+                      },
+                      {
+                        TAG: /* Ok */0,
+                        _0: 1
+                      }
                     ],
-                    /* Error */Block.__(1, ["err"])
+                    {
+                      TAG: /* Error */1,
+                      _0: "err"
+                    }
                   ],
-                  /* :: */[
-                    /* tuple */[
-                      /* tuple */[
-                        /* Ok */Block.__(0, [(function (x) {
-                                return x + 1 | 0;
-                              })]),
-                        /* Ok */Block.__(0, [1])
+                  tl: {
+                    hd: [
+                      [
+                        {
+                          TAG: /* Ok */0,
+                          _0: (function (x) {
+                              return x + 1 | 0;
+                            })
+                        },
+                        {
+                          TAG: /* Ok */0,
+                          _0: 1
+                        }
                       ],
-                      /* Ok */Block.__(0, [2])
+                      {
+                        TAG: /* Ok */0,
+                        _0: 2
+                      }
                     ],
-                    /* [] */0
-                  ]
-                ]
-              ]
-            ]);
-        return Jest.test("from", (function () {
-                      return Jest.Expect[/* toEqual */12](/* Ok */Block.__(0, [42]), Jest.Expect[/* expect */0](Curry._1(M_002, 42)));
+                    tl: /* [] */0
+                  }
+                }
+              }
+            });
+        return Jest.test("from", (function (param) {
+                      return Jest.Expect.toEqual({
+                                  TAG: /* Ok */0,
+                                  _0: 42
+                                }, Jest.Expect.expect(Curry._1(Rebase.Result.from, 42)));
                     }));
       }));
 
-describe("Reduceable.S1_5", (function () {
-        var M_000 = Rebase.Result[4];
-        var M_001 = Rebase.Result[5];
-        TestHelpers.testFn("reduce", Curry._2(M_000, (function (acc, x) {
+Jest.describe("Reduceable.S1_5", (function (param) {
+        TestHelpers.testFn("reduce", Curry._2(Rebase.Result.reduce, (function (acc, x) {
                     return x - acc | 0;
-                  }), 10), /* :: */[
-              /* tuple */[
-                /* Error */Block.__(1, ["err"]),
+                  }), 10), {
+              hd: [
+                {
+                  TAG: /* Error */1,
+                  _0: "err"
+                },
                 10
               ],
-              /* :: */[
-                /* tuple */[
-                  /* Ok */Block.__(0, [42]),
+              tl: {
+                hd: [
+                  {
+                    TAG: /* Ok */0,
+                    _0: 42
+                  },
                   32
                 ],
-                /* [] */0
-              ]
-            ]);
-        return TestHelpers.testFn("reduceRight", Curry._2(M_001, (function (acc, x) {
+                tl: /* [] */0
+              }
+            });
+        return TestHelpers.testFn("reduceRight", Curry._2(Rebase.Result.reduceRight, (function (acc, x) {
                           return x - acc | 0;
-                        }), 10), /* :: */[
-                    /* tuple */[
-                      /* Error */Block.__(1, ["err"]),
+                        }), 10), {
+                    hd: [
+                      {
+                        TAG: /* Error */1,
+                        _0: "err"
+                      },
                       10
                     ],
-                    /* :: */[
-                      /* tuple */[
-                        /* Ok */Block.__(0, [42]),
+                    tl: {
+                      hd: [
+                        {
+                          TAG: /* Ok */0,
+                          _0: 42
+                        },
                         32
                       ],
-                      /* [] */0
-                    ]
-                  ]);
+                      tl: /* [] */0
+                    }
+                  });
       }));
 
-describe("Monad.S1_5", (function () {
-        var M_000 = Rebase.Result[0];
-        var M_001 = Rebase.Result[2];
-        var M_002 = Rebase.Result[3];
-        var M_003 = Rebase.Result[6];
-        return TestHelpers.testFn("flatMap", Curry._1(M_003, (function (x) {
-                          return /* Ok */Block.__(0, [x + 1 | 0]);
-                        })), /* :: */[
-                    /* tuple */[
-                      /* Error */Block.__(1, ["err"]),
-                      /* Error */Block.__(1, ["err"])
+Jest.describe("Monad.S1_5", (function (param) {
+        return TestHelpers.testFn("flatMap", Curry._1(Rebase.Result.flatMap, (function (x) {
+                          return {
+                                  TAG: /* Ok */0,
+                                  _0: x + 1 | 0
+                                };
+                        })), {
+                    hd: [
+                      {
+                        TAG: /* Error */1,
+                        _0: "err"
+                      },
+                      {
+                        TAG: /* Error */1,
+                        _0: "err"
+                      }
                     ],
-                    /* :: */[
-                      /* tuple */[
-                        /* Ok */Block.__(0, [42]),
-                        /* Ok */Block.__(0, [43])
+                    tl: {
+                      hd: [
+                        {
+                          TAG: /* Ok */0,
+                          _0: 42
+                        },
+                        {
+                          TAG: /* Ok */0,
+                          _0: 43
+                        }
                       ],
-                      /* [] */0
-                    ]
-                  ]);
+                      tl: /* [] */0
+                    }
+                  });
       }));
 
-describe("Iterable.S1_5", (function () {
-        var M_000 = Rebase.Result[7];
-        var M_001 = Rebase.Result[8];
-        var M_002 = Rebase.Result[9];
-        var M_003 = Rebase.Result[10];
-        TestHelpers.testFn("exists", Curry._1(M_003, (function (x) {
+Jest.describe("Iterable.S1_5", (function (param) {
+        TestHelpers.testFn("exists", Curry._1(Rebase.Result.exists, (function (x) {
                     return x % 2 === 0;
-                  })), /* :: */[
-              /* tuple */[
-                /* Error */Block.__(1, ["err"]),
+                  })), {
+              hd: [
+                {
+                  TAG: /* Error */1,
+                  _0: "err"
+                },
                 false
               ],
-              /* :: */[
-                /* tuple */[
-                  /* Ok */Block.__(0, [1]),
+              tl: {
+                hd: [
+                  {
+                    TAG: /* Ok */0,
+                    _0: 1
+                  },
                   false
                 ],
-                /* :: */[
-                  /* tuple */[
-                    /* Ok */Block.__(0, [2]),
+                tl: {
+                  hd: [
+                    {
+                      TAG: /* Ok */0,
+                      _0: 2
+                    },
                     true
                   ],
-                  /* [] */0
-                ]
-              ]
-            ]);
-        Jest.testAll("forEach", /* :: */[
-              /* tuple */[
-                /* Error */Block.__(1, ["err"]),
+                  tl: /* [] */0
+                }
+              }
+            });
+        Jest.testAll("forEach", {
+              hd: [
+                {
+                  TAG: /* Error */1,
+                  _0: "err"
+                },
                 0
               ],
-              /* :: */[
-                /* tuple */[
-                  /* Ok */Block.__(0, [1]),
+              tl: {
+                hd: [
+                  {
+                    TAG: /* Ok */0,
+                    _0: 1
+                  },
                   1
                 ],
-                /* [] */0
-              ]
-            ], (function (param) {
-                var checked = /* record */[/* contents */0];
-                Curry._2(M_002, (function (x) {
-                        checked[0] = x;
-                        return /* () */0;
+                tl: /* [] */0
+              }
+            }, (function (param) {
+                var checked = {
+                  contents: 0
+                };
+                Curry._2(Rebase.Result.forEach, (function (x) {
+                        checked.contents = x;
+                        
                       }), param[0]);
-                return Jest.Expect[/* toEqual */12](param[1], Jest.Expect[/* expect */0](checked[0]));
+                return Jest.Expect.toEqual(param[1], Jest.Expect.expect(checked.contents));
               }));
-        TestHelpers.testFn("find", Curry._1(M_001, (function (x) {
+        TestHelpers.testFn("find", Curry._1(Rebase.Result.find, (function (x) {
                     return x % 2 === 0;
-                  })), /* :: */[
-              /* tuple */[
-                /* Error */Block.__(1, ["err"]),
+                  })), {
+              hd: [
+                {
+                  TAG: /* Error */1,
+                  _0: "err"
+                },
                 undefined
               ],
-              /* :: */[
-                /* tuple */[
-                  /* Ok */Block.__(0, [1]),
+              tl: {
+                hd: [
+                  {
+                    TAG: /* Ok */0,
+                    _0: 1
+                  },
                   undefined
                 ],
-                /* :: */[
-                  /* tuple */[
-                    /* Ok */Block.__(0, [2]),
+                tl: {
+                  hd: [
+                    {
+                      TAG: /* Ok */0,
+                      _0: 2
+                    },
                     2
                   ],
-                  /* [] */0
-                ]
-              ]
-            ]);
-        return TestHelpers.testFn("forAll", Curry._1(M_000, (function (x) {
+                  tl: /* [] */0
+                }
+              }
+            });
+        return TestHelpers.testFn("forAll", Curry._1(Rebase.Result.forAll, (function (x) {
                           return x % 2 === 0;
-                        })), /* :: */[
-                    /* tuple */[
-                      /* Error */Block.__(1, ["err"]),
+                        })), {
+                    hd: [
+                      {
+                        TAG: /* Error */1,
+                        _0: "err"
+                      },
                       true
                     ],
-                    /* :: */[
-                      /* tuple */[
-                        /* Ok */Block.__(0, [1]),
+                    tl: {
+                      hd: [
+                        {
+                          TAG: /* Ok */0,
+                          _0: 1
+                        },
                         false
                       ],
-                      /* :: */[
-                        /* tuple */[
-                          /* Ok */Block.__(0, [2]),
+                      tl: {
+                        hd: [
+                          {
+                            TAG: /* Ok */0,
+                            _0: 2
+                          },
                           true
                         ],
-                        /* [] */0
-                      ]
-                    ]
-                  ]);
+                        tl: /* [] */0
+                      }
+                    }
+                  });
       }));
 
-TestHelpers.testFn("isOk", Rebase.Result[/* isOk */11], /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
+TestHelpers.testFn("isOk", Rebase.Result.isOk, {
+      hd: [
+        {
+          TAG: /* Error */1,
+          _0: "err"
+        },
         false
       ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [42]),
+      tl: {
+        hd: [
+          {
+            TAG: /* Ok */0,
+            _0: 42
+          },
           true
         ],
-        /* [] */0
-      ]
-    ]);
+        tl: /* [] */0
+      }
+    });
 
-TestHelpers.testFn("isError", Rebase.Result[/* isError */12], /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
+TestHelpers.testFn("isError", Rebase.Result.isError, {
+      hd: [
+        {
+          TAG: /* Error */1,
+          _0: "err"
+        },
         true
       ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [42]),
+      tl: {
+        hd: [
+          {
+            TAG: /* Ok */0,
+            _0: 42
+          },
           false
         ],
-        /* [] */0
-      ]
-    ]);
+        tl: /* [] */0
+      }
+    });
 
-Jest.test("wrap - Ok", (function () {
-        return Jest.Expect[/* toEqual */12](/* Ok */Block.__(0, [42]), Jest.Expect[/* expect */0](Rebase.Result[/* wrap */13]((function () {
-                              return 42;
-                            }))));
+Jest.test("wrap - Ok", (function (param) {
+        return Jest.Expect.toEqual({
+                    TAG: /* Ok */0,
+                    _0: 42
+                  }, Jest.Expect.expect(Rebase.Result.wrap(function (param) {
+                            return 42;
+                          })));
       }));
 
-Jest.test("wrap - Error", (function () {
-        return Jest.Expect[/* toEqual */12](/* Error */Block.__(1, [[
-                        Caml_builtin_exceptions.failure,
-                        "err"
-                      ]]), Jest.Expect[/* expect */0](Rebase.Result[/* wrap */13]((function () {
-                              return Pervasives.failwith("err");
-                            }))));
+Jest.test("wrap - Error", (function (param) {
+        return Jest.Expect.toEqual({
+                    TAG: /* Error */1,
+                    _0: {
+                      RE_EXN_ID: "Failure",
+                      _1: "err"
+                    }
+                  }, Jest.Expect.expect(Rebase.Result.wrap(function (param) {
+                            return Pervasives.failwith("err");
+                          })));
       }));
 
-Jest.test("wrap1 - Ok", (function () {
-        return Jest.Expect[/* toEqual */12](/* Ok */Block.__(0, [42]), Jest.Expect[/* expect */0](Rebase.Result[/* wrap1 */14]((function (n) {
+Jest.test("wrap1 - Ok", (function (param) {
+        return Jest.Expect.toEqual({
+                    TAG: /* Ok */0,
+                    _0: 42
+                  }, Jest.Expect.expect(Rebase.Result.wrap1((function (n) {
                               return n;
                             }), 42)));
       }));
 
-Jest.test("wrap1 - Error", (function () {
-        return Jest.Expect[/* toEqual */12](/* Error */Block.__(1, [[
-                        Caml_builtin_exceptions.failure,
-                        "err"
-                      ]]), Jest.Expect[/* expect */0](Rebase.Result[/* wrap1 */14]((function () {
+Jest.test("wrap1 - Error", (function (param) {
+        return Jest.Expect.toEqual({
+                    TAG: /* Error */1,
+                    _0: {
+                      RE_EXN_ID: "Failure",
+                      _1: "err"
+                    }
+                  }, Jest.Expect.expect(Rebase.Result.wrap1((function (_n) {
                               return Pervasives.failwith("err");
                             }), 42)));
       }));
 
-Jest.test("wrap2 - Ok", (function () {
-        return Jest.Expect[/* toEqual */12](/* Ok */Block.__(0, [42]), Jest.Expect[/* expect */0](Rebase.Result[/* wrap2 */15]((function (n, m) {
+Jest.test("wrap2 - Ok", (function (param) {
+        return Jest.Expect.toEqual({
+                    TAG: /* Ok */0,
+                    _0: 42
+                  }, Jest.Expect.expect(Rebase.Result.wrap2((function (n, m) {
                               return n + m | 0;
                             }), 40, 2)));
       }));
 
-Jest.test("wrap2 - Error", (function () {
-        return Jest.Expect[/* toEqual */12](/* Error */Block.__(1, [[
-                        Caml_builtin_exceptions.failure,
-                        "err"
-                      ]]), Jest.Expect[/* expect */0](Rebase.Result[/* wrap2 */15]((function (_, _$1) {
+Jest.test("wrap2 - Error", (function (param) {
+        return Jest.Expect.toEqual({
+                    TAG: /* Error */1,
+                    _0: {
+                      RE_EXN_ID: "Failure",
+                      _1: "err"
+                    }
+                  }, Jest.Expect.expect(Rebase.Result.wrap2((function (_n, _m) {
                               return Pervasives.failwith("err");
                             }), 40, 2)));
       }));
 
-var partial_arg = /* Ok */Block.__(0, [10]);
-
-var partial_arg$1 = Rebase.Result[/* or_ */16];
+var partial_arg = {
+  TAG: /* Ok */0,
+  _0: 10
+};
 
 TestHelpers.testFn("or_", (function (param) {
-        return partial_arg$1(partial_arg, param);
-      }), /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
-        /* Ok */Block.__(0, [10])
+        return Rebase.Result.or_(partial_arg, param);
+      }), {
+      hd: [
+        {
+          TAG: /* Error */1,
+          _0: "err"
+        },
+        {
+          TAG: /* Ok */0,
+          _0: 10
+        }
       ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [42]),
-          /* Ok */Block.__(0, [42])
+      tl: {
+        hd: [
+          {
+            TAG: /* Ok */0,
+            _0: 42
+          },
+          {
+            TAG: /* Ok */0,
+            _0: 42
+          }
         ],
-        /* [] */0
-      ]
-    ]);
-
-var partial_arg$2 = Rebase.Result[/* getOr */17];
+        tl: /* [] */0
+      }
+    });
 
 TestHelpers.testFn("getOr", (function (param) {
-        return partial_arg$2(10, param);
-      }), /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
+        return Rebase.Result.getOr(10, param);
+      }), {
+      hd: [
+        {
+          TAG: /* Error */1,
+          _0: "err"
+        },
         10
       ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [42]),
+      tl: {
+        hd: [
+          {
+            TAG: /* Ok */0,
+            _0: 42
+          },
           42
         ],
-        /* [] */0
-      ]
-    ]);
+        tl: /* [] */0
+      }
+    });
 
-Jest.test("getOrRaise - Error", (function () {
-        return Jest.Expect[/* toThrowException */20]([
-                    Rebase.InvalidArgument,
-                    "getOrRaise called on Error"
-                  ], Jest.Expect[/* expect */0]((function () {
-                          return Rebase.Result[/* getOrRaise */18](/* Error */Block.__(1, ["err"]));
-                        })));
+Jest.test("getOrRaise - Error", (function (param) {
+        return Jest.Expect.toThrowException({
+                    RE_EXN_ID: Rebase.InvalidArgument,
+                    _1: "getOrRaise called on Error"
+                  }, Jest.Expect.expect(function (param) {
+                        return Rebase.Result.getOrRaise({
+                                    TAG: /* Error */1,
+                                    _0: "err"
+                                  });
+                      }));
       }));
 
-Jest.test("getOrRaise - Ok", (function () {
-        return Jest.Expect[/* toEqual */12](42, Jest.Expect[/* expect */0](Rebase.Result[/* getOrRaise */18](/* Ok */Block.__(0, [42]))));
+Jest.test("getOrRaise - Ok", (function (param) {
+        return Jest.Expect.toEqual(42, Jest.Expect.expect(Rebase.Result.getOrRaise({
+                            TAG: /* Ok */0,
+                            _0: 42
+                          })));
       }));
-
-var partial_arg$3 = Rebase.Result[/* mapOr */19];
 
 TestHelpers.testFn("mapOr", (function (param) {
-        return partial_arg$3((function (x) {
+        return Rebase.Result.mapOr((function (x) {
                       return x + 1 | 0;
                     }), 10, param);
-      }), /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
+      }), {
+      hd: [
+        {
+          TAG: /* Error */1,
+          _0: "err"
+        },
         10
       ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [42]),
+      tl: {
+        hd: [
+          {
+            TAG: /* Ok */0,
+            _0: 42
+          },
           43
         ],
-        /* [] */0
-      ]
-    ]);
-
-var partial_arg$4 = Rebase.Result[/* mapOrElse */20];
+        tl: /* [] */0
+      }
+    });
 
 TestHelpers.testFn("mapOrElse", (function (param) {
-        return partial_arg$4((function (x) {
+        return Rebase.Result.mapOrElse((function (x) {
                       return x + 1 | 0;
-                    }), (function () {
+                    }), (function (param) {
                       return 10;
                     }), param);
-      }), /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
+      }), {
+      hd: [
+        {
+          TAG: /* Error */1,
+          _0: "err"
+        },
         10
       ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [42]),
+      tl: {
+        hd: [
+          {
+            TAG: /* Ok */0,
+            _0: 42
+          },
           43
         ],
-        /* [] */0
-      ]
-    ]);
+        tl: /* [] */0
+      }
+    });
 
-TestHelpers.testFn("flatten", Rebase.Result[/* flatten */21], /* :: */[
-      /* tuple */[
-        /* Error */Block.__(1, ["err"]),
-        /* Error */Block.__(1, ["err"])
+TestHelpers.testFn("flatten", Rebase.Result.flatten, {
+      hd: [
+        {
+          TAG: /* Error */1,
+          _0: "err"
+        },
+        {
+          TAG: /* Error */1,
+          _0: "err"
+        }
       ],
-      /* :: */[
-        /* tuple */[
-          /* Ok */Block.__(0, [/* Error */Block.__(1, ["err"])]),
-          /* Error */Block.__(1, ["err"])
+      tl: {
+        hd: [
+          {
+            TAG: /* Ok */0,
+            _0: {
+              TAG: /* Error */1,
+              _0: "err"
+            }
+          },
+          {
+            TAG: /* Error */1,
+            _0: "err"
+          }
         ],
-        /* :: */[
-          /* tuple */[
-            /* Ok */Block.__(0, [/* Ok */Block.__(0, [42])]),
-            /* Ok */Block.__(0, [42])
+        tl: {
+          hd: [
+            {
+              TAG: /* Ok */0,
+              _0: {
+                TAG: /* Ok */0,
+                _0: 42
+              }
+            },
+            {
+              TAG: /* Ok */0,
+              _0: 42
+            }
           ],
-          /* [] */0
-        ]
-      ]
-    ]);
+          tl: /* [] */0
+        }
+      }
+    });
 
 /*  Not a pure module */
