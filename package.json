@@ -26,12 +26,12 @@
   "license": "MIT",
   "devDependencies": {
     "@glennsl/bs-jest": "^0.6.0",
-    "bs-platform": "^9.0.2",
+    "bs-platform": "8.3.1",
     "coveralls": "^3.1.0",
     "nyc": "^15.1.0"
   },
   "peerDependencies": {
-    "bs-platform": "^9.0.2"
+    "bs-platform": "^8.3.1"
   },
   "jest": {
     "testMatch": [
