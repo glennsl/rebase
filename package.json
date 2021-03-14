@@ -18,15 +18,10 @@
     "url": "git+https://github.com/glennsl/rebase.git"
   },
   "author": "glennsl",
-  "keywords": [
-    "reason",
-    "bucklescript",
-    "foundation",
-    "base"
-  ],
+  "keywords": ["reason", "bucklescript", "foundation", "base"],
   "license": "MIT",
   "devDependencies": {
-    "@glennsl/bs-jest": "^0.6.0",
+    "@glennsl/bs-jest": "^0.7.0",
     "bs-platform": "8.3.1",
     "coveralls": "^3.1.0",
     "nyc": "^15.1.0"
@@ -35,8 +30,6 @@
     "bs-platform": "^8.3.1"
   },
   "jest": {
-    "testMatch": [
-      "**/__tests__/**/*_test.bs.js"
-    ]
+    "testMatch": ["**/__tests__/**/*_test.bs.js"]
   }
 }
