@@ -16,7 +16,7 @@ function unsafeGetUnchecked(index, self) {
 
 function unsafeSetUnchecked(index, value, self) {
   self[index] = value;
-  
+
 }
 
 function make(length, value) {
@@ -25,21 +25,21 @@ function make(length, value) {
   return array;
 }
 
-function fromList(x) {
-  if (!x) {
+function fromList(list) {
+  if (!list) {
     return [];
   }
-  var array = make(List.length(x), x.hd);
+  var array = make(List.length(list), list.hd);
   var _i = 1;
-  var _x = x.tl;
+  var _param = list.tl;
   while(true) {
-    var x$1 = _x;
+    var param = _param;
     var i = _i;
-    if (!x$1) {
+    if (!param) {
       return array;
     }
-    array[i] = x$1.hd;
-    _x = x$1.tl;
+    array[i] = param.hd;
+    _param = param.tl;
     _i = i + 1 | 0;
     continue ;
   };
@@ -96,7 +96,7 @@ function get(self, i) {
   if (i >= 0 && i < self.length) {
     return Caml_option.some(self[i]);
   }
-  
+
 }
 
 function set(self, i, value) {
@@ -104,7 +104,7 @@ function set(self, i, value) {
     self[i] = value;
     return ;
   }
-  
+
 }
 
 function getOrRaise(i, self) {
@@ -136,7 +136,7 @@ function findIndex(f, self) {
             self[i]
           ];
   }
-  
+
 }
 
 function flatMap(f, self) {
@@ -157,7 +157,7 @@ function filterMap(f, self) {
     if (x !== undefined) {
       result.push(Caml_option.valFromOption(x));
     }
-    
+
   }
   return result;
 }

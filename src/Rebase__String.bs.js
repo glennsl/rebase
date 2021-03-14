@@ -5,20 +5,20 @@ function isEmpty(s) {
   return s.trim().length === 0;
 }
 
-function join(x) {
-  if (x) {
-    return x.hd + join(x.tl);
+function join(param) {
+  if (param) {
+    return param.hd + join(param.tl);
   } else {
     return "";
   }
 }
 
-function joinWith(sep, x) {
-  if (!x) {
+function joinWith(sep, param) {
+  if (!param) {
     return "";
   }
-  var ss = x.tl;
-  var s = x.hd;
+  var ss = param.tl;
+  var s = param.hd;
   if (ss) {
     return s + (sep + joinWith(sep, ss));
   } else {
