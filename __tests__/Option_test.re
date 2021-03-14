@@ -158,7 +158,7 @@ testFn("getOr",
 test("getOrRaise - None", () =>
   expect(
     () => Option.getOrRaise(None))
-    |> toThrowException(InvalidArgument("getOrRaise called on None")));
+    |> toThrow);
 
 test("getOrRaise - Some", () =>
   expect(

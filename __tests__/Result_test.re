@@ -148,9 +148,10 @@ test("wrap - Ok", () =>{
 
 test("wrap - Error", () =>{
   open Expect;
+  let expected = try (Ok(failwith("err"))) { | e => Error(e) };
   expect(
     Result.wrap(() => failwith("err")))
-    |> toEqual(Error(Failure("err")))
+    |> toEqual(expected)
 });
 
 test("wrap1 - Ok", () =>{
@@ -162,9 +163,10 @@ test("wrap1 - Ok", () =>{
 
 test("wrap1 - Error", () =>{
   open Expect;
+  let expected = try (Ok(failwith("err"))) { | e => Error(e) };
   expect(
     Result.wrap1(_n => failwith("err"), 42))
-    |> toEqual(Error(Failure("err")))
+    |> toEqual(expected)
 });
 
 test("wrap2 - Ok", () =>{
@@ -176,9 +178,10 @@ test("wrap2 - Ok", () =>{
 
 test("wrap2 - Error", () =>{
   open Expect;
+  let expected = try (Ok(failwith("err"))) { | e => Error(e) };
   expect(
     Result.wrap2((_n, _m) => failwith("err"), 40, 2))
-    |> toEqual(Error(Failure("err")))
+    |> toEqual(expected)
 });
 
 testFn("or_",
@@ -199,7 +202,7 @@ test("getOrRaise - Error", () =>{
   open Expect;
   expect(
     () => Result.getOrRaise(Error("err")))
-    |> toThrowException(Rebase.InvalidArgument("getOrRaise called on Error"))});
+    |> toThrow});
 
 test("getOrRaise - Ok", () =>{
   open Expect;

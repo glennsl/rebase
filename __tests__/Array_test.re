@@ -140,7 +140,7 @@ testFn("range - step",
 test("range - step 0", () =>
   expect(
     () => Array.range(0, 0, ~step=0))
-    |> toThrowException(InvalidArgument("")));
+    |> toThrow);
 
 testFn("get",
   Array.get([|1, 2|]), [
@@ -187,7 +187,7 @@ test("getOrRaise - in bounds", () =>
   expect(Array.getOrRaise(1, [|1, 2|])) === 2);
 
 test("getOrRaise - out of bounds", () =>
-  expect(() => Array.getOrRaise(2, [|1, 2|])) |> toThrowException(IndexOutOfBounds));
+  expect(() => Array.getOrRaise(2, [|1, 2|])) |> toThrow);
 
 test("setOrRaise - in bounds", () => {
   let a = [|1, 2|];
@@ -197,7 +197,7 @@ test("setOrRaise - in bounds", () => {
 });
 
 test("setOrRaise - out of bounds", () =>
-  expect(() => Array.setOrRaise(2, 3, [|1, 2|])) |> toThrowException(IndexOutOfBounds));
+  expect(() => Array.setOrRaise(2, 3, [|1, 2|])) |> toThrow);
 
 test("unsafeGetUnchecked - in bounds", () =>
   expect(Array.unsafeGetUnchecked(1, [|1, 2|])) === 2);

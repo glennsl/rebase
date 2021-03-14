@@ -197,7 +197,7 @@ testFn("range - step",
 test("range - step 0", () =>
   expect(
     () => Seq.range(0, 0, ~step=0))
-    |> toThrowException(InvalidArgument("")));
+    |> toThrow);
 
 
 testFn("isEmpty",

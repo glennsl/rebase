@@ -318,10 +318,7 @@ TestHelpers.testFn("getOr", (function (param) {
     });
 
 Jest.test("getOrRaise - None", (function (param) {
-        return Jest.Expect.toThrowException({
-                    RE_EXN_ID: Rebase.InvalidArgument,
-                    _1: "getOrRaise called on None"
-                  }, Jest.Expect.expect(function (param) {
+        return Jest.Expect.toThrow(Jest.Expect.expect(function (param) {
                         return Rebase.$$Option.getOrRaise(undefined);
                       }));
       }));

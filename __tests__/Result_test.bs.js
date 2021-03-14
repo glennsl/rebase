@@ -5,6 +5,7 @@ var Curry = require("bs-platform/lib/js/curry.js");
 var Rebase = require("../src/Rebase.bs.js");
 var Pervasives = require("bs-platform/lib/js/pervasives.js");
 var TestHelpers = require("./helpers/TestHelpers.bs.js");
+var Caml_js_exceptions = require("bs-platform/lib/js/caml_js_exceptions.js");
 
 Jest.describe("Mappable.S1_5", (function (param) {
         return TestHelpers.testFn("map", Curry._1(Rebase.Result.map, (function (x) {
@@ -403,13 +404,21 @@ Jest.test("wrap - Ok", (function (param) {
       }));
 
 Jest.test("wrap - Error", (function (param) {
-        return Jest.Expect.toEqual({
-                    TAG: /* Error */1,
-                    _0: {
-                      RE_EXN_ID: "Failure",
-                      _1: "err"
-                    }
-                  }, Jest.Expect.expect(Rebase.Result.wrap(function (param) {
+        var expected;
+        try {
+          expected = {
+            TAG: /* Ok */0,
+            _0: Pervasives.failwith("err")
+          };
+        }
+        catch (raw_e){
+          var e = Caml_js_exceptions.internalToOCamlException(raw_e);
+          expected = {
+            TAG: /* Error */1,
+            _0: e
+          };
+        }
+        return Jest.Expect.toEqual(expected, Jest.Expect.expect(Rebase.Result.wrap(function (param) {
                             return Pervasives.failwith("err");
                           })));
       }));
@@ -424,13 +433,21 @@ Jest.test("wrap1 - Ok", (function (param) {
       }));
 
 Jest.test("wrap1 - Error", (function (param) {
-        return Jest.Expect.toEqual({
-                    TAG: /* Error */1,
-                    _0: {
-                      RE_EXN_ID: "Failure",
-                      _1: "err"
-                    }
-                  }, Jest.Expect.expect(Rebase.Result.wrap1((function (_n) {
+        var expected;
+        try {
+          expected = {
+            TAG: /* Ok */0,
+            _0: Pervasives.failwith("err")
+          };
+        }
+        catch (raw_e){
+          var e = Caml_js_exceptions.internalToOCamlException(raw_e);
+          expected = {
+            TAG: /* Error */1,
+            _0: e
+          };
+        }
+        return Jest.Expect.toEqual(expected, Jest.Expect.expect(Rebase.Result.wrap1((function (_n) {
                               return Pervasives.failwith("err");
                             }), 42)));
       }));
@@ -445,13 +462,21 @@ Jest.test("wrap2 - Ok", (function (param) {
       }));
 
 Jest.test("wrap2 - Error", (function (param) {
-        return Jest.Expect.toEqual({
-                    TAG: /* Error */1,
-                    _0: {
-                      RE_EXN_ID: "Failure",
-                      _1: "err"
-                    }
-                  }, Jest.Expect.expect(Rebase.Result.wrap2((function (_n, _m) {
+        var expected;
+        try {
+          expected = {
+            TAG: /* Ok */0,
+            _0: Pervasives.failwith("err")
+          };
+        }
+        catch (raw_e){
+          var e = Caml_js_exceptions.internalToOCamlException(raw_e);
+          expected = {
+            TAG: /* Error */1,
+            _0: e
+          };
+        }
+        return Jest.Expect.toEqual(expected, Jest.Expect.expect(Rebase.Result.wrap2((function (_n, _m) {
                               return Pervasives.failwith("err");
                             }), 40, 2)));
       }));
@@ -512,10 +537,7 @@ TestHelpers.testFn("getOr", (function (param) {
     });
 
 Jest.test("getOrRaise - Error", (function (param) {
-        return Jest.Expect.toThrowException({
-                    RE_EXN_ID: Rebase.InvalidArgument,
-                    _1: "getOrRaise called on Error"
-                  }, Jest.Expect.expect(function (param) {
+        return Jest.Expect.toThrow(Jest.Expect.expect(function (param) {
                         return Rebase.Result.getOrRaise({
                                     TAG: /* Error */1,
                                     _0: "err"

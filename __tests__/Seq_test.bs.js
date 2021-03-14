@@ -645,10 +645,7 @@ TestHelpers.testFn("range - step", (function (param) {
     });
 
 Jest.test("range - step 0", (function (param) {
-        return Jest.Expect.toThrowException({
-                    RE_EXN_ID: Rebase.InvalidArgument,
-                    _1: ""
-                  }, Jest.Expect.expect(function (param) {
+        return Jest.Expect.toThrow(Jest.Expect.expect(function (param) {
                         return Rebase.Seq.range(0, 0, 0);
                       }));
       }));

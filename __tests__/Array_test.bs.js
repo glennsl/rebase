@@ -432,10 +432,7 @@ TestHelpers.testFn("range - step", (function (param) {
     });
 
 Jest.test("range - step 0", (function (param) {
-        return Jest.Expect.toThrowException({
-                    RE_EXN_ID: Rebase.InvalidArgument,
-                    _1: ""
-                  }, Jest.Expect.expect(function (param) {
+        return Jest.Expect.toThrow(Jest.Expect.expect(function (param) {
                         return Rebase.$$Array.range(0, 0, 0);
                       }));
       }));
@@ -519,9 +516,7 @@ Jest.test("getOrRaise - in bounds", (function (param) {
       }));
 
 Jest.test("getOrRaise - out of bounds", (function (param) {
-        return Jest.Expect.toThrowException({
-                    RE_EXN_ID: Rebase.IndexOutOfBounds
-                  }, Jest.Expect.expect(function (param) {
+        return Jest.Expect.toThrow(Jest.Expect.expect(function (param) {
                         return Rebase.$$Array.getOrRaise(2, [
                                     1,
                                     2
@@ -539,9 +534,7 @@ Jest.test("setOrRaise - in bounds", (function (param) {
       }));
 
 Jest.test("setOrRaise - out of bounds", (function (param) {
-        return Jest.Expect.toThrowException({
-                    RE_EXN_ID: Rebase.IndexOutOfBounds
-                  }, Jest.Expect.expect(function (param) {
+        return Jest.Expect.toThrow(Jest.Expect.expect(function (param) {
                         return Rebase.$$Array.setOrRaise(2, 3, [
                                     1,
                                     2
