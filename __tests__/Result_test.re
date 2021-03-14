@@ -37,7 +37,7 @@ describe("Applicative.S1_5", () => {
     ]
   );
 
-  test("from", () =>{
+  test("from", () => {
     open Expect;
     expect(
       M.from(42))
@@ -101,9 +101,9 @@ describe("Iterable.S1_5", () => {
       (Error("err"), 0),
       (Ok(1), 1),
     ], ((input, expected)) => {
+    open Expect;
     let checked = ref(0);
     M.forEach(x => checked := x, input);
-open Expect;
     expect(checked^) |> toEqual(expected)
   });
 
@@ -139,14 +139,14 @@ testFn("isError",
   ]
 );
 
-test("wrap - Ok", () =>{
+test("wrap - Ok", () => {
   open Expect;
   expect(
     Result.wrap(() => 42))
     |> toEqual(Ok(42))
 });
 
-test("wrap - Error", () =>{
+test("wrap - Error", () => {
   open Expect;
   let expected = try (Ok(failwith("err"))) { | e => Error(e) };
   expect(
@@ -154,14 +154,14 @@ test("wrap - Error", () =>{
     |> toEqual(expected)
 });
 
-test("wrap1 - Ok", () =>{
+test("wrap1 - Ok", () => {
   open Expect;
   expect(
     Result.wrap1(n => n, 42))
     |> toEqual(Ok(42))
 });
 
-test("wrap1 - Error", () =>{
+test("wrap1 - Error", () => {
   open Expect;
   let expected = try (Ok(failwith("err"))) { | e => Error(e) };
   expect(
@@ -169,14 +169,14 @@ test("wrap1 - Error", () =>{
     |> toEqual(expected)
 });
 
-test("wrap2 - Ok", () =>{
+test("wrap2 - Ok", () => {
   open Expect;
   expect(
     Result.wrap2((n, m) => n + m, 40, 2))
     |> toEqual(Ok(42))
 });
 
-test("wrap2 - Error", () =>{
+test("wrap2 - Error", () => {
   open Expect;
   let expected = try (Ok(failwith("err"))) { | e => Error(e) };
   expect(
@@ -198,13 +198,13 @@ testFn("getOr",
   ]
 );
 
-test("getOrRaise - Error", () =>{
+test("getOrRaise - Error", () => {
   open Expect;
   expect(
     () => Result.getOrRaise(Error("err")))
     |> toThrow});
 
-test("getOrRaise - Ok", () =>{
+test("getOrRaise - Ok", () => {
   open Expect;
   expect(
     Result.getOrRaise(Ok(42)))
