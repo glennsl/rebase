@@ -1,382 +1,380 @@
 'use strict';
 
-var Jest = require("@glennsl/bs-jest/src/jest.js");
+var Jest = require("@glennsl/bs-jest/src/jest.bs.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var Rebase = require("../src/Rebase.bs.js");
 var TestHelpers = require("./helpers/TestHelpers.bs.js");
 
-describe("Concatenable.S0", (function () {
-        return Jest.test("concat", (function () {
-                      return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.$$String[/* concat */0]("b", "a")), "ab");
+Jest.describe("Concatenable.S0", (function (param) {
+        return Jest.test("concat", (function (param) {
+                      return Curry._2(Jest.Expect.Operators.$eq$eq, Jest.Expect.expect(Rebase.$$String.concat("b", "a")), "ab");
                     }));
       }));
 
-TestHelpers.testFn("length", Rebase.$$String[/* length */1], /* :: */[
-      /* tuple */[
+TestHelpers.testFn("length", Rebase.$$String.length, {
+      hd: [
         "foo",
         3
       ],
-      /* :: */[
-        /* tuple */[
+      tl: {
+        hd: [
           "m\xc3\xb8\xc3\xb8",
           5
         ],
-        /* :: */[
-          /* tuple */[
+        tl: {
+          hd: [
             "møø",
             3
           ],
-          /* [] */0
-        ]
-      ]
-    ]);
+          tl: /* [] */0
+        }
+      }
+    });
 
 TestHelpers.testFn("includes", (function (s) {
-        return Rebase.$$String[/* includes */2](s, "banana");
-      }), /* :: */[
-      /* tuple */[
+        return Rebase.$$String.includes(s, "banana");
+      }), {
+      hd: [
         "nana",
         true
       ],
-      /* :: */[
-        /* tuple */[
+      tl: {
+        hd: [
           "nanas",
           false
         ],
-        /* [] */0
-      ]
-    ]);
+        tl: /* [] */0
+      }
+    });
 
 TestHelpers.testFn("startsWith", (function (s) {
-        return Rebase.$$String[/* startsWith */3](s, "banana");
-      }), /* :: */[
-      /* tuple */[
+        return Rebase.$$String.startsWith(s, "banana");
+      }), {
+      hd: [
         "ba",
         true
       ],
-      /* :: */[
-        /* tuple */[
+      tl: {
+        hd: [
           "na",
           false
         ],
-        /* [] */0
-      ]
-    ]);
+        tl: /* [] */0
+      }
+    });
 
 TestHelpers.testFn("endsWith", (function (s) {
-        return Rebase.$$String[/* endsWith */4](s, "banana");
-      }), /* :: */[
-      /* tuple */[
+        return Rebase.$$String.endsWith(s, "banana");
+      }), {
+      hd: [
         "ba",
         false
       ],
-      /* :: */[
-        /* tuple */[
+      tl: {
+        hd: [
           "na",
           true
         ],
-        /* [] */0
-      ]
-    ]);
+        tl: /* [] */0
+      }
+    });
 
-TestHelpers.testFn("isEmpty", Rebase.$$String[/* isEmpty */5], /* :: */[
-      /* tuple */[
+TestHelpers.testFn("isEmpty", Rebase.$$String.isEmpty, {
+      hd: [
         "",
         true
       ],
-      /* :: */[
-        /* tuple */[
+      tl: {
+        hd: [
           "foo",
           false
         ],
-        /* :: */[
-          /* tuple */[
+        tl: {
+          hd: [
             "\t",
             true
           ],
-          /* :: */[
-            /* tuple */[
+          tl: {
+            hd: [
               "\n",
               true
             ],
-            /* :: */[
-              /* tuple */[
+            tl: {
+              hd: [
                 "\r",
                 true
               ],
-              /* :: */[
-                /* tuple */[
+              tl: {
+                hd: [
                   " ",
                   true
                 ],
-                /* :: */[
-                  /* tuple */[
+                tl: {
+                  hd: [
                     "\t\r\n ",
                     true
                   ],
-                  /* [] */0
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]);
+                  tl: /* [] */0
+                }
+              }
+            }
+          }
+        }
+      }
+    });
 
 TestHelpers.testFn("padStart", (function (param) {
-        return Rebase.$$String[/* padStart */6](param[0], param[1], "banana");
-      }), /* :: */[
-      /* tuple */[
-        /* tuple */[
+        return Rebase.$$String.padStart(param[0], param[1], "banana");
+      }), {
+      hd: [
+        [
           6,
           "na"
         ],
         "banana"
       ],
-      /* :: */[
-        /* tuple */[
-          /* tuple */[
+      tl: {
+        hd: [
+          [
             9,
             "na"
           ],
           "nanbanana"
         ],
-        /* :: */[
-          /* tuple */[
-            /* tuple */[
+        tl: {
+          hd: [
+            [
               10,
               "na"
             ],
             "nanabanana"
           ],
-          /* :: */[
-            /* tuple */[
-              /* tuple */[
+          tl: {
+            hd: [
+              [
                 -10,
                 "na"
               ],
               "banana"
             ],
-            /* [] */0
-          ]
-        ]
-      ]
-    ]);
+            tl: /* [] */0
+          }
+        }
+      }
+    });
 
 TestHelpers.testFn("padEnd", (function (param) {
-        return Rebase.$$String[/* padEnd */7](param[0], param[1], "banana");
-      }), /* :: */[
-      /* tuple */[
-        /* tuple */[
+        return Rebase.$$String.padEnd(param[0], param[1], "banana");
+      }), {
+      hd: [
+        [
           6,
           "na"
         ],
         "banana"
       ],
-      /* :: */[
-        /* tuple */[
-          /* tuple */[
+      tl: {
+        hd: [
+          [
             9,
             "na"
           ],
           "banananan"
         ],
-        /* :: */[
-          /* tuple */[
-            /* tuple */[
+        tl: {
+          hd: [
+            [
               10,
               "na"
             ],
             "banananana"
           ],
-          /* :: */[
-            /* tuple */[
-              /* tuple */[
+          tl: {
+            hd: [
+              [
                 -10,
                 "na"
               ],
               "banana"
             ],
-            /* [] */0
-          ]
-        ]
-      ]
-    ]);
+            tl: /* [] */0
+          }
+        }
+      }
+    });
 
-TestHelpers.testFn("trim", Rebase.$$String[/* trim */8], /* :: */[
-      /* tuple */[
+TestHelpers.testFn("trim", Rebase.$$String.trim, {
+      hd: [
         "  a",
         "a"
       ],
-      /* :: */[
-        /* tuple */[
+      tl: {
+        hd: [
           "a  ",
           "a"
         ],
-        /* :: */[
-          /* tuple */[
+        tl: {
+          hd: [
             "  a  ",
             "a"
           ],
-          /* :: */[
-            /* tuple */[
+          tl: {
+            hd: [
               "\t a \t ",
               "a"
             ],
-            /* :: */[
-              /* tuple */[
+            tl: {
+              hd: [
                 "\n a \r ",
                 "a"
               ],
-              /* [] */0
-            ]
-          ]
-        ]
-      ]
-    ]);
+              tl: /* [] */0
+            }
+          }
+        }
+      }
+    });
 
 TestHelpers.testFn("sum", (function (param) {
-        return Rebase.$$String[/* sub */9](param[0], param[1], "banana");
-      }), /* :: */[
-      /* tuple */[
-        /* tuple */[
+        return Rebase.$$String.sub(param[0], param[1], "banana");
+      }), {
+      hd: [
+        [
           0,
           0
         ],
         ""
       ],
-      /* :: */[
-        /* tuple */[
-          /* tuple */[
+      tl: {
+        hd: [
+          [
             1,
             0
           ],
           ""
         ],
-        /* :: */[
-          /* tuple */[
-            /* tuple */[
+        tl: {
+          hd: [
+            [
               0,
               1
             ],
             "b"
           ],
-          /* :: */[
-            /* tuple */[
-              /* tuple */[
+          tl: {
+            hd: [
+              [
                 2,
                 2
               ],
               "na"
             ],
-            /* :: */[
-              /* tuple */[
-                /* tuple */[
+            tl: {
+              hd: [
+                [
                   3,
                   4
                 ],
                 "ana"
               ],
-              /* :: */[
-                /* tuple */[
-                  /* tuple */[
+              tl: {
+                hd: [
+                  [
                     3,
                     8
                   ],
                   "ana"
                 ],
-                /* :: */[
-                  /* tuple */[
-                    /* tuple */[
+                tl: {
+                  hd: [
+                    [
                       7,
                       1
                     ],
                     ""
                   ],
-                  /* :: */[
-                    /* tuple */[
-                      /* tuple */[
+                  tl: {
+                    hd: [
+                      [
                         0,
                         -1
                       ],
                       ""
                     ],
-                    /* :: */[
-                      /* tuple */[
-                        /* tuple */[
+                    tl: {
+                      hd: [
+                        [
                           -1,
                           -1
                         ],
                         ""
                       ],
-                      /* :: */[
-                        /* tuple */[
-                          /* tuple */[
+                      tl: {
+                        hd: [
+                          [
                             -1,
                             1
                           ],
                           "a"
                         ],
-                        /* [] */0
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]);
+                        tl: /* [] */0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    });
 
-TestHelpers.testFn("join", Rebase.$$String[/* join */10], /* :: */[
-      /* tuple */[
+TestHelpers.testFn("join", Rebase.$$String.join, {
+      hd: [
         /* [] */0,
         ""
       ],
-      /* :: */[
-        /* tuple */[
-          /* :: */[
-            "a",
-            /* :: */[
-              "b",
-              /* :: */[
-                "c",
-                /* [] */0
-              ]
-            ]
-          ],
+      tl: {
+        hd: [
+          {
+            hd: "a",
+            tl: {
+              hd: "b",
+              tl: {
+                hd: "c",
+                tl: /* [] */0
+              }
+            }
+          },
           "abc"
         ],
-        /* [] */0
-      ]
-    ]);
-
-var partial_arg = Rebase.$$String[/* joinWith */11];
+        tl: /* [] */0
+      }
+    });
 
 TestHelpers.testFn("joinWith", (function (param) {
-        return partial_arg(", ", param);
-      }), /* :: */[
-      /* tuple */[
+        return Rebase.$$String.joinWith(", ", param);
+      }), {
+      hd: [
         /* [] */0,
         ""
       ],
-      /* :: */[
-        /* tuple */[
-          /* :: */[
-            "a",
-            /* :: */[
-              "b",
-              /* :: */[
-                "c",
-                /* [] */0
-              ]
-            ]
-          ],
+      tl: {
+        hd: [
+          {
+            hd: "a",
+            tl: {
+              hd: "b",
+              tl: {
+                hd: "c",
+                tl: /* [] */0
+              }
+            }
+          },
           "a, b, c"
         ],
-        /* [] */0
-      ]
-    ]);
+        tl: /* [] */0
+      }
+    });
 
 /*  Not a pure module */

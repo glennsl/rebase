@@ -6,7 +6,7 @@ function id(x) {
   return x;
 }
 
-function $$const(x, _) {
+function $$const(x, param) {
   return x;
 }
 
@@ -15,7 +15,7 @@ function flip(f, a, b) {
 }
 
 function curry(f, a, b) {
-  return Curry._1(f, /* tuple */[
+  return Curry._1(f, [
               a,
               b
             ]);
