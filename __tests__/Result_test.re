@@ -1,13 +1,13 @@
 open Jest;
 open Expect;
-open Rebase;
+open !Rebase;
 open TestHelpers;
 
 
 describe("Mappable.S1_5", () => {
   module M: Signatures.Mappable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
 
-  testFn("map", 
+  testFn("map",
     M.map(x => x + 1), [
       (Error("err"), Error("err")),
       (Ok(42), Ok(43)),
@@ -19,7 +19,7 @@ describe("Mappable.S1_5", () => {
 describe("Mappable.S2", () => {
   module M: Signatures.Mappable.S2 with type t('a, 'e) := result('a, 'e) = Result;
 
-  testFn("map2", 
+  testFn("map2",
     M.map2(x => x + 1, e => e ++ "or"), [
       (Error("err"), Error("error")),
       (Ok(42), Ok(43)),
@@ -31,7 +31,7 @@ describe("Mappable.S2", () => {
 describe("Applicative.S1_5", () => {
   module M: Signatures.Applicative.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
 
-  testFn("apply", 
+  testFn("apply",
     M.apply |> Fn.uncurry, [
       ((Error("err"), Error("err")), Error("err")),
       ((Ok(x => x + 1), Error("err")), Error("err")),
@@ -51,14 +51,14 @@ describe("Applicative.S1_5", () => {
 describe("Reduceable.S1_5", () => {
   module M: Signatures.Reduceable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
 
-  testFn("reduce", 
+  testFn("reduce",
     M.reduce((acc, x) => x - acc, 10), [
       (Error("err"), 10),
       (Ok(42), 32),
     ]
   );
 
-  testFn("reduceRight", 
+  testFn("reduceRight",
     M.reduceRight((acc, x) => x - acc, 10), [
       (Error("err"), 10),
       (Ok(42), 32),
@@ -70,7 +70,7 @@ describe("Reduceable.S1_5", () => {
 describe("Monad.S1_5", () => {
   module M: Signatures.Monad.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
 
-  testFn("flatMap", 
+  testFn("flatMap",
     M.flatMap(x => Ok(x + 1)), [
       (Error("err"), Error("err")),
       (Ok(42), Ok(43)),
@@ -83,7 +83,7 @@ describe("Iterable.S1_5", () => {
   module M: Signatures.Iterable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
 
   /*
-  testFn("filter", 
+  testFn("filter",
     M.filter(x => x mod 2 === 0), [
       (Error("err"), Error("err")),
       (Ok(1), Error("err")),
@@ -91,10 +91,10 @@ describe("Iterable.S1_5", () => {
     ]
   );
   */
-  testFn("exists", 
+  testFn("exists",
     M.exists(x => x mod 2 === 0), [
       (Error("err"), false),
-      (Ok(1), false), 
+      (Ok(1), false),
       (Ok(2), true)
     ]
   );
@@ -109,7 +109,7 @@ describe("Iterable.S1_5", () => {
     expect(checked^) |> toEqual(expected)
   });
 
-  testFn("find", 
+  testFn("find",
     M.find(x => x mod 2 === 0), [
       (Error("err"), None),
       (Ok(1), None),
@@ -127,7 +127,7 @@ describe("Iterable.S1_5", () => {
 });
 
 
-testFn("isOk", 
+testFn("isOk",
   Result.isOk, [
     (Error("err"), false),
     (Ok(42), true),
@@ -177,14 +177,14 @@ test("wrap2 - Error", () =>
     |> toEqual(Error(Failure("err")))
 );
 
-testFn("or_", 
+testFn("or_",
   Result.or_(Ok(10)), [
     (Error("err"), Ok(10)),
     (Ok(42), Ok(42)),
   ]
 );
 
-testFn("getOr", 
+testFn("getOr",
   Result.getOr(10), [
     (Error("err"), 10),
     (Ok(42), 42),
@@ -194,15 +194,15 @@ testFn("getOr",
 test("getOrRaise - Error", () =>
   expect(
     () => Result.getOrRaise(Error("err")))
-    |> toThrowException(InvalidArgument("getOrRaise called on Error")));
+    |> toThrow);
 
 test("getOrRaise - Ok", () =>
   expect(
-    Result.getOrRaise(Ok(42))) 
+    Result.getOrRaise(Ok(42)))
     |> toEqual(42)
 );
 
-testFn("mapOr", 
+testFn("mapOr",
   Result.mapOr(x => x + 1, 10), [
     (Error("err"), 10),
     (Ok(42), 43),
