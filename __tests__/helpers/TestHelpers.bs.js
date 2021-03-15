@@ -1,17 +1,17 @@
 'use strict';
 
-var Jest = require("@glennsl/bs-jest/src/jest.js");
+var Jest = require("@glennsl/bs-jest/src/jest.bs.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 
 function testFn(name, f, cases) {
   return Jest.testAll(name, cases, (function (param) {
-                return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._1(f, param[0])), param[1]);
+                return Curry._2(Jest.Expect.Operators.$eq, Jest.Expect.expect(Curry._1(f, param[0])), param[1]);
               }));
 }
 
 function testProperty(name, property) {
-  return Jest.test(name, (function () {
-                return Jest.Expect[/* toBe */2](true, Jest.Expect[/* expect */0](property));
+  return Jest.test(name, (function (param) {
+                return Jest.Expect.toBe(true, Jest.Expect.expect(property));
               }));
 }
 

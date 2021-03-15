@@ -2,14 +2,14 @@
 
 var Curry = require("bs-platform/lib/js/curry.js");
 var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
-var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
+var Caml_option = require("bs-platform/lib/js/caml_option.js");
 var Rebase__Types = require("./Rebase__Types.bs.js");
 
 function from(x) {
-  return /* :: */[
-          x,
-          /* [] */0
-        ];
+  return {
+          hd: x,
+          tl: /* [] */0
+        };
 }
 
 function fromArray(arr) {
@@ -18,62 +18,64 @@ function fromArray(arr) {
   while(true) {
     var i = _i;
     var acc = _acc;
-    if (i !== -1) {
-      _i = i - 1 | 0;
-      _acc = /* :: */[
-        arr[i],
-        acc
-      ];
-      continue ;
-    } else {
+    if (i === -1) {
       return acc;
     }
+    _i = i - 1 | 0;
+    _acc = {
+      hd: arr[i],
+      tl: acc
+    };
+    continue ;
   };
 }
 
 function fromSeq(seq) {
-  var match = Curry._1(seq, /* () */0);
+  var match = Curry._1(seq, undefined);
   if (match) {
-    return /* :: */[
-            match[0],
-            fromSeq(match[1])
-          ];
+    return {
+            hd: match._0,
+            tl: fromSeq(match._1)
+          };
   } else {
     return /* [] */0;
   }
 }
 
-function range($staropt$star, start, finish) {
-  var step = $staropt$star !== undefined ? $staropt$star : 1;
+function range(stepOpt, start, finish) {
+  var step = stepOpt !== undefined ? stepOpt : 1;
   if (step === 0) {
-    throw [
-          Rebase__Types.InvalidArgument,
-          "List.range: ~step=0 would cause infinite loop"
-        ];
-  } else if (step < 0 && start < finish || step > 0 && start > finish) {
-    return /* [] */0;
-  } else {
-    var last = Caml_int32.imul(Caml_int32.div(finish - start | 0, step), step) + start | 0;
-    var _acc = /* [] */0;
-    var _n = last;
-    while(true) {
-      var n = _n;
-      var acc = _acc;
-      if (n === start) {
-        return /* :: */[
-                n,
-                acc
-              ];
-      } else {
-        _n = n - step | 0;
-        _acc = /* :: */[
-          n,
-          acc
-        ];
-        continue ;
-      }
-    };
+    throw {
+          RE_EXN_ID: Rebase__Types.InvalidArgument,
+          _1: "List.range: ~step=0 would cause infinite loop",
+          Error: new Error()
+        };
   }
+  if (step < 0 && start < finish) {
+    return /* [] */0;
+  }
+  if (step > 0 && start > finish) {
+    return /* [] */0;
+  }
+  var last = Math.imul(Caml_int32.div(finish - start | 0, step), step) + start | 0;
+  var _acc = /* [] */0;
+  var _n = last;
+  while(true) {
+    var n = _n;
+    var acc = _acc;
+    if (n === start) {
+      return {
+              hd: n,
+              tl: acc
+            };
+    }
+    _n = n - step | 0;
+    _acc = {
+      hd: n,
+      tl: acc
+    };
+    continue ;
+  };
 }
 
 function isEmpty(param) {
@@ -86,14 +88,14 @@ function isEmpty(param) {
 
 function head(param) {
   if (param) {
-    return Js_primitive.some(param[0]);
+    return Caml_option.some(param.hd);
   }
   
 }
 
 function tail(param) {
   if (param) {
-    return param[1];
+    return param.tl;
   }
   
 }
@@ -102,16 +104,15 @@ function reverseAndAppend(_acc, _param) {
   while(true) {
     var param = _param;
     var acc = _acc;
-    if (param) {
-      _param = param[1];
-      _acc = /* :: */[
-        param[0],
-        acc
-      ];
-      continue ;
-    } else {
+    if (!param) {
       return acc;
     }
+    _param = param.tl;
+    _acc = {
+      hd: param.hd,
+      tl: acc
+    };
+    continue ;
   };
 }
 
@@ -122,104 +123,93 @@ function reverse(self) {
 function filter(predicate, _param) {
   while(true) {
     var param = _param;
-    if (param) {
-      var xs = param[1];
-      var x = param[0];
-      if (Curry._1(predicate, x)) {
-        return /* :: */[
-                x,
-                filter(predicate, xs)
-              ];
-      } else {
-        _param = xs;
-        continue ;
-      }
-    } else {
+    if (!param) {
       return /* [] */0;
     }
+    var xs = param.tl;
+    var x = param.hd;
+    if (Curry._1(predicate, x)) {
+      return {
+              hd: x,
+              tl: filter(predicate, xs)
+            };
+    }
+    _param = xs;
+    continue ;
   };
 }
 
 function filterMap(f, _param) {
   while(true) {
     var param = _param;
-    if (param) {
-      var xs = param[1];
-      var match = Curry._1(f, param[0]);
-      if (match !== undefined) {
-        return /* :: */[
-                Js_primitive.valFromOption(match),
-                filterMap(f, xs)
-              ];
-      } else {
-        _param = xs;
-        continue ;
-      }
-    } else {
+    if (!param) {
       return /* [] */0;
     }
+    var xs = param.tl;
+    var x = Curry._1(f, param.hd);
+    if (x !== undefined) {
+      return {
+              hd: Caml_option.valFromOption(x),
+              tl: filterMap(f, xs)
+            };
+    }
+    _param = xs;
+    continue ;
   };
 }
 
 function exists(predicate, _param) {
   while(true) {
     var param = _param;
-    if (param) {
-      if (Curry._1(predicate, param[0])) {
-        return true;
-      } else {
-        _param = param[1];
-        continue ;
-      }
-    } else {
+    if (!param) {
       return false;
     }
+    if (Curry._1(predicate, param.hd)) {
+      return true;
+    }
+    _param = param.tl;
+    continue ;
   };
 }
 
 function forEach(f, _param) {
   while(true) {
     var param = _param;
-    if (param) {
-      Curry._1(f, param[0]);
-      _param = param[1];
-      continue ;
-    } else {
-      return /* () */0;
+    if (!param) {
+      return ;
     }
+    Curry._1(f, param.hd);
+    _param = param.tl;
+    continue ;
   };
 }
 
 function find(predicate, _param) {
   while(true) {
     var param = _param;
-    if (param) {
-      var x = param[0];
-      if (Curry._1(predicate, x)) {
-        return Js_primitive.some(x);
-      } else {
-        _param = param[1];
-        continue ;
-      }
-    } else {
-      return undefined;
+    if (!param) {
+      return ;
     }
+    var x = param.hd;
+    if (Curry._1(predicate, x)) {
+      return Caml_option.some(x);
+    }
+    _param = param.tl;
+    continue ;
   };
 }
 
 function forAll(predicate, _param) {
   while(true) {
     var param = _param;
-    if (param) {
-      if (Curry._1(predicate, param[0])) {
-        _param = param[1];
-        continue ;
-      } else {
-        return false;
-      }
-    } else {
+    if (!param) {
       return true;
     }
+    if (!Curry._1(predicate, param.hd)) {
+      return false;
+    }
+    _param = param.tl;
+    continue ;
   };
 }
 
@@ -229,17 +219,17 @@ function flatMap(f, self) {
       var outer = _outer;
       var inner = _inner;
       if (inner) {
-        return /* :: */[
-                inner[0],
-                aux(inner[1], outer)
-              ];
-      } else if (outer) {
-        _outer = outer[1];
-        _inner = Curry._1(f, outer[0]);
-        continue ;
-      } else {
+        return {
+                hd: inner.hd,
+                tl: aux(inner.tl, outer)
+              };
+      }
+      if (!outer) {
         return /* [] */0;
       }
+      _outer = outer.tl;
+      _inner = Curry._1(f, outer.hd);
+      continue ;
     };
   };
   return aux(/* [] */0, self);
@@ -247,10 +237,10 @@ function flatMap(f, self) {
 
 function map(f, param) {
   if (param) {
-    return /* :: */[
-            Curry._1(f, param[0]),
-            map(f, param[1])
-          ];
+    return {
+            hd: Curry._1(f, param.hd),
+            tl: map(f, param.tl)
+          };
   } else {
     return /* [] */0;
   }
@@ -274,19 +264,18 @@ function reduce(f, _acc, _param) {
   while(true) {
     var param = _param;
     var acc = _acc;
-    if (param) {
-      _param = param[1];
-      _acc = Curry._2(f, acc, param[0]);
-      continue ;
-    } else {
+    if (!param) {
       return acc;
     }
+    _param = param.tl;
+    _acc = Curry._2(f, acc, param.hd);
+    continue ;
   };
 }
 
 function reduceRight(f, acc, param) {
   if (param) {
-    return Curry._2(f, reduceRight(f, acc, param[1]), param[0]);
+    return Curry._2(f, reduceRight(f, acc, param.tl), param.hd);
   } else {
     return acc;
   }
@@ -298,25 +287,24 @@ function length(self) {
   while(true) {
     var param = _param;
     var acc = _acc;
-    if (param) {
-      _param = param[1];
-      _acc = acc + 1 | 0;
-      continue ;
-    } else {
+    if (!param) {
       return acc;
     }
+    _param = param.tl;
+    _acc = acc + 1 | 0;
+    continue ;
   };
 }
 
 function zip(ys, xs) {
   if (xs && ys) {
-    return /* :: */[
-            /* tuple */[
-              xs[0],
-              ys[0]
+    return {
+            hd: [
+              xs.hd,
+              ys.hd
             ],
-            zip(ys[1], xs[1])
-          ];
+            tl: zip(ys.tl, xs.tl)
+          };
   } else {
     return /* [] */0;
   }
@@ -324,15 +312,15 @@ function zip(ys, xs) {
 
 function concat(ys, xs) {
   if (xs) {
-    return /* :: */[
-            xs[0],
-            concat(ys, xs[1])
-          ];
+    return {
+            hd: xs.hd,
+            tl: concat(ys, xs.tl)
+          };
   } else if (ys) {
-    return /* :: */[
-            ys[0],
-            concat(ys[1], /* [] */0)
-          ];
+    return {
+            hd: ys.hd,
+            tl: concat(ys.tl, /* [] */0)
+          };
   } else {
     return /* [] */0;
   }

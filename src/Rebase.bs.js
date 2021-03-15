@@ -1,8 +1,8 @@
 'use strict';
 
 var Rebase__Fn = require("./Rebase__Fn.bs.js");
+var Caml_option = require("bs-platform/lib/js/caml_option.js");
 var Rebase__Seq = require("./Rebase__Seq.bs.js");
-var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 var Rebase__List = require("./Rebase__List.bs.js");
 var Rebase__Array = require("./Rebase__Array.bs.js");
 var Rebase__Types = require("./Rebase__Types.bs.js");
@@ -14,268 +14,259 @@ var InvalidArgument = Rebase__Types.InvalidArgument;
 
 var IndexOutOfBounds = Rebase__Types.IndexOutOfBounds;
 
-function Array_000(prim, prim$1) {
+function Array_map(prim, prim$1) {
   return prim$1.map(prim);
 }
 
-function Array_003(prim, prim$1, prim$2) {
+function Array_reduce(prim, prim$1, prim$2) {
   return prim$2.reduce(prim, prim$1);
 }
 
-function Array_004(prim, prim$1, prim$2) {
+function Array_reduceRight(prim, prim$1, prim$2) {
   return prim$2.reduceRight(prim, prim$1);
 }
 
-function Array_006(prim, prim$1) {
+function Array_forAll(prim, prim$1) {
   return prim$1.every(prim);
 }
 
-function Array_007(prim, prim$1) {
-  return Js_primitive.undefined_to_opt(prim$1.find(prim));
+function Array_find(prim, prim$1) {
+  return Caml_option.undefined_to_opt(prim$1.find(prim));
 }
 
-function Array_008(prim, prim$1) {
+function Array_forEach(prim, prim$1) {
   prim$1.forEach(prim);
-  return /* () */0;
+  
 }
 
-function Array_009(prim, prim$1) {
+function Array_exists(prim, prim$1) {
   return prim$1.some(prim);
 }
 
-function Array_010(prim, prim$1) {
+function Array_filter(prim, prim$1) {
   return prim$1.filter(prim);
 }
 
-function Array_011(prim, prim$1) {
+function Array_concat(prim, prim$1) {
   return prim$1.concat(prim);
 }
 
-function Array_016(prim) {
+function Array_length(prim) {
   return prim.length;
 }
 
-function Array_024(prim, prim$1) {
+function Array_fill(prim, prim$1) {
   prim$1.fill(prim);
-  return /* () */0;
+  
 }
 
-function Array_025(prim, prim$1, prim$2) {
+function Array_slice(prim, prim$1, prim$2) {
   return prim$2.slice(prim, prim$1);
 }
 
-function Array_026(prim) {
+function Array_copy(prim) {
   return prim.slice();
 }
 
-function Array_027(prim, prim$1) {
+function Array_mapi(prim, prim$1) {
   return prim$1.map(prim);
 }
 
-function Array_028(prim, prim$1) {
+function Array_forEachi(prim, prim$1) {
   prim$1.forEach(prim);
-  return /* () */0;
+  
 }
 
-var $$Array = [
-  Array_000,
-  Rebase__Array.apply,
-  Rebase__Array.from,
-  Array_003,
-  Array_004,
-  Rebase__Array.flatMap,
-  Array_006,
-  Array_007,
-  Array_008,
-  Array_009,
-  Array_010,
-  Array_011,
-  Rebase__Array.make,
-  Rebase__Array.fromList,
-  Rebase__Array.fromSeq,
-  Rebase__Array.range,
-  Array_016,
-  Rebase__Array.get,
-  Rebase__Array.set,
-  Rebase__Array.getOrRaise,
-  Rebase__Array.setOrRaise,
-  Rebase__Array.unsafeGetUnchecked,
-  Rebase__Array.unsafeSetUnchecked,
-  Rebase__Array.filterMap,
-  Array_024,
-  Array_025,
-  Array_026,
-  Array_027,
-  Array_028,
-  Rebase__Array.findIndex
-];
+var $$Array = {
+  map: Array_map,
+  apply: Rebase__Array.apply,
+  from: Rebase__Array.from,
+  reduce: Array_reduce,
+  reduceRight: Array_reduceRight,
+  flatMap: Rebase__Array.flatMap,
+  forAll: Array_forAll,
+  find: Array_find,
+  forEach: Array_forEach,
+  exists: Array_exists,
+  filter: Array_filter,
+  concat: Array_concat,
+  make: Rebase__Array.make,
+  fromList: Rebase__Array.fromList,
+  fromSeq: Rebase__Array.fromSeq,
+  range: Rebase__Array.range,
+  length: Array_length,
+  get: Rebase__Array.get,
+  set: Rebase__Array.set,
+  getOrRaise: Rebase__Array.getOrRaise,
+  setOrRaise: Rebase__Array.setOrRaise,
+  unsafeGetUnchecked: Rebase__Array.unsafeGetUnchecked,
+  unsafeSetUnchecked: Rebase__Array.unsafeSetUnchecked,
+  filterMap: Rebase__Array.filterMap,
+  fill: Array_fill,
+  slice: Array_slice,
+  copy: Array_copy,
+  mapi: Array_mapi,
+  forEachi: Array_forEachi,
+  findIndex: Rebase__Array.findIndex
+};
 
-var Fn = /* Rebase__Fn */[
-  Rebase__Fn.id,
-  Rebase__Fn.$$const,
-  Rebase__Fn.flip,
-  Rebase__Fn.curry,
-  Rebase__Fn.uncurry,
-  Rebase__Fn.$less$less,
-  Rebase__Fn.$great$great,
-  Rebase__Fn.tap
-];
+var Fn = Rebase__Fn;
 
-var List = [
-  Rebase__List.map,
-  Rebase__List.apply,
-  Rebase__List.from,
-  Rebase__List.reduce,
-  Rebase__List.reduceRight,
-  Rebase__List.flatMap,
-  Rebase__List.forAll,
-  Rebase__List.find,
-  Rebase__List.forEach,
-  Rebase__List.exists,
-  Rebase__List.filter,
-  Rebase__List.concat,
-  Rebase__List.fromArray,
-  Rebase__List.fromSeq,
-  Rebase__List.range,
-  Rebase__List.isEmpty,
-  Rebase__List.head,
-  Rebase__List.tail,
-  Rebase__List.filterMap,
-  Rebase__List.length,
-  Rebase__List.reverse,
-  Rebase__List.zip
-];
+var List = {
+  map: Rebase__List.map,
+  apply: Rebase__List.apply,
+  from: Rebase__List.from,
+  reduce: Rebase__List.reduce,
+  reduceRight: Rebase__List.reduceRight,
+  flatMap: Rebase__List.flatMap,
+  forAll: Rebase__List.forAll,
+  find: Rebase__List.find,
+  forEach: Rebase__List.forEach,
+  exists: Rebase__List.exists,
+  filter: Rebase__List.filter,
+  concat: Rebase__List.concat,
+  fromArray: Rebase__List.fromArray,
+  fromSeq: Rebase__List.fromSeq,
+  range: Rebase__List.range,
+  isEmpty: Rebase__List.isEmpty,
+  head: Rebase__List.head,
+  tail: Rebase__List.tail,
+  filterMap: Rebase__List.filterMap,
+  length: Rebase__List.length,
+  reverse: Rebase__List.reverse,
+  zip: Rebase__List.zip
+};
 
-var Option = [
-  Rebase__Option.map,
-  Rebase__Option.apply,
-  Rebase__Option.from,
-  Rebase__Option.reduce,
-  Rebase__Option.reduceRight,
-  Rebase__Option.flatMap,
-  Rebase__Option.forAll,
-  Rebase__Option.find,
-  Rebase__Option.forEach,
-  Rebase__Option.exists,
-  Rebase__Option.filter,
-  Rebase__Option.some,
-  Rebase__Option.fromResult,
-  Rebase__Option.isSome,
-  Rebase__Option.isNone,
-  Rebase__Option.or_,
-  Rebase__Option.getOr,
-  Rebase__Option.getOrRaise,
-  Rebase__Option.mapOr,
-  Rebase__Option.mapOrElse,
-  Rebase__Option.flatten
-];
+var $$Option = {
+  map: Rebase__Option.map,
+  apply: Rebase__Option.apply,
+  from: Rebase__Option.from,
+  reduce: Rebase__Option.reduce,
+  reduceRight: Rebase__Option.reduceRight,
+  flatMap: Rebase__Option.flatMap,
+  forAll: Rebase__Option.forAll,
+  find: Rebase__Option.find,
+  forEach: Rebase__Option.forEach,
+  exists: Rebase__Option.exists,
+  filter: Rebase__Option.filter,
+  some: Rebase__Option.some,
+  fromResult: Rebase__Option.fromResult,
+  isSome: Rebase__Option.isSome,
+  isNone: Rebase__Option.isNone,
+  or_: Rebase__Option.or_,
+  getOr: Rebase__Option.getOr,
+  getOrRaise: Rebase__Option.getOrRaise,
+  mapOr: Rebase__Option.mapOr,
+  mapOrElse: Rebase__Option.mapOrElse,
+  flatten: Rebase__Option.flatten
+};
 
-var Result = [
-  Rebase__Result.map,
-  Rebase__Result.map2,
-  Rebase__Result.apply,
-  Rebase__Result.from,
-  Rebase__Result.reduce,
-  Rebase__Result.reduceRight,
-  Rebase__Result.flatMap,
-  Rebase__Result.forAll,
-  Rebase__Result.find,
-  Rebase__Result.forEach,
-  Rebase__Result.exists,
-  Rebase__Result.isOk,
-  Rebase__Result.isError,
-  Rebase__Result.wrap,
-  Rebase__Result.wrap1,
-  Rebase__Result.wrap2,
-  Rebase__Result.or_,
-  Rebase__Result.getOr,
-  Rebase__Result.getOrRaise,
-  Rebase__Result.mapOr,
-  Rebase__Result.mapOrElse,
-  Rebase__Result.flatten
-];
+var Result = {
+  map: Rebase__Result.map,
+  map2: Rebase__Result.map2,
+  apply: Rebase__Result.apply,
+  from: Rebase__Result.from,
+  reduce: Rebase__Result.reduce,
+  reduceRight: Rebase__Result.reduceRight,
+  flatMap: Rebase__Result.flatMap,
+  forAll: Rebase__Result.forAll,
+  find: Rebase__Result.find,
+  forEach: Rebase__Result.forEach,
+  exists: Rebase__Result.exists,
+  isOk: Rebase__Result.isOk,
+  isError: Rebase__Result.isError,
+  wrap: Rebase__Result.wrap,
+  wrap1: Rebase__Result.wrap1,
+  wrap2: Rebase__Result.wrap2,
+  or_: Rebase__Result.or_,
+  getOr: Rebase__Result.getOr,
+  getOrRaise: Rebase__Result.getOrRaise,
+  mapOr: Rebase__Result.mapOr,
+  mapOrElse: Rebase__Result.mapOrElse,
+  flatten: Rebase__Result.flatten
+};
 
-var Seq = [
-  Rebase__Seq.map,
-  Rebase__Seq.apply,
-  Rebase__Seq.from,
-  Rebase__Seq.reduce,
-  Rebase__Seq.reduceRight,
-  Rebase__Seq.flatMap,
-  Rebase__Seq.forAll,
-  Rebase__Seq.find,
-  Rebase__Seq.forEach,
-  Rebase__Seq.exists,
-  Rebase__Seq.filter,
-  Rebase__Seq.empty,
-  Rebase__Seq.cons,
-  Rebase__Seq.fromArray,
-  Rebase__Seq.fromList,
-  Rebase__Seq.range,
-  Rebase__Seq.count,
-  Rebase__Seq.isEmpty,
-  Rebase__Seq.head,
-  Rebase__Seq.filterMap,
-  Rebase__Seq.zip
-];
+var Seq = {
+  map: Rebase__Seq.map,
+  apply: Rebase__Seq.apply,
+  from: Rebase__Seq.from,
+  reduce: Rebase__Seq.reduce,
+  reduceRight: Rebase__Seq.reduceRight,
+  flatMap: Rebase__Seq.flatMap,
+  forAll: Rebase__Seq.forAll,
+  find: Rebase__Seq.find,
+  forEach: Rebase__Seq.forEach,
+  exists: Rebase__Seq.exists,
+  filter: Rebase__Seq.filter,
+  empty: Rebase__Seq.empty,
+  cons: Rebase__Seq.cons,
+  fromArray: Rebase__Seq.fromArray,
+  fromList: Rebase__Seq.fromList,
+  range: Rebase__Seq.range,
+  count: Rebase__Seq.count,
+  isEmpty: Rebase__Seq.isEmpty,
+  head: Rebase__Seq.head,
+  filterMap: Rebase__Seq.filterMap,
+  zip: Rebase__Seq.zip
+};
 
-function String_000(prim, prim$1) {
+function String_concat(prim, prim$1) {
   return prim$1.concat(prim);
 }
 
-function String_001(prim) {
+function String_length(prim) {
   return prim.length;
 }
 
-function String_002(prim, prim$1) {
+function String_includes(prim, prim$1) {
   return prim$1.includes(prim);
 }
 
-function String_003(prim, prim$1) {
+function String_startsWith(prim, prim$1) {
   return prim$1.startsWith(prim);
 }
 
-function String_004(prim, prim$1) {
+function String_endsWith(prim, prim$1) {
   return prim$1.endsWith(prim);
 }
 
-function String_006(prim, prim$1, prim$2) {
+function String_padStart(prim, prim$1, prim$2) {
   return prim$2.padStart(prim, prim$1);
 }
 
-function String_007(prim, prim$1, prim$2) {
+function String_padEnd(prim, prim$1, prim$2) {
   return prim$2.padEnd(prim, prim$1);
 }
 
-function String_008(prim) {
+function String_trim(prim) {
   return prim.trim();
 }
 
-function String_009(prim, prim$1, prim$2) {
+function String_sub(prim, prim$1, prim$2) {
   return prim$2.substr(prim, prim$1);
 }
 
-var $$String = [
-  String_000,
-  String_001,
-  String_002,
-  String_003,
-  String_004,
-  Rebase__String.isEmpty,
-  String_006,
-  String_007,
-  String_008,
-  String_009,
-  Rebase__String.join,
-  Rebase__String.joinWith
-];
+var $$String = {
+  concat: String_concat,
+  length: String_length,
+  includes: String_includes,
+  startsWith: String_startsWith,
+  endsWith: String_endsWith,
+  isEmpty: Rebase__String.isEmpty,
+  padStart: String_padStart,
+  padEnd: String_padEnd,
+  trim: String_trim,
+  sub: String_sub,
+  join: Rebase__String.join,
+  joinWith: Rebase__String.joinWith
+};
 
 exports.InvalidArgument = InvalidArgument;
 exports.IndexOutOfBounds = IndexOutOfBounds;
 exports.$$Array = $$Array;
 exports.Fn = Fn;
 exports.List = List;
-exports.Option = Option;
+exports.$$Option = $$Option;
 exports.Result = Result;
 exports.Seq = Seq;
 exports.$$String = $$String;

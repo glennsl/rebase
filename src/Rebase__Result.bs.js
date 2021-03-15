@@ -1,17 +1,19 @@
 'use strict';
 
-var Block = require("bs-platform/lib/js/block.js");
 var Curry = require("bs-platform/lib/js/curry.js");
-var Js_exn = require("bs-platform/lib/js/js_exn.js");
-var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
+var Caml_option = require("bs-platform/lib/js/caml_option.js");
 var Rebase__Types = require("./Rebase__Types.bs.js");
+var Caml_js_exceptions = require("bs-platform/lib/js/caml_js_exceptions.js");
 
 function from(x) {
-  return /* Ok */Block.__(0, [x]);
+  return {
+          TAG: /* Ok */0,
+          _0: x
+        };
 }
 
 function isOk(param) {
-  if (param.tag) {
+  if (param.TAG) {
     return false;
   } else {
     return true;
@@ -19,7 +21,7 @@ function isOk(param) {
 }
 
 function isError(param) {
-  if (param.tag) {
+  if (param.TAG) {
     return true;
   } else {
     return false;
@@ -28,167 +30,198 @@ function isError(param) {
 
 function wrap(f) {
   try {
-    return /* Ok */Block.__(0, [Curry._1(f, /* () */0)]);
+    return {
+            TAG: /* Ok */0,
+            _0: Curry._1(f, undefined)
+          };
   }
   catch (raw_e){
-    var e = Js_exn.internalToOCamlException(raw_e);
-    return /* Error */Block.__(1, [e]);
+    var e = Caml_js_exceptions.internalToOCamlException(raw_e);
+    return {
+            TAG: /* Error */1,
+            _0: e
+          };
   }
 }
 
 function wrap1(f, a) {
   try {
-    return /* Ok */Block.__(0, [Curry._1(f, a)]);
+    return {
+            TAG: /* Ok */0,
+            _0: Curry._1(f, a)
+          };
   }
   catch (raw_e){
-    var e = Js_exn.internalToOCamlException(raw_e);
-    return /* Error */Block.__(1, [e]);
+    var e = Caml_js_exceptions.internalToOCamlException(raw_e);
+    return {
+            TAG: /* Error */1,
+            _0: e
+          };
   }
 }
 
 function wrap2(f, a, b) {
   try {
-    return /* Ok */Block.__(0, [Curry._2(f, a, b)]);
+    return {
+            TAG: /* Ok */0,
+            _0: Curry._2(f, a, b)
+          };
   }
   catch (raw_e){
-    var e = Js_exn.internalToOCamlException(raw_e);
-    return /* Error */Block.__(1, [e]);
+    var e = Caml_js_exceptions.internalToOCamlException(raw_e);
+    return {
+            TAG: /* Error */1,
+            _0: e
+          };
   }
 }
 
 function or_(other, self) {
-  if (self.tag) {
+  if (self.TAG) {
     return other;
   } else {
     return self;
   }
 }
 
-function getOr(other, param) {
-  if (param.tag) {
+function getOr(other, v) {
+  if (v.TAG) {
     return other;
   } else {
-    return param[0];
+    return v._0;
   }
 }
 
-function getOrRaise(param) {
-  if (param.tag) {
-    throw [
-          Rebase__Types.InvalidArgument,
-          "getOrRaise called on Error"
-        ];
+function getOrRaise(v) {
+  if (!v.TAG) {
+    return v._0;
+  }
+  throw {
+        RE_EXN_ID: Rebase__Types.InvalidArgument,
+        _1: "getOrRaise called on Error",
+        Error: new Error()
+      };
+}
+
+function map(f, v) {
+  if (v.TAG) {
+    return {
+            TAG: /* Error */1,
+            _0: v._0
+          };
   } else {
-    return param[0];
+    return {
+            TAG: /* Ok */0,
+            _0: Curry._1(f, v._0)
+          };
   }
 }
 
-function map(f, param) {
-  if (param.tag) {
-    return /* Error */Block.__(1, [param[0]]);
+function map2(f, g, v) {
+  if (v.TAG) {
+    return {
+            TAG: /* Error */1,
+            _0: Curry._1(g, v._0)
+          };
   } else {
-    return /* Ok */Block.__(0, [Curry._1(f, param[0])]);
+    return {
+            TAG: /* Ok */0,
+            _0: Curry._1(f, v._0)
+          };
   }
 }
 
-function map2(f, g, param) {
-  if (param.tag) {
-    return /* Error */Block.__(1, [Curry._1(g, param[0])]);
-  } else {
-    return /* Ok */Block.__(0, [Curry._1(f, param[0])]);
-  }
-}
-
-function mapOr(f, other, param) {
-  if (param.tag) {
+function mapOr(f, other, v) {
+  if (v.TAG) {
     return other;
   } else {
-    return Curry._1(f, param[0]);
+    return Curry._1(f, v._0);
   }
 }
 
-function mapOrElse(f, g, param) {
-  if (param.tag) {
-    return Curry._1(g, /* () */0);
+function mapOrElse(f, g, v) {
+  if (v.TAG) {
+    return Curry._1(g, undefined);
   } else {
-    return Curry._1(f, param[0]);
+    return Curry._1(f, v._0);
   }
 }
 
-function exists(predicate, param) {
-  if (param.tag) {
+function exists(predicate, v) {
+  if (v.TAG) {
     return false;
   } else {
-    return Curry._1(predicate, param[0]);
+    return Curry._1(predicate, v._0);
   }
 }
 
-function forAll(predicate, param) {
-  if (param.tag) {
+function forAll(predicate, v) {
+  if (v.TAG) {
     return true;
   } else {
-    return Curry._1(predicate, param[0]);
+    return Curry._1(predicate, v._0);
   }
 }
 
-function forEach(f, param) {
-  if (param.tag) {
-    return /* () */0;
+function forEach(f, x) {
+  if (x.TAG) {
+    return ;
   } else {
-    return Curry._1(f, param[0]);
+    return Curry._1(f, x._0);
   }
 }
 
-function find(predicate, param) {
-  if (param.tag) {
-    return undefined;
+function find(predicate, x) {
+  if (x.TAG) {
+    return ;
+  }
+  var x$1 = x._0;
+  if (Curry._1(predicate, x$1)) {
+    return Caml_option.some(x$1);
+  }
+  
+}
+
+function andThen(f, v) {
+  if (v.TAG) {
+    return {
+            TAG: /* Error */1,
+            _0: v._0
+          };
   } else {
-    var x = param[0];
-    if (Curry._1(predicate, x)) {
-      return Js_primitive.some(x);
-    } else {
-      return undefined;
-    }
+    return Curry._1(f, v._0);
   }
 }
 
-function andThen(f, param) {
-  if (param.tag) {
-    return /* Error */Block.__(1, [param[0]]);
+function flatten(a) {
+  if (a.TAG) {
+    return a;
   } else {
-    return Curry._1(f, param[0]);
-  }
-}
-
-function flatten(self) {
-  if (self.tag) {
-    return self;
-  } else {
-    return self[0];
+    return a._0;
   }
 }
 
 function apply(f, a) {
-  if (f.tag) {
+  if (f.TAG) {
     return f;
   } else {
-    return map(f[0], a);
+    return map(f._0, a);
   }
 }
 
-function reduce(f, acc, param) {
-  if (param.tag) {
+function reduce(f, acc, x) {
+  if (x.TAG) {
     return acc;
   } else {
-    return Curry._2(f, acc, param[0]);
+    return Curry._2(f, acc, x._0);
   }
 }
 
-function reduceRight(f, acc, param) {
-  if (param.tag) {
+function reduceRight(f, acc, x) {
+  if (x.TAG) {
     return acc;
   } else {
-    return Curry._2(f, acc, param[0]);
+    return Curry._2(f, acc, x._0);
   }
 }
 
