@@ -7,7 +7,7 @@ open TestHelpers;
 describe("Mappable.S", () => {
   module M: Signatures.Mappable.S with type t('a) := option('a) = Option;
 
-  testFn("map", 
+  testFn("map",
     M.map(x => x + 1), [
       (None, None),
       (Some(42), Some(43)),
@@ -19,7 +19,7 @@ describe("Mappable.S", () => {
 describe("Applicative.S", () => {
   module M: Signatures.Applicative.S with type t('a) := option('a) = Option;
 
-  testFn("apply", 
+  testFn("apply",
     M.apply |> Fn.uncurry, [
       ((None, None), None),
       ((Some(x => x + 1), None), None),
@@ -39,14 +39,14 @@ describe("Applicative.S", () => {
 describe("Reduceable.S", () => {
   module M: Signatures.Reduceable.S with type t('a) := option('a) = Option;
 
-  testFn("reduce", 
+  testFn("reduce",
     M.reduce((acc, x) => x - acc, 10), [
       (None, 10),
       (Some(42), 32),
     ]
   );
 
-  testFn("reduceRight", 
+  testFn("reduceRight",
     M.reduceRight((acc, x) => x - acc, 10), [
       (None, 10),
       (Some(42), 32),
@@ -58,7 +58,7 @@ describe("Reduceable.S", () => {
 describe("Monad.S", () => {
   module M: Signatures.Monad.S with type t('a) := option('a) = Option;
 
-  testFn("flatMap", 
+  testFn("flatMap",
     M.flatMap(x => Some(x + 1)), [
       (None, None),
       (Some(42), Some(43)),
@@ -70,10 +70,10 @@ describe("Monad.S", () => {
 describe("Iterable.S", () => {
   module M: Signatures.Iterable.S with type t('a) := option('a) = Option;
 
-  testFn("exists", 
+  testFn("exists",
     M.exists(x => x mod 2 === 0), [
       (None, false),
-      (Some(1), false), 
+      (Some(1), false),
       (Some(2), true)
     ]
   );
@@ -88,7 +88,7 @@ describe("Iterable.S", () => {
     expect(checked^) |> toEqual(expected)
   });
 
-  testFn("find", 
+  testFn("find",
     M.find(x => x mod 2 === 0), [
       (None, None),
       (Some(1), None),
@@ -96,7 +96,7 @@ describe("Iterable.S", () => {
     ]
   );
 
-  testFn("forAll", 
+  testFn("forAll",
     M.forAll(x => x mod 2 === 0), [
       (None, true),
       (Some(1), false),
@@ -104,7 +104,7 @@ describe("Iterable.S", () => {
     ]
   );
 
-  testFn("filter", 
+  testFn("filter",
     M.filter(x => x mod 2 === 0), [
       (None, None),
       (Some(1), None),
@@ -120,14 +120,14 @@ test("some", () =>
     |> toEqual(Some(42))
 );
 
-testFn("fromResult", 
+testFn("fromResult",
   Option.fromResult, [
     (Error(""), None),
     (Ok(42), Some(42)),
   ]
 );
 
-testFn("isSome", 
+testFn("isSome",
   Option.isSome, [
     (None, false),
     (Some(42), true),
@@ -141,14 +141,14 @@ testFn("isNone",
   ]
 );
 
-testFn("or_", 
+testFn("or_",
   Option.or_(Some(10)), [
     (None, Some(10)),
     (Some(42), Some(42)),
   ]
 );
 
-testFn("getOr", 
+testFn("getOr",
   Option.getOr(10), [
     (None, 10),
     (Some(42), 42),
@@ -166,21 +166,21 @@ test("getOrRaise - Some", () =>
     |> toEqual(42)
 );
 
-testFn("mapOr", 
+testFn("mapOr",
   Option.mapOr(x => x + 1, 10), [
     (None, 10),
     (Some(42), 43),
   ]
 );
 
-testFn("mapOrElse", 
+testFn("mapOrElse",
   Option.mapOrElse(x => x + 1, () => 10), [
     (None, 10),
     (Some(42), 43),
   ]
 );
 
-testFn("flatten", 
+testFn("flatten",
   Option.flatten, [
     (None, None),
     (Some(None), None),

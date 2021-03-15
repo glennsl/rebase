@@ -104,14 +104,14 @@ describe("Iterable.S", () => {
       M.filter(x => x mod 2 === 0, [1, 2] |> Seq.fromList) |> _toList)
       |> toEqual([2])
   );
-  
+
   test("filter - lazy", () =>
     expect(
       M.filter(x => x mod 2 === 0, Seq.cons(1, Seq.cons(2, _explode))) |> Seq.head)
       |> toEqual(Some(2))
   );
 
-  testFn("exists", 
+  testFn("exists",
     M.exists(x => x mod 2 === 0), [
       ([]     |> Seq.fromList, false),
       ([1, 3] |> Seq.fromList, false),
@@ -125,7 +125,7 @@ describe("Iterable.S", () => {
       |> toEqual(true)
   );
 
-  testFn("find", 
+  testFn("find",
     M.find(x => x mod 2 === 0), [
       ([]     |> Seq.fromList, None),
       ([1, 3] |> Seq.fromList, None),
@@ -138,8 +138,8 @@ describe("Iterable.S", () => {
       M.find(x => x mod 2 === 0, Seq.cons(1, Seq.cons(2, _explode))))
       |> toEqual(Some(2))
   );
-  
-  testFn("forAll", 
+
+  testFn("forAll",
     M.forAll(x => x mod 2 === 0), [
       ([]     |> Seq.fromList, true),
       ([2, 4] |> Seq.fromList, true),
@@ -171,7 +171,7 @@ testFn("fromList",
   ]
 );
 
-testFn("range", 
+testFn("range",
   ((start, finish)) => Seq.range(start, finish) |> _toList, [
     ((0, 0), [0]),
     ((0, 4), [0, 1, 2, 3, 4]),
@@ -183,7 +183,7 @@ testFn("range",
   ]
 );
 
-testFn("range - step", 
+testFn("range - step",
   ((start, finish, step)) => Seq.range(start, finish, ~step) |> _toList, [
     ((0, 0, 2), [0]),
     ((0, 3, 2), [0, 2]),
@@ -207,7 +207,7 @@ testFn("isEmpty",
   ]
 );
 
-testFn("head", 
+testFn("head",
   Seq.head, [
     (Seq.empty,                 None),
     ([1, 2, 3] |> Seq.fromList, Some(1)),
@@ -233,7 +233,7 @@ test("filterMap - lazy", () => {
     |> toEqual(Some(3))
 });
 
-testFn("zip", 
+testFn("zip",
   Fn.(Seq.zip |> flip |> uncurry >> _toList), [
     (([1, 2]    |> Seq.fromList, [11, 12]     |> Seq.fromList), [(1, 11), (2, 12)]),
     (([1, 2, 3] |> Seq.fromList, [11, 12]     |> Seq.fromList), [(1, 11), (2, 12)]),

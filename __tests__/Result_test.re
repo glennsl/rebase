@@ -1,4 +1,6 @@
 open Jest;
+open Expect;
+open Rebase;
 open TestHelpers;
 
 describe("Mappable.S1_5", () => {
@@ -29,7 +31,7 @@ describe("Applicative.S1_5", () => {
   module M: Signatures.Applicative.S1_5 with type t('a, 'e) := result('a, 'e) = Rebase.Result;
 
   testFn("apply",
-    M.apply |> Rebase.Fn.uncurry, [
+    M.apply |> Fn.uncurry, [
       ((Error("err"), Error("err")), Error("err")),
       ((Ok(x => x + 1), Error("err")), Error("err")),
       ((Error("err"), Ok(1)), Error("err")),
@@ -124,7 +126,6 @@ describe("Iterable.S1_5", () => {
   );
 });
 
-module Result = Rebase.Result;
 testFn("isOk",
   Result.isOk, [
     (Error("err"), false),

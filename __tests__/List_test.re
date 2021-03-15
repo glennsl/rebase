@@ -49,7 +49,7 @@ describe("Iterable.S", () => {
     let (===) = Pervasives.(===);
     expect(M.filter(x => x mod 2 === 0, [1, 2])) == [2]
   });
-  
+
   testAll("exists", [
       ([], false),
       ([1, 3], false),
@@ -59,13 +59,13 @@ describe("Iterable.S", () => {
       expect(M.exists(x => x mod 2 === 0, input)) == expected
     }
   );
-  
+
   test("forEach", () => {
     let checked = ref([]);
     M.forEach(x => checked := [x, ...checked^], [1, 2]);
     expect(checked^) == [2, 1]
   });
-  
+
   testAll("find", [
       ([], None),
       ([1, 3], None),
@@ -75,7 +75,7 @@ describe("Iterable.S", () => {
       expect(M.find(x => x mod 2 === 0, input)) == expected
     }
   );
-  
+
   testAll("forAll", [
       ([], true),
       ([2, 4], true),
@@ -96,21 +96,21 @@ describe("Concatenable.S", () => {
 });
 
 
-testFn("fromArray", 
+testFn("fromArray",
   List.fromArray, [
     ([||], []),
     ([|1, 2, 3|], [1, 2, 3])
   ]
 );
 
-testFn("fromSeq", 
+testFn("fromSeq",
   List.fromSeq, [
     (Seq.empty, []),
     (Seq.(cons(1, cons(2, cons(3, empty)))), [1, 2, 3])
   ]
 );
 
-testFn("range", 
+testFn("range",
   ((start, finish)) => List.range(start, finish), [
     ((0, 0), [0]),
     ((0, 4), [0, 1, 2, 3, 4]),
@@ -122,7 +122,7 @@ testFn("range",
   ]
 );
 
-testFn("range - step", 
+testFn("range - step",
   ((start, finish, step)) => List.range(start, finish, ~step), [
     ((0, 0, 2), [0]),
     ((0, 3, 2), [0, 2]),
@@ -145,14 +145,14 @@ testFn("isEmpty",
   ]
 );
 
-testFn("head", 
+testFn("head",
   List.head, [
     ([1, 2, 3], Some(1)),
     ([], None)
   ]
 );
 
-testFn("tail", 
+testFn("tail",
   List.tail, [
     ([1, 2, 3], Some([2, 3])),
     ([], None)
@@ -170,7 +170,7 @@ test("filterMap", () => {
   expect(List.filterMap(x => x mod 2 === 0 ? Some(x + 1) : None, [1, 2])) == [3]
 });
 
-testFn("zip", 
+testFn("zip",
   List.zip |> Fn.flip |> Fn.uncurry, [
     (([1, 2], [11, 12]), [(1, 11), (2, 12)]),
     (([1, 2, 3], [11, 12]), [(1, 11), (2, 12)]),
