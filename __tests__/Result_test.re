@@ -3,9 +3,8 @@ open Expect;
 open Rebase;
 open TestHelpers;
 
-
 describe("Mappable.S1_5", () => {
-  module M: Signatures.Mappable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
+  module M: Signatures.Mappable.S1_5 with type t('a, 'e) := result('a, 'e) = Rebase.Result;
 
   testFn("map",
     M.map(x => x + 1), [
@@ -17,7 +16,7 @@ describe("Mappable.S1_5", () => {
 
 
 describe("Mappable.S2", () => {
-  module M: Signatures.Mappable.S2 with type t('a, 'e) := result('a, 'e) = Result;
+  module M: Signatures.Mappable.S2 with type t('a, 'e) := result('a, 'e) = Rebase.Result;
 
   testFn("map2",
     M.map2(x => x + 1, e => e ++ "or"), [
@@ -29,7 +28,7 @@ describe("Mappable.S2", () => {
 
 
 describe("Applicative.S1_5", () => {
-  module M: Signatures.Applicative.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
+  module M: Signatures.Applicative.S1_5 with type t('a, 'e) := result('a, 'e) = Rebase.Result;
 
   testFn("apply",
     M.apply |> Fn.uncurry, [
@@ -40,16 +39,17 @@ describe("Applicative.S1_5", () => {
     ]
   );
 
-  test("from", () =>
+  test("from", () => {
+    open Expect;
     expect(
       M.from(42))
       |> toEqual(Ok(42))
-  );
+  });
 });
 
 
 describe("Reduceable.S1_5", () => {
-  module M: Signatures.Reduceable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
+  module M: Signatures.Reduceable.S1_5 with type t('a, 'e) := result('a, 'e) = Rebase.Result;
 
   testFn("reduce",
     M.reduce((acc, x) => x - acc, 10), [
@@ -68,7 +68,7 @@ describe("Reduceable.S1_5", () => {
 
 
 describe("Monad.S1_5", () => {
-  module M: Signatures.Monad.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
+  module M: Signatures.Monad.S1_5 with type t('a, 'e) := result('a, 'e) = Rebase.Result;
 
   testFn("flatMap",
     M.flatMap(x => Ok(x + 1)), [
@@ -80,7 +80,7 @@ describe("Monad.S1_5", () => {
 
 
 describe("Iterable.S1_5", () => {
-  module M: Signatures.Iterable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
+  module M: Signatures.Iterable.S1_5 with type t('a, 'e) := result('a, 'e) = Rebase.Result;
 
   /*
   testFn("filter",
@@ -103,9 +103,9 @@ describe("Iterable.S1_5", () => {
       (Error("err"), 0),
       (Ok(1), 1),
     ], ((input, expected)) => {
+    open Expect;
     let checked = ref(0);
     M.forEach(x => checked := x, input);
-
     expect(checked^) |> toEqual(expected)
   });
 
@@ -126,7 +126,6 @@ describe("Iterable.S1_5", () => {
   );
 });
 
-
 testFn("isOk",
   Result.isOk, [
     (Error("err"), false),
@@ -141,41 +140,50 @@ testFn("isError",
   ]
 );
 
-test("wrap - Ok", () =>
+test("wrap - Ok", () => {
+  open Expect;
   expect(
     Result.wrap(() => 42))
     |> toEqual(Ok(42))
-);
+});
 
-test("wrap - Error", () =>
+test("wrap - Error", () => {
+  open Expect;
+  let expected = try (Ok(failwith("err"))) { | e => Error(e) };
   expect(
     Result.wrap(() => failwith("err")))
-    |> toEqual(Error(Failure("err")))
-);
+    |> toEqual(expected)
+});
 
-test("wrap1 - Ok", () =>
+test("wrap1 - Ok", () => {
+  open Expect;
   expect(
     Result.wrap1(n => n, 42))
     |> toEqual(Ok(42))
-);
+});
 
-test("wrap1 - Error", () =>
+test("wrap1 - Error", () => {
+  open Expect;
+  let expected = try (Ok(failwith("err"))) { | e => Error(e) };
   expect(
     Result.wrap1(_n => failwith("err"), 42))
-    |> toEqual(Error(Failure("err")))
-);
+    |> toEqual(expected)
+});
 
-test("wrap2 - Ok", () =>
+test("wrap2 - Ok", () => {
+  open Expect;
   expect(
     Result.wrap2((n, m) => n + m, 40, 2))
     |> toEqual(Ok(42))
-);
+});
 
-test("wrap2 - Error", () =>
+test("wrap2 - Error", () => {
+  open Expect;
+  let expected = try (Ok(failwith("err"))) { | e => Error(e) };
   expect(
     Result.wrap2((_n, _m) => failwith("err"), 40, 2))
-    |> toEqual(Error(Failure("err")))
-);
+    |> toEqual(expected)
+});
 
 testFn("or_",
   Result.or_(Ok(10)), [
@@ -191,16 +199,18 @@ testFn("getOr",
   ]
 );
 
-test("getOrRaise - Error", () =>
+test("getOrRaise - Error", () => {
+  open Expect;
   expect(
     () => Result.getOrRaise(Error("err")))
-    |> toThrow);
+    |> toThrow});
 
-test("getOrRaise - Ok", () =>
+test("getOrRaise - Ok", () => {
+  open Expect;
   expect(
     Result.getOrRaise(Ok(42)))
     |> toEqual(42)
-);
+});
 
 testFn("mapOr",
   Result.mapOr(x => x + 1, 10), [
