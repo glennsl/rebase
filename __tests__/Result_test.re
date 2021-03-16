@@ -1,6 +1,6 @@
 open Jest;
 open Expect;
-open !Rebase;
+open Rebase;
 open TestHelpers;
 
 
