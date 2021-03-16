@@ -16,6 +16,7 @@ function unsafeGetUnchecked(index, self) {
 
 function unsafeSetUnchecked(index, value, self) {
   self[index] = value;
+  
 }
 
 function make(length, value) {
@@ -95,7 +96,7 @@ function get(self, i) {
   if (i >= 0 && i < self.length) {
     return Caml_option.some(self[i]);
   }
-
+  
 }
 
 function set(self, i, value) {
@@ -103,6 +104,7 @@ function set(self, i, value) {
     self[i] = value;
     return ;
   }
+  
 }
 
 function getOrRaise(i, self) {
@@ -134,7 +136,7 @@ function findIndex(f, self) {
             self[i]
           ];
   }
-
+  
 }
 
 function flatMap(f, self) {
@@ -155,7 +157,7 @@ function filterMap(f, self) {
     if (x !== undefined) {
       result.push(Caml_option.valFromOption(x));
     }
-
+    
   }
   return result;
 }
