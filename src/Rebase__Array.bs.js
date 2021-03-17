@@ -3,11 +3,11 @@
 var List = require("bs-platform/lib/js/list.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
-var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
+var Caml_option = require("bs-platform/lib/js/caml_option.js");
 var Rebase__Types = require("./Rebase__Types.bs.js");
 
 function from(x) {
-  return /* array */[x];
+  return [x];
 }
 
 function unsafeGetUnchecked(index, self) {
@@ -16,7 +16,7 @@ function unsafeGetUnchecked(index, self) {
 
 function unsafeSetUnchecked(index, value, self) {
   self[index] = value;
-  return /* () */0;
+  
 }
 
 function make(length, value) {
@@ -25,78 +25,76 @@ function make(length, value) {
   return array;
 }
 
-function fromList(list) {
-  if (list) {
-    var array = make(List.length(list), list[0]);
-    var _i = 1;
-    var _param = list[1];
-    while(true) {
-      var param = _param;
-      var i = _i;
-      if (param) {
-        array[i] = param[0];
-        _param = param[1];
-        _i = i + 1 | 0;
-        continue ;
-      } else {
-        return array;
-      }
-    };
-  } else {
-    return /* array */[];
+function fromList(x) {
+  if (!x) {
+    return [];
   }
-}
-
-function fromSeq(seq) {
-  var array = /* array */[];
-  var _seq = seq;
+  var array = make(List.length(x), x.hd);
+  var _i = 1;
+  var _x = x.tl;
   while(true) {
-    var seq$1 = _seq;
-    var match = Curry._1(seq$1, /* () */0);
-    if (match) {
-      array.push(match[0]);
-      _seq = match[1];
-      continue ;
-    } else {
+    var x$1 = _x;
+    var i = _i;
+    if (!x$1) {
       return array;
     }
+    array[i] = x$1.hd;
+    _x = x$1.tl;
+    _i = i + 1 | 0;
+    continue ;
   };
 }
 
-function range($staropt$star, start, finish) {
-  var step = $staropt$star !== undefined ? $staropt$star : 1;
+function fromSeq(seq) {
+  var array = [];
+  var _seq = seq;
+  while(true) {
+    var seq$1 = _seq;
+    var match = Curry._1(seq$1, undefined);
+    if (!match) {
+      return array;
+    }
+    array.push(match._0);
+    _seq = match._1;
+    continue ;
+  };
+}
+
+function range(stepOpt, start, finish) {
+  var step = stepOpt !== undefined ? stepOpt : 1;
   if (step === 0) {
-    throw [
-          Rebase__Types.InvalidArgument,
-          "Array.range: ~step=0 would cause infinite loop"
-        ];
-  } else if (step < 0 && start < finish) {
-    return /* array */[];
-  } else if (step > 0 && start > finish) {
-    return /* array */[];
-  } else {
-    var array = /* array */[];
-    var last = Caml_int32.imul(Caml_int32.div(finish - start | 0, step), step) + start | 0;
-    var loop = function (_n) {
-      while(true) {
-        var n = _n;
-        array.push(n);
-        if (n !== last) {
-          _n = n + step | 0;
-          continue ;
-        } else {
-          return 0;
-        }
-      };
-    };
-    loop(start);
-    return array;
+    throw {
+          RE_EXN_ID: Rebase__Types.InvalidArgument,
+          _1: "Array.range: ~step=0 would cause infinite loop",
+          Error: new Error()
+        };
   }
+  if (step < 0 && start < finish) {
+    return [];
+  }
+  if (step > 0 && start > finish) {
+    return [];
+  }
+  var array = [];
+  var last = Math.imul(Caml_int32.div(finish - start | 0, step), step) + start | 0;
+  var loop = function (_n) {
+    while(true) {
+      var n = _n;
+      array.push(n);
+      if (n === last) {
+        return ;
+      }
+      _n = n + step | 0;
+      continue ;
+    };
+  };
+  loop(start);
+  return array;
 }
 
 function get(self, i) {
   if (i >= 0 && i < self.length) {
-    return Js_primitive.some(self[i]);
+    return Caml_option.some(self[i]);
   }
   
 }
@@ -104,33 +102,36 @@ function get(self, i) {
 function set(self, i, value) {
   if (i >= 0 && i < self.length) {
     self[i] = value;
-    return /* () */0;
-  } else {
-    return /* () */0;
+    return ;
   }
+  
 }
 
 function getOrRaise(i, self) {
   if (i >= 0 && i < self.length) {
     return self[i];
-  } else {
-    throw Rebase__Types.IndexOutOfBounds;
   }
+  throw {
+        RE_EXN_ID: Rebase__Types.IndexOutOfBounds,
+        Error: new Error()
+      };
 }
 
 function setOrRaise(i, value, self) {
   if (i >= 0 && i < self.length) {
     self[i] = value;
-    return /* () */0;
-  } else {
-    throw Rebase__Types.IndexOutOfBounds;
+    return ;
   }
+  throw {
+        RE_EXN_ID: Rebase__Types.IndexOutOfBounds,
+        Error: new Error()
+      };
 }
 
 function findIndex(f, self) {
   var i = self.findIndex(Curry.__1(f));
   if (i !== -1) {
-    return /* tuple */[
+    return [
             i,
             self[i]
           ];
@@ -139,10 +140,10 @@ function findIndex(f, self) {
 }
 
 function flatMap(f, self) {
-  var result = /* array */[];
-  for(var i = 0 ,i_finish = self.length - 1 | 0; i <= i_finish; ++i){
+  var result = [];
+  for(var i = 0 ,i_finish = self.length; i < i_finish; ++i){
     var nested = Curry._1(f, self[i]);
-    for(var j = 0 ,j_finish = nested.length - 1 | 0; j <= j_finish; ++j){
+    for(var j = 0 ,j_finish = nested.length; j < j_finish; ++j){
       result.push(nested[j]);
     }
   }
@@ -150,11 +151,11 @@ function flatMap(f, self) {
 }
 
 function filterMap(f, self) {
-  var result = /* array */[];
-  for(var i = 0 ,i_finish = self.length - 1 | 0; i <= i_finish; ++i){
-    var match = Curry._1(f, self[i]);
-    if (match !== undefined) {
-      result.push(Js_primitive.valFromOption(match));
+  var result = [];
+  for(var i = 0 ,i_finish = self.length; i < i_finish; ++i){
+    var x = Curry._1(f, self[i]);
+    if (x !== undefined) {
+      result.push(Caml_option.valFromOption(x));
     }
     
   }
@@ -163,9 +164,9 @@ function filterMap(f, self) {
 
 function product(f, xs, ys) {
   return flatMap((function (x) {
-                return ys.map((function (y) {
-                              return Curry._2(f, x, y);
-                            }));
+                return ys.map(function (y) {
+                            return Curry._2(f, x, y);
+                          });
               }), xs);
 }
 

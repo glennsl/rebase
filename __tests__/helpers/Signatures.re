@@ -1,4 +1,4 @@
-module Mappable: {
+module Mappable = {
   /* aka Functor */
 
   module type S = {
@@ -26,7 +26,7 @@ module Mappable: {
 };
 
 
-module Applicative: {
+module Applicative = {
 
   module type S = {
     type t('a);
@@ -58,7 +58,7 @@ module Applicative: {
 };
 
 
-module Monad: {
+module Monad = {
   module type S = {
     type t('a);
 
@@ -82,7 +82,7 @@ module Monad: {
 };
 
 
-module Reduceable: {
+module Reduceable = {
   /* aka Foldable */
 
   module type S = {
@@ -115,7 +115,7 @@ module Reduceable: {
 };
 
 
-module Iterable: {
+module Iterable = {
 
   module type S = {
     type t('a);
@@ -166,7 +166,7 @@ module Iterable: {
   };
 };
 
-module Concatenable: {
+module Concatenable = {
   /* aka Semigroup */
 
   module type S = {

@@ -5,25 +5,24 @@ function isEmpty(s) {
   return s.trim().length === 0;
 }
 
-function join(param) {
-  if (param) {
-    return param[0] + join(param[1]);
+function join(x) {
+  if (x) {
+    return x.hd + join(x.tl);
   } else {
     return "";
   }
 }
 
-function joinWith(sep, param) {
-  if (param) {
-    var ss = param[1];
-    var s = param[0];
-    if (ss) {
-      return s + (sep + joinWith(sep, ss));
-    } else {
-      return s;
-    }
-  } else {
+function joinWith(sep, x) {
+  if (!x) {
     return "";
+  }
+  var ss = x.tl;
+  var s = x.hd;
+  if (ss) {
+    return s + (sep + joinWith(sep, ss));
+  } else {
+    return s;
   }
 }
 

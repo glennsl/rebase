@@ -1,854 +1,823 @@
 'use strict';
 
-var Jest = require("@glennsl/bs-jest/src/jest.js");
+var Jest = require("@glennsl/bs-jest/src/jest.bs.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var Rebase = require("../src/Rebase.bs.js");
-var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 var TestHelpers = require("./helpers/TestHelpers.bs.js");
 
-describe("Mappable.S", (function () {
-        var M = [Rebase.List[0]];
-        return Jest.test("map", (function () {
-                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M[/* map */0], (function (x) {
+Jest.describe("Mappable.S", (function (param) {
+        return Jest.test("map", (function (param) {
+                      return Curry._2(Jest.Expect.Operators.$eq, Jest.Expect.expect(Curry._2(Rebase.List.map, (function (x) {
                                             return x + 1 | 0;
-                                          }), /* :: */[
-                                          1,
-                                          /* :: */[
-                                            2,
-                                            /* [] */0
-                                          ]
-                                        ])), /* :: */[
-                                  2,
-                                  /* :: */[
-                                    3,
-                                    /* [] */0
-                                  ]
-                                ]);
+                                          }), {
+                                          hd: 1,
+                                          tl: {
+                                            hd: 2,
+                                            tl: /* [] */0
+                                          }
+                                        })), {
+                                  hd: 2,
+                                  tl: {
+                                    hd: 3,
+                                    tl: /* [] */0
+                                  }
+                                });
                     }));
       }));
 
-describe("Applicative.S", (function () {
-        var M_000 = Rebase.List[0];
-        var M_001 = Rebase.List[1];
-        var M_002 = Rebase.List[2];
-        Jest.test("apply", (function () {
-                return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_001, /* :: */[
-                                    (function (x) {
+Jest.describe("Applicative.S", (function (param) {
+        Jest.test("apply", (function (param) {
+                return Curry._2(Jest.Expect.Operators.$eq, Jest.Expect.expect(Curry._2(Rebase.List.apply, {
+                                    hd: (function (x) {
                                         return x + x | 0;
                                       }),
-                                    /* :: */[
-                                      (function (x) {
-                                          return Caml_int32.imul(x, x);
+                                    tl: {
+                                      hd: (function (x) {
+                                          return Math.imul(x, x);
                                         }),
-                                      /* [] */0
-                                    ]
-                                  ], /* :: */[
-                                    3,
-                                    /* :: */[
-                                      8,
-                                      /* [] */0
-                                    ]
-                                  ])), /* :: */[
-                            6,
-                            /* :: */[
-                              16,
-                              /* :: */[
-                                9,
-                                /* :: */[
-                                  64,
-                                  /* [] */0
-                                ]
-                              ]
-                            ]
-                          ]);
+                                      tl: /* [] */0
+                                    }
+                                  }, {
+                                    hd: 3,
+                                    tl: {
+                                      hd: 8,
+                                      tl: /* [] */0
+                                    }
+                                  })), {
+                            hd: 6,
+                            tl: {
+                              hd: 16,
+                              tl: {
+                                hd: 9,
+                                tl: {
+                                  hd: 64,
+                                  tl: /* [] */0
+                                }
+                              }
+                            }
+                          });
               }));
-        return Jest.test("from", (function () {
-                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._1(M_002, 42)), /* :: */[
-                                  42,
-                                  /* [] */0
-                                ]);
+        return Jest.test("from", (function (param) {
+                      return Curry._2(Jest.Expect.Operators.$eq, Jest.Expect.expect(Curry._1(Rebase.List.from, 42)), {
+                                  hd: 42,
+                                  tl: /* [] */0
+                                });
                     }));
       }));
 
-describe("Reduceable.S", (function () {
-        var M_000 = Rebase.List[3];
-        var M_001 = Rebase.List[4];
-        Jest.test("reduce", (function () {
-                return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._3(M_000, (function (acc, x) {
+Jest.describe("Reduceable.S", (function (param) {
+        Jest.test("reduce", (function (param) {
+                return Curry._2(Jest.Expect.Operators.$eq, Jest.Expect.expect(Curry._3(Rebase.List.reduce, (function (acc, x) {
                                       return x - acc | 0;
-                                    }), 10, /* :: */[
-                                    1,
-                                    /* :: */[
-                                      2,
-                                      /* [] */0
-                                    ]
-                                  ])), 11);
+                                    }), 10, {
+                                    hd: 1,
+                                    tl: {
+                                      hd: 2,
+                                      tl: /* [] */0
+                                    }
+                                  })), 11);
               }));
-        return Jest.test("reduceRight", (function () {
-                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._3(M_001, (function (acc, x) {
+        return Jest.test("reduceRight", (function (param) {
+                      return Curry._2(Jest.Expect.Operators.$eq, Jest.Expect.expect(Curry._3(Rebase.List.reduceRight, (function (acc, x) {
                                             return x - acc | 0;
-                                          }), 10, /* :: */[
-                                          1,
-                                          /* :: */[
-                                            2,
-                                            /* [] */0
-                                          ]
-                                        ])), 9);
+                                          }), 10, {
+                                          hd: 1,
+                                          tl: {
+                                            hd: 2,
+                                            tl: /* [] */0
+                                          }
+                                        })), 9);
                     }));
       }));
 
-describe("Monad.S", (function () {
-        var M_000 = Rebase.List[0];
-        var M_001 = Rebase.List[1];
-        var M_002 = Rebase.List[2];
-        var M_003 = Rebase.List[5];
-        return Jest.test("flatMap", (function () {
-                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_003, (function (x) {
-                                            return /* :: */[
-                                                    0,
-                                                    /* :: */[
-                                                      x,
-                                                      /* [] */0
-                                                    ]
-                                                  ];
-                                          }), /* :: */[
-                                          1,
-                                          /* :: */[
-                                            2,
-                                            /* :: */[
-                                              3,
-                                              /* [] */0
-                                            ]
-                                          ]
-                                        ])), /* :: */[
-                                  0,
-                                  /* :: */[
-                                    1,
-                                    /* :: */[
-                                      0,
-                                      /* :: */[
-                                        2,
-                                        /* :: */[
-                                          0,
-                                          /* :: */[
-                                            3,
-                                            /* [] */0
-                                          ]
-                                        ]
-                                      ]
-                                    ]
-                                  ]
-                                ]);
+Jest.describe("Monad.S", (function (param) {
+        return Jest.test("flatMap", (function (param) {
+                      return Curry._2(Jest.Expect.Operators.$eq, Jest.Expect.expect(Curry._2(Rebase.List.flatMap, (function (x) {
+                                            return {
+                                                    hd: 0,
+                                                    tl: {
+                                                      hd: x,
+                                                      tl: /* [] */0
+                                                    }
+                                                  };
+                                          }), {
+                                          hd: 1,
+                                          tl: {
+                                            hd: 2,
+                                            tl: {
+                                              hd: 3,
+                                              tl: /* [] */0
+                                            }
+                                          }
+                                        })), {
+                                  hd: 0,
+                                  tl: {
+                                    hd: 1,
+                                    tl: {
+                                      hd: 0,
+                                      tl: {
+                                        hd: 2,
+                                        tl: {
+                                          hd: 0,
+                                          tl: {
+                                            hd: 3,
+                                            tl: /* [] */0
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                });
                     }));
       }));
 
-describe("Iterable.S", (function () {
-        var M_000 = Rebase.List[6];
-        var M_001 = Rebase.List[7];
-        var M_002 = Rebase.List[8];
-        var M_003 = Rebase.List[9];
-        var M_004 = Rebase.List[10];
-        Jest.test("filter", (function () {
-                return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_004, (function (x) {
+Jest.describe("Iterable.S", (function (param) {
+        Jest.test("filter", (function (param) {
+                return Curry._2(Jest.Expect.Operators.$eq, Jest.Expect.expect(Curry._2(Rebase.List.filter, (function (x) {
                                       return x % 2 === 0;
-                                    }), /* :: */[
-                                    1,
-                                    /* :: */[
-                                      2,
-                                      /* [] */0
-                                    ]
-                                  ])), /* :: */[
-                            2,
-                            /* [] */0
-                          ]);
+                                    }), {
+                                    hd: 1,
+                                    tl: {
+                                      hd: 2,
+                                      tl: /* [] */0
+                                    }
+                                  })), {
+                            hd: 2,
+                            tl: /* [] */0
+                          });
               }));
-        Jest.testAll("exists", /* :: */[
-              /* tuple */[
+        Jest.testAll("exists", {
+              hd: [
                 /* [] */0,
                 false
               ],
-              /* :: */[
-                /* tuple */[
-                  /* :: */[
-                    1,
-                    /* :: */[
-                      3,
-                      /* [] */0
-                    ]
-                  ],
+              tl: {
+                hd: [
+                  {
+                    hd: 1,
+                    tl: {
+                      hd: 3,
+                      tl: /* [] */0
+                    }
+                  },
                   false
                 ],
-                /* :: */[
-                  /* tuple */[
-                    /* :: */[
-                      1,
-                      /* :: */[
-                        2,
-                        /* [] */0
-                      ]
-                    ],
+                tl: {
+                  hd: [
+                    {
+                      hd: 1,
+                      tl: {
+                        hd: 2,
+                        tl: /* [] */0
+                      }
+                    },
                     true
                   ],
-                  /* [] */0
-                ]
-              ]
-            ], (function (param) {
-                return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_003, (function (x) {
+                  tl: /* [] */0
+                }
+              }
+            }, (function (param) {
+                return Curry._2(Jest.Expect.Operators.$eq, Jest.Expect.expect(Curry._2(Rebase.List.exists, (function (x) {
                                       return x % 2 === 0;
                                     }), param[0])), param[1]);
               }));
-        Jest.test("forEach", (function () {
-                var checked = /* record */[/* contents : [] */0];
-                Curry._2(M_002, (function (x) {
-                        checked[0] = /* :: */[
-                          x,
-                          checked[0]
-                        ];
-                        return /* () */0;
-                      }), /* :: */[
-                      1,
-                      /* :: */[
-                        2,
-                        /* [] */0
-                      ]
-                    ]);
-                return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](checked[0]), /* :: */[
-                            2,
-                            /* :: */[
-                              1,
-                              /* [] */0
-                            ]
-                          ]);
+        Jest.test("forEach", (function (param) {
+                var checked = {
+                  contents: /* [] */0
+                };
+                Curry._2(Rebase.List.forEach, (function (x) {
+                        checked.contents = {
+                          hd: x,
+                          tl: checked.contents
+                        };
+                        
+                      }), {
+                      hd: 1,
+                      tl: {
+                        hd: 2,
+                        tl: /* [] */0
+                      }
+                    });
+                return Curry._2(Jest.Expect.Operators.$eq, Jest.Expect.expect(checked.contents), {
+                            hd: 2,
+                            tl: {
+                              hd: 1,
+                              tl: /* [] */0
+                            }
+                          });
               }));
-        Jest.testAll("find", /* :: */[
-              /* tuple */[
+        Jest.testAll("find", {
+              hd: [
                 /* [] */0,
                 undefined
               ],
-              /* :: */[
-                /* tuple */[
-                  /* :: */[
-                    1,
-                    /* :: */[
-                      3,
-                      /* [] */0
-                    ]
-                  ],
+              tl: {
+                hd: [
+                  {
+                    hd: 1,
+                    tl: {
+                      hd: 3,
+                      tl: /* [] */0
+                    }
+                  },
                   undefined
                 ],
-                /* :: */[
-                  /* tuple */[
-                    /* :: */[
-                      1,
-                      /* :: */[
-                        2,
-                        /* :: */[
-                          4,
-                          /* [] */0
-                        ]
-                      ]
-                    ],
+                tl: {
+                  hd: [
+                    {
+                      hd: 1,
+                      tl: {
+                        hd: 2,
+                        tl: {
+                          hd: 4,
+                          tl: /* [] */0
+                        }
+                      }
+                    },
                     2
                   ],
-                  /* [] */0
-                ]
-              ]
-            ], (function (param) {
-                return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_001, (function (x) {
+                  tl: /* [] */0
+                }
+              }
+            }, (function (param) {
+                return Curry._2(Jest.Expect.Operators.$eq, Jest.Expect.expect(Curry._2(Rebase.List.find, (function (x) {
                                       return x % 2 === 0;
                                     }), param[0])), param[1]);
               }));
-        return Jest.testAll("forAll", /* :: */[
-                    /* tuple */[
+        return Jest.testAll("forAll", {
+                    hd: [
                       /* [] */0,
                       true
                     ],
-                    /* :: */[
-                      /* tuple */[
-                        /* :: */[
-                          2,
-                          /* :: */[
-                            4,
-                            /* [] */0
-                          ]
-                        ],
+                    tl: {
+                      hd: [
+                        {
+                          hd: 2,
+                          tl: {
+                            hd: 4,
+                            tl: /* [] */0
+                          }
+                        },
                         true
                       ],
-                      /* :: */[
-                        /* tuple */[
-                          /* :: */[
-                            1,
-                            /* :: */[
-                              2,
-                              /* [] */0
-                            ]
-                          ],
+                      tl: {
+                        hd: [
+                          {
+                            hd: 1,
+                            tl: {
+                              hd: 2,
+                              tl: /* [] */0
+                            }
+                          },
                           false
                         ],
-                        /* [] */0
-                      ]
-                    ]
-                  ], (function (param) {
-                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M_000, (function (x) {
+                        tl: /* [] */0
+                      }
+                    }
+                  }, (function (param) {
+                      return Curry._2(Jest.Expect.Operators.$eq, Jest.Expect.expect(Curry._2(Rebase.List.forAll, (function (x) {
                                             return x % 2 === 0;
                                           }), param[0])), param[1]);
                     }));
       }));
 
-describe("Concatenable.S", (function () {
-        var M = [Rebase.List[11]];
-        return Jest.test("concat", (function () {
-                      return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Curry._2(M[/* concat */0], /* :: */[
-                                          3,
-                                          /* :: */[
-                                            4,
-                                            /* [] */0
-                                          ]
-                                        ], /* :: */[
-                                          1,
-                                          /* :: */[
-                                            2,
-                                            /* [] */0
-                                          ]
-                                        ])), /* :: */[
-                                  1,
-                                  /* :: */[
-                                    2,
-                                    /* :: */[
-                                      3,
-                                      /* :: */[
-                                        4,
-                                        /* [] */0
-                                      ]
-                                    ]
-                                  ]
-                                ]);
+Jest.describe("Concatenable.S", (function (param) {
+        return Jest.test("concat", (function (param) {
+                      return Curry._2(Jest.Expect.Operators.$eq, Jest.Expect.expect(Curry._2(Rebase.List.concat, {
+                                          hd: 3,
+                                          tl: {
+                                            hd: 4,
+                                            tl: /* [] */0
+                                          }
+                                        }, {
+                                          hd: 1,
+                                          tl: {
+                                            hd: 2,
+                                            tl: /* [] */0
+                                          }
+                                        })), {
+                                  hd: 1,
+                                  tl: {
+                                    hd: 2,
+                                    tl: {
+                                      hd: 3,
+                                      tl: {
+                                        hd: 4,
+                                        tl: /* [] */0
+                                      }
+                                    }
+                                  }
+                                });
                     }));
       }));
 
-TestHelpers.testFn("fromArray", Rebase.List[/* fromArray */12], /* :: */[
-      /* tuple */[
-        /* array */[],
+TestHelpers.testFn("fromArray", Rebase.List.fromArray, {
+      hd: [
+        [],
         /* [] */0
       ],
-      /* :: */[
-        /* tuple */[
-          /* array */[
+      tl: {
+        hd: [
+          [
             1,
             2,
             3
           ],
-          /* :: */[
-            1,
-            /* :: */[
-              2,
-              /* :: */[
-                3,
-                /* [] */0
-              ]
-            ]
-          ]
+          {
+            hd: 1,
+            tl: {
+              hd: 2,
+              tl: {
+                hd: 3,
+                tl: /* [] */0
+              }
+            }
+          }
         ],
-        /* [] */0
-      ]
-    ]);
+        tl: /* [] */0
+      }
+    });
 
-var partial_arg = Rebase.Seq[/* empty */11];
-
-var partial_arg$1 = Rebase.Seq[/* cons */12];
-
-function partial_arg$2(param) {
-  return partial_arg$1(3, partial_arg, param);
-}
-
-var partial_arg$3 = Rebase.Seq[/* cons */12];
-
-function partial_arg$4(param) {
-  return partial_arg$3(2, partial_arg$2, param);
-}
-
-var partial_arg$5 = Rebase.Seq[/* cons */12];
-
-TestHelpers.testFn("fromSeq", Rebase.List[/* fromSeq */13], /* :: */[
-      /* tuple */[
-        Rebase.Seq[/* empty */11],
+TestHelpers.testFn("fromSeq", Rebase.List.fromSeq, {
+      hd: [
+        Rebase.Seq.empty,
         /* [] */0
       ],
-      /* :: */[
-        /* tuple */[
+      tl: {
+        hd: [
           (function (param) {
-              return partial_arg$5(1, partial_arg$4, param);
+              return Rebase.Seq.cons(1, (function (param) {
+                            return Rebase.Seq.cons(2, (function (param) {
+                                          return Rebase.Seq.cons(3, Rebase.Seq.empty, param);
+                                        }), param);
+                          }), param);
             }),
-          /* :: */[
-            1,
-            /* :: */[
-              2,
-              /* :: */[
-                3,
-                /* [] */0
-              ]
-            ]
-          ]
+          {
+            hd: 1,
+            tl: {
+              hd: 2,
+              tl: {
+                hd: 3,
+                tl: /* [] */0
+              }
+            }
+          }
         ],
-        /* [] */0
-      ]
-    ]);
+        tl: /* [] */0
+      }
+    });
 
 TestHelpers.testFn("range", (function (param) {
-        return Rebase.List[/* range */14](undefined, param[0], param[1]);
-      }), /* :: */[
-      /* tuple */[
-        /* tuple */[
+        return Rebase.List.range(undefined, param[0], param[1]);
+      }), {
+      hd: [
+        [
           0,
           0
         ],
-        /* :: */[
-          0,
-          /* [] */0
-        ]
+        {
+          hd: 0,
+          tl: /* [] */0
+        }
       ],
-      /* :: */[
-        /* tuple */[
-          /* tuple */[
+      tl: {
+        hd: [
+          [
             0,
             4
           ],
-          /* :: */[
-            0,
-            /* :: */[
-              1,
-              /* :: */[
-                2,
-                /* :: */[
-                  3,
-                  /* :: */[
-                    4,
-                    /* [] */0
-                  ]
-                ]
-              ]
-            ]
-          ]
+          {
+            hd: 0,
+            tl: {
+              hd: 1,
+              tl: {
+                hd: 2,
+                tl: {
+                  hd: 3,
+                  tl: {
+                    hd: 4,
+                    tl: /* [] */0
+                  }
+                }
+              }
+            }
+          }
         ],
-        /* :: */[
-          /* tuple */[
-            /* tuple */[
+        tl: {
+          hd: [
+            [
               2,
               4
             ],
-            /* :: */[
-              2,
-              /* :: */[
-                3,
-                /* :: */[
-                  4,
-                  /* [] */0
-                ]
-              ]
-            ]
+            {
+              hd: 2,
+              tl: {
+                hd: 3,
+                tl: {
+                  hd: 4,
+                  tl: /* [] */0
+                }
+              }
+            }
           ],
-          /* :: */[
-            /* tuple */[
-              /* tuple */[
+          tl: {
+            hd: [
+              [
                 -2,
                 0
               ],
-              /* :: */[
-                -2,
-                /* :: */[
-                  -1,
-                  /* :: */[
-                    0,
-                    /* [] */0
-                  ]
-                ]
-              ]
+              {
+                hd: -2,
+                tl: {
+                  hd: -1,
+                  tl: {
+                    hd: 0,
+                    tl: /* [] */0
+                  }
+                }
+              }
             ],
-            /* :: */[
-              /* tuple */[
-                /* tuple */[
+            tl: {
+              hd: [
+                [
                   4,
                   2
                 ],
                 /* [] */0
               ],
-              /* :: */[
-                /* tuple */[
-                  /* tuple */[
+              tl: {
+                hd: [
+                  [
                     -2,
                     -4
                   ],
                   /* [] */0
                 ],
-                /* :: */[
-                  /* tuple */[
-                    /* tuple */[
+                tl: {
+                  hd: [
+                    [
                       2,
                       -2
                     ],
                     /* [] */0
                   ],
-                  /* [] */0
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]);
+                  tl: /* [] */0
+                }
+              }
+            }
+          }
+        }
+      }
+    });
 
 TestHelpers.testFn("range - step", (function (param) {
-        return Rebase.List[/* range */14](param[2], param[0], param[1]);
-      }), /* :: */[
-      /* tuple */[
-        /* tuple */[
+        return Rebase.List.range(param[2], param[0], param[1]);
+      }), {
+      hd: [
+        [
           0,
           0,
           2
         ],
-        /* :: */[
-          0,
-          /* [] */0
-        ]
+        {
+          hd: 0,
+          tl: /* [] */0
+        }
       ],
-      /* :: */[
-        /* tuple */[
-          /* tuple */[
+      tl: {
+        hd: [
+          [
             0,
             3,
             2
           ],
-          /* :: */[
-            0,
-            /* :: */[
-              2,
-              /* [] */0
-            ]
-          ]
+          {
+            hd: 0,
+            tl: {
+              hd: 2,
+              tl: /* [] */0
+            }
+          }
         ],
-        /* :: */[
-          /* tuple */[
-            /* tuple */[
+        tl: {
+          hd: [
+            [
               2,
               5,
               2
             ],
-            /* :: */[
-              2,
-              /* :: */[
-                4,
-                /* [] */0
-              ]
-            ]
+            {
+              hd: 2,
+              tl: {
+                hd: 4,
+                tl: /* [] */0
+              }
+            }
           ],
-          /* :: */[
-            /* tuple */[
-              /* tuple */[
+          tl: {
+            hd: [
+              [
                 0,
                 0,
                 -2
               ],
-              /* :: */[
-                0,
-                /* [] */0
-              ]
+              {
+                hd: 0,
+                tl: /* [] */0
+              }
             ],
-            /* :: */[
-              /* tuple */[
-                /* tuple */[
+            tl: {
+              hd: [
+                [
                   0,
                   3,
                   -2
                 ],
                 /* [] */0
               ],
-              /* :: */[
-                /* tuple */[
-                  /* tuple */[
+              tl: {
+                hd: [
+                  [
                     3,
                     0,
                     -2
                   ],
-                  /* :: */[
-                    3,
-                    /* :: */[
-                      1,
-                      /* [] */0
-                    ]
-                  ]
+                  {
+                    hd: 3,
+                    tl: {
+                      hd: 1,
+                      tl: /* [] */0
+                    }
+                  }
                 ],
-                /* [] */0
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]);
+                tl: /* [] */0
+              }
+            }
+          }
+        }
+      }
+    });
 
-Jest.test("range - step 0", (function () {
-        return Jest.Expect[/* toThrowException */20]([
-                    Rebase.InvalidArgument,
-                    ""
-                  ], Jest.Expect[/* expect */0]((function () {
-                          return Rebase.List[/* range */14](0, 0, 0);
-                        })));
+Jest.test("range - step 0", (function (param) {
+        return Jest.Expect.toThrow(Jest.Expect.expect(function (param) {
+                        return Rebase.List.range(0, 0, 0);
+                      }));
       }));
 
-TestHelpers.testFn("isEmpty", Rebase.List[/* isEmpty */15], /* :: */[
-      /* tuple */[
+TestHelpers.testFn("isEmpty", Rebase.List.isEmpty, {
+      hd: [
         /* [] */0,
         true
       ],
-      /* :: */[
-        /* tuple */[
-          /* :: */[
-            1,
-            /* :: */[
-              2,
-              /* :: */[
-                3,
-                /* [] */0
-              ]
-            ]
-          ],
+      tl: {
+        hd: [
+          {
+            hd: 1,
+            tl: {
+              hd: 2,
+              tl: {
+                hd: 3,
+                tl: /* [] */0
+              }
+            }
+          },
           false
         ],
-        /* [] */0
-      ]
-    ]);
+        tl: /* [] */0
+      }
+    });
 
-TestHelpers.testFn("head", Rebase.List[/* head */16], /* :: */[
-      /* tuple */[
-        /* :: */[
-          1,
-          /* :: */[
-            2,
-            /* :: */[
-              3,
-              /* [] */0
-            ]
-          ]
-        ],
+TestHelpers.testFn("head", Rebase.List.head, {
+      hd: [
+        {
+          hd: 1,
+          tl: {
+            hd: 2,
+            tl: {
+              hd: 3,
+              tl: /* [] */0
+            }
+          }
+        },
         1
       ],
-      /* :: */[
-        /* tuple */[
+      tl: {
+        hd: [
           /* [] */0,
           undefined
         ],
-        /* [] */0
-      ]
-    ]);
+        tl: /* [] */0
+      }
+    });
 
-TestHelpers.testFn("tail", Rebase.List[/* tail */17], /* :: */[
-      /* tuple */[
-        /* :: */[
-          1,
-          /* :: */[
-            2,
-            /* :: */[
-              3,
-              /* [] */0
-            ]
-          ]
-        ],
-        /* :: */[
-          2,
-          /* :: */[
-            3,
-            /* [] */0
-          ]
-        ]
+TestHelpers.testFn("tail", Rebase.List.tail, {
+      hd: [
+        {
+          hd: 1,
+          tl: {
+            hd: 2,
+            tl: {
+              hd: 3,
+              tl: /* [] */0
+            }
+          }
+        },
+        {
+          hd: 2,
+          tl: {
+            hd: 3,
+            tl: /* [] */0
+          }
+        }
       ],
-      /* :: */[
-        /* tuple */[
+      tl: {
+        hd: [
           /* [] */0,
           undefined
         ],
-        /* [] */0
-      ]
-    ]);
+        tl: /* [] */0
+      }
+    });
 
-Jest.test("reverse", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* reverse */20](/* :: */[
-                            1,
-                            /* :: */[
-                              2,
-                              /* [] */0
-                            ]
-                          ])), /* :: */[
-                    2,
-                    /* :: */[
-                      1,
-                      /* [] */0
-                    ]
-                  ]);
+Jest.test("reverse", (function (param) {
+        return Curry._2(Jest.Expect.Operators.$eq, Jest.Expect.expect(Rebase.List.reverse({
+                            hd: 1,
+                            tl: {
+                              hd: 2,
+                              tl: /* [] */0
+                            }
+                          })), {
+                    hd: 2,
+                    tl: {
+                      hd: 1,
+                      tl: /* [] */0
+                    }
+                  });
       }));
 
-Jest.test("length", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* == */0], Jest.Expect[/* expect */0](Rebase.List[/* length */19](/* :: */[
-                            41,
-                            /* :: */[
-                              62,
-                              /* [] */0
-                            ]
-                          ])), 2);
+Jest.test("length", (function (param) {
+        return Curry._2(Jest.Expect.Operators.$eq$eq, Jest.Expect.expect(Rebase.List.length({
+                            hd: 41,
+                            tl: {
+                              hd: 62,
+                              tl: /* [] */0
+                            }
+                          })), 2);
       }));
 
-Jest.test("filterMap", (function () {
-        return Curry._2(Jest.Expect[/* Operators */24][/* = */5], Jest.Expect[/* expect */0](Rebase.List[/* filterMap */18]((function (x) {
-                              var match = x % 2 === 0;
-                              if (match) {
+Jest.test("filterMap", (function (param) {
+        return Curry._2(Jest.Expect.Operators.$eq, Jest.Expect.expect(Rebase.List.filterMap((function (x) {
+                              if (x % 2 === 0) {
                                 return x + 1 | 0;
                               }
                               
-                            }), /* :: */[
-                            1,
-                            /* :: */[
-                              2,
-                              /* [] */0
-                            ]
-                          ])), /* :: */[
-                    3,
-                    /* [] */0
-                  ]);
+                            }), {
+                            hd: 1,
+                            tl: {
+                              hd: 2,
+                              tl: /* [] */0
+                            }
+                          })), {
+                    hd: 3,
+                    tl: /* [] */0
+                  });
       }));
 
-TestHelpers.testFn("zip", Curry._1(Rebase.Fn[/* uncurry */4], Curry._1(Rebase.Fn[/* flip */2], Rebase.List[/* zip */21])), /* :: */[
-      /* tuple */[
-        /* tuple */[
-          /* :: */[
-            1,
-            /* :: */[
-              2,
-              /* [] */0
-            ]
-          ],
-          /* :: */[
-            11,
-            /* :: */[
-              12,
-              /* [] */0
-            ]
-          ]
+TestHelpers.testFn("zip", Curry._1(Rebase.Fn.uncurry, Curry._1(Rebase.Fn.flip, Rebase.List.zip)), {
+      hd: [
+        [
+          {
+            hd: 1,
+            tl: {
+              hd: 2,
+              tl: /* [] */0
+            }
+          },
+          {
+            hd: 11,
+            tl: {
+              hd: 12,
+              tl: /* [] */0
+            }
+          }
         ],
-        /* :: */[
-          /* tuple */[
+        {
+          hd: [
             1,
             11
           ],
-          /* :: */[
-            /* tuple */[
+          tl: {
+            hd: [
               2,
               12
             ],
-            /* [] */0
-          ]
-        ]
+            tl: /* [] */0
+          }
+        }
       ],
-      /* :: */[
-        /* tuple */[
-          /* tuple */[
-            /* :: */[
-              1,
-              /* :: */[
-                2,
-                /* :: */[
-                  3,
-                  /* [] */0
-                ]
-              ]
-            ],
-            /* :: */[
-              11,
-              /* :: */[
-                12,
-                /* [] */0
-              ]
-            ]
+      tl: {
+        hd: [
+          [
+            {
+              hd: 1,
+              tl: {
+                hd: 2,
+                tl: {
+                  hd: 3,
+                  tl: /* [] */0
+                }
+              }
+            },
+            {
+              hd: 11,
+              tl: {
+                hd: 12,
+                tl: /* [] */0
+              }
+            }
           ],
-          /* :: */[
-            /* tuple */[
+          {
+            hd: [
               1,
               11
             ],
-            /* :: */[
-              /* tuple */[
+            tl: {
+              hd: [
                 2,
                 12
               ],
-              /* [] */0
-            ]
-          ]
+              tl: /* [] */0
+            }
+          }
         ],
-        /* :: */[
-          /* tuple */[
-            /* tuple */[
-              /* :: */[
-                1,
-                /* :: */[
-                  2,
-                  /* [] */0
-                ]
-              ],
-              /* :: */[
-                11,
-                /* :: */[
-                  12,
-                  /* :: */[
-                    13,
-                    /* [] */0
-                  ]
-                ]
-              ]
+        tl: {
+          hd: [
+            [
+              {
+                hd: 1,
+                tl: {
+                  hd: 2,
+                  tl: /* [] */0
+                }
+              },
+              {
+                hd: 11,
+                tl: {
+                  hd: 12,
+                  tl: {
+                    hd: 13,
+                    tl: /* [] */0
+                  }
+                }
+              }
             ],
-            /* :: */[
-              /* tuple */[
+            {
+              hd: [
                 1,
                 11
               ],
-              /* :: */[
-                /* tuple */[
+              tl: {
+                hd: [
                   2,
                   12
                 ],
-                /* [] */0
-              ]
-            ]
+                tl: /* [] */0
+              }
+            }
           ],
-          /* :: */[
-            /* tuple */[
-              /* tuple */[
-                /* :: */[
-                  1,
-                  /* :: */[
-                    2,
-                    /* [] */0
-                  ]
-                ],
+          tl: {
+            hd: [
+              [
+                {
+                  hd: 1,
+                  tl: {
+                    hd: 2,
+                    tl: /* [] */0
+                  }
+                },
                 /* [] */0
               ],
               /* [] */0
             ],
-            /* :: */[
-              /* tuple */[
-                /* tuple */[
+            tl: {
+              hd: [
+                [
                   /* [] */0,
-                  /* :: */[
-                    11,
-                    /* :: */[
-                      12,
-                      /* [] */0
-                    ]
-                  ]
+                  {
+                    hd: 11,
+                    tl: {
+                      hd: 12,
+                      tl: /* [] */0
+                    }
+                  }
                 ],
                 /* [] */0
               ],
-              /* [] */0
-            ]
-          ]
-        ]
-      ]
-    ]);
+              tl: /* [] */0
+            }
+          }
+        }
+      }
+    });
 
 /*  Not a pure module */
