@@ -4,7 +4,7 @@ open Rebase;
 open TestHelpers;
 
 describe("Mappable.S1_5", () => {
-  module M: Signatures.Mappable.S1_5 with type t('a, 'e) := result('a, 'e) = Rebase.Result;
+  module M: Signatures.Mappable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
 
   testFn("map",
     M.map(x => x + 1), [
@@ -16,7 +16,7 @@ describe("Mappable.S1_5", () => {
 
 
 describe("Mappable.S2", () => {
-  module M: Signatures.Mappable.S2 with type t('a, 'e) := result('a, 'e) = Rebase.Result;
+  module M: Signatures.Mappable.S2 with type t('a, 'e) := result('a, 'e) = Result;
 
   testFn("map2",
     M.map2(x => x + 1, e => e ++ "or"), [
@@ -28,7 +28,7 @@ describe("Mappable.S2", () => {
 
 
 describe("Applicative.S1_5", () => {
-  module M: Signatures.Applicative.S1_5 with type t('a, 'e) := result('a, 'e) = Rebase.Result;
+  module M: Signatures.Applicative.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
 
   testFn("apply",
     M.apply |> Fn.uncurry, [
@@ -49,7 +49,7 @@ describe("Applicative.S1_5", () => {
 
 
 describe("Reduceable.S1_5", () => {
-  module M: Signatures.Reduceable.S1_5 with type t('a, 'e) := result('a, 'e) = Rebase.Result;
+  module M: Signatures.Reduceable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
 
   testFn("reduce",
     M.reduce((acc, x) => x - acc, 10), [
@@ -68,7 +68,7 @@ describe("Reduceable.S1_5", () => {
 
 
 describe("Monad.S1_5", () => {
-  module M: Signatures.Monad.S1_5 with type t('a, 'e) := result('a, 'e) = Rebase.Result;
+  module M: Signatures.Monad.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
 
   testFn("flatMap",
     M.flatMap(x => Ok(x + 1)), [
@@ -80,7 +80,7 @@ describe("Monad.S1_5", () => {
 
 
 describe("Iterable.S1_5", () => {
-  module M: Signatures.Iterable.S1_5 with type t('a, 'e) := result('a, 'e) = Rebase.Result;
+  module M: Signatures.Iterable.S1_5 with type t('a, 'e) := result('a, 'e) = Result;
 
   /*
   testFn("filter",
