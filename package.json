@@ -1,6 +1,6 @@
 {
   "name": "@glennsl/rebase",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A minimal base library for Reason",
   "scripts": {
     "clean": "bsb -clean-world",
@@ -18,7 +18,12 @@
     "url": "git+https://github.com/glennsl/rebase.git"
   },
   "author": "glennsl",
-  "keywords": ["reason", "bucklescript", "foundation", "base"],
+  "keywords": [
+    "reason",
+    "bucklescript",
+    "foundation",
+    "base"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@glennsl/bs-jest": "^0.7.0",
@@ -30,6 +35,8 @@
     "bs-platform": "^8.3.1"
   },
   "jest": {
-    "testMatch": ["**/__tests__/**/*_test.bs.js"]
+    "testMatch": [
+      "**/__tests__/**/*_test.bs.js"
+    ]
   }
 }
